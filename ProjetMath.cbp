@@ -37,7 +37,7 @@
 					<Add option="-lsfml-window-s" />
 					<Add option="-lsfml-system-s" />
 					<Add option="-lsfml-audio-s" />
-					<Add option="-static-libgcc -static-libstdc++" />
+					<Add option="-static-libgcc" />
 				</Linker>
 			</Target>
 		</Build>
@@ -80,8 +80,8 @@
 		<Unit filename="libs/Menu.hpp" />
 		<Unit filename="libs/PtrList.hpp" />
 		<Unit filename="libs/PtrVector.hpp" />
-		<Unit filename="libs/ResourcesManagerSFML2_0.cpp" />
-		<Unit filename="libs/ResourcesManagerSFML2_0.hpp" />
+		<Unit filename="libs/ResourcesManagerSFML2_1.cpp" />
+		<Unit filename="libs/ResourcesManagerSFML2_1.hpp" />
 		<Unit filename="libs/ScopedPtr.hpp" />
 		<Unit filename="libs/TextAreaSFML2_0.cpp" />
 		<Unit filename="libs/TextAreaSFML2_0.hpp" />
