@@ -16,10 +16,10 @@
 					<Add option="-DDEBUG" />
 				</Compiler>
 				<Linker>
-					<Add option="-lsfml-graphics-s-d" />
-					<Add option="-lsfml-window-s-d" />
-					<Add option="-lsfml-system-s-d" />
-					<Add option="-lsfml-audio-s-d" />
+					<Add option="-lsfml-graphics-d" />
+					<Add option="-lsfml-window-d" />
+					<Add option="-lsfml-system-d" />
+					<Add option="-lsfml-audio-d" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -47,7 +47,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
-			<Add option="-DSFML_STATIC" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>

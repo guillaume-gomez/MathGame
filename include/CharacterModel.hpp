@@ -2,7 +2,7 @@
 #define CHARACTERMODEL_H
 
 #include <SFML/Graphics.hpp>
-#include "construeFunction.hpp"
+#include "ConstrueFunction.hpp"
 #include <cmath>
 #include "../libs/TextAreaSFML2_0.hpp"
 
