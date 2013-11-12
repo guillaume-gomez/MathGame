@@ -1,5 +1,5 @@
-#ifndef LINESFML2_0_H
-#define LINESFML2_0_H
+#ifndef LINESFML2_1_H
+#define LINESFML2_1_H
 
 #ifdef DEBUG
 	#include <iostream>
@@ -8,13 +8,13 @@
 #include <cmath>
 #include <SFML/Graphics/RectangleShape.hpp>
 
-class LineSFML2_0 : public sf::RectangleShape
+class LineSFML2_1 : public sf::RectangleShape
 {
     public:
-        LineSFML2_0(const sf::Vector2f& startCoords=sf::Vector2f(0,0), const sf::Vector2f& endCoords=sf::Vector2f(0,0));
-        virtual ~LineSFML2_0();
-        LineSFML2_0(const LineSFML2_0& other);
-        LineSFML2_0& operator=(const LineSFML2_0& other);
+        LineSFML2_1(const sf::Vector2f& startCoords=sf::Vector2f(0,0), const sf::Vector2f& endCoords=sf::Vector2f(0,0));
+        virtual ~LineSFML2_1();
+        LineSFML2_1(const LineSFML2_1& other);
+        LineSFML2_1& operator=(const LineSFML2_1& other);
 
         void setStartCoords(const sf::Vector2f& startCoords);
         void setEndCoords(const sf::Vector2f& endCoords);
@@ -40,45 +40,45 @@ class LineSFML2_0 : public sf::RectangleShape
 
 /***************************************** Definitions *****************************************/
 /**/
-/**/	inline void LineSFML2_0::setStartCoords(const sf::Vector2f& startCoords)
+/**/	inline void LineSFML2_1::setStartCoords(const sf::Vector2f& startCoords)
 /**/	{
 /**/		m_startCoords = startCoords;
 /**/		compute();
 /**/	}
 /**/
-/**/	inline void LineSFML2_0::setEndCoords(const sf::Vector2f& endCoords)
+/**/	inline void LineSFML2_1::setEndCoords(const sf::Vector2f& endCoords)
 /**/	{
 /**/		m_endCoords = endCoords;
 /**/		compute();
 /**/	}
 /**/
-/**/	inline const sf::Vector2f& LineSFML2_0::getStartCoords() const
+/**/	inline const sf::Vector2f& LineSFML2_1::getStartCoords() const
 /**/	{
 /**/		return m_startCoords;
 /**/	}
 /**/
-/**/	inline const sf::Vector2f& LineSFML2_0::getEndCoords() const
+/**/	inline const sf::Vector2f& LineSFML2_1::getEndCoords() const
 /**/	{
 /**/		return m_endCoords;
 /**/	}
 /**/
-/**/	inline float LineSFML2_0::getLength() const
+/**/	inline float LineSFML2_1::getLength() const
 /**/	{
 /**/		return m_length;
 /**/	}
 /**/
-/**/	inline void LineSFML2_0::setThickness(float thickness)
+/**/	inline void LineSFML2_1::setThickness(float thickness)
 /**/	{
 /**/		m_thickness = thickness;
 /**/		sf::RectangleShape::setOrigin(0.0f,m_thickness/2.0f);
 /**/		compute();
 /**/	}
 /**/
-/**/	inline float LineSFML2_0::getThickness() const
+/**/	inline float LineSFML2_1::getThickness() const
 /**/	{
 /**/		return m_thickness;
 /**/	}
 /**/
 /***************************************** // Definitions *****************************************/
 
-#endif // LINESFML2_0_H
+#endif // LINESFML2_1_H

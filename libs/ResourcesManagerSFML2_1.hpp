@@ -93,7 +93,7 @@ template<class T>
 ResourcesManagerSFML2_0<T>::~ResourcesManagerSFML2_0()
 {
 	#ifdef DEBUG
-		std::cout << "destructor ResourcesManagerSFML2_0" << std::endl;
+		std::cout << "destructor ResourcesManagerSFML2_1" << std::endl;
 		std::cout << "m_resources.size() : " << m_resources.size() << std::endl;
 	#endif
 	FOR_STL_ITERATOR(typename map_string_ptrT, m_resources, it)

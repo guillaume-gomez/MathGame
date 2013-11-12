@@ -25,7 +25,7 @@ void GraphView::represent(float step)
 	{
 		if((itNext->x- it->x) <= step*2)
 		{
-			m_lines.push_back(LineSFML2_0(sf::Vector2f(it->x,-it->y)*m_scale,sf::Vector2f(itNext->x,-itNext->y)*m_scale));
+			m_lines.push_back(LineSFML2_1(sf::Vector2f(it->x,-it->y)*m_scale,sf::Vector2f(itNext->x,-itNext->y)*m_scale));
 			m_lines.rbegin()->setFillColor(m_graphColor);
 		}
 
@@ -36,7 +36,7 @@ void GraphView::represent(float step)
 
 void GraphView::draw(sf::RenderWindow& App)
 {
-	FOR_STL_ITERATOR(std::list<LineSFML2_0>, m_lines, itl)
+	FOR_STL_ITERATOR(std::list<LineSFML2_1>, m_lines, itl)
 	{
 		itl->setThickness(m_thickness);
 		App.draw(*itl);

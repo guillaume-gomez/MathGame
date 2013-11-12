@@ -6,7 +6,7 @@
 #include <limits>
 #include <SFML/Graphics.hpp>
 #include "ConstrueFunction.hpp"
-#include "../libs/LineSFML2_0.hpp"
+#include "../libs/LineSFML2_1.hpp"
 
 #define FOR_STL_ITERATOR(container_type, name, iteratorName) for(container_type::iterator iteratorName=name.begin(); iteratorName!=name.end(); iteratorName++)
 
@@ -24,7 +24,7 @@ class GraphView
 
 	private:
 	    const ConstrueFonction& m_model;
-        std::list<LineSFML2_0> m_lines;
+        std::list<LineSFML2_1> m_lines;
 		float m_thickness;
 		float m_scale;
 		sf::Color m_graphColor;
