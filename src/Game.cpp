@@ -181,7 +181,6 @@ void Game::move()
 void Game::selectLevel(ScreenLink& stat)
 {
     reset();
-
     m_level.setDiff(stat.getDiff());
     m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
 }
@@ -218,6 +217,7 @@ int Game::levelOperation( ScreenLink& stat)
 void Game::reset()
 {
          m_player1Model.setCoords(sf::Vector2f(0.0f,0.0f));
+         m_player1Model.setAngle(0.0f);
          m_player1Model.resetVelocity();
          m_graphModel.setChanged(true);
          m_graphModel.clearFunction();

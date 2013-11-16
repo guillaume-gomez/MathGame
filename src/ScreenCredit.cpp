@@ -73,6 +73,7 @@ int ScreenCredit::Run ( sf::RenderWindow &App)
             if (event.type == sf::Event::Closed)
             {
                 Running = false;
+                return SCREEN_EXIT;
                 App.close();
             }
 

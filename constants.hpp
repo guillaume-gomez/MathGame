@@ -67,4 +67,14 @@ const float TimePanel = 10.0f;
 //const float CHARACTER_VELOCITY = 6.0f; // vitesse du personnage en graduation/sec
 const sf::Vector2f GravityAcceleration(0.0f, -16.677f);
 
+const char Sliding[] = "Sliding";
+const char NoSliding[] = "NoSliding";
+
+const float DefautCharFriction = 0.1;
+const unsigned int DefaultCharWidth = 24;
+const unsigned int DefaultCharHeight = 34;
+
+const unsigned int Bikefriction = 0.05;
+const unsigned int BikeWidth = 50;
+const unsigned int BikeHeight = 50;
 #endif // CONSTANTS_HPP

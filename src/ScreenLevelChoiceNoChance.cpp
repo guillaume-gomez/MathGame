@@ -3,7 +3,10 @@
 ScreenLevelChoiceNoChance::ScreenLevelChoiceNoChance(ScreenLink* _stat)
 :ScreenLevelChoice(_stat)
 {
-
+    for(unsigned int i=0; i < m_selectionLevel.size();i++)
+    {
+        m_selectionLevel.at(i)->setGameMode(NoChance);
+    }
 }
 
 ScreenLevelChoiceNoChance::~ScreenLevelChoiceNoChance()
@@ -14,95 +17,59 @@ ScreenLevelChoiceNoChance::~ScreenLevelChoiceNoChance()
 
 int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
 {
-     bool Running = true;
-//    int alpha = 0 ;
+ bool Running = true;
+    App.resetGLStates();
 
-    /*if (m_playing)
-    {
-        alpha = m_alpha_max;
-    }*/
+    // Create the ScrolledWindow.
+	sfg::ScrolledWindow::Ptr scrolledwindow = sfg::ScrolledWindow::Create();
 
-    while( Running)
+	scrolledwindow->SetScrollbarPolicy( sfg::ScrolledWindow::HORIZONTAL_ALWAYS | sfg::ScrolledWindow::VERTICAL_AUTOMATIC );
+	//scrolledwindow->AddWithViewport( m_scrolled_window_box );
+
+	// Always remember to set the minimum size of a ScrolledWindow.
+	scrolledwindow->SetRequisition( sf::Vector2f( 500.f, 100.f ) );
+
+	//m_scrolled_window_box->Pack( scrolledwindow, false, true );
+    while(Running)
     {
          sf::Event event;
+          m_changingMenu = -1;
         //Verifing events
         while( App.pollEvent(event))
         {
+            // Handle events
+			m_window->HandleEvent( event );
             if (event.type == sf::Event::Closed)
             {
                 Running = false;
                 App.close();
             }
 
-            m_menu.handle_input(event);
-            MovingMenu();
-            m_menu.TimerOperation();
-
             if ( event.type == sf::Event::KeyPressed)
             {
-                if (event.key.code == sf::Keyboard::Return)
-                {
-                    for ( unsigned int i = 0 ; i < m_easyList.size() ; i++)
-                    {
-
-                        if ( m_easyList[i]->getAlpha() != Blur && m_easyList[i] == m_cursor->getButton())
-                        {
-                             m_stat->setParamLevel(Easy,i+1 , NoChance);
-
-
-                               return GAME;
-
-                        }
-                    }
-
-                    for ( unsigned int i = 0 ; i < m_normalList.size() ; i++)
-                    {
-                        if (m_normalList[i]->getAlpha() != Blur  && m_normalList[i] == m_cursor->getButton())
-                        {
-                            m_stat->setParamLevel(Normal,i+1,NoChance);
-
-
-                               return GAME;
-
-                        }
-                    }
-
-
-                    for ( unsigned int i = 0 ; i < m_hardList.size() ; i++)
-                    {
-                        if ( m_hardList[i]->getAlpha() != Blur &&  m_hardList[i] == m_cursor->getButton())
-                        {
-                            m_stat->setParamLevel(Hard,i+1,NoChance);
-
-
-                               return GAME;
-
-                        }
-                    }
-                }
-                else if (event.key.code == sf::Keyboard::Escape)
+                if ( event.key.code == sf::Keyboard::Escape)
                 {
                     return MENU;
                 }
             }
 
+             for(unsigned int i=0; i < m_selectionLevel.size();i++)
+            {
+                if(m_selectionLevel.at(i)->isClicked())
+                {
+                    return GAME;
+                }
+            }
+
         }
-
-
-    /*if ( alpha < m_alpha_max)
-    {
-        alpha++;
-    }*/
+    m_window->Update( 0.f );
 
     App.clear();
     App.draw(m_background);
-    App.draw(m_easyBar);
-    App.draw(m_normalBar);
-    App.draw(m_hardBar);
-    m_menu.Draw(App);
+    m_sfgui.Display( App );
     App.display();
 
     }
 
-    return (SCREEN_EXIT);
+return (SCREEN_EXIT);
 }

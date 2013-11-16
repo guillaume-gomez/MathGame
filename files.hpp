@@ -44,4 +44,7 @@ const char FilenameButtonPanel[] = "resources/design/buttonPanel.png";
 const char FilenameBGFinish[] = "resources/design/bg_finish.png";
 const char FilenameUnderline[] = "resources/design/underline.png";
 const char FilenameHanged[] = "resources/design/hanged.png";
+
+const char FilenameDefaultChar[] = "resources/sprites/bonhommeNoir.gif";
+const char FilenameBike[] = "resources/sprites/velo.png";
 #endif //FILES_HPP

@@ -1,34 +1,48 @@
 #ifndef SCREENLEVELCHOICE_H
 #define SCREENLEVELCHOICE_H
 
-#include "../libs/Menu.hpp"
-#include "../libs/Cursor.hpp"
-#include "../libs/Button.hpp"
+#include <SFGUI/SFGUI.hpp>
+
 #include "../files.hpp"
 #include "Screen.hpp"
 
-#include "../libs/ResourcesManagerSFML2_0.hpp"
+#include "../libs/ResourcesManagerSFML2_1.hpp"
 #include <sstream>
 #include <vector>
 
 #include "ScreenLink.hpp"
 
+class SelectLevel
+{
+    public:
+        friend class ScreenLevelChoice;
+        SelectLevel( ScreenLink* _stat , unsigned int level = 1, Difficulty difficulty = Normal);
+        ~SelectLevel();
+        virtual void selectingLevel();
+        inline void setGameMode(GameMode _g){ m_modeSelectLevel = _g;};
+        inline bool isClicked()const {return m_isClicked;};
+    private:
+        Difficulty m_difficulty;
+        unsigned int m_level;
+        bool m_isClicked;
+        GameMode m_modeSelectLevel;
+        ScreenLink* m_stat;
+
+};
+
 class ScreenLevelChoice : public Screen
 {
     public:
+        friend class SelectLevel;
+
         ScreenLevelChoice( ScreenLink* _stat);
         virtual ~ScreenLevelChoice();
         virtual int Run(sf::RenderWindow & App) = 0 ;
-        void MovingMenu();
-    protected:
-        //ScreenLevelChoice();
-        bool m_playing;
-        Cursor *m_cursor;
-        Menu m_menu;
 
-        std::vector<Button*> m_easyList ;
-        std::vector<Button*> m_normalList ;
-        std::vector<Button*> m_hardList ;
+    protected:
+        bool m_playing;
+        sfg::SFGUI m_sfgui;
+        sfg::Window::Ptr m_window;
 
         sf::Sprite m_easyBar;
         sf::Sprite m_normalBar;
@@ -39,10 +53,18 @@ class ScreenLevelChoice : public Screen
         sf::Texture m_hardTex;
 
         sf::Sprite m_background;
+        sfg::Box::Ptr m_scrolled_window_box;
 
-        ScreenLink* m_stat;
+        sfg::Box::Ptr m_layoutEasy;
+        sfg::Box::Ptr m_layoutNormal;
+        sfg::Box::Ptr m_layoutHard;
 
-        unsigned int m_nbDifficulty;
+        sfg::Frame::Ptr m_frameEasy;
+        sfg::Frame::Ptr m_frameNormal;
+        sfg::Frame::Ptr m_frameHard;
+        int m_changingMenu;
+
+        std::vector<SelectLevel*> m_selectionLevel;
 
 };
 

@@ -5,7 +5,7 @@
 #include "SFML/Graphics.hpp"
 #include "../files.hpp"
 
-#include "../libs/ResourcesManagerSFML2_0.hpp"
+#include "../libs/ResourcesManagerSFML2_1.hpp"
 
 class ScreenFinish : public Screen
 {

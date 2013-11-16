@@ -47,6 +47,7 @@ class CharacterModel
         void setMoveType(MoveType moveType);
 		void setFrictionCoefficient(float frictionCoefficient);
 		float getAngle()const {return m_angle;};
+		void setAngle(float angle){m_angle = angle;};
 
     private:
         bool m_life;

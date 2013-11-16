@@ -359,9 +359,9 @@ int Editor::save(ScreenLink * link)
     }
 
         std::vector<std::string> fileList;
-        fileList.push_back("easy");
-        fileList.push_back("normal");
-        fileList.push_back("hard");
+        fileList.push_back("Easy");
+        fileList.push_back("Normal");
+        fileList.push_back("Hard");
 
 
         unsigned int numberattempt = m_spriteList.size() - 1;

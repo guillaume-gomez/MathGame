@@ -8,7 +8,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
-#include "../libs/ResourcesManagerSFML2_0.hpp"
+#include "../libs/ResourcesManagerSFML2_1.hpp"
 
 
 

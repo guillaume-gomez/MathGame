@@ -9,17 +9,9 @@ Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
 
 int Screen_Game::Run(sf::RenderWindow& App)
 {
-
-      bool Running = true;
-      m_game.loadConfigFile();
-//    int alpha = 0 ;
-
-    /*if (m_playing)
-    {
-        alpha = m_alpha_max;
-
-
-    }*/
+    std::cout << "BONHOR";
+    bool Running = true;
+    m_game.loadConfigFile();
     m_game.selectLevel(*m_stat);
     int gameFinish = 0;
     m_game.setBack(false);

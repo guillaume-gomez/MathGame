@@ -71,7 +71,7 @@ inline sf::Vector2f LevelModel::getCoordPoints( unsigned int i) const
     return sf::Vector2f(-1.0f,-1.0f);
 };
 
-inline sf::Vector2f LevelModel::getGoalCoord()const { return m_coordPoints[ m_coordPoints.size() - 1];};
+inline sf::Vector2f LevelModel::getGoalCoord()const { if(m_coordPoints.size() > 0 )return m_coordPoints[ m_coordPoints.size() - 1];else sf::Vector2f(0.0f,0.0f);};
 
 inline bool LevelModel::getCheckValue( unsigned int i )const
 {
