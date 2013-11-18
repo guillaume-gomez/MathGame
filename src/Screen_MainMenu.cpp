@@ -21,6 +21,10 @@ Screen_MainMenu::Screen_MainMenu()
     m_option_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::optionButtonClick , this);
     m_editor_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::editorButtonClick, this);
 
+    m_window = sfg::Window::Create();
+	m_window->SetTitle( "Title" );
+   // m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
+
 }
 
 
@@ -51,8 +55,7 @@ void Screen_MainMenu::optionButtonClick()
 
 int Screen_MainMenu::Run(sf::RenderWindow& App)
 {
-    m_window = sfg::Window::Create();
-	m_window->SetTitle( "Title" );
+
 
     bool Running = true;
     int alpha = 0 ;
@@ -71,9 +74,12 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
     box->Pack( m_editor_button );
     box->Pack( m_option_button );
 
+
     m_window->Add( box );
     m_changingMenu = SCREEN_EXIT;
-    // Start the game loop
+    //m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f , App.getSize().y / 2.0f));
+
+    sfg::SFGUI sfgui;
 
 	while ( Running )
 	{
@@ -112,7 +118,7 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 		App.clear();
 		// Draw the GUI
 		App.draw(m_background);
-		m_sfgui.Display( App );
+		sfgui.Display( App );
 
 		// Update the window
 		App.display();

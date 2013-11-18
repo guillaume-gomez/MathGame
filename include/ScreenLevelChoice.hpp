@@ -41,7 +41,7 @@ class ScreenLevelChoice : public Screen
 
     protected:
         bool m_playing;
-        sfg::SFGUI m_sfgui;
+        //sfg::SFGUI m_sfgui;
         sfg::Window::Ptr m_window;
 
         sf::Sprite m_easyBar;

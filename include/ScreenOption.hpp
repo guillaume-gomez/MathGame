@@ -44,7 +44,6 @@ class ScreenOption : public Screen
         std::string m_gravityType;
         std::string m_filenameChar;
 
-        sfg::SFGUI m_sfgui;
         sfg::Window::Ptr m_window;
         sfg::Box::Ptr m_box;
         sfg::Box::Ptr m_layoutPhysics;

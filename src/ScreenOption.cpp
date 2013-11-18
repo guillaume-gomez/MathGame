@@ -84,7 +84,7 @@ void ScreenOption::save()
         width = BikeWidth ;
         height = BikeHeight;
     }
-
+    std::cout << m_filenameChar << std::endl;
     configFile <<"FilenameCharacterTex = "<< m_filenameChar << std::endl;
     configFile << "width = "<< width << std::endl;
     configFile << "height = "<< height<< std::endl;
@@ -99,7 +99,7 @@ int ScreenOption::Run( sf::RenderWindow& App)
 {
 	bool Running = true;
 
-
+    sfg::SFGUI sfgui;
     App.resetGLStates();
 
 	while( Running)
@@ -127,8 +127,8 @@ int ScreenOption::Run( sf::RenderWindow& App)
 
 		App.clear();
 		App.draw(m_background);
+		sfgui.Display( App );
 		App.draw(currentChoice);
-		m_sfgui.Display( App );
 		App.display();
         currentChoice.Update();
 	}
@@ -151,11 +151,11 @@ void ChoiceCharacter::defineCharacter()
     switch(m_type)
     {
         case 1:
-            std::cout << "JJJJJ";
+//            m_filenameChar = "truc";
         break;
 
         case 2:
-        std::cout << "gggg";
+
         break;
     }
 

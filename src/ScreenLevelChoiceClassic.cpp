@@ -30,6 +30,8 @@ int ScreenLevelChoiceClassic::Run(sf::RenderWindow & App)
 	scrolledwindow->SetRequisition( sf::Vector2f( 500.f, 100.f ) );
 
 	//m_scrolled_window_box->Pack( scrolledwindow, false, true );
+    sfg::SFGUI sfgui;
+
     while(Running)
     {
          sf::Event event;
@@ -66,7 +68,7 @@ int ScreenLevelChoiceClassic::Run(sf::RenderWindow & App)
 
     App.clear();
     App.draw(m_background);
-    m_sfgui.Display( App );
+    sfgui.Display( App );
     App.display();
 
     }

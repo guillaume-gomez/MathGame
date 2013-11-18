@@ -29,6 +29,7 @@ int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
 	// Always remember to set the minimum size of a ScrolledWindow.
 	scrolledwindow->SetRequisition( sf::Vector2f( 500.f, 100.f ) );
 
+    sfg::SFGUI sfgui;
 	//m_scrolled_window_box->Pack( scrolledwindow, false, true );
     while(Running)
     {
@@ -66,7 +67,7 @@ int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
 
     App.clear();
     App.draw(m_background);
-    m_sfgui.Display( App );
+    sfgui.Display( App );
     App.display();
 
     }
