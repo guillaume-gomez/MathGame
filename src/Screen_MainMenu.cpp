@@ -20,11 +20,6 @@ Screen_MainMenu::Screen_MainMenu()
     m_credit_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::creditButtonClick , this);
     m_option_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::optionButtonClick , this);
     m_editor_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::editorButtonClick, this);
-
-    m_window = sfg::Window::Create();
-	m_window->SetTitle( "Title" );
-   // m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
-
 }
 
 
@@ -74,7 +69,9 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
     box->Pack( m_editor_button );
     box->Pack( m_option_button );
 
-
+    m_window = sfg::Window::Create();
+	m_window->SetTitle( "Title" );
+   // m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
     m_window->Add( box );
     m_changingMenu = SCREEN_EXIT;
     //m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f , App.getSize().y / 2.0f));
