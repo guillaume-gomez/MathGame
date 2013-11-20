@@ -74,7 +74,9 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
    // m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
     m_window->Add( box );
     m_changingMenu = SCREEN_EXIT;
-    //m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f , App.getSize().y / 2.0f));
+
+
+    m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
 
     sfg::SFGUI sfgui;
 

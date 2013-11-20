@@ -1,7 +1,0 @@
-countEasy
-5countNormal
-5countHard
-5maxEasy
-2maxNormal
-2maxHard
-1

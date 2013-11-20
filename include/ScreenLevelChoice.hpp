@@ -21,6 +21,7 @@ class SelectLevel
         virtual void selectingLevel();
         inline void setGameMode(GameMode _g){ m_modeSelectLevel = _g;};
         inline bool isClicked()const {return m_isClicked;};
+        inline bool unclicked(){ m_isClicked = false;};
     private:
         Difficulty m_difficulty;
         unsigned int m_level;

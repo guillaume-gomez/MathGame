@@ -102,6 +102,8 @@ int ScreenOption::Run( sf::RenderWindow& App)
     sfg::SFGUI sfgui;
     App.resetGLStates();
 
+    m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
+
 	while( Running)
 	{
 		sf::Event event;
