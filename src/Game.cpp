@@ -5,12 +5,15 @@
 Game::Game( RenderWindow& _app , Difficulty _diff)
 :m_app(_app),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_player1Model(true, sf::Vector2f(0.0f,0.0f), 12),m_player1View(m_player1Model, GraphScale)
 ,m_textAreaFunction(6),m_level(1,_diff,GraphScale),m_buttonReset(FilenameButtonReset),m_buttonSound(FilenameSound,WidthIcon,HeightIcon),m_buttonBack(FilenameButtonBack),
- /*m_modelIntegral("cos(x)"),m_viewIntegral(m_modelIntegral, GraphScale),*/
+ m_modelIntegral("cos(x)"),m_viewIntegral(m_modelIntegral, GraphScale),
  m_gameStarted(false),m_isZoom(false),m_isSound(true),m_isBack(false)
 {
    loadConfigFile();
 
    setCenterCamera();
+   //m_modelIntegral.getIntegraleCurve(-5,5,0.1);
+
+   m_viewIntegral.represent();
 
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
 	text->setRepeated(true);
@@ -137,7 +140,7 @@ void Game::draw()
     m_app.draw(m_spriteBG);
 
     m_axis.draw(m_app);
-//    m_viewIntegral.draw(m_app);
+    m_viewIntegral.draw(m_app);
     m_graphView.draw(m_app);
     m_level.drawPoints(m_app);
     m_player1View.draw(m_app);

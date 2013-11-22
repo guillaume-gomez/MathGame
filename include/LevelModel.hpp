@@ -26,10 +26,10 @@ class LevelModel
         unsigned int getNbPoints() const;
         sf::Vector2f getCoordPoints( unsigned int i) const ;
         void IsFinishing ( CharacterModel& charactermodel,float _scale , bool& playableSound);
-         bool getCheckValue( unsigned int i )const;
+        bool getCheckValue( unsigned int i )const;
         void IsLosing();
         friend std::ostream& operator<<( std::ostream &flux, const LevelModel&  level );
-         int getNbAttempt()const;
+        int getNbAttempt()const;
         void decrementAttempt();
         void reset();
         int getSaveAttempt()const;

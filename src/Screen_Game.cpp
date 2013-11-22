@@ -9,7 +9,7 @@ Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
 
 int Screen_Game::Run(sf::RenderWindow& App)
 {
-    std::cout << "BONHOR";
+//    std::cout << "BONHOR";
     bool Running = true;
     m_game.loadConfigFile();
     m_game.selectLevel(*m_stat);

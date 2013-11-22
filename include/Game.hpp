@@ -20,6 +20,8 @@
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
+#include "IntegralView.hpp"
+
 
 using namespace sf;
 
@@ -61,8 +63,8 @@ class Game
 //        Texture m_textBG;
         Sprite m_spriteBG;
 
-//        IntegralModel m_modelIntegral;
-//        IntegralView m_viewIntegral;
+        IntegralModel m_modelIntegral;
+        IntegralView m_viewIntegral;
 
 
 
