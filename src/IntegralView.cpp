@@ -3,11 +3,7 @@
 
 IntegralView::IntegralView(IntegralModel& model, const float scale)
 : m_model(model), m_scale(scale)
-{
-std::cout << "truc " << model.getListCoordToShapes().size() << std::endl;
-std::cout << "ADRESS " << &model << std::endl;
-std::cout << "ADRE__SS " << &m_model << std::endl;
-}
+{}
 
 IntegralView::~IntegralView()
 {
@@ -16,28 +12,27 @@ IntegralView::~IntegralView()
 
 void IntegralView::represent()
 {
-std::cout <<"CoteDEV " <<   m_model.getListCoordToShapes().size() << std::endl;
-std::cout << "ADS " << &m_model << std::endl;
+unsigned int index = 0;
+unsigned int i = 0;
 
-    for ( std::list<std::list<sf::Vector2f> >::iterator it = m_model.getListCoordToShapes().begin(); it != m_model.getListCoordToShapes().end() ;it++)
+    while (i < m_model.getNbPoints() )
     {
-    	sf::ConvexShape temp;
-                        temp.setPointCount(it->size());
-        std::cout << "MACHIN " << std::endl;
-        unsigned int i = 0;
-    	for (std::list<sf::Vector2f>::iterator itCoordsShape = it->begin(); itCoordsShape != it->end() ; itCoordsShape++)
-    	{
-            std::cout << "X " << itCoordsShape->x << "Y  " << itCoordsShape->y << std::endl;
-    		temp.setPoint(i, *itCoordsShape);
-    		//add the scale
-    		i++;
-    	}
+        sf::ConvexShape temp;
+                        temp.setPointCount(m_model.getNbCoordByShape(index));
+        for (unsigned int j = 0; j < m_model.getNbCoordByShape(index); j++)
+        {
+            temp.setPoint(j, sf::Vector2f(m_model.getCoordToShapes(i).x * m_scale, - m_model.getCoordToShapes(i).y * m_scale));
+            //add the scale
+         i++;
+        }
+        // TEMP
+        temp.setFillColor(sf::Color(23,20+10*index,20+50*index,100));
+        temp.setOutlineColor(sf::Color(0,0,0));
+        temp.setOutlineThickness(1);
+       // temp.setPosition(10, 20);
 
-    	// TEMP
-    	temp.setOutlineThickness(5);
-		temp.setPosition(10, 20);
-
-    	m_shapeList.push_back(temp);
+        m_shapeList.push_back(temp);
+        index++;
     }
 }
 
@@ -45,6 +40,6 @@ void IntegralView::draw(sf::RenderTarget& target)
 {
     for (unsigned int i = 0 ; i < m_shapeList.size() ; i++)
     {
-          target.draw(m_shapeList[i]);
+         target.draw(m_shapeList[i]);
     }
 }

@@ -3,68 +3,81 @@
 IntegralModel::IntegralModel(std::string _function)
 :ConstrueFonction(_function)
 {
-    getIntegraleCurve(-5,5,0.1f);
+    getIntegraleCurve(-7,7,0.4f);
 }
 
  void IntegralModel::getIntegraleCurve(float _begin , float _end , float step)
  {
+     std::list<sf::Vector2f>::iterator firstPoint = m_coords.begin();
+    //detect where the function cut the abscissa
+    int sign = (firstPoint->y >= 0)? 1 : -1;
+
     getRepresentativeCurve(_begin,_end,step);
     sf::Vector2f fbegin (m_coords.front());
     m_coords.push_front(sf::Vector2f(fbegin.x,0.0f));
     sf::Vector2f fend = m_coords.back();
     m_coords.push_back(sf::Vector2f(fend.x,0.0f));
 
-    //detect where the function cut the abscissa
-    int sign = 0;
     bool addList = false;
     std::list<sf::Vector2f>::iterator it = m_coords.begin();
+    std::list<sf::Vector2f>::iterator itNext = m_coords.begin();
+                                      itNext++;
     while(it != m_coords.end())
     {
-        std::list<sf::Vector2f> temp;
+        std::cout << "DEBUT " << std::endl;
+        std::cout <<"sign " << sign << std::endl;
         addList = false;
+        unsigned int nbCoord = 0;
+        if ( sign == 0)
+        {
+            std::cout << "UUUU " << it->x << "  " << 0 <<std::endl;
+            m_listCoordShapes.push_back(sf::Vector2f(it->x  , 0.0f));
+            nbCoord++;
+        }
         //while the curve stay on on down the abscissa
-        std::cout << "DEBUT" << std::endl;
         while(it != m_coords.end() && !addList)
         {
-            temp.push_back(*it);
-            if( it->y > 0.0f)
+            if( itNext != m_coords.end())
             {
-                if (sign != 1)
+                if( it->y > 0.0f && itNext->y <= 0.0f)
+                {
+                    // if the sign had changed
+                    addList = true;
+                    sign = 1;
+                }
+                else if (it->y < 0.0f && itNext->y >= 0.0f)
                 {
                     addList = true;
+                    sign = -1;
                 }
-            sign = 1;
-            std::cout <<it->y<< "   ADDLIST    " << sign << std::endl;
-            }
-            else if (it->y < 0.0f)
-            {
-                if(sign != -1)
+                else if ( it->y == 0.0f)
                 {
                     addList = true;
+                    sign = 0;
                 }
-            sign = -1;
-            std::cout <<it->y<< "   ADDLIST    " << sign << std::endl;
+              //  std::cout << "X " << itNext->x << " Y " << itNext->y << std::endl;
             }
-            else
-            {
-                if(sign != 0)
-                {
-                    addList = true;
-                }
-            sign = 0;
-            std::cout <<it->y<< "   ADDLIST    " << sign << std::endl;
-            }
+            m_listCoordShapes.push_back(*it);
+            std::cout << "X " << it->x << " Y " << it->y << std::endl;
+            nbCoord++;
             it++;
+            itNext++;
         }
-        std::cout << "FIN" << std::endl;
         // a point is added if the curve doesn't cut the abscissa at 0 with the step
         // a second point is added to close the future shape in IntegralView
         if(sign != 0)
         {
-            temp.push_back(sf::Vector2f(0.0f, 0.0f));
-            temp.push_back(temp.front());
+           std::cout << "MACHINE" << std::endl;
+           std::cout << ":X " << it->x << " :Y " << 0.0f << std::endl;
+           m_listCoordShapes.push_back(sf::Vector2f(it->x, 0.0f));
+           nbCoord++;
+           sign = 0;
         }
-        m_listCoordShapes.push_back(temp);
+        //to detect the end of a shape
+        std::cout << "nbPOints " << nbCoord  << std::endl;
+        m_nbCoordByShape.push_back(nbCoord);
+        std::cout << "SIGN" << sign << std::endl;
+        std::cout << "FINININININININ" << std::endl;
     }
  }
 

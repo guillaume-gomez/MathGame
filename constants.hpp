@@ -77,4 +77,7 @@ const unsigned int DefaultCharHeight = 34;
 const unsigned int Bikefriction = 0.05;
 const unsigned int BikeWidth = 50;
 const unsigned int BikeHeight = 50;
+
+const float sentinelX = -10000.0f;
+const float sentinelY = -10000.0f;
 #endif // CONSTANTS_HPP

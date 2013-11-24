@@ -6,6 +6,7 @@
 #endif // DEBUG
 
 #include <list>
+#include "../constants.hpp"
 #include "ConstrueFunction.hpp"
 
 #define FOR_STL_ITERATOR(container_type, name, iteratorName) for(container_type::iterator iteratorName=name.begin(); iteratorName!=name.end(); iteratorName++)
@@ -16,9 +17,12 @@ class IntegralModel : public ConstrueFonction
         IntegralModel(std::string _function ="") ;
         virtual ~IntegralModel();
         void getIntegraleCurve(float _begin , float _end , float step);
-        inline std::list<std::list<sf::Vector2f> > getListCoordToShapes() const { return m_listCoordShapes;}
+        inline sf::Vector2f getCoordToShapes(unsigned int index ) const { if(m_listCoordShapes.size()) return m_listCoordShapes[index];}
+        inline unsigned int getNbPoints () const {return m_listCoordShapes.size();}
+        inline unsigned int getNbCoordByShape(unsigned int index) const { if(index < m_nbCoordByShape.size())return m_nbCoordByShape[index];}
     private:
-    	std::list<std::list<sf::Vector2f> > m_listCoordShapes;
+    	std::vector<sf::Vector2f> m_listCoordShapes;
+    	std::vector<unsigned int> m_nbCoordByShape;
 
 
 };
