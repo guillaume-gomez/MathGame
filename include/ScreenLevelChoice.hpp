@@ -28,7 +28,6 @@ class SelectLevel
         bool m_isClicked;
         GameMode m_modeSelectLevel;
         ScreenLink* m_stat;
-
 };
 
 class ScreenLevelChoice : public Screen
@@ -64,6 +63,7 @@ class ScreenLevelChoice : public Screen
         sfg::Frame::Ptr m_frameNormal;
         sfg::Frame::Ptr m_frameHard;
         int m_changingMenu;
+        sfg::SFGUI sfgui;
 
         std::vector<SelectLevel*> m_selectionLevel;
 

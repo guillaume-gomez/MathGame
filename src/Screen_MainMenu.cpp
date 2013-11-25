@@ -70,15 +70,15 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
     box->Pack( m_option_button );
 
     m_window = sfg::Window::Create();
-	m_window->SetTitle( "Title" );
+	m_window->SetTitle( "Main Menu" );
    // m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
     m_window->Add( box );
+    m_window->Show(true);
     m_changingMenu = SCREEN_EXIT;
-
 
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
 
-    sfg::SFGUI sfgui;
+
 
 	while ( Running )
 	{
@@ -97,9 +97,9 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 				return SCREEN_EXIT;
 			}
 
-
             if ( m_changingMenu > 0)
             {
+                m_window->Show(false);
                 return m_changingMenu;
             }
 

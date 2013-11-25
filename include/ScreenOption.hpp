@@ -28,6 +28,7 @@ class ChoiceCharacter
 class ScreenOption : public Screen
 {
     public:
+        static std::string m_filenameChar;
         ScreenOption(unsigned int nbButon = 3);
         void activateSliding();
         void desactivateSliding();
@@ -42,7 +43,6 @@ class ScreenOption : public Screen
         sf::Sprite m_background;
 
         std::string m_gravityType;
-        std::string m_filenameChar;
 
         sfg::Window::Ptr m_window;
         sfg::Box::Ptr m_box;
@@ -50,6 +50,8 @@ class ScreenOption : public Screen
         sfg::Box::Ptr m_layoutCharacter;
         sfg::Frame::Ptr m_framePhysics;
         sfg::Frame::Ptr m_frameCharacter;
+
+        sfg::SFGUI sfgui;
 
         std::vector<ChoiceCharacter> m_character_array;
 

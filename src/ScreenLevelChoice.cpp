@@ -39,7 +39,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
    m_hardBar.setTexture(m_hardTex);
 
    m_window = sfg::Window::Create();
-   m_window->SetTitle( "Resize me!" );
+   m_window->SetTitle( "Select a Level" );
 
    m_scrolled_window_box = sfg::Box::Create(sfg::Box::VERTICAL);
    m_layoutEasy = sfg::Box::Create( sfg::Box::HORIZONTAL );

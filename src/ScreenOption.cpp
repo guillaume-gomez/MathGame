@@ -2,13 +2,17 @@
 
 
 //std::vector<Button*> m_listButton;
+//
+
+std::string ScreenOption::m_filenameChar = FilenameDefaultChar;
+
 
 ScreenOption::ScreenOption(unsigned int _button)
-: m_nbButton(_button),m_gravityType(NoSliding), m_filenameChar(FilenameDefaultChar),m_character_array(0)
+: m_nbButton(_button),m_gravityType(NoSliding),m_character_array(0)
 {
 
    m_window = sfg::Window::Create();
-   m_window->SetTitle( "Resize me!" );
+   m_window->SetTitle( "Option" );
 
    m_box = sfg::Box::Create(sfg::Box::VERTICAL);
    m_layoutPhysics = sfg::Box::Create( sfg::Box::HORIZONTAL );
@@ -99,11 +103,10 @@ int ScreenOption::Run( sf::RenderWindow& App)
 {
 	bool Running = true;
 
-    sfg::SFGUI sfgui;
     App.resetGLStates();
 
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
-
+    m_window->Show(true);
 	while( Running)
 	{
 		sf::Event event;
@@ -121,7 +124,10 @@ int ScreenOption::Run( sf::RenderWindow& App)
             if ( event.type == sf::Event::KeyPressed)
             {
                 if ( event.key.code == sf::Keyboard::Escape)
-                    return MENU;
+                {
+                     m_window->Show(false);
+                     return MENU;
+                }
             }
         }
 
@@ -153,11 +159,10 @@ void ChoiceCharacter::defineCharacter()
     switch(m_type)
     {
         case 1:
-//            m_filenameChar = "truc";
+            ScreenOption::m_filenameChar = FilenameDefaultChar;
         break;
-
         case 2:
-
+            ScreenOption::m_filenameChar = FilenameBike;
         break;
     }
 
