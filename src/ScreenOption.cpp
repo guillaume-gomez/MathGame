@@ -14,9 +14,9 @@ ScreenOption::ScreenOption(unsigned int _button)
    m_window = sfg::Window::Create();
    m_window->SetTitle( "Option" );
 
-   m_box = sfg::Box::Create(sfg::Box::VERTICAL);
-   m_layoutPhysics = sfg::Box::Create( sfg::Box::HORIZONTAL );
-   m_layoutCharacter = sfg::Box::Create( sfg::Box::HORIZONTAL );
+   m_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+   m_layoutPhysics = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
+   m_layoutCharacter = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
 
    m_framePhysics = sfg::Frame::Create("Gravity Type");
    m_frameCharacter = sfg::Frame::Create("Select a character");
@@ -29,18 +29,18 @@ ScreenOption::ScreenOption(unsigned int _button)
         ChoiceCharacter temp = ChoiceCharacter(i+1);
         m_character_array.push_back(temp);
         sfg::Button::Ptr button (sfg::Button::Create("Character"));
-        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &ChoiceCharacter::defineCharacter , &(m_character_array.at(i)));
+        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&ChoiceCharacter::defineCharacter , &(m_character_array.at(i))));
         m_layoutCharacter->Pack(button);
 
     }
 
     sfg::RadioButton::Ptr radio1(sfg::RadioButton::Create("Sliging"));
     sfg::RadioButton::Ptr radio2(sfg::RadioButton::Create("No Sliding", radio1->GetGroup() ) );
-    radio1->GetSignal( sfg::Widget::OnLeftClick ).Connect( &ScreenOption::desactivateSliding , this);
-    radio2->GetSignal( sfg::Widget::OnLeftClick ).Connect( &ScreenOption::activateSliding , this);
+    radio1->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&ScreenOption::desactivateSliding , this));
+    radio2->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&ScreenOption::activateSliding , this));
 
     sfg::Button::Ptr saveButton(sfg::Button::Create("Save"));
-    saveButton->GetSignal( sfg::Widget::OnLeftClick ).Connect( &ScreenOption::save , this);
+    saveButton->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&ScreenOption::save , this));
 
     m_layoutPhysics->Pack(radio1);
     m_layoutPhysics->Pack(radio2);
@@ -135,7 +135,7 @@ int ScreenOption::Run( sf::RenderWindow& App)
 
 		App.clear();
 		App.draw(m_background);
-		sfgui.Display( App );
+		m_sfgui.Display( App );
 		App.draw(currentChoice);
 		App.display();
         currentChoice.Update();

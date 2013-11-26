@@ -51,7 +51,7 @@ class ScreenOption : public Screen
         sfg::Frame::Ptr m_framePhysics;
         sfg::Frame::Ptr m_frameCharacter;
 
-        sfg::SFGUI sfgui;
+        sfg::SFGUI m_sfgui;
 
         std::vector<ChoiceCharacter> m_character_array;
 

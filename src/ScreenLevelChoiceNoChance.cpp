@@ -71,7 +71,7 @@ int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
 
     App.clear();
     App.draw(m_background);
-    sfgui.Display( App );
+    m_sfgui.Display( App );
     App.display();
 
     }

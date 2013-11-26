@@ -35,7 +35,7 @@ class Screen_MainMenu : public Screen
         sfg::Button::Ptr m_option_button;
         sfg::Window::Ptr m_window;
 
-        sfg::SFGUI sfgui;
+        sfg::SFGUI m_sfgui;
 
         sf::Sprite m_background;
 

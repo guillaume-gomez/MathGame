@@ -41,7 +41,6 @@ class ScreenLevelChoice : public Screen
 
     protected:
         bool m_playing;
-        //sfg::SFGUI m_sfgui;
         sfg::Window::Ptr m_window;
 
         sf::Sprite m_easyBar;
@@ -63,7 +62,7 @@ class ScreenLevelChoice : public Screen
         sfg::Frame::Ptr m_frameNormal;
         sfg::Frame::Ptr m_frameHard;
         int m_changingMenu;
-        sfg::SFGUI sfgui;
+        sfg::SFGUI m_sfgui;
 
         std::vector<SelectLevel*> m_selectionLevel;
 
