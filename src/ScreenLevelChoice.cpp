@@ -41,10 +41,10 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
    m_window = sfg::Window::Create();
    m_window->SetTitle( "Resize me!" );
 
-   m_scrolled_window_box = sfg::Box::Create(sfg::Box::VERTICAL);
-   m_layoutEasy = sfg::Box::Create( sfg::Box::HORIZONTAL );
-   m_layoutNormal = sfg::Box::Create( sfg::Box::HORIZONTAL );
-   m_layoutHard = sfg::Box::Create( sfg::Box::HORIZONTAL );
+   m_scrolled_window_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+   m_layoutEasy = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
+   m_layoutNormal = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
+   m_layoutHard = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
 
    m_frameEasy = sfg::Frame::Create("Easy");
    m_frameNormal = sfg::Frame::Create("Normal");
@@ -61,7 +61,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
         SelectLevel* temp = new SelectLevel(_stat, i+1, Easy);
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
-        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &SelectLevel::selectingLevel, m_selectionLevel.at(i) );
+        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i) ));
         m_layoutEasy->Pack(button);
     }
 
@@ -73,7 +73,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
         SelectLevel* temp = new SelectLevel(_stat, i+1, Normal);
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
-        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy()) );
+        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy()) ));
         m_layoutNormal->Pack(button);
     }
 
@@ -85,7 +85,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
         SelectLevel* temp = new SelectLevel(_stat, i+1, Hard);
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
-        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy() + _stat->getnbNormal()) );
+        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy() + _stat->getnbNormal()) ));
         m_layoutHard->Pack(button);
     }
     m_frameEasy->Add(m_layoutEasy);

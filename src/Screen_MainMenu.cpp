@@ -15,11 +15,11 @@ Screen_MainMenu::Screen_MainMenu()
     m_editor_button = sfg::Button::Create( "Editor" );
     m_option_button = sfg::Button::Create( "Option" );
 
-    m_play_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::playButtonClick , this);
-    m_play2_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::play2ButtonClick , this);
-    m_credit_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::creditButtonClick , this);
-    m_option_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::optionButtonClick , this);
-    m_editor_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Screen_MainMenu::editorButtonClick, this);
+    m_play_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&Screen_MainMenu::playButtonClick , this));
+    m_play2_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&Screen_MainMenu::play2ButtonClick , this));
+    m_credit_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&Screen_MainMenu::creditButtonClick , this));
+    m_option_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&Screen_MainMenu::optionButtonClick , this));
+    m_editor_button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&Screen_MainMenu::editorButtonClick, this));
 }
 
 
@@ -62,7 +62,7 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 
     App.resetGLStates();
 
-    sfg::Box::Ptr box = sfg::Box::Create( sfg::Box::VERTICAL, 45.f );
+    sfg::Box::Ptr box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 45.f );
     box->Pack( m_play_button );
     box->Pack( m_play2_button );
     box->Pack( m_credit_button );
