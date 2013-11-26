@@ -8,6 +8,8 @@
 #include <cmath>
 #include <SFML/Graphics/RectangleShape.hpp>
 
+#define M_PI		3.14159265358979323846
+
 class LineSFML2_1 : public sf::RectangleShape
 {
     public:
