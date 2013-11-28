@@ -13,10 +13,13 @@ class IntegralView
         IntegralView(IntegralModel& model ,const float scale );
         IntegralView();
         virtual ~IntegralView();
-        void draw(sf::RenderTarget& target);
-        void represent();
+        void drawShape(sf::RenderTarget& target);
+        void drawLine(sf::RenderTarget& target);
+        void representLine();
+        void representShape();
     private:
         const IntegralModel& m_model;
+        std::vector<sf::RectangleShape> m_lineList;
         std::vector<sf::ConvexShape> m_shapeList;
         float m_scale;
 };
