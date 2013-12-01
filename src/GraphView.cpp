@@ -23,12 +23,11 @@ void GraphView::represent(float step)
 
 	while(itNext!=m_model.m_coords.end())
 	{
-		if((itNext->x- it->x) <= step*2)
+		if((itNext->x - it->x) <= step * 2)
 		{
-			m_lines.push_back(LineSFML2_1(sf::Vector2f(it->x,-it->y)*m_scale,sf::Vector2f(itNext->x,-itNext->y)*m_scale));
+			m_lines.push_back(LineSFML2_1(sf::Vector2f(it->x, -it->y) * m_scale, sf::Vector2f(itNext->x, -itNext->y) * m_scale));
 			m_lines.rbegin()->setFillColor(m_graphColor);
 		}
-
 		it++;
 		itNext++;
 	}

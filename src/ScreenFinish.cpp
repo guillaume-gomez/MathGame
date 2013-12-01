@@ -17,22 +17,22 @@ ScreenFinish::~ScreenFinish()
  {
     bool Running = true;
     m_clock.restart();
-    while( Running)
+    while(Running)
     {
          m_bg.setPosition(App.getSize().x/2 - m_bg.getGlobalBounds().width/2, App.getSize().y/2 - m_bg.getGlobalBounds().height/2);
          sf::Event event;
         //Verifing events
-        while( App.pollEvent(event))
+        while(App.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if(event.type == sf::Event::Closed)
             {
                 Running = false;
                 App.close();
             }
 
-            if ( event.type == sf::Event::KeyPressed)
+            if(event.type == sf::Event::KeyPressed)
             {
-               if (event.key.code == sf::Keyboard::Escape)
+               if(event.key.code == sf::Keyboard::Escape)
                {
                    return MENU;
                }
@@ -40,7 +40,7 @@ ScreenFinish::~ScreenFinish()
 
         }
 
-        if (m_clock.getElapsedTime().asSeconds() > 10)
+        if(m_clock.getElapsedTime().asSeconds() > 10)
         {
             return MENU;
         }

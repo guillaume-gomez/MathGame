@@ -11,8 +11,8 @@ bool ManageLevel::loadToolTipTex(const char* filenameToolTipText)
 }
 
 
-ManageLevel::ManageLevel(unsigned int _level  ,  Difficulty _diff , float _scale)
-:m_scale(_scale),m_difficulty(_diff),m_levelCurrent(_level),m_changeLevel(false),m_isDisplayToolTip(false)
+ManageLevel::ManageLevel(unsigned int _level, Difficulty _diff, float _scale)
+:m_scale(_scale), m_difficulty(_diff), m_levelCurrent(_level), m_changeLevel(false), m_isDisplayToolTip(false)
 {
     std::string directory = FilenameLevelDirectory;
     std::ostringstream oss;
@@ -20,12 +20,12 @@ ManageLevel::ManageLevel(unsigned int _level  ,  Difficulty _diff , float _scale
     directory += oss.str();
     m_filenameCurrent = oss.str();
 
-    m_LevelModel = new LevelModel (directory);
-    m_LevelView = new LevelView(*m_LevelModel,m_scale);
+    m_levelModel = new LevelModel(directory);
+    m_levelView = new LevelView(*m_levelModel, m_scale);
 
     m_tooltip.setTexture(toolTipTex);
 
-    if ( !m_font.loadFromFile(FilenameFont))
+    if(!m_font.loadFromFile(FilenameFont))
     {
     	#ifdef DEBUG
 			std::cerr << "Error : ManageText::ManageText()" << std::endl;
@@ -43,15 +43,15 @@ ManageLevel::ManageLevel(unsigned int _level  ,  Difficulty _diff , float _scale
 
 ManageLevel::~ManageLevel()
 {
-    delete m_LevelView;
-    delete m_LevelModel;
+    delete m_levelView;
+    delete m_levelModel;
 }
 
 
-void ManageLevel::loadFile(int numLevel , GameMode mode)
+void ManageLevel::loadFile(int numLevel, GameMode mode)
 {
-    delete m_LevelView;
-    delete m_LevelModel;
+    delete m_levelView;
+    delete m_levelModel;
 
     std::string directory = FilenameLevelDirectory;
 
@@ -61,23 +61,23 @@ void ManageLevel::loadFile(int numLevel , GameMode mode)
     directory += oss.str();
     m_filenameCurrent = oss.str();
 
-    m_LevelModel = new LevelModel (directory , mode );
-    m_LevelView = new LevelView(*m_LevelModel,m_scale);
+    m_levelModel = new LevelModel(directory, mode );
+    m_levelView = new LevelView(*m_levelModel, m_scale);
 }
 
 void ManageLevel::IsNextLevel()
 {
-    if ( m_LevelModel->isWin() )
+    if(m_levelModel->isWin())
     {
          m_changeLevel = true;
     }
 }
 
-void ManageLevel::levelFinished ( CharacterModel& charModel,bool & soundplayable)
+void ManageLevel::levelFinished (CharacterModel& charModel, bool & soundplayable)
 {
-    m_LevelModel->IsLosing();
-    m_LevelModel->IsFinishing(charModel,m_scale, soundplayable);
-    if ( m_LevelModel->isWin() || m_LevelModel->IsLose())
+    m_levelModel->IsLosing();
+    m_levelModel->IsFinishing(charModel,m_scale, soundplayable);
+    if(m_levelModel->isWin() || m_levelModel->IsLose())
     {
         m_changeLevel = true;
     }
@@ -85,19 +85,19 @@ void ManageLevel::levelFinished ( CharacterModel& charModel,bool & soundplayable
 
 int  ManageLevel::changeLevel (ScreenLink * link)
 {
-    if ( m_changeLevel)
+    if(m_changeLevel)
     {
-        if ( m_LevelModel->isWin())
+        if(m_levelModel->isWin())
         {
             //load an other level
 
-            if ( getLevel() + 1 > link->getnbNormal() )
+            if(getLevel() + 1 > link->getnbNormal())
             {
                 return - 1 ;
             }
 //            link->setMaxLevel( link->getDiff() , link->getCurrentLevel() + 1 );
-            setLevel( getLevel() + 1);
-            loadFile( getLevel(), m_LevelModel->getMode());
+            setLevel(getLevel() + 1);
+            loadFile(getLevel(), m_levelModel->getMode());
             m_changeLevel = false;
         }
         else
@@ -114,37 +114,37 @@ int  ManageLevel::changeLevel (ScreenLink * link)
 
 void ManageLevel::reset()
 {
-    m_LevelModel->reset();
+    m_levelModel->reset();
     m_changeLevel = false;
 }
 
 void ManageLevel::displaying(sf::Event& event , sf::RenderTarget& target , sf::View& myView)
 {
-	std::vector<sf::Sprite> temp = m_LevelView->getSpriteList();
+	std::vector<sf::Sprite> temp = m_levelView->getSpriteList();
 	m_isDisplayToolTip = false;
 	if(event.type == sf::Event::MouseMoved)
 	{
-		int x =  event.mouseMove.x;
-		int y =  event.mouseMove.y;
-		sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x,y)),myView);
+		int x = event.mouseMove.x;
+		int y = event.mouseMove.y;
+		sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)), myView);
 
-		for ( unsigned int i = 0 ; i < temp.size() ; i++)
+		for(unsigned int i = 0 ; i < temp.size() ; i++)
 		{
-			if ( temp[i].getGlobalBounds().contains(coord.x,coord.y) )
+			if(temp[i].getGlobalBounds().contains(coord.x, coord.y))
 			{
 				m_isDisplayToolTip = true;
-				sf::Vector2i position = target.mapCoordsToPixel(temp[i].getPosition(),myView);
+				sf::Vector2i position = target.mapCoordsToPixel(temp[i].getPosition(), myView);
 
 				position.x -= toolTipTex.getSize().x ;
 				position.y -= toolTipTex.getSize().y ;
 
 				std::string info ;
 				std::ostringstream oss;
-				oss << "x = " << m_LevelModel->getCoordPoints(i).x <<"\ny = " <<m_LevelModel->getCoordPoints(i).y ;
+				oss << "x = " << m_levelModel->getCoordPoints(i).x <<"\ny = " <<m_levelModel->getCoordPoints(i).y ;
 				info += oss.str();
 
 				m_text.setString(info);
-				m_text.setPosition(sf::Vector2f(position.x + m_tooltip.getLocalBounds().width/2 - m_text.getLocalBounds().width/2 ,position.y + m_tooltip.getLocalBounds().height/2 - m_text.getLocalBounds().height/2 - 10.0f ));
+				m_text.setPosition(sf::Vector2f(position.x + m_tooltip.getLocalBounds().width / 2 - m_text.getLocalBounds().width / 2 ,position.y + m_tooltip.getLocalBounds().height / 2 - m_text.getLocalBounds().height / 2 - 10.0f));
 				m_tooltip.setPosition((sf::Vector2f)position);
 			}
 		}
@@ -156,7 +156,7 @@ void ManageLevel::displayNbAttempt()
 {
      std::string nbAttemp ;
      std::ostringstream oss;
-     oss <<"Nb attempts : " << m_LevelModel->getNbAttempt() <<" / " << m_LevelModel->getSaveAttempt() ;
+     oss <<"Nb attempts : " << m_levelModel->getNbAttempt() <<" / " << m_levelModel->getSaveAttempt() ;
      nbAttemp += oss.str();
 
      m_nbAttemp.setString(nbAttemp);
@@ -164,11 +164,11 @@ void ManageLevel::displayNbAttempt()
 
 void ManageLevel::drawPoints( sf::RenderTarget& app)
 {
-	m_LevelView->draw(app);
+	m_levelView->draw(app);
 }
 void ManageLevel::drawUI( sf::RenderTarget& app)
 {
-    if( m_isDisplayToolTip )
+    if(m_isDisplayToolTip)
     {
         app.draw(m_tooltip);
         app.draw(m_text);
@@ -181,7 +181,7 @@ std::string ManageLevel::convertEnum ( Difficulty _diff)
 {
     std::string val;
 
-    switch ( _diff)
+    switch (_diff)
     {
     case  Easy:
         return val= "Easy";
@@ -198,6 +198,5 @@ std::string ManageLevel::convertEnum ( Difficulty _diff)
     default:
         break;
     }
-
     return val;
 }

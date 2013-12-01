@@ -8,7 +8,7 @@ std::string ScreenOption::m_filenameChar = FilenameDefaultChar;
 
 
 ScreenOption::ScreenOption(unsigned int _button)
-: m_nbButton(_button),m_gravityType(NoSliding),m_character_array(0)
+: m_nbButton(_button), m_gravityType(NoSliding), m_character_array(0)
 {
 
    m_window = sfg::Window::Create();
@@ -16,7 +16,7 @@ ScreenOption::ScreenOption(unsigned int _button)
 
    m_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
    m_layoutPhysics = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
-   m_layoutCharacter = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
+   m_layoutCharacter = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
 
    m_framePhysics = sfg::Frame::Create("Gravity Type");
    m_frameCharacter = sfg::Frame::Create("Select a character");
@@ -35,12 +35,12 @@ ScreenOption::ScreenOption(unsigned int _button)
     }
 
     sfg::RadioButton::Ptr radio1(sfg::RadioButton::Create("Sliging"));
-    sfg::RadioButton::Ptr radio2(sfg::RadioButton::Create("No Sliding", radio1->GetGroup() ) );
-    radio1->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&ScreenOption::desactivateSliding , this));
-    radio2->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&ScreenOption::activateSliding , this));
+    sfg::RadioButton::Ptr radio2(sfg::RadioButton::Create("No Sliding", radio1->GetGroup()));
+    radio1->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::desactivateSliding, this));
+    radio2->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::activateSliding, this));
 
     sfg::Button::Ptr saveButton(sfg::Button::Create("Save"));
-    saveButton->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&ScreenOption::save , this));
+    saveButton->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::save, this));
 
     m_layoutPhysics->Pack(radio1);
     m_layoutPhysics->Pack(radio2);
@@ -76,13 +76,13 @@ void ScreenOption::save()
     std::ofstream configFile(FilenameConfigFile);
 
 
-    if (m_filenameChar == FilenameDefaultChar)
+    if(m_filenameChar == FilenameDefaultChar)
     {
         friction = DefautCharFriction;
         width = DefaultCharWidth;
         height = DefaultCharHeight;
     }
-    else if (m_filenameChar == FilenameBike)
+    else if(m_filenameChar == FilenameBike)
     {
         friction = Bikefriction;
         width = BikeWidth ;
@@ -107,7 +107,7 @@ int ScreenOption::Run( sf::RenderWindow& App)
 
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
     m_window->Show(true);
-	while( Running)
+	while(Running)
 	{
 		sf::Event event;
 		//Verifing events
@@ -115,15 +115,15 @@ int ScreenOption::Run( sf::RenderWindow& App)
 		{
             m_window->HandleEvent( event );
 
-            if (event.type == sf::Event::Closed)
+            if(event.type == sf::Event::Closed)
             {
                 Running = false;
                 App.close();
             }
 
-            if ( event.type == sf::Event::KeyPressed)
+            if( event.type == sf::Event::KeyPressed)
             {
-                if ( event.key.code == sf::Keyboard::Escape)
+                if( event.key.code == sf::Keyboard::Escape)
                 {
                      m_window->Show(false);
                      return MENU;

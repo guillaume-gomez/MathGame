@@ -1,12 +1,15 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "../constants.hpp"
-#include <SFML/Graphics.hpp>
 #ifdef DEBUG
 	 #include <iostream>
 #endif //DEBUG
 #include <string>
+
+#include <SFML/Graphics.hpp>
+
+#include "../constants.hpp"
+
 
 class Button :  public sf::Sprite
 {
@@ -17,11 +20,11 @@ class Button :  public sf::Sprite
         void setAlpha ( int _alpha);
         void draw(sf::RenderTarget& app);
         bool isClicked() const;
+        
     protected:
-        sf::Texture m_texture;
-        std::string m_filename;
         bool m_clicked;
-
+        std::string m_filename;
+        sf::Texture m_texture;
 };
 
 /**
@@ -30,9 +33,9 @@ class Button :  public sf::Sprite
 
 inline bool Button::isClicked() const{return m_clicked;};
 
-inline void Button::setAlpha ( int _alpha)
+inline void Button::setAlpha (int _alpha)
 {
-    this->setColor(sf::Color(255,255,255,_alpha));
+    this->setColor(sf::Color(255, 255, 255, _alpha));
 }
 
 

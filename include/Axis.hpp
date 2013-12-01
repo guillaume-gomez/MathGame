@@ -15,17 +15,16 @@ class Axis
         void draw(sf::RenderWindow& App);
 
     private:
-        int m_OriginyAxis;
-        int m_OriginxAxis;
-        float m_scale;
         float m_graduation;
-        sf::VertexArray m_list_Axis;
-        sf::RectangleShape m_ShapexAxis;
-        sf::RectangleShape m_ShapeyAxis;
+        int m_originyAxis;
+        int m_originxAxis;
+        sf::VertexArray m_listAxis;
         std::vector<sf::RectangleShape> m_listXGrad;
         std::vector<sf::RectangleShape> m_listYGrad;
-
-
+        float m_scale;
+        sf::RectangleShape m_shapexAxis;
+        sf::RectangleShape m_shapeyAxis;
+        
 };
 
 #endif // AXIS_HPP

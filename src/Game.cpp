@@ -3,44 +3,43 @@
 
 //TODO m_playerModel has to change
 Game::Game( RenderWindow& _app , Difficulty _diff)
-:m_app(_app),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_player1Model(true, sf::Vector2f(0.0f,0.0f), 12),m_player1View(m_player1Model, GraphScale)
-,m_textAreaFunction(6),m_level(1,_diff,GraphScale),m_buttonReset(FilenameButtonReset),m_buttonSound(FilenameSound,WidthIcon,HeightIcon),m_buttonBack(FilenameButtonBack),
+:m_app(_app), m_axis(GraphScale), m_graphView(m_graphModel, Thickness, GraphScale), m_player1Model(true, sf::Vector2f(0.0f, 0.0f), 12), m_player1View(m_player1Model, GraphScale)
+,m_textAreaFunction(6), m_level(1,_diff,GraphScale), m_buttonReset(FilenameButtonReset), m_buttonSound(FilenameSound, WidthIcon, HeightIcon), m_buttonBack(FilenameButtonBack),
  /*m_modelIntegral("cos(x)"),m_viewIntegral(m_modelIntegral, GraphScale),*/
- m_gameStarted(false),m_isZoom(false),m_isSound(true),m_isBack(false)
+ m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false)
 {
-   loadConfigFile();
-
-   setCenterCamera();
+  loadConfigFile();
+  setCenterCamera();
 
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
 	text->setRepeated(true);
 	m_spriteBG.setTexture(*text);
-	m_spriteBG.setTextureRect(sf::IntRect(0,0,2048,2048));
-	m_spriteBG.setPosition(-1030,-1030);
-    m_spriteBG.setColor(sf::Color(gridGameColor,gridGameColor,gridGameColor));
+	m_spriteBG.setTextureRect(sf::IntRect(0, 0, 2048, 2048));
+	m_spriteBG.setPosition(-1030, -1030);
+  m_spriteBG.setColor(sf::Color(gridGameColor, gridGameColor, gridGameColor));
 
 	m_player1Model.setSize(m_player1View.getRectLocal().width, m_player1View.getRectLocal().height);
 
-    int __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionTextAreaX*m_app.getSize().x , PositionTextAreaY*m_app.getSize().y )))).x;
-    int __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionTextAreaX*m_app.getSize().x , PositionTextAreaY*m_app.getSize().y )))).y ;
+    int __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionTextAreaX*m_app.getSize().x , PositionTextAreaY*m_app.getSize().y)))).x;
+    int __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionTextAreaX*m_app.getSize().x , PositionTextAreaY*m_app.getSize().y)))).y ;
     //won't work
     m_textAreaFunction.setCharacterSize(20);
 
-     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y )))).x;
-     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y )))).y ;
-    m_level.setnbAttempTextPosition(sf::Vector2f(__x,__y));
+     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).x;
+     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).y ;
+    m_level.setnbAttempTextPosition(sf::Vector2f(__x, __y));
 
-     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y )))).x;
-     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y )))).y ;
-    m_buttonReset.setPosition(__x,__y );
+     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).x;
+     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).y ;
+    m_buttonReset.setPosition(__x, __y);
 
-    __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonSoundX*m_app.getSize().x , PositionButtonSoundY*m_app.getSize().y )))).x;
-    __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonSoundX*m_app.getSize().x , PositionButtonSoundY*m_app.getSize().y )))).y ;
-    m_buttonSound.setPosition(__x,__y );
+    __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonSoundX*m_app.getSize().x , PositionButtonSoundY*m_app.getSize().y)))).x;
+    __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonSoundX*m_app.getSize().x , PositionButtonSoundY*m_app.getSize().y)))).y ;
+    m_buttonSound.setPosition(__x, __y);
 
-    __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonBackX*m_app.getSize().x , PositionButtonBackY*m_app.getSize().y )))).x;
-    __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonBackX*m_app.getSize().x , PositionButtonBackY*m_app.getSize().y )))).y ;
-    m_buttonBack.setPosition(__x,__y );
+    __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonBackX*m_app.getSize().x , PositionButtonBackY*m_app.getSize().y)))).x;
+    __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonBackX*m_app.getSize().x , PositionButtonBackY*m_app.getSize().y)))).y ;
+    m_buttonBack.setPosition(__x, __y);
 
 //    m_modelIntegral.getIntegraleCurve(-5.0,5.0,Step);
 //    m_viewIntegral.represent();
@@ -49,10 +48,10 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 
 void Game::zoom()
 {
-    float zoom = m_viewPerso.getSize().x * (1-float(m_event.mouseWheel.delta)/10);
+    float zoom = m_viewPerso.getSize().x * (1 - float(m_event.mouseWheel.delta) / 10);
     if ( zoom >= ZoomMax && zoom <= ZoomMin)
     {
-        m_viewPerso.zoom(1-float(m_event.mouseWheel.delta)/10);
+        m_viewPerso.zoom(1 - float(m_event.mouseWheel.delta) / 10);
     }
 }
 
@@ -85,7 +84,7 @@ bool  Game::handleInput()
                             m_gameStarted = true;
                         }
 						m_graphModel.setFunction(m_textAreaFunction.getString());
-						m_graphModel.getRepresentativeCurve(-MaxSizeGraph,MaxSizeGraph,Step);
+						m_graphModel.getRepresentativeCurve(-MaxSizeGraph, MaxSizeGraph, Step);
 						m_level.decrementAttempt();
 						//float tmpY;
 						//if(tt.isDefined(player1Model.getCoords().x, &tmpY))
@@ -105,17 +104,17 @@ bool  Game::handleInput()
                 }
 
             //    m_textFunction.handle_input(m_event, m_graphView);
-                m_textAreaFunction.handleInput(m_event,m_app);
+                m_textAreaFunction.handleInput(m_event, m_app);
 
-                m_level.displaying(m_event,m_app,m_viewPerso);
+                m_level.displaying(m_event, m_app, m_viewPerso);
 
               //  m_textAreaFunction.resize();
 
 
 				m_player1Model.handle_input(m_event, m_textAreaFunction);
-                m_buttonReset.handle_input(m_event,m_app);
-                m_buttonSound.handle_input(m_event,m_app);
-                m_buttonBack.handle_input(m_event,m_app);
+                m_buttonReset.handle_input(m_event, m_app);
+                m_buttonSound.handle_input(m_event, m_app);
+                m_buttonBack.handle_input(m_event, m_app);
             }
     return true ;
 }
@@ -126,7 +125,7 @@ void Game::show()
     m_player1View.show();
     m_level.displayNbAttempt();
     m_buttonSound.switchTile();
-	m_textAreaFunction.blinkCaret();
+    m_textAreaFunction.blinkCaret();
 }
 
 void Game::draw()
@@ -148,8 +147,8 @@ void Game::draw()
     m_buttonReset.draw(m_app);
     m_buttonSound.draw(m_app);
     m_buttonBack.draw(m_app);
-    m_textAreaFunction.setPosition(0,m_app.getSize().y-m_textAreaFunction.getGlobalBounds().height-10);
-	m_app.draw(m_textAreaFunction);
+    m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
+	  m_app.draw(m_textAreaFunction);
     //m_textFunction.draw(m_app);
 }
 
@@ -185,7 +184,7 @@ void Game::selectLevel(ScreenLink& stat)
     m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
 }
 
-int Game::levelOperation( ScreenLink& stat)
+int Game::levelOperation(ScreenLink& stat)
 {
     int changing = 0;
     bool soundPlayable = false;
@@ -194,18 +193,18 @@ int Game::levelOperation( ScreenLink& stat)
       m_level.levelFinished(m_player1Model, soundPlayable);
 
       //  m_player1View.m_sound.Stop();
-      if ( m_isSound && soundPlayable)
+      if(m_isSound && soundPlayable)
       {
           m_player1View.m_sound.play();
       }
 
-      if ( m_buttonReset.isClicked() || m_level.getChangeLevel ())
+      if(m_buttonReset.isClicked() || m_level.getChangeLevel ())
       {
         reset();
-        changing = m_level.changeLevel( &stat);
+        changing = m_level.changeLevel(&stat);
       }
 
-      if ( m_buttonBack.isClicked())
+      if(m_buttonBack.isClicked())
       {
           m_isBack = true;
           m_buttonBack.unclick();
@@ -216,7 +215,7 @@ int Game::levelOperation( ScreenLink& stat)
 
 void Game::reset()
 {
-         m_player1Model.setCoords(sf::Vector2f(0.0f,0.0f));
+         m_player1Model.setCoords(sf::Vector2f(0.0f, 0.0f));
          m_player1Model.setAngle(0.0f);
          m_player1Model.resetVelocity();
          m_graphModel.setChanged(true);
@@ -230,7 +229,7 @@ Game::~Game()
 
 void Game::manageSound()
 {
-    if ( m_buttonSound.isClicked())
+    if(m_buttonSound.isClicked())
     {
          m_isSound = !m_isSound;
          m_buttonSound.unclick();
@@ -240,12 +239,12 @@ void Game::manageSound()
 void Game::setCenterCamera()
 {
    m_viewPerso = m_app.getView();
-   m_viewPerso.setCenter(0,0);
+   m_viewPerso.setCenter(0, 0);
 }
 
 void Game::loadConfigFile()
 {
-    std::ifstream configFile(FilenameConfigFile);
+  std::ifstream configFile(FilenameConfigFile);
 	std::string tmpString;
 	unsigned int width, height;
 	float frictionCoef;
@@ -268,6 +267,6 @@ void Game::loadConfigFile()
 
 	m_player1Model.setMoveType(moveType);
 	m_player1Model.setFrictionCoefficient(frictionCoef);
-	m_player1View.setTexture(TextureManager::getTextureManager()->getResource(filenameTexture),width,height);
+	m_player1View.setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
 }
 
