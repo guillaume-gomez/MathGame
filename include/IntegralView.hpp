@@ -5,7 +5,11 @@
 #include <SFML/Graphics/ConvexShape.hpp>
 #include <list>
 #include <vector>
+
+#include <Thor/Shapes.hpp>
+
 #include "IntegralModel.hpp"
+
 
 class IntegralView
 {
@@ -20,7 +24,7 @@ class IntegralView
     private:
         const IntegralModel& m_model;
         std::vector<sf::RectangleShape> m_lineList;
-        std::vector<sf::ConvexShape> m_shapeList;
+        std::vector<thor::ConcaveShape> m_shapeList;
         float m_scale;
 };
 

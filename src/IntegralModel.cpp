@@ -3,7 +3,7 @@
 IntegralModel::IntegralModel(std::string _function)
 :ConstrueFonction(_function)
 {
-    getIntegraleCurveShape(-7,7,0.1f);
+    getIntegraleCurveShape(-7,7,0.25f);
 }
 
  void IntegralModel::getIntegraleCurveShape(float _begin , float _end , float step)

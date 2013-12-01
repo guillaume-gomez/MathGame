@@ -17,8 +17,8 @@ unsigned int i = 0;
 
     while (i < m_model.getNbPoints() )
     {
-        sf::ConvexShape temp;
-                        temp.setPointCount(m_model.getNbCoordByShape(index));
+        thor::ConcaveShape temp;
+                           temp.setPointCount(m_model.getNbCoordByShape(index));
         for (unsigned int j = 0; j < m_model.getNbCoordByShape(index); j++)
         {
             temp.setPoint(j, sf::Vector2f(m_model.getCoordToShapes(i).x * m_scale, - m_model.getCoordToShapes(i).y * m_scale));
@@ -30,8 +30,10 @@ unsigned int i = 0;
         temp.setOutlineColor(sf::Color(0,0,0));
         temp.setOutlineThickness(1);
        // temp.setPosition(10, 20);
-
-        m_shapeList.push_back(temp);
+        if(temp.getPointCount() > 2)
+        {
+            m_shapeList.push_back(temp);
+        }
         index++;
     }
 }
@@ -74,7 +76,7 @@ void IntegralView::drawShape(sf::RenderTarget& target)
 
 void IntegralView::drawLine(sf::RenderTarget& target)
 {
-    for (unsigned int i = 0 ; i < m_shapeList.size() ; i++)
+    for (unsigned int i = 0 ; i < m_lineList.size() ; i++)
     {
          target.draw(m_lineList[i]);
     }
