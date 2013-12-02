@@ -3,7 +3,7 @@
 ScreenLevelChoiceNoChance::ScreenLevelChoiceNoChance(ScreenLink* _stat)
 :ScreenLevelChoice(_stat)
 {
-    for(unsigned int i=0; i < m_selectionLevel.size();i++)
+    for(unsigned int i=0; i < m_selectionLevel.size(); i++)
     {
         m_selectionLevel.at(i)->setGameMode(NoChance);
     }
@@ -27,8 +27,8 @@ int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
 	//scrolledwindow->AddWithViewport( m_scrolled_window_box );
 
 	// Always remember to set the minimum size of a ScrolledWindow.
-	scrolledwindow->SetRequisition( sf::Vector2f( 500.f, 100.f ) );
-	m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
+	scrolledwindow->SetRequisition( sf::Vector2f(500.f, 100.f ));
+	m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width / 2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height / 2.0f));
 
     m_window->Show(true);
 	//m_scrolled_window_box->Pack( scrolledwindow, false, true );
@@ -37,26 +37,26 @@ int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
          sf::Event event;
           m_changingMenu = -1;
         //Verifing events
-        while( App.pollEvent(event))
+        while(App.pollEvent(event))
         {
             // Handle events
 			m_window->HandleEvent( event );
-            if (event.type == sf::Event::Closed)
+            if(event.type == sf::Event::Closed)
             {
                 Running = false;
                 App.close();
             }
 
-            if ( event.type == sf::Event::KeyPressed)
+            if(event.type == sf::Event::KeyPressed)
             {
-                if ( event.key.code == sf::Keyboard::Escape)
+                if(event.key.code == sf::Keyboard::Escape)
                 {
                     m_window->Show(false);
                     return MENU;
                 }
             }
 
-             for(unsigned int i=0; i < m_selectionLevel.size();i++)
+            for(unsigned int i=0; i < m_selectionLevel.size(); i++)
             {
                 if(m_selectionLevel.at(i)->isClicked())
                 {
@@ -67,11 +67,11 @@ int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
             }
 
         }
-    m_window->Update( 0.f );
+    m_window->Update(0.f);
 
     App.clear();
     App.draw(m_background);
-    m_sfgui.Display( App );
+    m_sfgui.Display(App);
     App.display();
 
     }

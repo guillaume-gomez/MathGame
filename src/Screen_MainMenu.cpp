@@ -1,25 +1,25 @@
 #include "Screen_MainMenu.hpp"
 
 Screen_MainMenu::Screen_MainMenu()
-: m_alpha_max( 3*255),m_alpha_div(3),m_playing(false),m_changingMenu(SCREEN_EXIT)
+: m_alpha_max(3 * 255), m_alpha_div(3), m_playing(false), m_changingMenu(SCREEN_EXIT)
  {
 //     m_backgroundTex.loadFromFile(FilenameBackGroundMenu);
      m_background.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBackGroundMenu)));
-     m_background.setColor(sf::Color(backgroundColor,backgroundColor,backgroundColor));
+     m_background.setColor(sf::Color(backgroundColor, backgroundColor, backgroundColor));
 
     //m_background.setPosition(WindowWidth/2 - m_background.getGlobalBounds().width/2, WindowHeight/2 - m_background.getGlobalBounds().height/2);
 
-    m_play_button = sfg::Button::Create( "Normal" );
-    m_play2_button = sfg::Button::Create( "Hard" );
-    m_credit_button = sfg::Button::Create( "Credit" );
-    m_editor_button = sfg::Button::Create( "Editor" );
-    m_option_button = sfg::Button::Create( "Option" );
+    m_play_button = sfg::Button::Create("Normal");
+    m_play2_button = sfg::Button::Create("Hard");
+    m_credit_button = sfg::Button::Create("Credit");
+    m_editor_button = sfg::Button::Create("Editor");
+    m_option_button = sfg::Button::Create("Option");
 
-    m_play_button->GetSignal( sfg::Widget::OnLeftClick ).Connect(  std::bind(&Screen_MainMenu::playButtonClick , this));
-    m_play2_button->GetSignal( sfg::Widget::OnLeftClick ).Connect(  std::bind(&Screen_MainMenu::play2ButtonClick , this));
-    m_credit_button->GetSignal( sfg::Widget::OnLeftClick ).Connect(  std::bind(&Screen_MainMenu::creditButtonClick , this));
-    m_option_button->GetSignal( sfg::Widget::OnLeftClick ).Connect(  std::bind(&Screen_MainMenu::optionButtonClick , this));
-    m_editor_button->GetSignal( sfg::Widget::OnLeftClick ).Connect(  std::bind(&Screen_MainMenu::editorButtonClick, this));
+    m_play_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::playButtonClick, this));
+    m_play2_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::play2ButtonClick, this));
+    m_credit_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::creditButtonClick, this));
+    m_option_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::optionButtonClick, this));
+    m_editor_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::editorButtonClick, this));
 }
 
 
@@ -50,12 +50,10 @@ void Screen_MainMenu::optionButtonClick()
 
 int Screen_MainMenu::Run(sf::RenderWindow& App)
 {
-
-
     bool Running = true;
     int alpha = 0 ;
 
-    if (m_playing)
+    if(m_playing)
     {
         alpha = m_alpha_max;
     }
@@ -80,30 +78,30 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 
 
 
-	while ( Running )
+	while(Running)
 	{
 		// Process events
 		sf::Event event;
 
-		while ( App.pollEvent( event ) )
+		while(App.pollEvent(event))
 		{
 			// Handle events
-			m_window->HandleEvent( event );
+			m_window->HandleEvent(event);
 
 			// Close window : exit
-			if ( event.type == sf::Event::Closed )
+			if(event.type == sf::Event::Closed)
 			{
 				App.close();
 				return SCREEN_EXIT;
 			}
 
-            if ( m_changingMenu > 0)
+            if(m_changingMenu > 0)
             {
                 m_window->Show(false);
                 return m_changingMenu;
             }
 
-            if( alpha < m_alpha_max )
+            if(alpha < m_alpha_max)
             {
                 alpha++;
             }

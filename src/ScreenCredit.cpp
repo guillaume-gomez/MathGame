@@ -1,9 +1,10 @@
 #include "ScreenCredit.hpp"
 
-ScreenCredit::ScreenCredit():picture(0),alpha(0.0f),m_HangStart(false),m_won(false),m_enterText(false)
+ScreenCredit::ScreenCredit()
+:picture(0), alpha(0.0f), m_hangStart(false), m_won(false), m_enterText(false)
 {
     srand(time(NULL));
-    sf::Color color (112,146,190);
+    sf::Color color (112, 146, 190);
 
     m_font.loadFromFile(FilenameFont);
 
@@ -13,9 +14,9 @@ ScreenCredit::ScreenCredit():picture(0),alpha(0.0f),m_HangStart(false),m_won(fal
 //
 //    m_textbg.loadFromFile(FilenameBackGroundMenu);
 //    m_bg.setTexture(m_textbg);
-   m_bg.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBackGroundMenu)));
+    m_bg.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBackGroundMenu)));
 
-    m_bg.setColor(sf::Color(backgroundColor,backgroundColor,backgroundColor));
+    m_bg.setColor(sf::Color(backgroundColor, backgroundColor, backgroundColor));
     m_textUnderline.loadFromFile(FilenameUnderline);
     m_underline.setTexture(m_textUnderline);
     m_underline.setColor(color);
@@ -32,21 +33,21 @@ ScreenCredit::ScreenCredit():picture(0),alpha(0.0f),m_HangStart(false),m_won(fal
     m_wordText.setColor(color);
 
 
-    m_underline.setPosition(WindowWidth/2 , WindowHeight/2 + m_wordText.getGlobalBounds().height + 30);
+    m_underline.setPosition(WindowWidth / 2 , WindowHeight / 2 + m_wordText.getGlobalBounds().height + 30);
     m_underline.setColor(color);
-    m_hangGui.setPosition(0,WindowHeight/2 - m_hangGui.getGlobalBounds().height/2 );
+    m_hangGui.setPosition(0, WindowHeight / 2 - m_hangGui.getGlobalBounds().height / 2 );
     m_hangGui.setColor(color);
 
-    for (unsigned int i = 0 ; i < m_stringList.size(); i++)
+    for(unsigned int i = 0 ; i < m_stringList.size(); i++)
     {
         sf::Text temp;
                  temp.setFont(m_font);
                  temp.setString(m_stringList[i]);
                  temp.setColor(color);
-                 unsigned int x = rand() % WindowWidth/2;
-                 unsigned int y = rand() % WindowHeight/2;
+                 unsigned int x = rand() % WindowWidth / 2;
+                 unsigned int y = rand() % WindowHeight / 2;
 
-            temp.setPosition((float)x,(float)y);
+           temp.setPosition((float)x, (float)y);
            m_textList.push_back(temp);
     }
 
@@ -57,29 +58,29 @@ int ScreenCredit::Run ( sf::RenderWindow &App)
     bool Running = true;
     m_clock.restart();
     m_clockAlpha.restart();
-    int time = 2 ;
-    m_HangStart = false;
+    int time = 2;
+    m_hangStart = false;
     m_won = false;
     m_enterText= false;
-    picture = 0 ;
+    picture = 0;
     m_word ="L ";
 
-    while( Running)
+    while(Running)
     {
          sf::Event event;
         //Verifing events
-        while( App.pollEvent(event))
+        while(App.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if(event.type == sf::Event::Closed)
             {
                 Running = false;
                 return SCREEN_EXIT;
                 App.close();
             }
 
-            if ( event.type == sf::Event::KeyPressed)
+            if(event.type == sf::Event::KeyPressed)
             {
-               if (event.key.code == sf::Keyboard::Escape)
+               if(event.key.code == sf::Keyboard::Escape)
                {
                    return MENU;
                }
@@ -87,48 +88,48 @@ int ScreenCredit::Run ( sf::RenderWindow &App)
             handle_input(event);
         }
 
-        if (m_clock.getElapsedTime().asSeconds() >= (float)time)
+        if(m_clock.getElapsedTime().asSeconds() >= (float)time)
         {
             m_clock.restart();
             picture++;
 
-            if ( picture >= m_stringList.size() )
+            if(picture >= m_stringList.size())
             {
                 picture--;
-                m_HangStart = true;
+                m_hangStart = true;
             }
 
-            if (m_won)
+            if(m_won)
             {
                 return MENU;
             }
             alpha = 0;
         }
 
-        if ( m_clockAlpha.getElapsedTime().asSeconds() >= ((time)/255.0f))
+        if(m_clockAlpha.getElapsedTime().asSeconds() >= ((time) / 255.0f))
         {
-            if ( !m_HangStart)
+            if(!m_hangStart)
             {
                 alpha++;
             }
             m_clockAlpha.restart();
 
-            if (alpha > 255) alpha = 0 ;
+            if(alpha > 255) alpha = 0 ;
         }
 
-    if (m_HangStart)
+    if(m_hangStart)
     {
         hanged();
     }
 
 
-    m_wordText.setPosition(WindowWidth/2 , WindowHeight/2);
+    m_wordText.setPosition(WindowWidth / 2 , WindowHeight / 2);
     sf::Color color = m_textList[picture].getColor();
-    m_textList[picture].setColor(sf::Color(color.r,color.g,color.b,alpha));
+    m_textList[picture].setColor(sf::Color(color.r, color.g, color.b, alpha));
 
     App.clear();
     App.draw(m_bg);
-    if (m_HangStart)
+    if(m_hangStart)
     {
         App.draw(m_underline);
         App.draw(m_hangGui);
@@ -151,7 +152,7 @@ void ScreenCredit::hanged()
     std::string finish1("L O O S E R ");
     std::string finish2("L o o s e r ");
 
-    if ( (m_word == finish1 || m_word == finish2) && m_enterText)
+    if((m_word == finish1 || m_word == finish2) && m_enterText)
     {
         m_word = "YOU WON :)";
         m_won = true;
@@ -178,7 +179,7 @@ void ScreenCredit::hanged()
 
 void ScreenCredit::handle_input(sf::Event& event )
 {
-    if ( event.type == sf::Event::KeyPressed)
+    if(event.type == sf::Event::KeyPressed)
      {
      	switch(event.key.code)
      	{
@@ -196,7 +197,7 @@ void ScreenCredit::handle_input(sf::Event& event )
      	}
      }
 
-     if (event.type == sf::Event::TextEntered)
+     if(event.type == sf::Event::TextEntered)
      {
      	if(isprint(event.text.unicode))
 		{

@@ -7,7 +7,7 @@
 * @param : Initial position of the character
 **/
 CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, MoveType moveType)
-:m_life(life),m_velocity(0.0f, 0.0f), m_thrust(0.0f,0.0f), m_coords(coord),m_speed(speed), m_frictionCoefficient(0.0f), m_actualSpeed(sqrt(m_velocity.y*m_velocity.y + m_velocity.x*m_velocity.x)), m_moveType(moveType),m_angle(0.0f)
+:m_life(life), m_velocity(0.0f, 0.0f), m_thrust(0.0f, 0.0f), m_coords(coord), m_speed(speed), m_frictionCoefficient(0.0f), m_actualSpeed(sqrt(m_velocity.y * m_velocity.y + m_velocity.x * m_velocity.x)), m_moveType(moveType), m_angle(0.0f)
 {
 	m_orientedRight = (m_velocity.x>0);
 }
@@ -16,12 +16,12 @@ CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, Mov
 * @brief : Accessor of life
 **/
 bool CharacterModel::getLife() const
-	{ return m_life;}
+{return m_life;}
 
 /**
 * @brief : Accessor of life
 **/
-void CharacterModel::setLife(bool _life){ m_life = _life;}
+void CharacterModel::setLife(bool _life) {m_life = _life;}
 
 //   void CharacterModel::setVelocityX(float x)
 //   {
@@ -58,19 +58,19 @@ void CharacterModel::setLife(bool _life){ m_life = _life;}
 * @brief : Accessor of coord
 **/
 const sf::Vector2f& CharacterModel::getCoords() const
-	{ return m_coords;}
+{return m_coords;}
 
 /**
 * @brief : Accessor of velocity
 **/
 const sf::Vector2f& CharacterModel::getVelocity() const
-	{ return m_thrust;}
+{return m_thrust;}
 
 
 
  void CharacterModel::handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction)
  {
-    if ( event.type == sf::Event::KeyPressed)
+    if(event.type == sf::Event::KeyPressed)
      {
         switch(event.key.code)
      	{
@@ -94,7 +94,7 @@ const sf::Vector2f& CharacterModel::getVelocity() const
 			break;
      	}
      }
-     else if (event.type == sf::Event::KeyReleased)
+     else if(event.type == sf::Event::KeyReleased)
      {
         if(/*!sf::Keyboard::isKeyPressed(sf::Keyboard::Up)
             &&*/ !sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
@@ -120,7 +120,9 @@ const sf::Vector2f& CharacterModel::getVelocity() const
         }
     }
     if(textAreaFunction.getAlphaColor()==Clear)
+    {
 		m_thrust.x=0;
+ 	}
  }
 
 
@@ -158,7 +160,7 @@ void CharacterModel::move(ConstrueFonction& _function)
 				}
 			}
 			// si le personnage est sur la courbe
-			else if(m_coords.y==yCurve)
+			else if(m_coords.y == yCurve)
 			{
 				derivative=_function.getDerivative(m_coords.x);
 				m_velocity.x=cos(atan2(derivative, (m_thrust.x<0 ? -1 : 1)))*abs(m_thrust.x);
@@ -218,43 +220,43 @@ void CharacterModel::move(ConstrueFonction& _function)
 				}
 			}
 			// si le personnage est sur la courbe
-			else if(m_coords.y==yCurve)
+			else if(m_coords.y == yCurve)
 			{
 				elapsedSeconds = m_timer.getElapsedTime().asSeconds();
 				derivative = _function.getDerivative(m_coords.x);
 
-				if(m_velocity.y>0)
-					m_actualSpeed-=fabs(sin(atan(derivative))*GravityAcceleration.y*elapsedSeconds);
+				if(m_velocity.y > 0)
+					m_actualSpeed -= fabs(sin(atan(derivative)) * GravityAcceleration.y * elapsedSeconds);
 				else
-					m_actualSpeed+=fabs(sin(atan(derivative))*GravityAcceleration.y*elapsedSeconds);
+					m_actualSpeed += fabs(sin(atan(derivative)) * GravityAcceleration.y * elapsedSeconds);
 
-				if((m_velocity.x>0&&m_thrust.x>0) || (m_velocity.x<0&&m_thrust.x<0))
-					m_actualSpeed+=fabs(cos(atan(derivative))*m_thrust.x*elapsedSeconds*3);
+				if((m_velocity.x > 0 && m_thrust.x > 0) || (m_velocity.x < 0 && m_thrust.x < 0))
+					m_actualSpeed += fabs(cos(atan(derivative)) * m_thrust.x * elapsedSeconds * 3);
 				else
-					m_actualSpeed-=fabs(cos(atan(derivative))*m_thrust.x*elapsedSeconds*3);
+					m_actualSpeed -= fabs(cos(atan(derivative)) * m_thrust.x * elapsedSeconds * 3);
 
-				if(m_actualSpeed<0)
+				if(m_actualSpeed < 0)
 				{
 					m_orientedRight = !m_orientedRight;
 					m_actualSpeed *= -1;
 				}
 
-				float friction = m_actualSpeed*m_actualSpeed*m_frictionCoefficient;
-				m_actualSpeed -= friction*elapsedSeconds;
+				float friction = m_actualSpeed * m_actualSpeed * m_frictionCoefficient;
+				m_actualSpeed -= friction * elapsedSeconds;
 
 				if(m_orientedRight)
 				{
-					m_velocity.x = cos(atan(derivative))*m_actualSpeed;			// toujours positif CSDSFFSQFS
-					m_velocity.y = sin(atan(derivative))*m_actualSpeed;
+					m_velocity.x = cos(atan(derivative)) * m_actualSpeed;			// toujours positif CSDSFFSQFS
+					m_velocity.y = sin(atan(derivative)) * m_actualSpeed;
 				}
 				else
 				{
-					m_velocity.x = -cos(atan(derivative))*m_actualSpeed;			// toujours positif CSDSFFSQFS
-					m_velocity.y = -sin(atan(derivative))*m_actualSpeed;
+					m_velocity.x = -cos(atan(derivative)) * m_actualSpeed;			// toujours positif CSDSFFSQFS
+					m_velocity.y = -sin(atan(derivative)) * m_actualSpeed;
 				}
 //				m_velocity.x = cos(atan(derivative))*m_actualSpeed;			// toujours positif CSDSFFSQFS
 //				m_velocity.y = sin(atan(derivative))*m_actualSpeed;
-				m_coords += m_velocity*m_timer.getElapsedTime().asSeconds();
+				m_coords += m_velocity * m_timer.getElapsedTime().asSeconds();
 				// si apres déplacement le personnage est toujours dans une zone où la courbe est représentée
 				if(_function.isRepresented(m_coords.x))
 				{
@@ -272,9 +274,9 @@ void CharacterModel::move(ConstrueFonction& _function)
 			else
 			{
 				elapsedSeconds = m_timer.getElapsedTime().asSeconds();
-				m_velocity.y += GravityAcceleration.y*elapsedSeconds;
-				m_actualSpeed = sqrt(m_velocity.y*m_velocity.y + m_velocity.x*m_velocity.x);
-				m_coords += m_velocity*elapsedSeconds;
+				m_velocity.y += GravityAcceleration.y * elapsedSeconds;
+				m_actualSpeed = sqrt(m_velocity.y * m_velocity.y + m_velocity.x * m_velocity.x);
+				m_coords += m_velocity * elapsedSeconds;
 			}
 			break;
 
@@ -288,24 +290,24 @@ void CharacterModel::move(ConstrueFonction& _function)
 	// si la courbe n'est pas représenté en ce x (i.e : c'est le videeeeeeeeeeee!)
 	else
 	{
-		m_velocity.y += GravityAcceleration.y*m_timer.getElapsedTime().asSeconds();
-		m_coords += m_velocity*m_timer.getElapsedTime().asSeconds();
+		m_velocity.y += GravityAcceleration.y * m_timer.getElapsedTime().asSeconds();
+		m_coords += m_velocity * m_timer.getElapsedTime().asSeconds();
 	}
 	m_timer.restart();
 }
 
 
-void CharacterModel::setWidth(int _w )
+void CharacterModel::setWidth(int _w)
 {
     m_width = _w;
 }
 
-void CharacterModel::setHeight( int _h)
+void CharacterModel::setHeight(int _h)
 {
     m_height = _h;
 }
 
-void CharacterModel::setSize(int _w,int _h)
+void CharacterModel::setSize(int _w, int _h)
 {
    m_width = _w;
    m_height = _h;
@@ -313,7 +315,7 @@ void CharacterModel::setSize(int _w,int _h)
 
 sf::FloatRect CharacterModel::getRect() const
 {
-    return sf::FloatRect(m_coords.x  , m_coords.y , (float) m_width , (float)m_height);
+    return sf::FloatRect(m_coords.x , m_coords.y, (float) m_width, (float)m_height);
 }
 
 

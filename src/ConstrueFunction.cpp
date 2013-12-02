@@ -3,8 +3,8 @@
 /**
 * @brief : Constructor of the class
 **/
-ConstrueFonction::ConstrueFonction( std::string _function ):
-m_function(_function), m_changed(false)/*, m_scale(scale), m_begin(0.0f), m_end(0.0f), m_step(0.0f)*/
+ConstrueFonction::ConstrueFonction(std::string _function)
+:m_function(_function), m_changed(false)/*, m_scale(scale), m_begin(0.0f), m_end(0.0f), m_step(0.0f)*/
 {
     //ctor
 }
@@ -50,7 +50,7 @@ float ConstrueFonction::getFunctionValue( float x) const
 
 }
 
-float ConstrueFonction::getDerivative( float x) const
+float ConstrueFonction::getDerivative(float x) const
 {
 	exprtk::symbol_table<float> symbol_table;
 	symbol_table.add_variable("x",x);
@@ -73,16 +73,16 @@ void ConstrueFonction::clearFunction()
 /**
 * @brief : Store in a vector all the value for the function
 **/
-void ConstrueFonction::getRepresentativeCurve(float _begin , float _end , float step)
+void ConstrueFonction::getRepresentativeCurve(float _begin, float _end, float step)
 {
     m_coords.clear();
 	intervals.clear();
 
-		int i=0;
-		const float StepLimits = 100.0f;
+	int i=0;
+	const float StepLimits = 100.0f;
 	IntervalOfDefinition intervalTmp;
 	intervalTmp.xStart = _begin;
-   for (float x = _begin ; x <= _end ; x += step )
+   for(float x = _begin ; x <= _end ; x += step )
    {
 		float y;
 		if(isDefined(x, &y))
@@ -125,14 +125,16 @@ void ConstrueFonction::getRepresentativeCurve(float _begin , float _end , float 
    }
 	intervalTmp.xEnd = _end;
 	if(i!=2)
+	{
 		intervals.push_back(intervalTmp);
+	}
 
 }
 
 bool ConstrueFonction::isDefined(float x, float* y) const
 {
 	exprtk::symbol_table<float> symbol_table;
-	symbol_table.add_variable("x",x);
+	symbol_table.add_variable("x", x);
 
 	exprtk::expression<float> expression;
 	expression.register_symbol_table(symbol_table);
@@ -164,8 +166,12 @@ bool ConstrueFonction::isRepresented(float x)
 
 bool ConstrueFonction::isRepresented(float x, float y)
 {
-	if(isRepresented(x) && getFunctionValue(x)==y)
+	if(isRepresented(x) && getFunctionValue(x) == y)
+	{
 		return true;
+	}
 	else
+	{
 		return false;
+	}
 }

@@ -1,8 +1,8 @@
 #include "ScreenLink.hpp"
 
 ScreenLink::ScreenLink()
-:m_filename(FilenameScreenLink), m_countEasy(valEasy),m_countNormal(valNormal), m_countHard(valHard),
- m_maxEasy(1), m_maxNormal(1), m_maxHard(1),m_currentLevel(1),m_difficulty( Normal)
+:m_filename(FilenameScreenLink), m_countEasy(valEasy), m_countNormal(valNormal), m_countHard(valHard),
+ m_maxEasy(1), m_maxNormal(1), m_maxHard(1), m_currentLevel(1), m_difficulty( Normal)
 {
     load();
 }
@@ -11,7 +11,7 @@ void ScreenLink::load()
 {
     std::ifstream file(m_filename.c_str());
 
-    if ( file.is_open() )
+    if(file.is_open())
     {
         //nbeasy
         std::string dump;
@@ -46,7 +46,7 @@ void ScreenLink::save()
 {
     std::ofstream  file(m_filename.c_str());
 
-    if ( file.is_open() )
+    if(file.is_open())
     {
         file << "countEasy\n";
         //nbeasy
@@ -99,9 +99,9 @@ ScreenLink::~ScreenLink()
 }
 
 
-void ScreenLink::setMaxLevel(Difficulty type , unsigned int val )
+void ScreenLink::setMaxLevel(Difficulty type , unsigned int val)
 {
-    switch( type)
+    switch(type)
     {
    case Easy:
        m_maxEasy = val;
@@ -124,7 +124,7 @@ void ScreenLink::setMaxLevel(Difficulty type , unsigned int val )
 
 unsigned int ScreenLink::getMaxLevel(Difficulty type)const
 {
-    switch( type)
+    switch(type)
     {
    case Easy:
        return m_maxEasy;

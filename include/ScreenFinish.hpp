@@ -13,10 +13,11 @@ class ScreenFinish : public Screen
         ScreenFinish();
         virtual ~ScreenFinish();
         int Run(sf::RenderWindow & App);
+        
     protected:
     private:
+    	sf::Sprite m_bg;
         sf::Clock m_clock;
-        sf::Sprite m_bg;
 
 };
 

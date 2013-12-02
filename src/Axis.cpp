@@ -15,9 +15,10 @@
 /**
 * @brief : Constructor of the class
 **/
-Axis::Axis(float _graduation):m_OriginyAxis(0.0f),m_OriginxAxis(0.0f),m_scale(1.0f),m_graduation(_graduation)
+Axis::Axis(float _graduation)
+:m_originyAxis(0.0f), m_originxAxis(0.0f), m_scale(1.0f), m_graduation(_graduation)
 {
-    sf::Color color(18,25,112,75);
+    sf::Color color(18, 25, 112, 75);
     float heightAxis = 4.0f;
     float widthAxis = 2000.0f;
     int nbGraduation = (int) widthAxis / m_graduation;
@@ -25,25 +26,24 @@ Axis::Axis(float _graduation):m_OriginyAxis(0.0f),m_OriginxAxis(0.0f),m_scale(1.
     float heightGrad = 10.0f;
     float widthGrad = 2.0f;
     float _x = -1000.0f;
-    float _y = 0.0f - heightGrad/2.0f ;
+    float _y = 0.0f - heightGrad / 2.0f ;
 
     ////////////////////////////////////////////////////////
     // XAxis Graduation
-    for (int i = 0 ; i < nbGraduation/2 ; i++)
+    for (int i = 0 ; i < nbGraduation / 2 ; i++)
     {
-
-        sf::RectangleShape temp(sf::Vector2f(widthGrad,heightGrad));
-                           temp.setPosition(_x,_y);
+        sf::RectangleShape temp(sf::Vector2f(widthGrad, heightGrad));
+                           temp.setPosition(_x, _y);
                            temp.setFillColor(color);
          m_listXGrad.push_back(temp);
          _x +=  m_graduation;
     }
     _x += m_graduation;
-     for (int i = 0 ; i < nbGraduation/2 ; i++)
+     for (int i = 0 ; i < nbGraduation / 2 ; i++)
     {
 
-        sf::RectangleShape temp(sf::Vector2f(widthGrad,heightGrad));
-                           temp.setPosition(_x,_y);
+        sf::RectangleShape temp(sf::Vector2f(widthGrad, heightGrad));
+                           temp.setPosition(_x, _y);
                            temp.setFillColor(color);
          m_listXGrad.push_back(temp);
          _x +=  m_graduation;
@@ -55,22 +55,22 @@ Axis::Axis(float _graduation):m_OriginyAxis(0.0f),m_OriginxAxis(0.0f),m_scale(1.
     ////////////////////////////////////////////////////////////
     // YAxis Graduation
      _y = -1000.0f;
-     _x = 0.0f - heightGrad/2.0f ;
-    for (int i = 0 ; i < nbGraduation/2  ; i++)
+     _x = 0.0f - heightGrad / 2.0f ;
+    for (int i = 0 ; i < nbGraduation / 2  ; i++)
     {
 
-        sf::RectangleShape temp(sf::Vector2f(heightGrad,widthGrad));
-                           temp.setPosition(_x,_y);
+        sf::RectangleShape temp(sf::Vector2f(heightGrad, widthGrad));
+                           temp.setPosition(_x, _y);
                            temp.setFillColor(color);
          m_listYGrad.push_back(temp);
          _y +=  m_graduation;
     }
     _y += m_graduation;
-    for (int i = 0 ; i < nbGraduation/2  ; i++)
+    for (int i = 0 ; i < nbGraduation / 2  ; i++)
     {
 
-        sf::RectangleShape temp(sf::Vector2f(heightGrad,widthGrad));
-                           temp.setPosition(_x,_y);
+        sf::RectangleShape temp(sf::Vector2f(heightGrad, widthGrad));
+                           temp.setPosition(_x, _y);
                            temp.setFillColor(color);
          m_listYGrad.push_back(temp);
          _y +=  m_graduation;
@@ -82,17 +82,17 @@ Axis::Axis(float _graduation):m_OriginyAxis(0.0f),m_OriginxAxis(0.0f),m_scale(1.
 
     /////////////////////////////////////////////
     // xAxis
-    m_ShapexAxis.setSize(sf::Vector2f(widthAxis,heightAxis));
-    m_ShapexAxis.setPosition(-1000.0f,-heightAxis/2);
-    m_ShapexAxis.setFillColor(color);
+    m_shapexAxis.setSize(sf::Vector2f(widthAxis, heightAxis));
+    m_shapexAxis.setPosition(-1000.0f, -heightAxis / 2);
+    m_shapexAxis.setFillColor(color);
     //
     /////////////////////////////////////////////////
 
     /////////////////////////////////////////////////
     //
-    m_ShapeyAxis.setSize(sf::Vector2f(heightAxis,widthAxis));
-    m_ShapeyAxis.setPosition(-heightAxis/2,-1000.0f);
-    m_ShapeyAxis.setFillColor(color);
+    m_shapeyAxis.setSize(sf::Vector2f(heightAxis, widthAxis));
+    m_shapeyAxis.setPosition(-heightAxis / 2, -1000.0f);
+    m_shapeyAxis.setFillColor(color);
     // yAxis
     /////////////////////////////////////////////////
 
@@ -111,7 +111,7 @@ Axis::~Axis()
 **/
 int Axis::getxAxis()
 {
-     return m_OriginxAxis;
+     return m_originxAxis;
 }
 
 /**
@@ -119,7 +119,7 @@ int Axis::getxAxis()
 **/
 int Axis::getyAxis()
 {
-    return m_OriginyAxis;
+    return m_originyAxis;
 }
 
 /**
@@ -131,7 +131,7 @@ float Axis::getScale()
 }
 
 
-void Axis::setGraduation( float _graduation)
+void Axis::setGraduation(float _graduation)
 {
     m_graduation = _graduation;
 }
@@ -147,15 +147,15 @@ float Axis::getGraducation()
 void Axis::draw(sf::RenderWindow& App)
 {
 
-    FOR_STL_ITERATOR(std::vector<sf::RectangleShape>,m_listXGrad, it)
+    FOR_STL_ITERATOR(std::vector<sf::RectangleShape>, m_listXGrad, it)
     {
         App.draw(*it);
     }
 
-     FOR_STL_ITERATOR(std::vector<sf::RectangleShape>,m_listYGrad, it)
+     FOR_STL_ITERATOR(std::vector<sf::RectangleShape>, m_listYGrad, it)
     {
         App.draw(*it);
     }
-   App.draw(m_ShapexAxis);
-   App.draw(m_ShapeyAxis);
+   App.draw(m_shapexAxis);
+   App.draw(m_shapeyAxis);
 }

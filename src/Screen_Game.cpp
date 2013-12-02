@@ -27,13 +27,13 @@ int Screen_Game::Run(sf::RenderWindow& App)
         }*/
        Running =  m_game.handleInput();
 
-        if ( m_game.isBacked())
+        if(m_game.isBacked())
         {
             recenterCamera();
             return MENU;
         }
         gameFinish = m_game.levelOperation(*m_stat);
-        if ( gameFinish == -1)
+        if(gameFinish == -1)
         {
             return ENDING;
         }
