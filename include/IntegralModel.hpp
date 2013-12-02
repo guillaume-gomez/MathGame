@@ -16,7 +16,6 @@ class IntegralModel : public ConstrueFonction
     public:
         IntegralModel(std::string _function ="") ;
         virtual ~IntegralModel();
-        void getIntegraleCurveLine(float _begin , float _end , float step);
         void getIntegraleCurveShape(float _begin , float _end , float step);
         inline sf::Vector2f getCoordToShapes(unsigned int index ) const { if(m_listCoordShapes.size()) return m_listCoordShapes[index];}
         inline unsigned int getNbPoints () const {return m_listCoordShapes.size();}
