@@ -33,7 +33,7 @@ Axis::Axis(float _graduation)
     for (int i = 0 ; i < nbGraduation / 2 ; i++)
     {
         sf::RectangleShape temp(sf::Vector2f(widthGrad, heightGrad));
-                           temp.setPosition(_x, _y);
+                           temp.setPosition(_x - widthGrad / 2.0f, _y);
                            temp.setFillColor(color);
          m_listXGrad.push_back(temp);
          _x +=  m_graduation;
@@ -43,7 +43,7 @@ Axis::Axis(float _graduation)
     {
 
         sf::RectangleShape temp(sf::Vector2f(widthGrad, heightGrad));
-                           temp.setPosition(_x, _y);
+                           temp.setPosition(_x - widthGrad / 2.0f, _y);
                            temp.setFillColor(color);
          m_listXGrad.push_back(temp);
          _x +=  m_graduation;
@@ -60,7 +60,7 @@ Axis::Axis(float _graduation)
     {
 
         sf::RectangleShape temp(sf::Vector2f(heightGrad, widthGrad));
-                           temp.setPosition(_x, _y);
+                           temp.setPosition(_x, _y - widthGrad / 2.0f);
                            temp.setFillColor(color);
          m_listYGrad.push_back(temp);
          _y +=  m_graduation;
@@ -70,7 +70,7 @@ Axis::Axis(float _graduation)
     {
 
         sf::RectangleShape temp(sf::Vector2f(heightGrad, widthGrad));
-                           temp.setPosition(_x, _y);
+                           temp.setPosition(_x, _y - widthGrad / 2.0f);
                            temp.setFillColor(color);
          m_listYGrad.push_back(temp);
          _y +=  m_graduation;
