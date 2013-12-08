@@ -121,9 +121,10 @@ void ManageLevel::reset()
 void ManageLevel::displaying(sf::Event& event , sf::RenderTarget& target , sf::View& myView)
 {
 	std::vector<Point> temp = m_levelView->getSpriteList();
-	m_isDisplayToolTip = false;
 	if(event.type == sf::Event::MouseMoved)
 	{
+        m_isDisplayToolTip = false;
+
 		int x = event.mouseMove.x;
 		int y = event.mouseMove.y;
 		sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)), myView);

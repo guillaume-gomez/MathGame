@@ -13,9 +13,12 @@ class Point : public EditorObject
 {
     public:
         Point();
-        Point(float radius = 1.0f, float scale = GraphScale, std::string filename = "");
+        Point(float radius = 1.0f,bool goalPoint = false, float scale = GraphScale, std::string filename = "");
         virtual ~Point();
+        inline bool isGoal() const {return m_goalPoint;}
     protected:
+        //if is the final point
+        bool m_goalPoint;
     private:
 };
 

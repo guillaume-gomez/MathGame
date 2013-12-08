@@ -14,10 +14,10 @@ class EditorObject : public sf::CircleShape
     public:
         EditorObject();
         virtual ~EditorObject();
-        float distance(sf::Vector2f pointOne, sf::Vector2f pointTwo);
+        virtual float distance(sf::Vector2f pointOne, sf::Vector2f pointTwo);
         virtual bool isCollide(sf::Vector2f point);
         virtual bool isCollide(const sf::FloatRect& rect);
-        void draw(sf::RenderTarget& app);
+        virtual void draw(sf::RenderTarget& app);
     protected:
     private:
 };

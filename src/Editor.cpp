@@ -21,8 +21,8 @@ m_saving(false)
     int __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(m_app.getSize().x - m_buttonPanel.getLocalBounds().width , 0)))).x;
     int __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(m_app.getSize().x , 0)))).y ;
 
-    float Y =  (m_buttonPanel.getLocalBounds().height - (m_buttonReset.getLocalBounds().height / 5)) / 5 ;
-    int offsetY = int (Y) / 5;
+    float Y =  (m_buttonPanel.getLocalBounds().height - (m_buttonReset.getLocalBounds().height / 6)) / 6 ;
+    int offsetY = int (Y) / 6;
     float X = m_buttonPanel.getLocalBounds().width / 2 - m_buttonReset.getLocalBounds().width/2 + __x;
 
     setCenterCamera();
@@ -167,7 +167,7 @@ void Editor::draw()
     }
 
 
-    if (5 > m_timer.getElapsedTime().asSeconds())
+    if (m_timer.getElapsedTime().asSeconds() < 5)
     {
          m_textVerifSave.draw(m_app);
     }
@@ -338,9 +338,24 @@ int Editor::save(ScreenLink * link)
     //if there is one red points
     for(unsigned int i = 0 ; i < m_spriteList.size(); i++)
     {
-       if(m_spriteList[i].getTexture() == &m_Buttongoal)
+       try
+       {
+            if(Point* point = dynamic_cast<Point*>(&m_spriteList[i]))
+            {
+                std::cout << "TRIC" << std::endl;
+                if(point->isGoal())
+                {
+                    nbGoalPoint++;
+                }
+            }
+            else
+            {
+                std::cout << "TUTUTU" << std::endl;
+            }
+        }
+        catch (const std::bad_cast& e)
         {
-            nbGoalPoint++;
+            std::cout << e.what() << std::endl;
         }
     }
     if(nbGoalPoint != 1)
@@ -415,14 +430,12 @@ void Editor::addPoint( int x , int y)
 {
     if(m_drawable)
     {
-		Point newPoint(sizePoint);
+		Point *newPoint = 0;
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
-        newPoint.setPosition(coord);
 
         if(!m_chooseTexture)
         {
-             //newPoint.setTexture(&m_Buttonpoint);
-             newPoint.setFillColor(sf::Color(0,0,0));
+            newPoint = new Point(sizePoint, false);
         }
         else
         {
@@ -441,12 +454,10 @@ void Editor::addPoint( int x , int y)
 					it++;
 			}
 			goalCoords = coord;
-
-          // newPoint.setTexture(&m_Buttongoal);
-          newPoint.setFillColor(sf::Color(255,0,0));
+            newPoint = new Point(sizePoint, true);
         }
-
-        m_spriteList.push_back(newPoint);
+        newPoint->setPosition(coord);
+        m_spriteList.push_back(*newPoint);
     }
 }
 
