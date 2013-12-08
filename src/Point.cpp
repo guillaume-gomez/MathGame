@@ -16,7 +16,7 @@ Point::Point(float radius, float scale, std::string filename)
     std::cout << "Warning : in the class Point, Constructor didn't find the texture file" << filename << std::endl;
    }
     this->setRadius(radius);
-   // this->setOrigin(radius, radius);
+    this->setOrigin(radius, radius);
     this->setScale(GraphScale, GraphScale);
     this->setFillColor(sf::Color(0,0,0,100));
 }

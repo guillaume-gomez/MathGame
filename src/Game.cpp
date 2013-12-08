@@ -136,8 +136,8 @@ void Game::draw()
     m_axis.draw(m_app);
 //    m_viewIntegral.draw(m_app);
     m_graphView.draw(m_app);
+   // test.draw(m_app);
     m_level.drawPoints(m_app);
-    test.draw(m_app);
     m_player1View.draw(m_app);
 
     m_app.setView(m_app.getDefaultView());

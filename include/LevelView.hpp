@@ -13,6 +13,8 @@
 
 #include "../files.hpp"
 #include "LevelModel.hpp"
+#include "../libs/ResourcesManagerSFML2_1.hpp"
+#include "Point.hpp"
 
 
 class LevelView
@@ -21,12 +23,12 @@ class LevelView
         LevelView(const LevelModel& model,  float _scale);
         virtual ~LevelView();
         void draw( sf::RenderTarget& target );
-        std::vector<sf::Sprite> getSpriteList () const;
+        std::vector<Point> getSpriteList () const;
         void loadCoord();
     private:
         LevelView();
 
-        std::vector<sf::Sprite> m_listSprite;
+        std::vector<Point> m_listSprite;
         const LevelModel& m_model;
         static sf::Texture m_texNormal;
         static sf::Texture m_texGoal;
@@ -40,7 +42,7 @@ class LevelView
 **
 ******************************************************/
 
-inline std::vector<sf::Sprite> LevelView::getSpriteList () const { return m_listSprite;};
+inline std::vector<Point> LevelView::getSpriteList () const { return m_listSprite;};
 
 
 /****************************************************

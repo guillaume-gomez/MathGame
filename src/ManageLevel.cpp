@@ -120,7 +120,7 @@ void ManageLevel::reset()
 
 void ManageLevel::displaying(sf::Event& event , sf::RenderTarget& target , sf::View& myView)
 {
-	std::vector<sf::Sprite> temp = m_levelView->getSpriteList();
+	std::vector<Point> temp = m_levelView->getSpriteList();
 	m_isDisplayToolTip = false;
 	if(event.type == sf::Event::MouseMoved)
 	{

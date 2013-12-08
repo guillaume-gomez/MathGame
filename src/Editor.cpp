@@ -159,6 +159,7 @@ void Editor::draw()
 
     m_app.setView(m_viewPerso);
     m_app.draw(m_spriteBG);
+    m_axis.draw(m_app);
 
     for( unsigned int i = 0 ; i < m_spriteList.size();i++)
     {
@@ -170,8 +171,6 @@ void Editor::draw()
     {
          m_textVerifSave.draw(m_app);
     }
-
-    m_axis.draw(m_app);
     m_graphView.draw(m_app);
 
     m_app.setView(m_app.getDefaultView());
@@ -416,7 +415,7 @@ void Editor::addPoint( int x , int y)
 {
     if(m_drawable)
     {
-		Point newPoint(0.5f);
+		Point newPoint(sizePoint);
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
         newPoint.setPosition(coord);
 

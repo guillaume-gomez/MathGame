@@ -55,7 +55,7 @@ const float PositionButtonNormalY = 280.0f;
 const float PositionButtonHardY = 430.0f;
 const unsigned int nbButtonLevelChoose = 4 ;
 
-
+const float sizePoint = 0.15f;
 
 const int backgroundColor = 230;
 const int gridGameColor = 235;
