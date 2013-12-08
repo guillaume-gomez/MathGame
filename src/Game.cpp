@@ -7,9 +7,8 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 ,m_textAreaFunction(6), m_level(1,_diff,GraphScale), m_buttonReset(FilenameButtonReset), m_buttonSound(FilenameSound, WidthIcon, HeightIcon), m_buttonBack(FilenameButtonBack),
  /*m_modelIntegral("cos(x)"),m_viewIntegral(m_modelIntegral, GraphScale),*/
  m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false),
- test(3.0f)
+ test(3.0f,10.0f)
 {
-    test.setFillColor(sf::Color(18,50,189,100));
     test.setScale(GraphScale,GraphScale);
 
   loadConfigFile();
@@ -124,6 +123,7 @@ void Game::show()
     m_level.displayNbAttempt();
     m_buttonSound.switchTile();
     m_textAreaFunction.blinkCaret();
+    test.grow(0.001f);
 }
 
 void Game::draw()
@@ -137,9 +137,8 @@ void Game::draw()
 //    m_viewIntegral.draw(m_app);
     m_graphView.draw(m_app);
     m_level.drawPoints(m_app);
-    m_player1View.draw(m_app);
-
     test.draw(m_app);
+    m_player1View.draw(m_app);
 
     m_app.setView(m_app.getDefaultView());
     m_level.drawUI(m_app);

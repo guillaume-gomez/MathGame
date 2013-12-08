@@ -10,8 +10,10 @@
 #include "ButtonPerso.hpp"
 #include "ConstrueFunction.hpp"
 #include "GraphView.hpp"
+#include "GravityCircle.hpp"
 #include "ManageText.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
+#include "Point.hpp"
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
@@ -40,9 +42,10 @@ class Editor
         int save(ScreenLink * link);
         void addPoint( int x , int y);
         void popPoint();
+        void deleteGravityCircle(int x, int y);
         void deletePoint(int x , int y);
         ~Editor();
-        
+
     private:
         View m_viewPerso;
         Event m_event;
@@ -66,7 +69,7 @@ class Editor
         bool m_isZoom;
         bool m_saving;
         Sprite m_spriteBG;
-        std::vector<sf::Sprite> m_spriteList;
+        std::vector<EditorObject> m_spriteList;
         TextAreaSFML2_0 m_textAreaFunction;
         sf::Clock m_timer;
         sf::Clock m_timerPanel;

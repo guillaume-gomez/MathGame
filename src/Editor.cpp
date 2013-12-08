@@ -207,6 +207,10 @@ void Editor::deletePoint(int x , int y)
     }
 }
 
+void Editor::deleteGravityCircle(int x, int y)
+{
+}
+
 void Editor::move()
 {
     movePanel ();
@@ -354,7 +358,7 @@ int Editor::save(ScreenLink * link)
     {
         if(m_spriteList[i].getTexture() == &m_Buttongoal)
         {
-            sf::Sprite temp( m_spriteList[i]);
+            EditorObject temp( m_spriteList[i]);
             m_spriteList[i] = m_spriteList[ m_spriteList.size() - 1];
             m_spriteList[ m_spriteList.size() - 1] = temp;
         }
@@ -412,19 +416,20 @@ void Editor::addPoint( int x , int y)
 {
     if(m_drawable)
     {
-		sf::Sprite temp;
+		Point newPoint(0.5f);
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
-        temp.setPosition(coord);
+        newPoint.setPosition(coord);
 
         if(!m_chooseTexture)
         {
-             temp.setTexture(m_Buttonpoint);
+             //newPoint.setTexture(&m_Buttonpoint);
+             newPoint.setFillColor(sf::Color(0,0,0));
         }
         else
         {
         	static sf::Vector2f goalCoords;
 
-        	std::vector<sf::Sprite>::iterator it=m_spriteList.begin();
+        	std::vector<EditorObject>::iterator it=m_spriteList.begin();
 			bool goalSpriteFound=false;
 			while(it!=m_spriteList.end() && !goalSpriteFound)
 			{
@@ -438,17 +443,20 @@ void Editor::addPoint( int x , int y)
 			}
 			goalCoords = coord;
 
-            temp.setTexture(m_Buttongoal);
+          // newPoint.setTexture(&m_Buttongoal);
+          newPoint.setFillColor(sf::Color(255,0,0));
         }
 
-        m_spriteList.push_back(temp);
+        m_spriteList.push_back(newPoint);
     }
 }
 
 void Editor::popPoint()
 {
     if(m_spriteList.size() > 0)
-    m_spriteList.pop_back();
+    {
+        m_spriteList.pop_back();
+    }
 }
 
 

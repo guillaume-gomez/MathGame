@@ -9,6 +9,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../constants.hpp"
+#include "../libs/ResourcesManagerSFML2_1.hpp"
 
 
 class ButtonPerso :  public sf::Sprite
@@ -21,7 +22,7 @@ class ButtonPerso :  public sf::Sprite
         void draw(sf::RenderTarget& app);
         bool isClicked() const;
         void unclick();
-        
+
     protected:
         bool m_clicked;
         std::string m_filename;
