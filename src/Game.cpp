@@ -188,7 +188,7 @@ int Game::levelOperation(ScreenLink& stat)
 {
     int changing = 0;
     bool soundPlayable = false;
-   // std::cout << m_player1View.getRectLocal(). << std::endl;
+   // // std::cout << m_player1View.getRectLocal(). << std::endl;
 //    m_player1Model.setSize();
       m_level.levelFinished(m_player1Model, soundPlayable);
 
@@ -268,7 +268,7 @@ void Game::loadConfigFile()
 	m_player1Model.setMoveType(moveType);
 	m_player1Model.setFrictionCoefficient(frictionCoef);
 	#ifdef DEBUG
-        std::cout << "GAME CPP width : " << width << "height : " << height << std::endl;
+        // std::cout << "GAME CPP width : " << width << "height : " << height << std::endl;
 	#endif
 	m_player1View.setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
 }

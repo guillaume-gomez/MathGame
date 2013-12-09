@@ -78,21 +78,21 @@ T* ResourcesManagerSFML2_0<T>::getResource(const std::string& fileName)
 		loadFromFile(fileName);
 
     #ifdef DEBUG
-        if(fileName == "resources/sprites/robot3.png")
-        std::cout << "THIS ONE used : " << fileName << std::endl;
+//        if(fileName == "resources/sprites/robot3.png")
+        // std::cout << "THIS ONE used : " << fileName << std::endl;
     #endif
 
 	if(m_resources.find(fileName)!=m_resources.end())
 	{
         #ifdef DEBUG
-            std::cout << "returning m_resources[" << fileName << "]" << std::endl;
+            // std::cout << "returning m_resources[" << fileName << "]" << std::endl;
         #endif
 		return m_resources[fileName];
 	}
 	else
 	{
         #ifdef DEBUG
-            std::cout << "returning 0" << std::endl;
+            // std::cout << "returning 0" << std::endl;
         #endif
 		return 0;
 	}
@@ -107,15 +107,15 @@ template<class T>
 ResourcesManagerSFML2_0<T>::~ResourcesManagerSFML2_0()
 {
 	#ifdef DEBUG
-		std::cout << "destructor ResourcesManagerSFML2_1" << std::endl;
-		std::cout << "m_resources.size() : " << m_resources.size() << std::endl;
+		// std::cout << "destructor ResourcesManagerSFML2_1" << std::endl;
+		// std::cout << "m_resources.size() : " << m_resources.size() << std::endl;
 	#endif
 	FOR_STL_ITERATOR(typename map_string_ptrT, m_resources, it)
 	{
 		delete it->second;
 		m_resources.erase(it);
 		#ifdef DEBUG
-			std::cout << "m_resources.size()F : " << m_resources.size() << std::endl << std::endl;;
+			// std::cout << "m_resources.size()F : " << m_resources.size() << std::endl << std::endl;;
 		#endif
 	}
 }

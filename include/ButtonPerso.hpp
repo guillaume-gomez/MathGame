@@ -21,10 +21,10 @@ class ButtonPerso :  public sf::Sprite
         void draw(sf::RenderTarget& app);
         bool isClicked() const;
         void unclick();
-        
+
     protected:
-        bool m_clicked;
         std::string m_filename;
+        bool m_clicked;
         sf::Texture m_texture;
 };
 

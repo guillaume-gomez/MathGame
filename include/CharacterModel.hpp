@@ -41,18 +41,19 @@ class CharacterModel
 		void setAngle(float angle){m_angle = angle;};
 
     private:
-        float m_actualSpeed;
-        float m_angle;
-        sf::Vector2f m_coords;
-        float m_frictionCoefficient;
-        int m_height;
         bool m_life;
-        MoveType m_moveType;
-        bool m_orientedRight;
-        float m_speed;
-        sf::Clock m_timer;
-        sf::Vector2f m_thrust;
         sf::Vector2f m_velocity;
+        sf::Vector2f m_thrust;
+        sf::Vector2f m_coords;
+        float m_speed;
+        float m_frictionCoefficient;
+        float m_actualSpeed;
+        MoveType m_moveType;
+        float m_angle;
+
+        bool m_orientedRight;
+        int m_height;
+        sf::Clock m_timer;
         int m_width;
 };
 

@@ -20,10 +20,10 @@ class Button :  public sf::Sprite
         void setAlpha ( int _alpha);
         void draw(sf::RenderTarget& app);
         bool isClicked() const;
-        
+
     protected:
-        bool m_clicked;
         std::string m_filename;
+        bool m_clicked;
         sf::Texture m_texture;
 };
 

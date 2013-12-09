@@ -26,13 +26,14 @@ class Screen_MainMenu : public Screen
     private:
         int m_alpha_max;
         int m_alpha_div;
-        sf::Sprite m_background;
+        bool m_playing;
         int m_changingMenu;
+
+        sf::Sprite m_background;
         sfg::Button::Ptr m_credit_button;
         sfg::Button::Ptr m_editor_button;
         sfg::Button::Ptr m_play_button;
         sfg::Button::Ptr m_play2_button;
-        bool m_playing;
         sfg::Button::Ptr m_option_button;
         sfg::SFGUI m_sfgui;
         sfg::Window::Ptr m_window;
