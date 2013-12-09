@@ -19,7 +19,7 @@
 class CharacterView
 {
 	public:
-	CharacterView(const CharacterModel& model, float scale = 1.0f, int _w = 0, int _h = 0);
+	CharacterView(const CharacterModel& model, float scale = 1.0f, int _w = 1, int _h = 1);
 	/** Default destructor */
 	virtual ~CharacterView();
 	void show();
