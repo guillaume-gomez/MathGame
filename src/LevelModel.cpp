@@ -10,7 +10,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
     m_fileLevel.open(_filename.c_str());
     if(m_fileLevel.is_open())
     {
-        std::cout << " file :'" << _filename.c_str() <<"'"<< std::endl;
+        // std::cout << " file :'" << _filename.c_str() <<"'"<< std::endl;
         m_fileLevel >> m_nbPoints;
         m_pointsCheck.clear();
         m_pointsCheck.resize(m_nbPoints);
