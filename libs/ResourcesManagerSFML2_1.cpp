@@ -23,8 +23,15 @@ TextureManager* TextureManager::getTextureManager()
 void TextureManager::loadFromFile(const std::string& fileName)
 {
     sf::Texture* tmpText = new sf::Texture;
-    tmpText->loadFromFile(fileName);
-    m_resources.insert(std::pair<std::string, sf::Texture* >(fileName, tmpText));
+    if(tmpText->loadFromFile(fileName))
+        m_resources.insert(std::pair<std::string, sf::Texture* >(fileName, tmpText));
+    else
+    {
+        delete tmpText;
+        #ifdef DEBUG
+            std::cout << "CANT LOAD : " << fileName << std::endl;
+        #endif
+    }
 }
 
 void TextureManager::loadFromFile(const std::string &fileName, const sf::IntRect &area)

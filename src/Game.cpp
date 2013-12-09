@@ -267,6 +267,9 @@ void Game::loadConfigFile()
 
 	m_player1Model.setMoveType(moveType);
 	m_player1Model.setFrictionCoefficient(frictionCoef);
+	#ifdef DEBUG
+        std::cout << "GAME CPP" << std::endl;
+	#endif
 	m_player1View.setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
 }
 

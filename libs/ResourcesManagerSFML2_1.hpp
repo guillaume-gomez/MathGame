@@ -77,11 +77,25 @@ T* ResourcesManagerSFML2_0<T>::getResource(const std::string& fileName)
 	if(m_resources.find(fileName)==m_resources.end())
 		loadFromFile(fileName);
 
+    #ifdef DEBUG
+        if(fileName == "resources/sprites/robot3.png")
+        std::cout << "THIS ONE used : " << fileName << std::endl;
+    #endif
 
 	if(m_resources.find(fileName)!=m_resources.end())
+	{
+        #ifdef DEBUG
+            std::cout << "returning m_resources[" << fileName << "]" << std::endl;
+        #endif
 		return m_resources[fileName];
+	}
 	else
+	{
+        #ifdef DEBUG
+            std::cout << "returning 0" << std::endl;
+        #endif
 		return 0;
+	}
 }
 
 template<class T>
