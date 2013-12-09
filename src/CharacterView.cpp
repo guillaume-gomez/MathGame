@@ -36,7 +36,8 @@ CharacterView::CharacterView(const CharacterModel& model, float scale, int _w, i
 	configFile >> tmpString;
 
 //	m_animation(CharacterView::characterTex,_w,_h);
-	setTexture(TextureManager::getTextureManager()->getResource(tmpString), _w, _h);
+
+    setTexture(TextureManager::getTextureManager()->getResource(tmpString), _w, _h);
 
 	m_animation.SetLoopTime(1);
 	m_animation.Play();
@@ -45,6 +46,10 @@ CharacterView::CharacterView(const CharacterModel& model, float scale, int _w, i
 CharacterView::~CharacterView()
 {
     m_sound.stop();
+    if(!m_loadedTextureSuccess)
+    {
+        delete m_ArtTexture;
+    }
 }
 
 void CharacterView::draw( sf::RenderTarget& target)
