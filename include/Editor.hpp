@@ -42,11 +42,11 @@ class Editor
         void popPoint();
         void deletePoint(int x , int y);
         ~Editor();
-        
+
     private:
-        View m_viewPerso;
-        Event m_event;
         Axis m_axis;
+        GraphView m_graphView;
+        TextAreaSFML2_0 m_textAreaFunction;
         ButtonPerso m_buttonReset;
         ButtonPerso m_buttonSave;
         ButtonPerso m_buttonBack;
@@ -54,20 +54,22 @@ class Editor
         ButtonPerso m_buttonGoalButton;
         ButtonPerso m_buttonNormalButton;
         ButtonPerso m_buttonPanel;
-        sf::Texture m_Buttonpoint;
-        sf::Texture m_Buttongoal;
-        bool m_chooseTexture;
-        bool m_drawable;
-        ConstrueFonction m_graphModel;
-        GraphView   m_graphView;
         bool m_isBack;
         bool m_isAnimLeft;
         bool m_isAnimRight;
         bool m_isZoom;
+        bool m_chooseTexture;
+        bool m_drawable;
         bool m_saving;
+
         Sprite m_spriteBG;
+        sf::Texture m_Buttonpoint;
+        sf::Texture m_Buttongoal;
+
+        View m_viewPerso;
+        Event m_event;
+        ConstrueFonction m_graphModel;
         std::vector<sf::Sprite> m_spriteList;
-        TextAreaSFML2_0 m_textAreaFunction;
         sf::Clock m_timer;
         sf::Clock m_timerPanel;
         ManageText m_textVerifSave;

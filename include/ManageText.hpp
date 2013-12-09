@@ -40,12 +40,13 @@ class ManageText
 		bool m_changed;
         friend std::ostream& operator<<( std::ostream &flux, const ManageText&  texte );
     private:
-        sf::Font m_font;
+        int m_sizeFont;
         bool m_isTyping;
         bool m_jumpable;
-        sf::String m_string;
-        int m_sizeFont;
         int m_toResize;
+
+        sf::Font m_font;
+        sf::String m_string;
 };
 
 #endif // ManageText_H

@@ -39,16 +39,18 @@ class LevelModel
 
 
     private:
-        LevelModel();
-        std::vector<sf::Vector2f> m_coordPoints;
-        std::ifstream m_fileLevel;
-        bool m_lose;
-        GameMode m_mode;
-        int m_nbAttempt;
         unsigned int m_nbPoints;
+        bool m_win;
+        bool m_lose;
+        int m_nbAttempt;
+        GameMode m_mode;
+
+        std::ifstream m_fileLevel;
         std::vector<bool> m_pointsCheck;
         int m_saveNbAttemp;
-        bool m_win;
+        std::vector<sf::Vector2f> m_coordPoints;
+
+        LevelModel();
 };
 
 /******************************************************************************
@@ -69,7 +71,14 @@ inline sf::Vector2f LevelModel::getCoordPoints(unsigned int i) const
     return sf::Vector2f(-1.0f, -1.0f);
 };
 
-inline sf::Vector2f LevelModel::getGoalCoord() const { if(m_coordPoints.size() > 0) return m_coordPoints[m_coordPoints.size() - 1]; else sf::Vector2f(0.0f, 0.0f);};
+inline sf::Vector2f LevelModel::getGoalCoord() const
+{
+    if(m_coordPoints.size() > 0)
+        return m_coordPoints[m_coordPoints.size() - 1];
+    else
+        return sf::Vector2f(0.0f, 0.0f);
+
+}
 
 inline bool LevelModel::getCheckValue(unsigned int i)const
 {

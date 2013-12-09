@@ -24,11 +24,11 @@ class GraphView
         void setGraphColor(const sf::Color& graphColor);
 
 	private:
-        sf::Color m_graphColor;
 	    const ConstrueFonction& m_model;
-        std::list<LineSFML2_1> m_lines;
 		float m_thickness;
 		float m_scale;
+        sf::Color m_graphColor;
+        std::list<LineSFML2_1> m_lines;
 };
 
 /**

@@ -36,15 +36,15 @@ class ScreenLink
          void setnbFiles( unsigned int _nb);
 
     private:
+        std::string m_filename;
         unsigned int m_countEasy;
         unsigned int m_countNormal;
         unsigned int m_countHard;
-        unsigned int m_currentLevel;
-        Difficulty m_difficulty;
-        std::string m_filename;
         unsigned int m_maxEasy;
         unsigned int m_maxNormal;
         unsigned int m_maxHard;
+        unsigned int m_currentLevel;
+        Difficulty m_difficulty;
         GameMode m_modeChoose;
 };
 
