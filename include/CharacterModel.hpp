@@ -32,7 +32,7 @@ class CharacterModel
         sf::FloatRect getRect() const;
         void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
         void resetTimer();
-        void move(ConstrueFonction& _function);
+        void move(ConstrueFunction& _function);
         virtual ~CharacterModel();
         void resetVelocity();
         void setMoveType(MoveType moveType);

@@ -17,14 +17,14 @@
 class GraphView
 {
     public:
-        GraphView( ConstrueFonction& model, float thickness = 1.0f, float scale = 1.0f);
+        GraphView( ConstrueFunction& model, float thickness = 1.0f, float scale = 1.0f);
         virtual ~GraphView();
         void represent(float step);
         void draw( sf::RenderWindow& App );
         void setGraphColor(const sf::Color& graphColor);
 
 	private:
-	    const ConstrueFonction& m_model;
+	    const ConstrueFunction& m_model;
 		float m_thickness;
 		float m_scale;
         sf::Color m_graphColor;

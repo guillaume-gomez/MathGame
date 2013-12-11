@@ -126,7 +126,7 @@ const sf::Vector2f& CharacterModel::getVelocity() const
  }
 
 
-void CharacterModel::move(ConstrueFonction& _function)
+void CharacterModel::move(ConstrueFunction& _function)
 {
 	static float yCurve, elapsedSeconds, derivative;
 	//static float xprev;
