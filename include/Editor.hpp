@@ -13,6 +13,7 @@
 #include "GravityCircle.hpp"
 #include "ManageText.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
+#include "PanelEditor.hpp"
 #include "Point.hpp"
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
@@ -55,24 +56,21 @@ class Editor
         ButtonPerso m_buttonBack;
         ButtonPerso m_buttonCursor;
         ButtonPerso m_buttonGoalButton;
+        ButtonPerso m_buttonCircle;
         ButtonPerso m_buttonNormalButton;
-        ButtonPerso m_buttonPanel;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
         bool m_chooseTexture;
-        bool m_drawable;
         ConstrueFonction m_graphModel;
         GraphView   m_graphView;
         bool m_isBack;
-        bool m_isAnimLeft;
-        bool m_isAnimRight;
         bool m_isZoom;
+        PanelEditor m_panel;
         bool m_saving;
         Sprite m_spriteBG;
         std::vector<EditorObject> m_spriteList;
         TextAreaSFML2_0 m_textAreaFunction;
         sf::Clock m_timer;
-        sf::Clock m_timerPanel;
         ManageText m_textVerifSave;
 };
 #endif // EDITOR_H

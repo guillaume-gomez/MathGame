@@ -3,8 +3,7 @@
 Editor::Editor(sf::RenderWindow& App)
 :m_app(App),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_textAreaFunction(6),
 m_buttonReset(FilenameButtonReset), m_buttonSave(FilenameButtonSave), m_buttonBack(FilenameButtonBack), m_buttonCursor(FilenameButtonCursor),
-m_buttonGoalButton(FilenamePointGoalTex), m_buttonNormalButton(FilenameNormalPointTex),
-m_buttonPanel(FilenameButtonPanel), m_isBack(false), m_isAnimLeft(false), m_isAnimRight(false), m_isZoom(false), m_chooseTexture(false), m_drawable(false),
+m_buttonGoalButton(FilenamePointGoalTex), m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex), m_isBack(false), m_isZoom(false), m_chooseTexture(false),
 m_saving(false)
 {
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
@@ -13,35 +12,35 @@ m_saving(false)
 	m_spriteBG.setTextureRect(sf::IntRect(0, 0, 2048, 2048));
 	m_spriteBG.setPosition(-1030, -1030);
 
+
 	m_buttonCursor.setColor(sf::Color(0, 0, 0, Blur));
 
     m_Buttonpoint.loadFromFile(FilenameNormalPointTex);
     m_Buttongoal.loadFromFile(FilenamePointGoalTex);
 
-    int __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(m_app.getSize().x - m_buttonPanel.getLocalBounds().width , 0)))).x;
+    int __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(m_app.getSize().x - m_panel.getLocalBounds().width , 0)))).x;
     int __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(m_app.getSize().x , 0)))).y ;
 
-    float Y =  (m_buttonPanel.getLocalBounds().height - (m_buttonReset.getLocalBounds().height / 6)) / 6 ;
-    int offsetY = int (Y) / 6;
-    float X = m_buttonPanel.getLocalBounds().width / 2 - m_buttonReset.getLocalBounds().width/2 + __x;
+    
 
     setCenterCamera();
 
 	m_textAreaFunction.setCharacterSize(20);
 
-    m_buttonPanel.setPosition(__x, __y);
-    m_buttonPanel.setAlpha(200);
+    m_panel.setPosition(__x, __y);
+    m_panel.setAlpha(200);
 
-    m_buttonReset.setPosition(X, offsetY);
+    m_panel.addButton(&m_buttonReset);
 
-    m_buttonSave.setPosition(X, offsetY + Y);
+    m_panel.addButton(&m_buttonSave);
 
-    m_buttonBack.setPosition(X, offsetY + Y*2);
+    m_panel.addButton(&m_buttonBack);
 
-    m_buttonNormalButton.setPosition(X,offsetY + Y*3);
+    m_panel.addButton(&m_buttonNormalButton);
 
-    m_buttonGoalButton.setPosition(X,offsetY + Y*4);
+    m_panel.addButton(&m_buttonGoalButton);
 
+    m_panel.addButton(&m_buttonCircle);
 }
 
 void Editor::zoom()
@@ -73,7 +72,6 @@ bool Editor::handleInput()
                      int x = m_event.mouseMove.x - m_buttonCursor.getLocalBounds().width / 2;
                      int y = m_event.mouseMove.y - m_buttonCursor.getLocalBounds().height / 2;
                      sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x, y)));
-                     managePanel(x);
                      m_buttonCursor.setPosition(coord);
                  }
             break;
@@ -92,7 +90,14 @@ bool Editor::handleInput()
                      }
                  }
             break;
-
+            case sf::Event::MouseButtonReleased:
+                {
+                std::cout << m_event.mouseButton.x   << std::endl;
+                int x = m_event.mouseButton.x - m_buttonCursor.getLocalBounds().width / 2;
+                int y = m_event.mouseButton.y - m_buttonCursor.getLocalBounds().height / 2;
+                //addCirle(x, y);
+                }
+            break;
             case Event::MouseWheelMoved:
                     m_isZoom = true;
                     zoom();
@@ -121,17 +126,12 @@ bool Editor::handleInput()
 
                 }
             break;
-
             default:
                 break;
         }
 
         m_textAreaFunction.handleInput(m_event, m_app);
-        m_buttonReset.handle_input(m_event, m_app);
-        m_buttonSave.handle_input(m_event, m_app);
-        m_buttonBack.handle_input(m_event, m_app);
-        m_buttonGoalButton.handle_input(m_event, m_app);
-        m_buttonNormalButton.handle_input(m_event, m_app);
+        m_panel.handle_input(m_event, m_app);
 
         if(m_buttonGoalButton.isClicked())
         {
@@ -140,6 +140,10 @@ bool Editor::handleInput()
     	if(m_buttonNormalButton.isClicked())
         {
     		m_buttonCursor.setColor(sf::Color(0, 0, 0, Blur));
+        }
+        if(m_buttonCircle.isClicked())
+        {
+            m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
         }
     }
     return true ;
@@ -175,12 +179,8 @@ void Editor::draw()
 
     m_app.setView(m_app.getDefaultView());
 
-    m_buttonPanel.draw(m_app);
-    m_buttonReset.draw(m_app);
-    m_buttonSave.draw(m_app);
-    m_buttonBack.draw(m_app);
-    m_buttonNormalButton.draw(m_app);
-    m_buttonGoalButton.draw(m_app);
+    m_panel.draw(m_app);
+
     m_buttonCursor.draw(m_app);
     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
     m_app.draw(m_textAreaFunction);
@@ -212,7 +212,7 @@ void Editor::deleteGravityCircle(int x, int y)
 
 void Editor::move()
 {
-    movePanel ();
+    m_panel.movePanel(m_app);
 
     if(m_buttonReset.isClicked())
     {
@@ -265,59 +265,6 @@ void Editor::setCenterCamera()
    m_viewPerso.setCenter(0,0);
 }
 
-void Editor::managePanel( int coordMouseX )
-{
-    if(coordMouseX >= m_app.getSize().x*0.9)
-    {
-        m_drawable = false;
-        m_isAnimLeft = true;
-        m_isAnimRight = false;
-    }
-
-    if(coordMouseX < m_app.getSize().x*0.9 )
-    {
-        m_drawable = true;
-        m_isAnimRight = true;
-        m_isAnimLeft = false;
-    }
-}
-
-void Editor::movePanel ()
-{
-    int offset = 4;
-    if(m_isAnimLeft && (m_buttonPanel.getPosition().x + m_buttonPanel.getGlobalBounds().width - offset) >= m_app.getSize().x)
-    {
-        if(m_timerPanel.getElapsedTime().asMilliseconds() > TimePanel)
-        {
-            m_buttonPanel.setPosition(m_buttonPanel.getPosition().x - offset , m_buttonPanel.getPosition().y);
-            m_buttonReset.setPosition(sf::Vector2f(m_buttonReset.getPosition().x - offset, m_buttonReset.getPosition().y));
-            m_buttonSave.setPosition(sf::Vector2f(m_buttonSave.getPosition().x - offset, m_buttonSave.getPosition().y));
-            m_buttonBack.setPosition(sf::Vector2f(m_buttonBack.getPosition().x - offset, m_buttonBack.getPosition().y));
-            m_buttonNormalButton.setPosition(sf::Vector2f(m_buttonNormalButton.getPosition().x - offset, m_buttonNormalButton.getPosition().y));
-            m_buttonGoalButton.setPosition(sf::Vector2f(m_buttonGoalButton.getPosition().x - offset, m_buttonGoalButton.getPosition().y));
-
-            m_timerPanel.restart();
-        }
-    }
-
-    if(m_isAnimRight && (m_buttonPanel.getPosition().x) < m_app.getSize().x)
-    {
-        if(m_timerPanel.getElapsedTime().asMilliseconds() > TimePanel)
-        {
-            m_buttonPanel.setPosition(m_buttonPanel.getPosition().x +offset, m_buttonPanel.getPosition().y);
-            m_buttonReset.setPosition(sf::Vector2f(m_buttonReset.getPosition().x + offset, m_buttonReset.getPosition().y));
-            m_buttonSave.setPosition(sf::Vector2f(m_buttonSave.getPosition().x + offset, m_buttonSave.getPosition().y));
-            m_buttonBack.setPosition(sf::Vector2f(m_buttonBack.getPosition().x + offset, m_buttonBack.getPosition().y));
-            m_buttonNormalButton.setPosition(sf::Vector2f(m_buttonNormalButton.getPosition().x + offset, m_buttonNormalButton.getPosition().y));
-            m_buttonGoalButton.setPosition(sf::Vector2f(m_buttonGoalButton.getPosition().x + offset, m_buttonGoalButton.getPosition().y));
-
-            m_timerPanel.restart();
-        }
-
-    }
-
-}
-
 int Editor::save(ScreenLink * link)
 {
 
@@ -342,7 +289,6 @@ int Editor::save(ScreenLink * link)
        {
             if(Point* point = dynamic_cast<Point*>(&m_spriteList[i]))
             {
-                std::cout << "TRIC" << std::endl;
                 if(point->isGoal())
                 {
                     nbGoalPoint++;
@@ -428,7 +374,7 @@ int Editor::save(ScreenLink * link)
 
 void Editor::addPoint( int x , int y)
 {
-    if(m_drawable)
+    if(m_panel.isVisible())
     {
 		Point *newPoint = 0;
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
