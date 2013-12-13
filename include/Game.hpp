@@ -61,7 +61,7 @@ class Game
         Sprite m_spriteBG;
 
         Event m_event;
-        ConstrueFonction m_graphModel;
+        ConstrueFunction m_graphModel;
         View m_viewPerso;
 };
 #endif // GAME_H

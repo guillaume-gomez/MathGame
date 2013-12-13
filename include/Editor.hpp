@@ -68,7 +68,7 @@ class Editor
 
         View m_viewPerso;
         Event m_event;
-        ConstrueFonction m_graphModel;
+        ConstrueFunction m_graphModel;
         std::vector<sf::Sprite> m_spriteList;
         sf::Clock m_timer;
         sf::Clock m_timerPanel;
