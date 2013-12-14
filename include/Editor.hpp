@@ -19,13 +19,12 @@
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
 
-using namespace sf;
-
-
 class Editor
 {
+    enum class CreatingType {POINT, CIRCLE, ENNEMY};
+
     public:
-        RenderWindow &m_app;
+        sf::RenderWindow &m_app;
         Editor(sf::RenderWindow& App);
         bool handleInput();
         void draw();
@@ -42,14 +41,15 @@ class Editor
         void movePanel ();
         int save(ScreenLink * link);
         void addPoint( int x , int y);
+        void addCirle(int x, int y);
         void popPoint();
         void deleteGravityCircle(int x, int y);
         void deletePoint(int x , int y);
         ~Editor();
 
     private:
-        View m_viewPerso;
-        Event m_event;
+        sf::View m_viewPerso;
+        sf::Event m_event;
         Axis m_axis;
         ButtonPerso m_buttonReset;
         ButtonPerso m_buttonSave;
@@ -60,17 +60,21 @@ class Editor
         ButtonPerso m_buttonNormalButton;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
-        bool m_chooseTexture;
+        CreatingType m_creatingType;
         ConstrueFonction m_graphModel;
         GraphView   m_graphView;
         bool m_isBack;
+        bool m_isNormalPoint;
         bool m_isZoom;
         PanelEditor m_panel;
         bool m_saving;
-        Sprite m_spriteBG;
-        std::vector<EditorObject> m_spriteList;
+        sf::Sprite m_spriteBG;
+        std::vector<EditorObject*> m_spriteList;
         TextAreaSFML2_0 m_textAreaFunction;
         sf::Clock m_timer;
         ManageText m_textVerifSave;
+
+        // HAVE TO IMPROVE IT
+        sf::Vector2f m_radiusBuilder;
 };
 #endif // EDITOR_H
