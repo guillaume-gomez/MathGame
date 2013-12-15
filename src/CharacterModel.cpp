@@ -7,7 +7,7 @@
 * @param : Initial position of the character
 **/
 CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, MoveType moveType)
-:m_life(life), m_velocity(0.0f, 0.0f), m_thrust(0.0f, 0.0f), m_coords(coord), m_speed(speed), m_frictionCoefficient(0.0f), m_actualSpeed(sqrt(m_velocity.y * m_velocity.y + m_velocity.x * m_velocity.x)), m_moveType(moveType), m_angle(0.0f)
+:Box(), m_life(life), m_velocity(0.0f, 0.0f), m_thrust(0.0f, 0.0f), m_coords(coord), m_speed(speed), m_frictionCoefficient(0.0f), m_actualSpeed(sqrt(m_velocity.y * m_velocity.y + m_velocity.x * m_velocity.x)), m_moveType(moveType), m_angle(0.0f)
 {
 	m_orientedRight = (m_velocity.x>0);
 }

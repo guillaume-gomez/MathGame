@@ -8,29 +8,29 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
  /*m_modelIntegral("cos(x)"),m_viewIntegral(m_modelIntegral, GraphScale),*/
  m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false)
 {
-  loadConfigFile();
-  setCenterCamera();
+    loadConfigFile();
+    setCenterCamera();
 
-	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
-	text->setRepeated(true);
-	m_spriteBG.setTexture(*text);
-	m_spriteBG.setTextureRect(sf::IntRect(0, 0, 2048, 2048));
-	m_spriteBG.setPosition(-1030, -1030);
-  m_spriteBG.setColor(sf::Color(gridGameColor, gridGameColor, gridGameColor));
+    sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
+    text->setRepeated(true);
+    m_spriteBG.setTexture(*text);
+    m_spriteBG.setTextureRect(sf::IntRect(0, 0, 2048, 2048));
+    m_spriteBG.setPosition(-1030, -1030);
+    m_spriteBG.setColor(sf::Color(gridGameColor, gridGameColor, gridGameColor));
 
-	m_player1Model.setSize(m_player1View.getRectLocal().width, m_player1View.getRectLocal().height);
+    m_player1Model.setSize(m_player1View.getRectLocal().width, m_player1View.getRectLocal().height);
 
     int __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionTextAreaX*m_app.getSize().x , PositionTextAreaY*m_app.getSize().y)))).x;
     int __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionTextAreaX*m_app.getSize().x , PositionTextAreaY*m_app.getSize().y)))).y ;
     //won't work
     m_textAreaFunction.setCharacterSize(20);
 
-     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).x;
-     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).y ;
+    __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).x;
+    __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).y ;
     m_level.setnbAttempTextPosition(sf::Vector2f(__x, __y));
 
-     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).x;
-     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).y ;
+    __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).x;
+    __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).y ;
     m_buttonReset.setPosition(__x, __y);
 
     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonSoundX*m_app.getSize().x , PositionButtonSoundY*m_app.getSize().y)))).x;
