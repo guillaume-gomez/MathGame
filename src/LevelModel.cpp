@@ -27,6 +27,8 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
         {
             m_pointsCheck[i] = false;
             //
+            std::string type;
+            m_fileLevel >> type;
             sf::Vector2f temp;
             m_fileLevel >> temp.x;
             m_fileLevel >> temp.y;

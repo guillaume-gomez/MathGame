@@ -5,11 +5,11 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "EditorObject.hpp"
+#include "EditorCircle.hpp"
 #include "../constants.hpp"
 
 
-class Point : public EditorObject
+class Point : public EditorCircle
 {
     public:
         Point();

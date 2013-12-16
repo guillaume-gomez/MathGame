@@ -1,9 +1,10 @@
 #include "Editor.hpp"
+#include <cmath>
 
 Editor::Editor(sf::RenderWindow& App)
 :m_app(App),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_textAreaFunction(6),
 m_buttonReset(FilenameButtonReset), m_buttonSave(FilenameButtonSave), m_buttonBack(FilenameButtonBack), m_buttonCursor(FilenameButtonCursor),
-m_buttonGoalButton(FilenamePointGoalTex), m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(CreatingType::POINT), m_isBack(false), m_isZoom(false), m_isNormalPoint(false),
+m_buttonGoalButton(FilenamePointGoalTex), m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(TypeObject::POINT), m_isBack(false), m_isZoom(false), m_isNormalPoint(false),
 m_saving(false), m_radiusBuilder(0.0f, 0.0f)
 {
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
@@ -76,20 +77,18 @@ bool Editor::handleInput()
 
              case sf::Event::MouseButtonPressed:
                  {
-                     m_radiusBuilder = sf::Vector2f(0.0f, 0.0f);
+                     m_radiusBuilder = sf::Vector2f(m_event.mouseButton.x , m_event.mouseButton.y);
                      if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
                      {
-                        int x = m_event.mouseButton.x - m_buttonCursor.getLocalBounds().width / 2;
-                        int y = m_event.mouseButton.y - m_buttonCursor.getLocalBounds().height / 2;
-
-                        if(m_creatingType == CreatingType::POINT)
+                        if(m_creatingType == TypeObject::POINT || m_creatingType == TypeObject::GOALPOINT)
                         {
-                            addPoint(x, y);
+                            addPoint(m_event.mouseButton.x , m_event.mouseButton.y);
                         }
-                        else if (m_creatingType == CreatingType::CIRCLE)
+                        else if (m_creatingType == TypeObject::CIRCLE)
                         {
                             //the radius is starting to be drawn
-                            m_radiusBuilder = sf::Vector2f(x, y);
+                            std::cout << "BEGIN " << m_radiusBuilder.x << " " << m_radiusBuilder.y << std::endl;
+                            m_radiusBuilder = sf::Vector2f(m_event.mouseButton.x , m_event.mouseButton.y);
                         }
                      }
                      else if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
@@ -100,13 +99,12 @@ bool Editor::handleInput()
             break;
             case sf::Event::MouseButtonReleased:
                 {
-                    if(m_creatingType == CreatingType::CIRCLE)
+                    if(m_creatingType == TypeObject::CIRCLE)
                     {
-                        int x = m_event.mouseButton.x - m_buttonCursor.getLocalBounds().width / 2;
-                        int y = m_event.mouseButton.y - m_buttonCursor.getLocalBounds().height / 2;
-                        m_radiusBuilder = sf::Vector2f(m_radiusBuilder - sf::Vector2f(x, y));
-                     //   std::cout << "RADIUS " << m_radiusBuilder.x << " \ " << m_radiusBuilder.y << std::endl;
-                        addCirle(x, y);
+                        sf::Vector2f origin = m_radiusBuilder;
+                        m_radiusBuilder = sf::Vector2f(m_radiusBuilder - sf::Vector2f(m_event.mouseButton.x, m_event.mouseButton.y));
+                        std::cout << "RADIUS " << m_radiusBuilder.x << " " << m_radiusBuilder.y << std::endl;
+                        addCircle(origin.x, origin.y);
                     }
                 }
             break;
@@ -245,20 +243,20 @@ void Editor::move()
 
     if(m_buttonGoalButton.isClicked())
     {
-        m_creatingType = CreatingType::POINT;
+        m_creatingType = TypeObject::GOALPOINT;
         m_isNormalPoint = true;
         m_buttonGoalButton.unclick();
     }
 
     if(m_buttonNormalButton.isClicked())
     {
-        m_creatingType = CreatingType::POINT;
+        m_creatingType = TypeObject::POINT;
         m_isNormalPoint = false;
         m_buttonNormalButton.unclick();
     }
     if(m_buttonCircle.isClicked())
     {
-        m_creatingType = CreatingType::CIRCLE;
+        m_creatingType = TypeObject::CIRCLE;
         m_buttonCircle.unclick();
     }
 
@@ -296,28 +294,17 @@ int Editor::save(ScreenLink * link)
     {
         m_textVerifSave.setString(sf::String("Level not Saved : not enough points "));
         m_textVerifSave.setColor(sf::Color(237,28,36));
-          return -1;
+        return -1;
     }
-
 
     int nbGoalPoint = 0;
     //if there is one red points
-    //for(std::vector<EditorObject*>::iterator it = m_spriteList.begin(); it != m_spriteList.end() ; it++)
+    //for(std::vector<EditorCircle*>::iterator it = m_spriteList.begin(); it != m_spriteList.end() ; it++)
     for(auto it : m_spriteList)
     {
-       try
-       {
-            if(Point* point = dynamic_cast<Point*>(it))
-            {
-                if(point->isGoal())
-                {
-                    nbGoalPoint++;
-                }
-            }
-        }
-        catch (const std::bad_cast& e)
+        if(it->getType() == TypeObject::GOALPOINT)
         {
-            std::cout << e.what() << std::endl;
+            nbGoalPoint++;
         }
     }
     if(nbGoalPoint != 1)
@@ -327,27 +314,15 @@ int Editor::save(ScreenLink * link)
         return -1;
     }
 
-
-
     //sort m_spriteList
     for(unsigned int i = 0 ; i < m_spriteList.size() ; i++)
     {
-        try
-       {
-            if(Point* point = dynamic_cast<Point*>(m_spriteList.at(i)))
-            {
-                if(point->isGoal())
-                {
-                    EditorObject* temp = m_spriteList[i];
-                    m_spriteList[i] = m_spriteList[m_spriteList.size() - 1];
-                    m_spriteList[m_spriteList.size() - 1] = temp;
-                    break;
-                }
-            }
-        }
-        catch (const std::bad_cast& e)
+        if(m_spriteList.at(i)->getType() == TypeObject::GOALPOINT)
         {
-            std::cout << e.what() << std::endl;
+            EditorCircle* temp = m_spriteList[i];
+            m_spriteList[i] = m_spriteList[m_spriteList.size() - 1];
+            m_spriteList[m_spriteList.size() - 1] = temp;
+            break;
         }
     }
 
@@ -378,7 +353,8 @@ int Editor::save(ScreenLink * link)
 
                for( unsigned int j = 0 ; j < m_spriteList.size();j++)
                {
-                   file << m_spriteList[j]->getPosition().x / GraphScale <<" " << m_spriteList[j]->getPosition().y / GraphScale << std::endl ;
+                    file << m_spriteList[j]->getTypeStr() << std::endl;
+                    file << m_spriteList[j]->getPosition().x / GraphScale <<" "<< m_spriteList[j]->getPosition().y / GraphScale << std::endl ;
                }
 
               file.close();
@@ -414,7 +390,7 @@ void Editor::addPoint(int x , int y)
         {
         	static sf::Vector2f goalCoords;
 
-        	std::vector<EditorObject*>::iterator it = m_spriteList.begin();
+        	std::vector<EditorCircle*>::iterator it = m_spriteList.begin();
 			bool goalSpriteFound=false;
 			while(it!=m_spriteList.end() && !goalSpriteFound)
 			{
@@ -434,14 +410,17 @@ void Editor::addPoint(int x , int y)
     }
 }
 
-void Editor::addCirle(int x, int y)
+void Editor::addCircle(int x, int y)
 {
-    float radius = m_radiusBuilder.x / GraphScale;
+    float radius = abs(m_radiusBuilder.x);
     std::cout << "Radius FilenameNormalPointTexal " << radius;
-    GravityCircle* newCircle = new GravityCircle(radius);
-    sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x, y)));
-    newCircle->setPosition(coord);
-    m_spriteList.push_back(newCircle);
+    if(radius > 0.0f)
+    {
+        GravityCircle* newCircle = new GravityCircle(radius);
+        sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
+        newCircle->setPosition(coord);
+        m_spriteList.push_back(newCircle);
+    }
 
 }
 

@@ -21,8 +21,6 @@
 
 class Editor
 {
-    enum class CreatingType {POINT, CIRCLE, ENNEMY};
-
     public:
         sf::RenderWindow &m_app;
         Editor(sf::RenderWindow& App);
@@ -41,7 +39,7 @@ class Editor
         void movePanel ();
         int save(ScreenLink * link);
         void addPoint( int x , int y);
-        void addCirle(int x, int y);
+        void addCircle(int x, int y);
         void popPoint();
         void deleteGravityCircle(int x, int y);
         void deletePoint(int x , int y);
@@ -60,7 +58,7 @@ class Editor
         ButtonPerso m_buttonNormalButton;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
-        CreatingType m_creatingType;
+        TypeObject m_creatingType;
         ConstrueFonction m_graphModel;
         GraphView   m_graphView;
         bool m_isBack;
@@ -69,7 +67,7 @@ class Editor
         PanelEditor m_panel;
         bool m_saving;
         sf::Sprite m_spriteBG;
-        std::vector<EditorObject*> m_spriteList;
+        std::vector<EditorCircle*> m_spriteList;
         TextAreaSFML2_0 m_textAreaFunction;
         sf::Clock m_timer;
         ManageText m_textVerifSave;

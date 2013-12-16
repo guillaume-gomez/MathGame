@@ -114,6 +114,9 @@ void PanelEditor::handle_input(sf::Event& event, sf::RenderTarget& target)
 			this->manage(x, target);
 		}
 		break;
+
+        default:
+		break;
 	}
 
 	for (unsigned int i = 0; i < m_vectButton.size(); i++)

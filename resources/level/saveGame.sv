@@ -1,7 +1,7 @@
 countEasy
-7countNormal
-7countHard
-7maxEasy
+9countNormal
+9countHard
+9maxEasy
 2maxNormal
 2maxHard
 1

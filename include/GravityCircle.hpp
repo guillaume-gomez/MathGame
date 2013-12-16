@@ -5,10 +5,10 @@
 
 #include "../files.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
-#include "EditorObject.hpp"
+#include "EditorCircle.hpp"
 
 
-class GravityCircle : public EditorObject
+class GravityCircle : public EditorCircle
 {
     public:
         GravityCircle(float radius = 1.0f,float radiusMax=0.0f, bool defOrigin = true, std::string filename = FilenameNormalPointTex);

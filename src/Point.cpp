@@ -2,7 +2,7 @@
 
 
 Point::Point(float radius,bool goalPoint, float scale, std::string filename)
-:EditorObject(), m_goalPoint(goalPoint)
+:EditorCircle(), m_goalPoint(goalPoint)
 {
    sf::Texture * texture = 0;
    texture = TextureManager::getTextureManager()->getResource(std::string(filename));
@@ -27,10 +27,12 @@ Point::Point(float radius,bool goalPoint, float scale, std::string filename)
 
    if(m_goalPoint)
         {
+            this->m_type = TypeObject::GOALPOINT;
             this->setFillColor(sf::Color(255, 0, 0));
         }
         else
         {
+            this->m_type = TypeObject::POINT;
             this->setFillColor(sf::Color(0, 0, 0));
         }
     this->setRadius(radius);
