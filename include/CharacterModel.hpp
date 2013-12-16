@@ -20,8 +20,8 @@ class CharacterModel
         enum MoveType{/*ConstantSpeed, NaturalPhysic,*/ NoSliding, WithSliding};
         CharacterModel(bool life = true , sf::Vector2f coord = sf::Vector2f(0.0f, 0.0f), float speed = 6.0f, MoveType moveType = NoSliding);
         bool getLife() const;
-        const sf::Vector2f& getCoords() const;
-        const sf::Vector2f& getVelocity() const;
+        const sf::Vector2f getCoords() const;
+        const sf::Vector2f getVelocity() const;
         void setLife(bool _life);
         float getSpeed() const;
         void setCoords(const sf::Vector2f& coords);
@@ -33,10 +33,7 @@ class CharacterModel
         void setSize(int _w, int _h);
         sf::FloatRect getRect() const;
         void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
-        void resetTimer();
-        void move(ConstrueFunction& _function);
         virtual ~CharacterModel();
-        void resetVelocity();
         void setMoveType(MoveType moveType);
 		void setFrictionCoefficient(float frictionCoefficient);
 		float getAngle() const;
@@ -46,10 +43,10 @@ class CharacterModel
         Physics::Box m_PhysicsBox;
         bool m_life;
         float m_frictionCoefficient;
+        float m_speed;
         MoveType m_moveType;
         bool m_orientedRight;
         int m_height;
-        sf::Clock m_timer;
         int m_width;
 };
 
@@ -62,7 +59,7 @@ class CharacterModel
 /**/
 /**/    inline float CharacterModel::getSpeed() const
 /**/	{
-/**/		return m_PhysicsBox.getSpeed();
+/**/		return m_speed;
 /**/	}
 /**/
 /**/	inline void CharacterModel::setCoords(const sf::Vector2f& coords)
@@ -85,17 +82,6 @@ class CharacterModel
 /**/		m_PhysicsBox.setPosition(sf::Vector2f(m_PhysicsBox.getPosition().x,y));
 /**/	}
 /**/
-/**/	inline void CharacterModel::resetTimer()
-/**/	{
-/**/		m_timer.restart();
-/**/	}
-/**/
-/**/	inline void CharacterModel::resetVelocity()
-/**/	{
-/**/		m_velocity.x = 0.0f;
-/**/		m_velocity.y = 0.0f;
-/**/	}
-/**/
 /**/    inline void CharacterModel::setMoveType(MoveType moveType)
 /**/	{
 /**/		m_moveType = moveType;
@@ -106,14 +92,14 @@ class CharacterModel
 /**/		m_frictionCoefficient = frictionCoefficient;
 /**/	}
 
-        inline float getAngle() const {return m_angle;}
+        inline float CharacterModel::getAngle() const {return m_PhysicsBox.getAngle();}
 
-        inline void setAngle(float angle)
+        inline void CharacterModel::setAngle(float angle)
         {
             angle = fmod(angle,360.0f);
             if(angle < 0 )
                 angle += 360;
-            m_angle = angle;
+            m_PhysicsBox.setAngle(angle);
         }
 /**/
 /***************************************** // Definitions *****************************************/

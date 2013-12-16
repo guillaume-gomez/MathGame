@@ -80,7 +80,7 @@ bool  Game::handleInput()
                     {
                         if(!m_gameStarted)
                         {
-                            m_player1Model.resetTimer();
+                            m_timer.restart();
                             m_gameStarted = true;
                         }
 						m_graphModel.setFunction(m_textAreaFunction.getString());
@@ -162,7 +162,13 @@ void Game::move()
 {
     if(m_gameStarted)
     {
-        m_player1Model.move(m_graphModel);
+        static float elapsedSeconds;
+
+        elapsedSeconds = m_timer.getElapsedTime().asSeconds();
+
+        Physics::Engine::getEngine()->update(elapsedSeconds);
+
+        m_timer.restart();
         //
         //to following the character
         //
@@ -217,7 +223,7 @@ void Game::reset()
 {
          m_player1Model.setCoords(sf::Vector2f(0.0f, 0.0f));
          m_player1Model.setAngle(0.0f);
-         m_player1Model.resetVelocity();
+         Physics::Engine::getEngine()->cleanEngine();
          m_graphModel.setChanged(true);
          m_graphModel.clearFunction();
          m_gameStarted = false;

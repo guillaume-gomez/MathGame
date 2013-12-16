@@ -63,5 +63,7 @@ class Game
         Event m_event;
         ConstrueFunction m_graphModel;
         View m_viewPerso;
+
+        sf::Clock m_timer;
 };
 #endif // GAME_H

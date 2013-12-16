@@ -7,9 +7,9 @@
 * @param : Initial position of the character
 **/
 CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, MoveType moveType)
-:Box(), m_life(life), m_velocity(0.0f, 0.0f), m_thrust(0.0f, 0.0f), m_coords(coord), m_speed(speed), m_frictionCoefficient(0.0f), m_actualSpeed(sqrt(m_velocity.y * m_velocity.y + m_velocity.x * m_velocity.x)), m_moveType(moveType), m_angle(0.0f)
+:m_life(life), m_frictionCoefficient(0.0f), m_speed(speed), m_moveType(moveType)
 {
-	m_orientedRight = (m_velocity.x>0);
+	m_orientedRight = (m_PhysicsBox.getVelocity().x>0);
 }
 
 /**
@@ -57,14 +57,14 @@ void CharacterModel::setLife(bool _life) {m_life = _life;}
 /**
 * @brief : Accessor of coord
 **/
-const sf::Vector2f& CharacterModel::getCoords() const
-{return m_coords;}
+const sf::Vector2f CharacterModel::getCoords() const
+{return m_PhysicsBox.getPosition();}
 
 /**
 * @brief : Accessor of velocity
 **/
-const sf::Vector2f& CharacterModel::getVelocity() const
-{return m_thrust;}
+const sf::Vector2f CharacterModel::getVelocity() const
+{return m_PhysicsBox.getVelocity();}
 
 
 
@@ -83,11 +83,11 @@ const sf::Vector2f& CharacterModel::getVelocity() const
 //			break;
 
         case sf::Keyboard::Left:
-		    m_thrust.x = -m_speed;
+		    m_PhysicsBox.setThrust(sf::Vector2f(-m_speed, m_PhysicsBox.getThrust().y));
 			break;
 
         case sf::Keyboard::Right:
-		   m_thrust.x = m_speed;
+		    m_PhysicsBox.setThrust(sf::Vector2f(m_speed, m_PhysicsBox.getThrust().y));
 			break;
 
 		default:
@@ -108,7 +108,7 @@ const sf::Vector2f& CharacterModel::getVelocity() const
 //               break;
               case sf::Keyboard::Right:
               case sf::Keyboard::Left:
-                 m_thrust.x=0.0f;
+                 m_PhysicsBox.setThrust(sf::Vector2f(0.0f, m_PhysicsBox.getThrust().y));
                break;
 //              case sf::Keyboard::Down:
 //               m_thrust = sf::Vector2f(0.0f,0.0f);
@@ -121,21 +121,9 @@ const sf::Vector2f& CharacterModel::getVelocity() const
     }
     if(textAreaFunction.getAlphaColor()==Clear)
     {
-		m_thrust.x=0;
+		m_PhysicsBox.setThrust(sf::Vector2f(0.0f, m_PhysicsBox.getThrust().y));
  	}
  }
-
-
-void CharacterModel::move(ConstrueFunction& _function)
-{
-	static float yCurve, elapsedSeconds, derivative;
-
-	m_angle = 0.0f;
-
-    elapsedSeconds = m_timer.getElapsedTime().asSeconds();
-
-	m_timer.restart();
-}
 
 
 void CharacterModel::setWidth(int _w)
@@ -156,7 +144,7 @@ void CharacterModel::setSize(int _w, int _h)
 
 sf::FloatRect CharacterModel::getRect() const
 {
-    return sf::FloatRect(m_coords.x , m_coords.y, (float) m_width, (float)m_height);
+    return sf::FloatRect(m_PhysicsBox.getPosition().x , m_PhysicsBox.getPosition().y, (float) m_width, (float)m_height);
 }
 
 
