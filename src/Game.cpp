@@ -85,6 +85,7 @@ bool  Game::handleInput()
                         }
 						m_graphModel.setFunction(m_textAreaFunction.getString());
 						m_graphModel.getRepresentativeCurve(-MaxSizeGraph, MaxSizeGraph, Step);
+						Physics::Engine::getEngine()->setFunction(&m_graphModel);
 						m_level.decrementAttempt();
 						//float tmpY;
 						//if(tt.isDefined(player1Model.getCoords().x, &tmpY))
@@ -223,7 +224,7 @@ void Game::reset()
 {
          m_player1Model.setCoords(sf::Vector2f(0.0f, 0.0f));
          m_player1Model.setAngle(0.0f);
-         Physics::Engine::getEngine()->cleanEngine();
+  //       Physics::Engine::getEngine()->cleanEngine();
          m_graphModel.setChanged(true);
          m_graphModel.clearFunction();
          m_gameStarted = false;

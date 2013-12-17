@@ -10,6 +10,7 @@ CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, Mov
 :m_life(life), m_frictionCoefficient(0.0f), m_speed(speed), m_moveType(moveType)
 {
 	m_orientedRight = (m_PhysicsBox.getVelocity().x>0);
+	Physics::Engine::getEngine()->addObject(&m_PhysicsBox);
 }
 
 /**
@@ -58,7 +59,9 @@ void CharacterModel::setLife(bool _life) {m_life = _life;}
 * @brief : Accessor of coord
 **/
 const sf::Vector2f CharacterModel::getCoords() const
-{return m_PhysicsBox.getPosition();}
+{
+    return m_PhysicsBox.getPosition();
+}
 
 /**
 * @brief : Accessor of velocity
@@ -128,18 +131,19 @@ const sf::Vector2f CharacterModel::getVelocity() const
 
 void CharacterModel::setWidth(int _w)
 {
-    m_width = _w;
+    setSize(_w, m_height);
 }
 
 void CharacterModel::setHeight(int _h)
 {
-    m_height = _h;
+    setSize(m_width, _h);
 }
 
 void CharacterModel::setSize(int _w, int _h)
 {
-   m_width = _w;
-   m_height = _h;
+    m_width = _w;
+    m_height = _h;
+    m_PhysicsBox.setSize(m_width, m_height);
 }
 
 sf::FloatRect CharacterModel::getRect() const
@@ -153,5 +157,5 @@ sf::FloatRect CharacterModel::getRect() const
 **/
 CharacterModel::~CharacterModel()
 {
-    //dtor
+	Physics::Engine::getEngine()->delObject(&m_PhysicsBox);
 }
