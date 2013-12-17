@@ -65,5 +65,11 @@ class Game
         View m_viewPerso;
 
         sf::Clock m_timer;
+
+    #ifdef DEBUG
+        int m_frameCount;
+        sf::Clock m_frameCountClock;
+        sf::Text m_frameCountText;
+    #endif
 };
 #endif // GAME_H

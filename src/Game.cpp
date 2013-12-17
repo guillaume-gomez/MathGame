@@ -6,7 +6,8 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 :m_app(_app), m_axis(GraphScale), m_graphView(m_graphModel, Thickness, GraphScale), m_player1Model(true, sf::Vector2f(0.0f, 0.0f), 12), m_player1View(m_player1Model, GraphScale)
 ,m_textAreaFunction(6), m_level(1,_diff,GraphScale), m_buttonReset(FilenameButtonReset), m_buttonSound(FilenameSound, WidthIcon, HeightIcon), m_buttonBack(FilenameButtonBack),
  /*m_modelIntegral("cos(x)"),m_viewIntegral(m_modelIntegral, GraphScale),*/
- m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false)
+ m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false),
+ m_frameCount(0), m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf"))
 {
     loadConfigFile();
     setCenterCamera();
@@ -40,6 +41,8 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonBackX*m_app.getSize().x , PositionButtonBackY*m_app.getSize().y)))).x;
     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonBackX*m_app.getSize().x , PositionButtonBackY*m_app.getSize().y)))).y ;
     m_buttonBack.setPosition(__x, __y);
+
+    m_frameCountText.setColor(sf::Color::Black);
 
 //    m_modelIntegral.getIntegraleCurve(-5.0,5.0,Step);
 //    m_viewIntegral.represent();
@@ -151,6 +154,20 @@ void Game::draw()
     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
 	  m_app.draw(m_textAreaFunction);
     //m_textFunction.draw(m_app);
+
+    #ifdef DEBUG
+//        frameCountText.setString("test");
+        m_frameCount++;
+        if(m_frameCountClock.getElapsedTime().asMilliseconds()>250)
+        {
+            m_frameCountClock.restart();
+            m_frameCountText.setString(std::to_string(m_frameCount*4));
+            m_frameCount=0;
+        }
+//        m_frameCountText.setString(std::to_string(1000/m_frameCountClock.restart().asMilliseconds()));
+//        std::cout << std::to_string(1000/frameCountClock.restart().asMilliseconds()) << std::endl;
+        m_app.draw(m_frameCountText);
+    #endif
 }
 
 void Game::resetWindow()
