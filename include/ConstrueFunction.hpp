@@ -39,8 +39,8 @@ class ConstrueFunction
         bool isDefined(float x, float* y) const;
         void setChanged(bool _changed);
         bool getChanged()const;
-        bool isRepresented(float x);
-        bool isRepresented(float x, float y);
+        bool isRepresented(float x) const;
+        bool isRepresented(float x, float y) const;
         void clearFunction();
 
     protected:

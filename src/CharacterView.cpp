@@ -57,6 +57,7 @@ void CharacterView::draw( sf::RenderTarget& target)
     m_animation.setOrigin(m_animation.getLocalBounds().width / 2, m_animation.getLocalBounds().height);
 //    m_animation.setPosition(m_model.getCoords().x*m_scale-m_animation.getLocalBounds().width/2
 //							, -m_model.getCoords().y*m_scale-m_animation.getLocalBounds().height);
+
     m_animation.setPosition(m_model.getCoords().x * m_scale
                             , -m_model.getCoords().y * m_scale);
 

@@ -149,13 +149,14 @@ bool ConstrueFunction::isDefined(float x, float* y) const
 			&& (*y)!=-std::numeric_limits<float>::infinity());
 }
 
-bool ConstrueFunction::isRepresented(float x)
+bool ConstrueFunction::isRepresented(float x) const
 {
-	FOR_STL_ITERATOR(std::vector<IntervalOfDefinition>, intervals, itIntervals)
+//	FOR_STL_ITERATOR(std::vector<IntervalOfDefinition>, intervals, itIntervals)
+    for(IntervalOfDefinition interval : intervals)
 	{
-		if(x>=itIntervals->xStart)
+		if(x>=interval.xStart)
 		{
-			if(x<=itIntervals->xEnd)
+			if(x<=interval.xEnd)
 				return true;
 			else
 				return false;
@@ -164,7 +165,7 @@ bool ConstrueFunction::isRepresented(float x)
 	return false;
 }
 
-bool ConstrueFunction::isRepresented(float x, float y)
+bool ConstrueFunction::isRepresented(float x, float y) const
 {
 	if(isRepresented(x) && getFunctionValue(x) == y)
 	{

@@ -1,16 +1,18 @@
 #ifndef CHARACTERMODEL_H
 #define CHARACTERMODEL_H
 
-#include <cmath>
-#ifdef DEBUG
-	#include <iostream>
-#endif // DEBUG
+#include "ConstrueFunction.hpp"
+#include "../constants.hpp"
+#include "PhysicsEngine.hpp"
+#include "../libs/TextAreaSFML2_0.hpp"
 
 #include <SFML/Graphics.hpp>
 
-#include "ConstrueFunction.hpp"
-#include "../constants.hpp"
-#include "../libs/TextAreaSFML2_0.hpp"
+#include <cmath>
+
+#ifdef DEBUG
+	#include <iostream>
+#endif // DEBUG
 
 class CharacterModel
 {
@@ -18,8 +20,8 @@ class CharacterModel
         enum MoveType{/*ConstantSpeed, NaturalPhysic,*/ NoSliding, WithSliding};
         CharacterModel(bool life = true , sf::Vector2f coord = sf::Vector2f(0.0f, 0.0f), float speed = 6.0f, MoveType moveType = NoSliding);
         bool getLife() const;
-        const sf::Vector2f& getCoords() const;
-        const sf::Vector2f& getVelocity() const;
+        const sf::Vector2f getCoords() const;
+        const sf::Vector2f getVelocity() const;
         void setLife(bool _life);
         float getSpeed() const;
         void setCoords(const sf::Vector2f& coords);
@@ -31,29 +33,20 @@ class CharacterModel
         void setSize(int _w, int _h);
         sf::FloatRect getRect() const;
         void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
-        void resetTimer();
-        void move(ConstrueFunction& _function);
         virtual ~CharacterModel();
-        void resetVelocity();
         void setMoveType(MoveType moveType);
 		void setFrictionCoefficient(float frictionCoefficient);
-		float getAngle()const {return m_angle;};
-		void setAngle(float angle){m_angle = angle;};
+		float getAngle() const;
+		void setAngle(float angle);
 
     private:
+        Physics::Box m_PhysicsBox;
         bool m_life;
-        sf::Vector2f m_velocity;
-        sf::Vector2f m_thrust;
-        sf::Vector2f m_coords;
-        float m_speed;
         float m_frictionCoefficient;
-        float m_actualSpeed;
+        float m_speed;
         MoveType m_moveType;
-        float m_angle;
-
         bool m_orientedRight;
         int m_height;
-        sf::Clock m_timer;
         int m_width;
 };
 
@@ -71,35 +64,22 @@ class CharacterModel
 /**/
 /**/	inline void CharacterModel::setCoords(const sf::Vector2f& coords)
 /**/	{
-/**/		m_coords = coords;
+/**/		m_PhysicsBox.setPosition(coords);
 /**/	}
 /**/
 /**/	inline void CharacterModel::setCoords(float x, float y)
 /**/	{
-/**/		m_coords.x = x;
-/**/		m_coords.y = y;
+/**/		m_PhysicsBox.setPosition(sf::Vector2f(x,y));
 /**/	}
 /**/
 /**/	inline void CharacterModel::setCoordX(float x)
 /**/	{
-/**/		m_coords.x = x;
+/**/		m_PhysicsBox.setPosition(sf::Vector2f(x,m_PhysicsBox.getPosition().y));
 /**/	}
 /**/
 /**/	inline void CharacterModel::setCoordY(float y)
 /**/	{
-/**/		m_coords.y = y;
-/**/	}
-/**/
-/**/	inline void CharacterModel::resetTimer()
-/**/	{
-/**/		m_timer.restart();
-/**/	}
-/**/
-/**/	inline void CharacterModel::resetVelocity()
-/**/	{
-/**/		m_velocity.x = 0.0f;
-/**/		m_velocity.y = 0.0f;
-/**/		m_actualSpeed = 0.0f;
+/**/		m_PhysicsBox.setPosition(sf::Vector2f(m_PhysicsBox.getPosition().x,y));
 /**/	}
 /**/
 /**/    inline void CharacterModel::setMoveType(MoveType moveType)
@@ -111,6 +91,16 @@ class CharacterModel
 /**/	{
 /**/		m_frictionCoefficient = frictionCoefficient;
 /**/	}
+
+        inline float CharacterModel::getAngle() const {return m_PhysicsBox.getAngle();}
+
+        inline void CharacterModel::setAngle(float angle)
+        {
+            angle = fmod(angle,360.0f);
+            if(angle < 0 )
+                angle += 360;
+            m_PhysicsBox.setAngle(angle);
+        }
 /**/
 /***************************************** // Definitions *****************************************/
 
