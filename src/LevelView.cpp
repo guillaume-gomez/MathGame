@@ -29,16 +29,26 @@ LevelView::LevelView(const LevelModel& model, float _scale)
 
     for(int i = 0 ; i < nbPoints - 1 ; i++)
     {
-        Point NewPoint(sizePoint);
-        NewPoint.setFillColor(sf::Color(0, 0, 0));
-        NewPoint.setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
-        m_listSprite.push_back(NewPoint);
+
+        if(m_model.getType(i) == TypeObject::CIRCLE)
+        {
+            GravityCircle * NewCircle = new GravityCircle(m_model.getRadius(i));
+            NewCircle->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
+            m_listSprite.push_back(NewCircle);
+        }
+        else if (m_model.getType(i) == TypeObject::POINT || m_model.getType(i) == TypeObject::GOALPOINT)
+        {
+            Point * NewPoint = new Point (sizePoint);
+            NewPoint->setFillColor(sf::Color(0, 0, 0));
+            NewPoint->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
+            m_listSprite.push_back(NewPoint);
+        }
     }
 
     //the goal sprite
-    Point NewPoint(sizePoint);
-    NewPoint.setFillColor(sf::Color(255, 0, 0));
-    NewPoint.setPosition(m_model.getGoalCoord().x * m_scale/*- widthTex*/ ,  - m_model.getGoalCoord().y * m_scale/* - heightTex*/);
+    Point * NewPoint = new Point (sizePoint);
+    NewPoint->setFillColor(sf::Color(255, 0, 0));
+    NewPoint->setPosition(m_model.getGoalCoord().x * m_scale/*- widthTex*/ ,  - m_model.getGoalCoord().y * m_scale/* - heightTex*/);
     m_listSprite.push_back(NewPoint);
 
 }
@@ -58,12 +68,11 @@ void LevelView::loadCoord()
     for(unsigned int i = 0 ; i < m_listSprite.size() - 1 ; i++)
     {
         sf::Vector2f coord(m_model.getCoordPoints(i).x * m_scale/* - widthTex*/, - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
-        m_listSprite[ i ].setPosition(coord);
+        m_listSprite[ i ]->setPosition(coord);
     }
 
      sf::Vector2f coord(m_model.getGoalCoord().x * m_scale/* - widthTex*/, - m_model.getGoalCoord().y * m_scale/*  - heightTex*/);
-        m_listSprite[ m_listSprite.size() - 1 ].setPosition(coord);
-
+     m_listSprite[ m_listSprite.size() - 1 ]->setPosition(coord);
 
 }
 
@@ -72,9 +81,18 @@ void LevelView::draw(sf::RenderTarget& app)
 {
     for(unsigned int i = 0 ; i < m_listSprite.size(); i++)
     {
-        if(!m_model.getCheckValue(i))
+        
+        if(m_model.getType(i) == TypeObject::POINT || m_model.getType(i) == TypeObject::GOALPOINT)
         {
-           app.draw(m_listSprite[i]);
+            if(!m_model.getCheckValue(i))
+            {
+               app.draw(*m_listSprite[i]);
+            }
+        }
+        //other element can't be deleted, so they haven't got a check value parameter
+        else
+        {
+            app.draw(*m_listSprite[i]);
         }
     }
 }

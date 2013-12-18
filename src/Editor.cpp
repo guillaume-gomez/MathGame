@@ -28,17 +28,11 @@ m_saving(false), m_radiusBuilder(0.0f, 0.0f)
 
     m_panel.setPosition(__x, __y);
     m_panel.setAlpha(200);
-
     m_panel.addButton(&m_buttonReset);
-
     m_panel.addButton(&m_buttonSave);
-
     m_panel.addButton(&m_buttonBack);
-
     m_panel.addButton(&m_buttonNormalButton);
-
     m_panel.addButton(&m_buttonGoalButton);
-
     m_panel.addButton(&m_buttonCircle);
 }
 
@@ -87,7 +81,6 @@ bool Editor::handleInput()
                         else if (m_creatingType == TypeObject::CIRCLE)
                         {
                             //the radius is starting to be drawn
-                            std::cout << "BEGIN " << m_radiusBuilder.x << " " << m_radiusBuilder.y << std::endl;
                             m_radiusBuilder = sf::Vector2f(m_event.mouseButton.x , m_event.mouseButton.y);
                         }
                      }
@@ -103,7 +96,6 @@ bool Editor::handleInput()
                     {
                         sf::Vector2f origin = m_radiusBuilder;
                         m_radiusBuilder = sf::Vector2f(m_radiusBuilder - sf::Vector2f(m_event.mouseButton.x, m_event.mouseButton.y));
-                        std::cout << "RADIUS " << m_radiusBuilder.x << " " << m_radiusBuilder.y << std::endl;
                         addCircle(origin.x, origin.y);
                     }
                 }
@@ -340,7 +332,7 @@ int Editor::save(ScreenLink * link)
         }
 
         m_textVerifSave.setString(sf::String("Level Saved"));
-        m_textVerifSave.setColor(sf::Color(34,177,76));
+        m_textVerifSave.setColor(sf::Color(20,150,55));
         for(unsigned int i = 0 ; i < TotalDifficulty ;i++)
         {
             std::ostringstream oss;
@@ -354,6 +346,10 @@ int Editor::save(ScreenLink * link)
                for( unsigned int j = 0 ; j < m_spriteList.size();j++)
                {
                     file << m_spriteList[j]->getTypeStr() << std::endl;
+                    if(m_spriteList[j]->getType() == TypeObject::CIRCLE)
+                    {
+                        file << m_spriteList[j]->getRadius() << std::endl;
+                    }
                     file << m_spriteList[j]->getPosition().x / GraphScale <<" "<< m_spriteList[j]->getPosition().y / GraphScale << std::endl ;
                }
 
@@ -381,7 +377,6 @@ void Editor::addPoint(int x , int y)
     {
 		Point *newPoint = nullptr;
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
-        std::cout << coord.x * GraphScale << "  " << coord.y * GraphScale<< std::endl;
         if(!m_isNormalPoint)
         {
             newPoint = new Point(sizePoint, false);
@@ -400,7 +395,9 @@ void Editor::addPoint(int x , int y)
 					goalSpriteFound = true;
 				}
 				else
+                {
 					it++;
+                }
 			}
 			goalCoords = coord;
             newPoint = new Point(sizePoint, true);
@@ -413,13 +410,16 @@ void Editor::addPoint(int x , int y)
 void Editor::addCircle(int x, int y)
 {
     float radius = abs(m_radiusBuilder.x);
-    std::cout << "Radius FilenameNormalPointTexal " << radius;
     if(radius > 0.0f)
     {
         GravityCircle* newCircle = new GravityCircle(radius);
         sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
         newCircle->setPosition(coord);
         m_spriteList.push_back(newCircle);
+    }
+    else
+    {
+        std::cerr << "In Editor::addCircle : you tried to create a gravityCircle with a negative radius" << std::endl;
     }
 
 }

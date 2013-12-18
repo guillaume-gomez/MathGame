@@ -13,9 +13,26 @@
 
 #include "../constants.hpp"
 #include "CharacterModel.hpp"
+#include "EditorCircle.hpp"
+
+struct Element
+{
+    private:
+        sf::Vector2f coord;
+        TypeObject type;
+        float radius;
+    public:
+        Element();
+        inline Element& setCoord(sf::Vector2f v) {coord = v;*this;}
+        inline Element& setType(TypeObject v) {type = v;*this;}
+        inline Element& setRadius(float r){radius = r; *this;}
+        Element& setType(std::string v);
+        inline sf::Vector2f getCoord() const {return coord;}
+        inline TypeObject getType() const {return type;}
+        inline float getRadius() const {return radius;}
+};
 
 //note : la last points read in a file is the goal to reach
-
 class LevelModel
 {
     public:
@@ -25,6 +42,8 @@ class LevelModel
         bool IsLose() const;
         sf::Vector2f getGoalCoord()const;
         unsigned int getNbPoints() const;
+        float getRadius(unsigned int i) const;
+        TypeObject getType(unsigned int i) const;
         sf::Vector2f getCoordPoints(unsigned int i) const ;
         void IsFinishing (CharacterModel& charactermodel, float _scale , bool& playableSound);
          bool getCheckValue(unsigned int i)const;
@@ -40,12 +59,12 @@ class LevelModel
 
     private:
         LevelModel();
-        std::vector<sf::Vector2f> m_coordPoints;
+        std::vector<Element> m_coordElements;
         std::ifstream m_fileLevel;
         bool m_lose;
         GameMode m_mode;
         int m_nbAttempt;
-        unsigned int m_nbPoints;
+        unsigned int m_nbElements;
         std::vector<bool> m_pointsCheck;
         int m_saveNbAttemp;
         bool m_win;
@@ -58,22 +77,52 @@ inline bool LevelModel::isWin() const {return m_win;};
 
 inline bool LevelModel::IsLose() const {return m_lose;};
 
-inline unsigned int LevelModel::getNbPoints() const {return m_nbPoints;};
+inline unsigned int LevelModel::getNbPoints() const {return m_nbElements;};
 
 inline sf::Vector2f LevelModel::getCoordPoints(unsigned int i) const
 {
-    if ( i < m_coordPoints.size() )
+    if (i < m_coordElements.size())
     {
-        return m_coordPoints[ i ];
+        return m_coordElements[ i ].getCoord();
     }
     return sf::Vector2f(-1.0f, -1.0f);
 };
 
-inline sf::Vector2f LevelModel::getGoalCoord() const { if(m_coordPoints.size() > 0) return m_coordPoints[m_coordPoints.size() - 1]; else sf::Vector2f(0.0f, 0.0f);};
+
+// add the test if it is a circle
+inline float LevelModel::getRadius(unsigned int i) const
+{
+    if (i < m_coordElements.size())
+    {
+        return m_coordElements[ i ].getRadius();
+    }
+    return -1;
+}
+
+inline TypeObject LevelModel::getType(unsigned int i) const
+{
+    if (i < m_coordElements.size())
+    {
+        return m_coordElements[ i ].getType();
+    }
+    return TypeObject::ABSTRACT;
+}
+
+inline sf::Vector2f LevelModel::getGoalCoord() const 
+{ 
+    if(m_coordElements.size() > 0)
+    {
+      return m_coordElements[m_coordElements.size() - 1].getCoord();  
+    } 
+    else
+    {
+        sf::Vector2f(0.0f, 0.0f);
+    }
+}
 
 inline bool LevelModel::getCheckValue(unsigned int i)const
 {
-    if ( i < m_pointsCheck.size())
+    if (i < m_pointsCheck.size())
     {
             return m_pointsCheck[i];
     }

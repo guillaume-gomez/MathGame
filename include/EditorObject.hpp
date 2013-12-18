@@ -9,14 +9,11 @@
 @brief : a wrapper class to manage different kind of object circleShape
 **/
 
-class EditorObject : public sf::CircleShape
+class EditorObject
 {
     public:
         EditorObject();
         virtual ~EditorObject();
-        virtual float distance(sf::Vector2f pointOne, sf::Vector2f pointTwo);
-        virtual bool isCollide(sf::Vector2f point);
-        virtual bool isCollide(const sf::FloatRect& rect);
         virtual void draw(sf::RenderTarget& app);
     protected:
     private:

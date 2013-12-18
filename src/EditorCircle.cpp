@@ -15,7 +15,11 @@ EditorCircle::~EditorCircle()
 float EditorCircle::distance(sf::Vector2f pointOne, sf::Vector2f pointTwo)
 {
     //Return the distance between the two points
-    return sqrt(pow(pointTwo.x - pointOne.x, 2) + pow(pointTwo.y - pointOne.y, 2));
+    if(pointOne != sf::Vector2f(0.0f,0.0f) || pointTwo != sf::Vector2f(0.0f,0.0f))
+    {
+        return sqrt(pow(pointTwo.x - pointOne.x, 2) + pow(pointTwo.y - pointOne.y, 2));
+    }
+    return 0.0f;
 }
 
 
@@ -92,7 +96,7 @@ std::ostream& operator<<( std::ostream &flux, TypeObject const type )
         break;
 
         case TypeObject::GOALPOINT:
-            flux << "Goal Point";
+            flux << "GoalPoint";
         break;
 
         default:
@@ -122,7 +126,7 @@ std::string EditorCircle::getTypeStr() const
         break;
 
         case TypeObject::GOALPOINT:
-            return  "Goal Point";
+            return  "GoalPoint";
         break;
 
         default:

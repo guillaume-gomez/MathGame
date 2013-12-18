@@ -2,7 +2,7 @@
 
 ScreenLink::ScreenLink()
 :m_filename(FilenameScreenLink), m_countEasy(valEasy), m_countNormal(valNormal), m_countHard(valHard),
- m_maxEasy(1), m_maxNormal(1), m_maxHard(1), m_currentLevel(1), m_difficulty( Normal)
+ m_maxEasy(1), m_maxNormal(1), m_maxHard(1), m_currentLevel(1), m_difficulty(Normal)
 {
     load();
 }
@@ -50,22 +50,22 @@ void ScreenLink::save()
     {
         file << "countEasy\n";
         //nbeasy
-        file << m_countEasy;
+        file << m_countEasy << std::endl;
         file << "countNormal\n";
         //nbnormal
-        file << m_countNormal;
+        file << m_countNormal << std::endl;
         file << "countHard\n";
         //nbhard
-        file << m_countHard;
+        file << m_countHard << std::endl;
         file << "maxEasy\n";
         //currentEasy
-        file << m_maxEasy;
+        file << m_maxEasy << std::endl;
         file << "maxNormal\n";
         //currentNormal
-        file << m_maxNormal;
+        file << m_maxNormal << std::endl;
         file << "maxHard\n";
         //currentHard
-        file << m_maxHard;
+        file << m_maxHard << std::endl;
     }
     else
     {
