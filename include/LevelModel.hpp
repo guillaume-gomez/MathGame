@@ -105,15 +105,15 @@ inline TypeObject LevelModel::getType(unsigned int i) const
     {
         return m_coordElements[ i ].getType();
     }
-    return TypeObject::ABSTRACT;
+    return TypeObject::Abstract;
 }
 
-inline sf::Vector2f LevelModel::getGoalCoord() const 
-{ 
+inline sf::Vector2f LevelModel::getGoalCoord() const
+{
     if(m_coordElements.size() > 0)
     {
-      return m_coordElements[m_coordElements.size() - 1].getCoord();  
-    } 
+      return m_coordElements[m_coordElements.size() - 1].getCoord();
+    }
     else
     {
         sf::Vector2f(0.0f, 0.0f);

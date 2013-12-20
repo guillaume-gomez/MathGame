@@ -3,13 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
-
-enum class TypeObject
-{
-    ABSTRACT, CIRCLE, POINT, GOALPOINT
-};
 
 //std::string toString(TypeObject const& type) const;
 

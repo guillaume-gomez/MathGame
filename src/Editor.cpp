@@ -4,7 +4,7 @@
 Editor::Editor(sf::RenderWindow& App)
 :m_app(App),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_textAreaFunction(6),
 m_buttonReset(FilenameButtonReset), m_buttonSave(FilenameButtonSave), m_buttonBack(FilenameButtonBack), m_buttonCursor(FilenameButtonCursor),
-m_buttonGoalButton(FilenamePointGoalTex), m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(TypeObject::POINT), m_isBack(false), m_isZoom(false), m_isNormalPoint(false),
+m_buttonGoalButton(FilenamePointGoalTex), m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(TypeObject::Point), m_isBack(false), m_isZoom(false), m_isNormalPoint(false),
 m_saving(false), m_radiusBuilder(0.0f, 0.0f)
 {
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
@@ -74,11 +74,11 @@ bool Editor::handleInput()
                      m_radiusBuilder = sf::Vector2f(m_event.mouseButton.x , m_event.mouseButton.y);
                      if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
                      {
-                        if(m_creatingType == TypeObject::POINT || m_creatingType == TypeObject::GOALPOINT)
+                        if(m_creatingType == TypeObject::Point || m_creatingType == TypeObject::GoalPoint)
                         {
                             addPoint(m_event.mouseButton.x , m_event.mouseButton.y);
                         }
-                        else if (m_creatingType == TypeObject::CIRCLE)
+                        else if (m_creatingType == TypeObject::Circle)
                         {
                             //the radius is starting to be drawn
                             m_radiusBuilder = sf::Vector2f(m_event.mouseButton.x , m_event.mouseButton.y);
@@ -92,7 +92,7 @@ bool Editor::handleInput()
             break;
             case sf::Event::MouseButtonReleased:
                 {
-                    if(m_creatingType == TypeObject::CIRCLE)
+                    if(m_creatingType == TypeObject::Circle)
                     {
                         sf::Vector2f origin = m_radiusBuilder;
                         m_radiusBuilder = sf::Vector2f(m_radiusBuilder - sf::Vector2f(m_event.mouseButton.x, m_event.mouseButton.y));
@@ -235,20 +235,20 @@ void Editor::move()
 
     if(m_buttonGoalButton.isClicked())
     {
-        m_creatingType = TypeObject::GOALPOINT;
+        m_creatingType = TypeObject::GoalPoint;
         m_isNormalPoint = true;
         m_buttonGoalButton.unclick();
     }
 
     if(m_buttonNormalButton.isClicked())
     {
-        m_creatingType = TypeObject::POINT;
+        m_creatingType = TypeObject::Point;
         m_isNormalPoint = false;
         m_buttonNormalButton.unclick();
     }
     if(m_buttonCircle.isClicked())
     {
-        m_creatingType = TypeObject::CIRCLE;
+        m_creatingType = TypeObject::Circle;
         m_buttonCircle.unclick();
     }
 
@@ -294,7 +294,7 @@ int Editor::save(ScreenLink * link)
     //for(std::vector<EditorCircle*>::iterator it = m_spriteList.begin(); it != m_spriteList.end() ; it++)
     for(auto it : m_spriteList)
     {
-        if(it->getType() == TypeObject::GOALPOINT)
+        if(it->getType() == TypeObject::GoalPoint)
         {
             nbGoalPoint++;
         }
@@ -309,7 +309,7 @@ int Editor::save(ScreenLink * link)
     //sort m_spriteList
     for(unsigned int i = 0 ; i < m_spriteList.size() ; i++)
     {
-        if(m_spriteList.at(i)->getType() == TypeObject::GOALPOINT)
+        if(m_spriteList.at(i)->getType() == TypeObject::GoalPoint)
         {
             EditorCircle* temp = m_spriteList[i];
             m_spriteList[i] = m_spriteList[m_spriteList.size() - 1];
@@ -346,7 +346,7 @@ int Editor::save(ScreenLink * link)
                for( unsigned int j = 0 ; j < m_spriteList.size();j++)
                {
                     file << m_spriteList[j]->getTypeStr() << std::endl;
-                    if(m_spriteList[j]->getType() == TypeObject::CIRCLE)
+                    if(m_spriteList[j]->getType() == TypeObject::Circle)
                     {
                         file << m_spriteList[j]->getRadius() << std::endl;
                     }

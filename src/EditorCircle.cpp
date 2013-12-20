@@ -1,7 +1,7 @@
 #include "EditorCircle.hpp"
 
 EditorCircle::EditorCircle()
-:m_type(TypeObject::ABSTRACT)
+:m_type(TypeObject::Abstract)
 {
 
 }
@@ -83,20 +83,20 @@ std::ostream& operator<<( std::ostream &flux, TypeObject const type )
 {
     switch(type)
     {
-        case TypeObject::ABSTRACT:
-            flux << "Abstract";
+        case TypeObject::Abstract:
+            flux << AbstractStr;
         break;
 
-        case TypeObject::CIRCLE:
-            flux << "Circle";
+        case TypeObject::Circle:
+            flux << CircleStr;
         break;
 
-        case TypeObject::POINT:
-            flux << "Point";
+        case TypeObject::Point:
+            flux << PointStr;
         break;
 
-        case TypeObject::GOALPOINT:
-            flux << "GoalPoint";
+        case TypeObject::GoalPoint:
+            flux << GoalPointStr;
         break;
 
         default:
@@ -113,20 +113,20 @@ std::string EditorCircle::getTypeStr() const
 {
     switch(m_type)
     {
-        case TypeObject::ABSTRACT:
-            return "Abstract";
+        case TypeObject::Abstract:
+            return AbstractStr;
         break;
 
-        case TypeObject::CIRCLE:
-            return  "Circle";
+        case TypeObject::Circle:
+            return CircleStr;
         break;
 
-        case TypeObject::POINT:
-            return "Point";
+        case TypeObject::Point:
+            return PointStr;
         break;
 
-        case TypeObject::GOALPOINT:
-            return  "GoalPoint";
+        case TypeObject::GoalPoint:
+            return GoalPointStr;
         break;
 
         default:

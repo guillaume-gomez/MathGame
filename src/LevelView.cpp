@@ -30,13 +30,13 @@ LevelView::LevelView(const LevelModel& model, float _scale)
     for(int i = 0 ; i < nbPoints - 1 ; i++)
     {
 
-        if(m_model.getType(i) == TypeObject::CIRCLE)
+        if(m_model.getType(i) == TypeObject::Circle)
         {
             GravityCircle * NewCircle = new GravityCircle(m_model.getRadius(i));
             NewCircle->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
             m_listSprite.push_back(NewCircle);
         }
-        else if (m_model.getType(i) == TypeObject::POINT || m_model.getType(i) == TypeObject::GOALPOINT)
+        else if (m_model.getType(i) == TypeObject::Point || m_model.getType(i) == TypeObject::GoalPoint)
         {
             Point * NewPoint = new Point (sizePoint);
             NewPoint->setFillColor(sf::Color(0, 0, 0));
@@ -81,8 +81,8 @@ void LevelView::draw(sf::RenderTarget& app)
 {
     for(unsigned int i = 0 ; i < m_listSprite.size(); i++)
     {
-        
-        if(m_model.getType(i) == TypeObject::POINT || m_model.getType(i) == TypeObject::GOALPOINT)
+
+        if(m_model.getType(i) == TypeObject::Point || m_model.getType(i) == TypeObject::GoalPoint)
         {
             if(!m_model.getCheckValue(i))
             {

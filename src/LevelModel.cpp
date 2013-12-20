@@ -37,22 +37,22 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
             std::string type;
             m_fileLevel >> type;
             Element newElmt;
-            if(type == "Circle")
+            if(type == CircleStr)
             {
                 float radius;
                 m_fileLevel >> radius;
                 newElmt.setRadius(radius);
-                newElmt.setType(TypeObject::CIRCLE);
+                newElmt.setType(TypeObject::Circle);
                 //because it is not a point
                 m_pointsCheck[i] = true;
             }
-            else if (type == "Point")
+            else if (type == PointStr)
             {
-                newElmt.setType(TypeObject::POINT);
+                newElmt.setType(TypeObject::Point);
             }
-            else if (type == "GoalPoint")
+            else if (type == GoalPointStr)
             {
-                newElmt.setType(TypeObject::GOALPOINT);
+                newElmt.setType(TypeObject::GoalPoint);
             }
             sf::Vector2f temp;
             m_fileLevel >> temp.x;

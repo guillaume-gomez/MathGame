@@ -7,7 +7,7 @@ GravityCircle::GravityCircle(float _radius, float radiusMax, bool defOriginCente
 {
     if(_radius > 0.0f)
     {
-        this->m_type = TypeObject::CIRCLE;
+        this->m_type = TypeObject::Circle;
         this->setRadius(_radius);
         if(defOriginCenter)
         {

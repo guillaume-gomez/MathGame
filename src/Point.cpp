@@ -27,12 +27,12 @@ Point::Point(float radius,bool goalPoint, float scale, std::string filename)
 
    if(m_goalPoint)
         {
-            this->m_type = TypeObject::GOALPOINT;
+            this->m_type = TypeObject::GoalPoint;
             this->setFillColor(sf::Color(255, 0, 0));
         }
         else
         {
-            this->m_type = TypeObject::POINT;
+            this->m_type = TypeObject::Point;
             this->setFillColor(sf::Color(0, 0, 0));
         }
     this->setRadius(radius);

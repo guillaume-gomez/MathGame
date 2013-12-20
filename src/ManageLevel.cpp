@@ -131,7 +131,7 @@ void ManageLevel::displaying(sf::Event& event , sf::RenderTarget& target , sf::V
 
 		for(unsigned int i = 0 ; i < temp.size() ; i++)
 		{
-			if(temp[i]->getType() == TypeObject::POINT || temp[i]->getType() == TypeObject::GOALPOINT) 
+			if(temp[i]->getType() == TypeObject::Point || temp[i]->getType() == TypeObject::GoalPoint)
             {
                 if(temp[i]->getGlobalBounds().contains(coord.x, coord.y))
     			{

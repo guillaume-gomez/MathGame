@@ -11,6 +11,15 @@ const unsigned int TotalDifficulty = 3 ;
 
 enum Difficulty { Easy , Normal , Hard};
 enum GameMode {Classic , NoChance};
+enum class TypeObject
+{
+    Abstract, Circle, Point, GoalPoint
+};
+
+const char AbstractStr[]  = "Abstract";
+const char CircleStr[]  = "Circle";
+const char PointStr[]  = "Point";
+const char GoalPointStr[]  = "GoalPoint";
 
 const int Blur = 120;
 const int Clear = 220;
