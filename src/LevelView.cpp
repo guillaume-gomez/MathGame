@@ -36,7 +36,7 @@ LevelView::LevelView(const LevelModel& model, float _scale)
             NewCircle->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
             m_listSprite.push_back(NewCircle);
         }
-        else if (m_model.getType(i) == TypeObject::Point || m_model.getType(i) == TypeObject::GoalPoint)
+        else if (m_model.getType(i) == TypeObject::Point)
         {
             Point * NewPoint = new Point (sizePoint);
             NewPoint->setFillColor(sf::Color(0, 0, 0));

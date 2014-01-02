@@ -9,7 +9,7 @@ const float GraphScale = 20.0f;
 
 const unsigned int TotalDifficulty = 3 ;
 
-enum Difficulty { Easy , Normal , Hard};
+enum Difficulty {Easy , Normal , Hard};
 enum GameMode {Classic , NoChance};
 enum class TypeObject
 {

@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../constants.hpp"
+#include "EditorObject.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
 
@@ -13,7 +13,7 @@
 @brief : a wrapper class to manage different kind of object circleShape
 **/
 
-class EditorCircle : public sf::CircleShape
+class EditorCircle : public sf::CircleShape , public EditorObject
 {
     public:
         EditorCircle();
@@ -22,10 +22,8 @@ class EditorCircle : public sf::CircleShape
         virtual bool isCollide(sf::Vector2f point);
         virtual bool isCollide(const sf::FloatRect& rect);
         virtual void draw(sf::RenderTarget& app);
-        inline virtual TypeObject getType() const { return m_type;}
-        std::string getTypeStr() const;
     protected:
-    	TypeObject m_type;
+    	
 };
 
 #endif // EditorCircle_H

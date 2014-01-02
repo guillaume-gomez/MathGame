@@ -1,5 +1,6 @@
 #include "Editor.hpp"
 #include <cmath>
+#include <algorithm>
 
 Editor::Editor(sf::RenderWindow& App)
 :m_app(App),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_textAreaFunction(6),
@@ -307,7 +308,7 @@ int Editor::save(ScreenLink * link)
     }
 
     //sort m_spriteList
-    for(unsigned int i = 0 ; i < m_spriteList.size() ; i++)
+/*    for(unsigned int i = 0 ; i < m_spriteList.size() ; i++)
     {
         if(m_spriteList.at(i)->getType() == TypeObject::GoalPoint)
         {
@@ -316,7 +317,8 @@ int Editor::save(ScreenLink * link)
             m_spriteList[m_spriteList.size() - 1] = temp;
             break;
         }
-    }
+    }*/
+    std::sort (m_spriteList.begin(), m_spriteList.end(), EditorObject::compare);
 
         std::vector<std::string> fileList;
         fileList.push_back("Easy");
@@ -350,7 +352,7 @@ int Editor::save(ScreenLink * link)
                     {
                         file << m_spriteList[j]->getRadius() << std::endl;
                     }
-                    file << m_spriteList[j]->getPosition().x / GraphScale <<" "<< m_spriteList[j]->getPosition().y / GraphScale << std::endl ;
+                    file << m_spriteList[j]->getPosition().x / GraphScale <<" "<< - m_spriteList[j]->getPosition().y / GraphScale << std::endl ;
                }
 
               file.close();

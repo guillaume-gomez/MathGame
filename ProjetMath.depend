@@ -1,0 +1,441 @@
+# depslib dependency file v1.0
+1386457034 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/libs/LineSFML2_1.cpp
+	"LineSFML2_1.hpp"
+
+1386506229 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/libs/LineSFML2_1.hpp
+	<iostream>
+	<cmath>
+	<SFML/Graphics/RectangleShape.hpp>
+
+1386457034 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/libs/ResourcesManagerSFML2_1.cpp
+	"ResourcesManagerSFML2_1.hpp"
+
+1386457034 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/libs/ResourcesManagerSFML2_1.hpp
+	<iostream>
+	<map>
+	<string>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Texture.hpp>
+
+1386457034 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/libs/TextAreaSFML2_0.cpp
+	"TextAreaSFML2_0.hpp"
+
+1386457034 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/libs/TextAreaSFML2_0.hpp
+	<iostream>
+	<cctype>
+	<vector>
+	<SFML/Graphics/RectangleShape.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Utf.hpp>
+	<SFML/Window/Event.hpp>
+	"../files.hpp"
+	"../constants.hpp"
+
+1386574831 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/files.hpp
+
+1388342388 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/constants.hpp
+	<SFML/System/Vector2.hpp>
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/main.cpp
+	<vector>
+	<SFML/Graphics.hpp>
+	"constants.hpp"
+	"files.hpp"
+	"Screen_MainMenu.hpp"
+	"ScreenLevelChoiceClassic.hpp"
+	"ScreenLevelChoiceNoChance.hpp"
+	"Screen_Game.hpp"
+	"ScreenOption.hpp"
+	"Screen_Editor.hpp"
+	"ScreenFinish.hpp"
+	"ScreenCredit.hpp"
+	"Game.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Screen_MainMenu.hpp
+	<SFGUI/SFGUI.hpp>
+	"../files.hpp"
+	"../constants.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+	"ScreenLink.hpp"
+	"Screen.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ScreenLink.hpp
+	<iostream>
+	<fstream>
+	"../files.hpp"
+	"../constants.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Screen.hpp
+	<SFML/Graphics/RenderWindow.hpp>
+	"Screens.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Screens.hpp
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ScreenLevelChoiceClassic.hpp
+	"ScreenLevelChoice.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ScreenLevelChoice.hpp
+	<sstream>
+	<vector>
+	<SFGUI/SFGUI.hpp>
+	"../files.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+	"Screen.hpp"
+	"ScreenLink.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ScreenLevelChoiceNoChance.hpp
+	"ScreenLevelChoice.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Screen_Game.hpp
+	"Game.hpp"
+	"Screen.hpp"
+	"ScreenLink.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Game.hpp
+	<fstream>
+	"SFML/Graphics.hpp"
+	"Axis.hpp"
+	"ButtonAnim.hpp"
+	"../constants.hpp"
+	"CharacterModel.hpp"
+	"CharacterView.hpp"
+	"ConstrueFunction.hpp"
+	"../files.hpp"
+	"GraphView.hpp"
+	"GravityCircle.hpp"
+	"../libs/TextAreaSFML2_0.hpp"
+	"ManageLevel.hpp"
+	"ScreenLink.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Axis.hpp
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ButtonAnim.hpp
+	<iostream>
+	"AniSprite.hpp"
+	"ButtonPerso.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/AniSprite.hpp
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ButtonPerso.hpp
+	<iostream>
+	<string>
+	<SFML/Graphics.hpp>
+	"../constants.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/CharacterModel.hpp
+	<cmath>
+	<iostream>
+	<SFML/Graphics.hpp>
+	"ConstrueFunction.hpp"
+	"../constants.hpp"
+	"../libs/TextAreaSFML2_0.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ConstrueFunction.hpp
+	<cmath>
+	<iostream>
+	<list>
+	<string>
+	<vector>
+	<SFML/Graphics.hpp>
+	"../libs/exprtk.hpp"
+
+1386457034 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/libs/exprtk.hpp
+	<cctype>
+	<iostream>
+	<string>
+	<algorithm>
+	<cmath>
+	<limits>
+	<deque>
+	<list>
+	<map>
+	<set>
+	<stack>
+	<windows.h>
+	<sys/time.h>
+	<sys/types.h>
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/CharacterView.hpp
+	<fstream>
+	<string>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Texture.hpp>
+	"AniSprite.hpp"
+	"CharacterModel.hpp"
+	"../files.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/GraphView.hpp
+	<list>
+	<vector>
+	<limits>
+	<SFML/Graphics.hpp>
+	"ConstrueFunction.hpp"
+	"../libs/LineSFML2_1.hpp"
+
+1387180867 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/GravityCircle.hpp
+	<SFML/Graphics.hpp>
+	"../files.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+	"EditorCircle.hpp"
+
+1388339212 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/EditorObject.hpp
+	<string>
+	<SFML/Graphics.hpp>
+	"../constants.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ManageLevel.hpp
+	"../constants.hpp"
+	"../files.hpp"
+	"LevelView.hpp"
+	"LevelModel.hpp"
+	<iostream>
+	<sstream>
+	<string>
+	"ConstrueFunction.hpp"
+	"CharacterModel.hpp"
+	"SFML/Graphics/RenderTarget.hpp"
+	"ScreenLink.hpp"
+
+1387319931 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/LevelView.hpp
+	<iostream>
+	<string>
+	<vector>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Texture.hpp>
+	"../files.hpp"
+	"LevelModel.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+	"GravityCircle.hpp"
+	"Point.hpp"
+
+1387523402 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/LevelModel.hpp
+	<iostream>
+	<fstream>
+	<ostream>
+	<string>
+	<vector>
+	<SFML/System/Vector2.hpp>
+	"../constants.hpp"
+	"CharacterModel.hpp"
+	"EditorCircle.hpp"
+
+1387180878 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Point.hpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"EditorCircle.hpp"
+	"../constants.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ScreenOption.hpp
+	<fstream>
+	<vector>
+	"AniSprite.hpp"
+	"../constants.hpp"
+	"../files.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+	"Screen.hpp"
+	<SFGUI/SFGUI.hpp>
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Screen_Editor.hpp
+	"Screen.hpp"
+	"../constants.hpp"
+	"Editor.hpp"
+	"ScreenLink.hpp"
+
+1387224218 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Editor.hpp
+	<fstream>
+	<sstream>
+	"SFML/Graphics.hpp"
+	"Axis.hpp"
+	"ButtonPerso.hpp"
+	"ConstrueFunction.hpp"
+	"GraphView.hpp"
+	"GravityCircle.hpp"
+	"ManageText.hpp"
+	"../libs/TextAreaSFML2_0.hpp"
+	"PanelEditor.hpp"
+	"Point.hpp"
+	"ScreenLink.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ManageText.hpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"GraphView.hpp"
+	"../files.hpp"
+	"../constants.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ScreenFinish.hpp
+	"Screen.hpp"
+	"SFML/Graphics.hpp"
+	"../files.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ScreenCredit.hpp
+	"Screen.hpp"
+	"SFML/Graphics.hpp"
+	"../files.hpp"
+	"../constants.hpp"
+	<vector>
+	<stdlib.h>
+	<time.h>
+	"../libs/ResourcesManagerSFML2_1.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/AniSprite.cpp
+	"../include/AniSprite.hpp"
+
+1386525838 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/Axis.cpp
+	<SFML/Graphics.hpp>
+	<vector>
+	<iostream>
+	"Axis.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ButtonAnim.cpp
+	"ButtonAnim.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ButtonPerso.cpp
+	"ButtonPerso.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/CharacterModel.cpp
+	"CharacterModel.hpp"
+	<iostream>
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/CharacterView.cpp
+	"CharacterView.hpp"
+	<iostream>
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ConstrueFunction.cpp
+	"ConstrueFunction.hpp"
+
+1388338791 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/Editor.cpp
+	"Editor.hpp"
+	<cmath>
+	<algorithm>
+
+1388333937 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/EditorObject.cpp
+	"EditorObject.hpp"
+
+1387315217 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/Game.cpp
+	"Game.hpp"
+	<iostream>
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/GraphView.cpp
+	"GraphView.hpp"
+
+1387523796 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/GravityCircle.cpp
+	"GravityCircle.hpp"
+	<stdexcept>
+	<iostream>
+
+1387524236 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/LevelModel.cpp
+	"LevelModel.hpp"
+
+1387914421 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/LevelView.cpp
+	"LevelView.hpp"
+
+1387523901 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ManageLevel.cpp
+	"ManageLevel.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ManageText.cpp
+	"ManageText.hpp"
+
+1387220364 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/PanelEditor.cpp
+	"PanelEditor.hpp"
+
+1386789219 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/PanelEditor.hpp
+	<vector>
+	<SFML/Graphics.hpp>
+	"ButtonPerso.hpp"
+	"../constants.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+	"../files.hpp"
+
+1387523931 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/Point.cpp
+	"Point.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/Screen.cpp
+	"Screen.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/Screen_Editor.cpp
+	"Screen_Editor.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/Screen_Game.cpp
+	"Screen_Game.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/Screen_MainMenu.cpp
+	"Screen_MainMenu.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ScreenCredit.cpp
+	"ScreenCredit.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ScreenFinish.cpp
+	"ScreenFinish.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ScreenLevelChoice.cpp
+	"ScreenLevelChoice.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ScreenLevelChoiceClassic.cpp
+	"ScreenLevelChoiceClassic.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ScreenLevelChoiceNoChance.cpp
+	"ScreenLevelChoiceNoChance.hpp"
+
+1387315936 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ScreenLink.cpp
+	"ScreenLink.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ScreenOption.cpp
+	"ScreenOption.hpp"
+
+1388333795 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/EditorCircle.hpp
+	<SFML/Graphics.hpp>
+	"EditorObject.hpp"
+	"../libs/ResourcesManagerSFML2_1.hpp"
+
+1388333851 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/EditorCircle.cpp
+	"EditorCircle.hpp"
+
+1386457032 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/Button.cpp
+	"Button.hpp"
+
+1386457032 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/Button.hpp
+	<iostream>
+	<string>
+	<SFML/Graphics.hpp>
+	"../constants.hpp"
+
+1388336889 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/ObjectFactoryAbstract.cpp
+	"ObjectFactoryAbstract.hpp"
+
+1388336299 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/ObjectFactoryAbstract.hpp
+	<string>
+	"EditorObject.hpp"
+
+1388338113 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/FactoryObjectCircle.cpp
+	"FactoryObjectCircle.hpp"
+
+1388337890 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/FactoryObjectCircle.hpp
+	"../constants.hpp"
+	"ObjectFactoryAbstract.hpp"
+	"GravityCircle.hpp"
+
+1388338299 source:/home/guillaume/Documents/projetMaths/branches/ModuleGravity/src/FactoryObjectPoint.cpp
+	"FactoryObjectPoint.hpp"
+
+1388336742 /home/guillaume/Documents/projetMaths/branches/ModuleGravity/include/FactoryObjectPoint.hpp
+	"../constants.hpp"
+	"ObjectFactoryAbstract.hpp"
+	"Point.hpp"
+
