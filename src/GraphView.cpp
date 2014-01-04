@@ -1,6 +1,6 @@
 #include "GraphView.hpp"
 
-GraphView::GraphView(ConstrueFonction& model,float thickness, float scale)
+GraphView::GraphView(ConstrueFunction& model,float thickness, float scale)
 :m_model(model),m_thickness(thickness), m_scale(scale), m_graphColor(sf::Color(50,67,135))
 {}
 

@@ -46,7 +46,8 @@ class ManageLevel
         void setnbAttempTextPosition(sf::Vector2f _pos);
         void setnbAttempTextScale(sf::Vector2f _pos);
         void setDiff(Difficulty _diff);
-        
+
+
     private:
         bool m_changeLevel;
         Difficulty m_difficulty;
@@ -58,7 +59,7 @@ class ManageLevel
         bool m_isDisplayToolTip;
         sf::Text m_nbAttemp;
         sf::String m_string;
-        sf::Text m_text;
+        sf::Text m_text;;
         sf::Sprite m_tooltip;
         static sf::Texture toolTipTex;
         static bool toolTipTexLoaded;

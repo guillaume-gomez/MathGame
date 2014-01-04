@@ -45,18 +45,24 @@ class Game
         void loadConfigFile();
 
     private:
-        Event m_event;
         Axis m_axis;
         ButtonPerso m_buttonReset;
         ButtonAnim m_buttonSound;
         ButtonPerso m_buttonBack;
-        ManageLevel m_level;
-        ConstrueFonction m_graphModel;
-        GraphView m_graphView;
         bool m_gameStarted;
         bool m_isZoom;
         bool m_isSound;
         bool m_isBack;
+        Event m_event;
+        ConstrueFunction m_graphModel;
+        GraphView m_graphView;
+        ManageLevel m_level;
+        sf::Clock m_timer;
+    #ifdef DEBUG
+        int m_frameCount;
+        sf::Clock m_frameCountClock;
+        sf::Text m_frameCountText;
+    #endif
         CharacterModel m_player1Model;
         CharacterView m_player1View;
         Sprite m_spriteBG;

@@ -46,7 +46,7 @@ class LevelModel
         TypeObject getType(unsigned int i) const;
         sf::Vector2f getCoordPoints(unsigned int i) const ;
         void IsFinishing (CharacterModel& charactermodel, float _scale , bool& playableSound);
-         bool getCheckValue(unsigned int i)const;
+        bool getCheckValue(unsigned int i)const;
         void IsLosing();
         friend std::ostream& operator<<(std::ostream &flux, const LevelModel& level);
          int getNbAttempt()const;
@@ -62,9 +62,9 @@ class LevelModel
         std::vector<Element> m_coordElements;
         std::ifstream m_fileLevel;
         bool m_lose;
-        GameMode m_mode;
         int m_nbAttempt;
         unsigned int m_nbElements;
+        GameMode m_mode;
         std::vector<bool> m_pointsCheck;
         int m_saveNbAttemp;
         bool m_win;
@@ -79,6 +79,7 @@ inline bool LevelModel::IsLose() const {return m_lose;};
 
 inline unsigned int LevelModel::getNbPoints() const {return m_nbElements;};
 
+
 inline sf::Vector2f LevelModel::getCoordPoints(unsigned int i) const
 {
     if (i < m_coordElements.size())
@@ -87,6 +88,16 @@ inline sf::Vector2f LevelModel::getCoordPoints(unsigned int i) const
     }
     return sf::Vector2f(-1.0f, -1.0f);
 };
+
+
+inline sf::Vector2f LevelModel::getGoalCoord() const
+{
+    if(m_coordElements.size() > 0)
+        return m_coordElements[m_coordElements.size() - 1].getCoord();
+    else
+        return sf::Vector2f(0.0f, 0.0f);
+
+}
 
 
 // add the test if it is a circle
@@ -106,18 +117,6 @@ inline TypeObject LevelModel::getType(unsigned int i) const
         return m_coordElements[ i ].getType();
     }
     return TypeObject::Abstract;
-}
-
-inline sf::Vector2f LevelModel::getGoalCoord() const
-{
-    if(m_coordElements.size() > 0)
-    {
-      return m_coordElements[m_coordElements.size() - 1].getCoord();
-    }
-    else
-    {
-        sf::Vector2f(0.0f, 0.0f);
-    }
 }
 
 inline bool LevelModel::getCheckValue(unsigned int i)const

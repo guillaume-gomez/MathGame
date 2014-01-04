@@ -67,6 +67,33 @@ std::string EditorObject::getTypeStr() const
     }
 }
 
+std::string EditorObject::getTypeStr(const TypeObject& type)
+{
+    switch(type)
+    {
+        case TypeObject::Abstract:
+            return AbstractStr;
+        break;
+
+        case TypeObject::Circle:
+            return CircleStr;
+        break;
+
+        case TypeObject::Point:
+            return PointStr;
+        break;
+
+        case TypeObject::GoalPoint:
+            return GoalPointStr;
+        break;
+
+        default:
+            return " Error invalid type";
+        break;
+
+    }  
+}
+
 
 bool EditorObject::compare(const EditorObject* r1, const EditorObject* r2)
 {

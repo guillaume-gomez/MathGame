@@ -95,7 +95,7 @@ void ScreenOption::save()
     configFile << "MoveType = "<<m_gravityType << std::endl;
     configFile << "FrictionCoefficient = "<<friction << std::endl;
 
-    std::cout << "Saved" << std::endl;
+    // std::cout << "Saved" << std::endl;
 }
 
 

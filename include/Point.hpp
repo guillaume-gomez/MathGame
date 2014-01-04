@@ -16,6 +16,7 @@ class Point : public EditorCircle
         Point(float radius = 1.0f,bool goalPoint = false, float scale = GraphScale, std::string filename = "");
         virtual ~Point();
         inline bool isGoal() const {return m_goalPoint;}
+        virtual EditorObject* clone() const;
     protected:
         //if is the final point
         bool m_goalPoint;

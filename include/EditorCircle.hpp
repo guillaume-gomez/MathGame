@@ -22,8 +22,9 @@ class EditorCircle : public sf::CircleShape , public EditorObject
         virtual bool isCollide(sf::Vector2f point);
         virtual bool isCollide(const sf::FloatRect& rect);
         virtual void draw(sf::RenderTarget& app);
+        virtual EditorObject* clone() const = 0;
     protected:
-    	
+
 };
 
 #endif // EditorCircle_H

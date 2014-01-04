@@ -11,7 +11,7 @@ ButtonAnim::ButtonAnim(const char* _filename, int _widthFrame,int _heightFrame)
    else
    {
 		#ifdef DEBUG
-			std::cerr << "In constructor of ButtonAnim :Texture don't loaded" << std::endl;
+			std::cerr << "In constructor of ButtonAnim :Texture don't loaded (revoir les cours d'anglais)" << std::endl;
 		#endif // DEBUG
    }
 }

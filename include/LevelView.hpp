@@ -17,7 +17,6 @@
 #include "GravityCircle.hpp"
 #include "Point.hpp"
 
-
 class LevelView
 {
     public:
@@ -28,7 +27,6 @@ class LevelView
         void loadCoord();
     private:
         LevelView();
-
         std::vector<EditorCircle*> m_listSprite;
         const LevelModel& m_model;
         static sf::Texture m_texNormal;

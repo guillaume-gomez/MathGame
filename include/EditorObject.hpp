@@ -20,7 +20,9 @@ class EditorObject
         virtual void draw(sf::RenderTarget& app) = 0;
         inline virtual TypeObject getType() const { return m_type;}
         std::string getTypeStr() const ;
+        static std::string getTypeStr(const TypeObject& type);
         static bool compare(const EditorObject* r1, const EditorObject* r2);
+        virtual EditorObject* clone() const = 0;
     protected:
     	TypeObject m_type;
     private:

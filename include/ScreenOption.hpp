@@ -37,7 +37,7 @@ class ScreenOption : public Screen
         int Run(sf::RenderWindow& app);
         inline std::string getFilenameChar()const {return m_filenameChar;};
         inline void setFilenameChar(std::string str){m_filenameChar = str;};
-    
+
     private:
         sf::Sprite m_background;
         sfg::Box::Ptr m_box;

@@ -14,6 +14,7 @@ class GravityCircle : public EditorCircle
         GravityCircle(float radius = 1.0f,float radiusMax=0.0f, bool defOrigin = true, std::string filename = FilenameNormalPointTex);
         virtual ~GravityCircle();
         void grow(float step = 0.1f);
+        virtual EditorObject* clone() const;
     protected:
           std::string m_filename;
           float m_radiusMax;

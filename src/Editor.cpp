@@ -2,25 +2,32 @@
 #include <cmath>
 #include <algorithm>
 
+#include "ObjectFactoryAbstract.hpp"
+
 Editor::Editor(sf::RenderWindow& App)
 :m_app(App),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_textAreaFunction(6),
 m_buttonReset(FilenameButtonReset), m_buttonSave(FilenameButtonSave), m_buttonBack(FilenameButtonBack), m_buttonCursor(FilenameButtonCursor),
 m_buttonGoalButton(FilenamePointGoalTex), m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(TypeObject::Point), m_isBack(false), m_isZoom(false), m_isNormalPoint(false),
 m_saving(false), m_radiusBuilder(0.0f, 0.0f)
 {
+    //build all the template method
+    ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
+    ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
+    ObjectFactoryAbstract::_register(TypeObject::GoalPoint,new Point(sizePoint, true));
+
+
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
 	text->setRepeated(true);
 	m_spriteBG.setTexture(*text);
 	m_spriteBG.setTextureRect(sf::IntRect(0, 0, 2048, 2048));
 	m_spriteBG.setPosition(-1030, -1030);
 
-
 	m_buttonCursor.setColor(sf::Color(0, 0, 0, Blur));
 
     m_Buttonpoint.loadFromFile(FilenameNormalPointTex);
     m_Buttongoal.loadFromFile(FilenamePointGoalTex);
 
-    int __x = (sf::Vector2f(m_app.mapPixelToCoords(sf::Vector2i(m_app.getSize().x - m_panel.getLocalBounds().width , 0)))).x;
+    int __x = (sf::Vector2f(m_app.mapPixelToCoords(sf::Vector2i(m_app.getSize().x - m_buttonPanel.getLocalBounds().width , 0)))).x;
     int __y = (sf::Vector2f(m_app.mapPixelToCoords(sf::Vector2i(m_app.getSize().x , 0)))).y ;
 
     setCenterCamera();
@@ -126,11 +133,10 @@ bool Editor::handleInput()
                     {
                         popPoint();
                     }
-
                 }
             break;
             default:
-                break;
+            break;
         }
 
         m_textAreaFunction.handleInput(m_event, m_app);
@@ -275,6 +281,8 @@ void Editor::setCenterCamera()
    m_viewPerso.setCenter(0,0);
 }
 
+
+
 int Editor::save(ScreenLink * link)
 {
 
@@ -308,16 +316,6 @@ int Editor::save(ScreenLink * link)
     }
 
     //sort m_spriteList
-/*    for(unsigned int i = 0 ; i < m_spriteList.size() ; i++)
-    {
-        if(m_spriteList.at(i)->getType() == TypeObject::GoalPoint)
-        {
-            EditorCircle* temp = m_spriteList[i];
-            m_spriteList[i] = m_spriteList[m_spriteList.size() - 1];
-            m_spriteList[m_spriteList.size() - 1] = temp;
-            break;
-        }
-    }*/
     std::sort (m_spriteList.begin(), m_spriteList.end(), EditorObject::compare);
 
         std::vector<std::string> fileList;
@@ -334,7 +332,7 @@ int Editor::save(ScreenLink * link)
         }
 
         m_textVerifSave.setString(sf::String("Level Saved"));
-        m_textVerifSave.setColor(sf::Color(20,150,55));
+        m_textVerifSave.setColor(sf::Color(34,177,76));
         for(unsigned int i = 0 ; i < TotalDifficulty ;i++)
         {
             std::ostringstream oss;
@@ -377,11 +375,12 @@ void Editor::addPoint(int x , int y)
 {
     if(m_panel.isVisible())
     {
-		Point *newPoint = nullptr;
+	    Point *newPoint = nullptr;
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
+
         if(!m_isNormalPoint)
         {
-            newPoint = new Point(sizePoint, false);
+            newPoint = dynamic_cast<Point*>(ObjectFactoryAbstract::create(TypeObject::Point));
         }
         else
         {
@@ -402,7 +401,7 @@ void Editor::addPoint(int x , int y)
                 }
 			}
 			goalCoords = coord;
-            newPoint = new Point(sizePoint, true);
+            newPoint = dynamic_cast<Point*>(ObjectFactoryAbstract::create(TypeObject::GoalPoint));
         }
         newPoint->setPosition(coord);
         m_spriteList.push_back(newPoint);
@@ -428,10 +427,12 @@ void Editor::addCircle(int x, int y)
 
 void Editor::popPoint()
 {
+
     if(m_spriteList.size() > 0)
     {
         m_spriteList.pop_back();
     }
+
 }
 
 

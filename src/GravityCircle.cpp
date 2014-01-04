@@ -38,6 +38,11 @@ void GravityCircle::grow(float step)
     }
 }
 
+EditorObject* GravityCircle::clone() const
+{
+    return new GravityCircle(*this);
+}
+
 GravityCircle::~GravityCircle()
 {
     //dtor

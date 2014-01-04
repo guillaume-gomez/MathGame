@@ -30,6 +30,7 @@ class SelectLevel
         ScreenLink* m_stat;
 };
 
+
 class ScreenLevelChoice : public Screen
 {
     public:

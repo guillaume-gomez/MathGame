@@ -3,7 +3,7 @@
 /**
 * @brief : Constructor of the class
 **/
-ConstrueFonction::ConstrueFonction(std::string _function)
+ConstrueFunction::ConstrueFunction(std::string _function)
 :m_function(_function), m_changed(false)/*, m_scale(scale), m_begin(0.0f), m_end(0.0f), m_step(0.0f)*/
 {
     //ctor
@@ -12,7 +12,7 @@ ConstrueFonction::ConstrueFonction(std::string _function)
 /**
 * @brief : Destructor of the class
 **/
-ConstrueFonction::~ConstrueFonction()
+ConstrueFunction::~ConstrueFunction()
 {
     //dtor
 }
@@ -20,13 +20,13 @@ ConstrueFonction::~ConstrueFonction()
 /**
 * @brief : Accessor of m_function
 **/
-std::string& ConstrueFonction::getFunction() {return m_function ;}
+std::string& ConstrueFunction::getFunction() {return m_function ;}
 
 /**
 * @brief : Accessor of m_function
 * @param : the new function
 **/
-void ConstrueFonction::setFunction(std::string _function)
+void ConstrueFunction::setFunction(std::string _function)
 {
     m_function = _function;
     setChanged(true);
@@ -35,7 +35,7 @@ void ConstrueFonction::setFunction(std::string _function)
 /**
 * @brief : return the value of the function for a x
 **/
-float ConstrueFonction::getFunctionValue( float x) const
+float ConstrueFunction::getFunctionValue( float x) const
 {
    exprtk::symbol_table<float> symbol_table;
    symbol_table.add_variable("x",x);
@@ -50,7 +50,8 @@ float ConstrueFonction::getFunctionValue( float x) const
 
 }
 
-float ConstrueFonction::getDerivative(float x) const
+
+float ConstrueFunction::getDerivative(float x) const
 {
 	exprtk::symbol_table<float> symbol_table;
 	symbol_table.add_variable("x",x);
@@ -64,7 +65,8 @@ float ConstrueFonction::getDerivative(float x) const
 	return exprtk::derivative(expression, x);
 }
 
-void ConstrueFonction::clearFunction()
+
+void ConstrueFunction::clearFunction()
 {
     m_coords.clear();
 	intervals.clear();
@@ -73,7 +75,7 @@ void ConstrueFonction::clearFunction()
 /**
 * @brief : Store in a vector all the value for the function
 **/
-void ConstrueFonction::getRepresentativeCurve(float _begin, float _end, float step)
+void ConstrueFunction::getRepresentativeCurve(float _begin, float _end, float step)
 {
     m_coords.clear();
 	intervals.clear();
@@ -131,7 +133,7 @@ void ConstrueFonction::getRepresentativeCurve(float _begin, float _end, float st
 
 }
 
-bool ConstrueFonction::isDefined(float x, float* y) const
+bool ConstrueFunction::isDefined(float x, float* y) const
 {
 	exprtk::symbol_table<float> symbol_table;
 	symbol_table.add_variable("x", x);
@@ -149,13 +151,14 @@ bool ConstrueFonction::isDefined(float x, float* y) const
 			&& (*y)!=-std::numeric_limits<float>::infinity());
 }
 
-bool ConstrueFonction::isRepresented(float x)
+bool ConstrueFunction::isRepresented(float x) const
 {
-	FOR_STL_ITERATOR(std::vector<IntervalOfDefinition>, intervals, itIntervals)
+//	FOR_STL_ITERATOR(std::vector<IntervalOfDefinition>, intervals, itIntervals)
+    for(IntervalOfDefinition interval : intervals)
 	{
-		if(x>=itIntervals->xStart)
+		if(x>=interval.xStart)
 		{
-			if(x<=itIntervals->xEnd)
+			if(x<=interval.xEnd)
 				return true;
 			else
 				return false;
@@ -164,7 +167,7 @@ bool ConstrueFonction::isRepresented(float x)
 	return false;
 }
 
-bool ConstrueFonction::isRepresented(float x, float y)
+bool ConstrueFunction::isRepresented(float x, float y) const
 {
 	if(isRepresented(x) && getFunctionValue(x) == y)
 	{

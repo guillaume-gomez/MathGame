@@ -39,6 +39,7 @@ class ScreenCredit : public Screen
         sf::String m_word;
         bool m_won;
         sf::Text m_wordText;
+
 };
 
 #endif // SCREENCREDIT_H

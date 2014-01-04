@@ -46,7 +46,6 @@ class Editor
         ~Editor();
 
     private:
-        sf::View m_viewPerso;
         sf::Event m_event;
         Axis m_axis;
         ButtonPerso m_buttonReset;
@@ -59,20 +58,24 @@ class Editor
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
         TypeObject m_creatingType;
-        ConstrueFonction m_graphModel;
+        ConstrueFunction m_graphModel;
         GraphView   m_graphView;
+        ButtonPerso m_buttonPanel;
         bool m_isBack;
         bool m_isNormalPoint;
         bool m_isZoom;
         PanelEditor m_panel;
         bool m_saving;
         sf::Sprite m_spriteBG;
-        std::vector<EditorCircle*> m_spriteList;
         TextAreaSFML2_0 m_textAreaFunction;
-        sf::Clock m_timer;
-        ManageText m_textVerifSave;
 
         // HAVE TO IMPROVE IT
         sf::Vector2f m_radiusBuilder;
+        sf:: View m_viewPerso;
+
+        std::vector<EditorCircle*> m_spriteList;
+        sf::Clock m_timer;
+        sf::Clock m_timerPanel;
+        ManageText m_textVerifSave;
 };
 #endif // EDITOR_H

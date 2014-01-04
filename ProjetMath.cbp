@@ -76,6 +76,8 @@
 		<Unit filename="include/ManageText.hpp" />
 		<Unit filename="include/ObjectFactoryAbstract.hpp" />
 		<Unit filename="include/PanelEditor.hpp" />
+		<Unit filename="include/PhysicsEngine.hpp" />
+		<Unit filename="include/PhysicsObject.hpp" />
 		<Unit filename="include/Point.hpp" />
 		<Unit filename="include/Screen.hpp" />
 		<Unit filename="include/ScreenCredit.hpp" />
@@ -129,6 +131,8 @@
 		<Unit filename="src/ManageText.cpp" />
 		<Unit filename="src/ObjectFactoryAbstract.cpp" />
 		<Unit filename="src/PanelEditor.cpp" />
+		<Unit filename="src/PhysicsEngine.cpp" />
+		<Unit filename="src/PhysicsObject.cpp" />
 		<Unit filename="src/Point.cpp" />
 		<Unit filename="src/Screen.cpp" />
 		<Unit filename="src/ScreenCredit.cpp" />

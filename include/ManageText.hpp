@@ -37,15 +37,15 @@ class ManageText
         void draw(sf::RenderTarget& App);
        // void jump( TextArea& textarea);
 
-		bool m_changed;
+	bool m_changed;
         friend std::ostream& operator<<( std::ostream &flux, const ManageText&  texte );
     private:
         sf::Font m_font;
         bool m_isTyping;
         bool m_jumpable;
-        sf::String m_string;
         int m_sizeFont;
         int m_toResize;
+        sf::String m_string;
 };
 
 #endif // ManageText_H

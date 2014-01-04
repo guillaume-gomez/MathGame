@@ -4,13 +4,12 @@
 Point::Point(float radius,bool goalPoint, float scale, std::string filename)
 :EditorCircle(), m_goalPoint(goalPoint)
 {
-   sf::Texture * texture = 0;
+   sf::Texture * texture = nullptr;
    texture = TextureManager::getTextureManager()->getResource(std::string(filename));
 
    if(texture)
    {
         this->setTexture(texture);
-        std::cout << "YYY" << m_goalPoint << std::endl;
    }
    else
    {
@@ -26,18 +25,23 @@ Point::Point(float radius,bool goalPoint, float scale, std::string filename)
    }
 
    if(m_goalPoint)
-        {
+    {
             this->m_type = TypeObject::GoalPoint;
             this->setFillColor(sf::Color(255, 0, 0));
-        }
-        else
-        {
+    }
+    else
+    {
             this->m_type = TypeObject::Point;
             this->setFillColor(sf::Color(0, 0, 0));
-        }
+    }
     this->setRadius(radius);
     this->setOrigin(radius, radius);
     this->setScale(GraphScale, GraphScale);
+}
+
+EditorObject* Point::clone() const
+{
+    return new Point(*this);
 }
 
 Point::Point()

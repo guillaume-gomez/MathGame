@@ -124,35 +124,34 @@ void ManageLevel::displaying(sf::Event& event , sf::RenderTarget& target , sf::V
 	if(event.type == sf::Event::MouseMoved)
 	{
         m_isDisplayToolTip = false;
-
 		int x = event.mouseMove.x;
 		int y = event.mouseMove.y;
 		sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)), myView);
 
 		for(unsigned int i = 0 ; i < temp.size() ; i++)
-		{
-			if(temp[i]->getType() == TypeObject::Point || temp[i]->getType() == TypeObject::GoalPoint)
+        {
+            if(temp[i]->getType() == TypeObject::Point || temp[i]->getType() == TypeObject::GoalPoint)
             {
                 if(temp[i]->getGlobalBounds().contains(coord.x, coord.y))
-    			{
-    				m_isDisplayToolTip = true;
-    				sf::Vector2i position = target.mapCoordsToPixel(temp[i]->getPosition(), myView);
+                {
+                        m_isDisplayToolTip = true;
+                        sf::Vector2i position = target.mapCoordsToPixel(temp[i]->getPosition(), myView);
 
-    				position.x -= toolTipTex.getSize().x ;
-    				position.y -= toolTipTex.getSize().y ;
+                        position.x -= toolTipTex.getSize().x ;
+                        position.y -= toolTipTex.getSize().y ;
 
-    				std::string info ;
-    				std::ostringstream oss;
-    				oss << "x = " << m_levelModel->getCoordPoints(i).x <<"\ny = " <<m_levelModel->getCoordPoints(i).y ;
-    				info += oss.str();
+                        std::string info ;
+                        std::ostringstream oss;
+                        oss << "x = " << m_levelModel->getCoordPoints(i).x <<"\ny = " <<m_levelModel->getCoordPoints(i).y ;
+                        info += oss.str();
 
-    				m_text.setString(info);
-    				m_text.setPosition(sf::Vector2f(position.x + m_tooltip.getLocalBounds().width / 2 - m_text.getLocalBounds().width / 2 ,position.y + m_tooltip.getLocalBounds().height / 2 - m_text.getLocalBounds().height / 2 - 10.0f));
-    				m_tooltip.setPosition((sf::Vector2f)position);
-    			}
+                        m_text.setString(info);
+                        m_text.setPosition(sf::Vector2f(position.x + m_tooltip.getLocalBounds().width / 2 - m_text.getLocalBounds().width / 2 ,position.y + m_tooltip.getLocalBounds().height / 2 - m_text.getLocalBounds().height / 2 - 10.0f));
+                        m_tooltip.setPosition((sf::Vector2f)position);
+                }
             }
-		}
-	}
+        }
+    }
 }
 
 

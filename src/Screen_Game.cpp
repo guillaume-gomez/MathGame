@@ -17,7 +17,6 @@ int Screen_Game::Run(sf::RenderWindow& App)
     m_game.setCenterCamera();
     m_game.setZoom(true);
 
-
     while(Running && gameFinish == 0)
     {
 
