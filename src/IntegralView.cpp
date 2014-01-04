@@ -26,7 +26,7 @@ unsigned int i = 0;
          i++;
         }
         // TEMP
-        temp.setFillColor(sf::Color(23,20+10*index,20+50*index,100));
+        temp.setFillColor(sf::Color(23,20,20,100));
         temp.setOutlineColor(sf::Color(0,0,0));
         temp.setOutlineThickness(1);
        // temp.setPosition(10, 20);

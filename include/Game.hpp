@@ -5,18 +5,16 @@
 
 #include "SFML/Graphics.hpp"
 
-#include "../constants.hpp"
-#include "../files.hpp"
-
-
 #include "Axis.hpp"
+#include "ButtonAnim.hpp"
+#include "../constants.hpp"
 #include "CharacterModel.hpp"
 #include "CharacterView.hpp"
 #include "ConstrueFunction.hpp"
+#include "../files.hpp"
 #include "GraphView.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
 #include "ManageLevel.hpp"
-#include "ButtonAnim.hpp"
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
@@ -46,32 +44,35 @@ class Game
         inline void setZoom(bool _b){ m_isZoom = _b;};
         void setCenterCamera();
         void loadConfigFile();
+
     private:
-        View m_viewPerso;
-        Event m_event;
         Axis m_axis;
-        ConstrueFonction m_graphModel;
-        GraphView   m_graphView;
-        CharacterModel  m_player1Model;
-        CharacterView   m_player1View;
+        GraphView m_graphView;
+        CharacterModel m_player1Model;
+        CharacterView m_player1View;
         TextAreaSFML2_0 m_textAreaFunction;
         ManageLevel m_level;
         ButtonPerso m_buttonReset;
         ButtonAnim m_buttonSound;
         ButtonPerso m_buttonBack;
-
-//        Texture m_textBG;
+        bool m_gameStarted ;
+        bool m_isZoom;
+        bool m_isSound;
+        bool m_isBack;
         Sprite m_spriteBG;
 
         IntegralModel m_modelIntegral;
         IntegralView m_viewIntegral;
 
+        Event m_event;
+        ConstrueFunction m_graphModel;
+        View m_viewPerso;
+        sf::Clock m_timer;
 
-
-        bool m_gameStarted ;
-        bool m_isZoom;
-        bool m_isSound;
-        bool m_isBack;
+    #ifdef DEBUG
+        int m_frameCount;
+        sf::Clock m_frameCountClock;
+        sf::Text m_frameCountText;
+    #endif
 };
-
 #endif // GAME_H

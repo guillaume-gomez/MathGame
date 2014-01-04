@@ -9,7 +9,6 @@ Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
 
 int Screen_Game::Run(sf::RenderWindow& App)
 {
-//    std::cout << "BONHOR";
     bool Running = true;
     m_game.loadConfigFile();
     m_game.selectLevel(*m_stat);
@@ -17,7 +16,6 @@ int Screen_Game::Run(sf::RenderWindow& App)
     m_game.setBack(false);
     m_game.setCenterCamera();
     m_game.setZoom(true);
-
 
     while(Running && gameFinish == 0)
     {
@@ -28,13 +26,13 @@ int Screen_Game::Run(sf::RenderWindow& App)
         }*/
        Running =  m_game.handleInput();
 
-        if ( m_game.isBacked())
+        if(m_game.isBacked())
         {
             recenterCamera();
             return MENU;
         }
         gameFinish = m_game.levelOperation(*m_stat);
-        if ( gameFinish == -1)
+        if(gameFinish == -1)
         {
             return ENDING;
         }

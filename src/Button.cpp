@@ -1,6 +1,7 @@
 #include "Button.hpp"
 
-Button::Button(const char* _filename):m_filename(_filename),m_clicked(false)
+Button::Button(const char* _filename)
+:m_filename(_filename), m_clicked(false)
 {
 
   m_texture.loadFromFile(m_filename);
@@ -9,17 +10,15 @@ Button::Button(const char* _filename):m_filename(_filename),m_clicked(false)
 }
 
 
-
-
-void Button::handle_input(sf::Event& event,sf::RenderTarget& target)
+void Button::handle_input(sf::Event& event, sf::RenderTarget& target)
 {
-    if ( event.type == sf::Event::MouseButtonPressed )
+    if (event.type == sf::Event::MouseButtonPressed)
     {
             int x = event.mouseButton.x;
             int y = event.mouseButton.y;
-            sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x,y)));
+            sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)));
 
-        if ( getGlobalBounds().contains(coord.x,coord.y))
+        if ( getGlobalBounds().contains(coord.x, coord.y))
         {
            // setAlpha(255);
             m_clicked = true;
@@ -39,9 +38,9 @@ void Button::handle_input(sf::Event& event,sf::RenderTarget& target)
     {
         int x =  event.mouseMove.x;
         int y =  event.mouseMove.y;
-        sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x,y)));
+        sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)));
 
-        if ( getGlobalBounds().contains(coord.x,coord.y))
+        if ( getGlobalBounds().contains(coord.x, coord.y))
         {
             setAlpha(Clear);
         }

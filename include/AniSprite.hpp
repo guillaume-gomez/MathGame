@@ -38,15 +38,16 @@ public:
 
 	int getCurrentFrame()const;
 	void setCurrentFrame( int frame );
+	
 private:
 	sf::Clock clock;
+	int currentFrame;
+	int frameWidth;
+	int frameHeight;
 	float fps;
 	bool isPlaying;
 	int loopStart;
 	int loopEnd;
-	int currentFrame;
-	int frameWidth;
-	int frameHeight;
 };
 
 #endif // ANISPRITE_H

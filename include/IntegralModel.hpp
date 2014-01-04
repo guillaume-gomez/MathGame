@@ -11,7 +11,7 @@
 
 #define FOR_STL_ITERATOR(container_type, name, iteratorName) for(container_type::iterator iteratorName=name.begin(); iteratorName!=name.end(); iteratorName++)
 
-class IntegralModel : public ConstrueFonction
+class IntegralModel : public ConstrueFunction
 {
     public:
         IntegralModel(std::string _function ="") ;

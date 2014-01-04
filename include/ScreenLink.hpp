@@ -4,8 +4,8 @@
 #ifdef DEBUG
 	#include <iostream>
 #endif
-
 #include <fstream>
+
 #include "../files.hpp"
 #include "../constants.hpp"
 
@@ -40,11 +40,9 @@ class ScreenLink
         unsigned int m_countEasy;
         unsigned int m_countNormal;
         unsigned int m_countHard;
-
         unsigned int m_maxEasy;
         unsigned int m_maxNormal;
         unsigned int m_maxHard;
-
         unsigned int m_currentLevel;
         Difficulty m_difficulty;
         GameMode m_modeChoose;
@@ -65,34 +63,34 @@ inline unsigned int ScreenLink::getnbHard() const
    return m_countHard;
 }
 
-inline void ScreenLink::setParamLevel( Difficulty _diff, unsigned int level , GameMode mode)
+inline void ScreenLink::setParamLevel(Difficulty _diff, unsigned int level, GameMode mode)
 {
     m_difficulty = _diff;
     m_currentLevel = level;
     m_modeChoose = mode;
 }
 
-inline unsigned int ScreenLink::getCurrentLevel()const
+inline unsigned int ScreenLink::getCurrentLevel() const
 {
     return m_currentLevel;
 }
 
-inline Difficulty ScreenLink::getDiff()const
+inline Difficulty ScreenLink::getDiff() const
 {
     return m_difficulty;
 }
 
-inline unsigned int ScreenLink::getNbFiles()const
+inline unsigned int ScreenLink::getNbFiles() const
 {
     //it could be m_countEasy or m_countHard
     //bad architecture :(
     return m_countNormal;
 }
 
-inline void ScreenLink::setnbFiles( unsigned int _nb)
+inline void ScreenLink::setnbFiles(unsigned int _nb)
 {
     m_countEasy = m_countNormal = m_countHard = _nb;
 }
 
-inline GameMode ScreenLink::getMode()const { return m_modeChoose;};
+inline GameMode ScreenLink::getMode() const{return m_modeChoose;};
 #endif // ScreenLink_H

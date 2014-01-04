@@ -1,7 +1,7 @@
 #include "IntegralModel.hpp"
 
 IntegralModel::IntegralModel(std::string _function)
-:ConstrueFonction(_function)
+:ConstrueFunction(_function)
 {
     getIntegraleCurveShape(-7,7,0.25f);
 }

@@ -1,7 +1,7 @@
 #include "ScreenLevelChoice.hpp"
 
 SelectLevel::SelectLevel( ScreenLink* _stat, unsigned int level, Difficulty difficulty)
-: m_stat(_stat),m_difficulty(difficulty), m_level(level),m_modeSelectLevel(Classic),m_isClicked(false)
+:m_stat(_stat), m_difficulty(difficulty), m_level(level), m_modeSelectLevel(Classic), m_isClicked(false)
 {
 }
 
@@ -12,7 +12,7 @@ SelectLevel::~SelectLevel()
 
 void SelectLevel::selectingLevel()
 {
-    std::cout << m_difficulty << " " <<  m_level << "  " << m_modeSelectLevel << std::endl;
+    // std::cout << m_difficulty << " " <<  m_level << "  " << m_modeSelectLevel << std::endl;
     m_stat->setParamLevel(m_difficulty,m_level,m_modeSelectLevel);
     m_isClicked = true;
 }
@@ -23,7 +23,7 @@ void SelectLevel::selectingLevel()
 ////////////////////////////////////////////////////////////////////
 
 ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
-: m_playing(false),m_selectionLevel(0),m_changingMenu(-1)
+:m_playing(false), m_selectionLevel(0), m_changingMenu(-1)
 {
 //   m_backgroundTex.loadFromFile(FilenameBackGroundMenu);
 //   m_background.setTexture(m_backgroundTex);
@@ -39,12 +39,12 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
    m_hardBar.setTexture(m_hardTex);
 
    m_window = sfg::Window::Create();
-   m_window->SetTitle( "Resize me!" );
+   m_window->SetTitle("Select a Level");
 
    m_scrolled_window_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
-   m_layoutEasy = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
-   m_layoutNormal = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
-   m_layoutHard = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
+   m_layoutEasy = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
+   m_layoutNormal = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
+   m_layoutHard = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
 
    m_frameEasy = sfg::Frame::Create("Easy");
    m_frameNormal = sfg::Frame::Create("Normal");
@@ -53,36 +53,36 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
     sf::Font font;
     font.loadFromFile(FilenameFont);
 
-    for (unsigned int i = 0 ; i < _stat->getnbEasy() ; i++)
+    for(unsigned int i = 0 ; i < _stat->getnbEasy() ; i++)
     {
         std::string directory = FilenameLevelDirectory;
         std::ostringstream oss;
-        oss << i+1 ;
-        SelectLevel* temp = new SelectLevel(_stat, i+1, Easy);
+        oss << i + 1 ;
+        SelectLevel* temp = new SelectLevel(_stat, i + 1, Easy);
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
         button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i) ));
         m_layoutEasy->Pack(button);
     }
 
-    for (unsigned int i = 0 ; i < _stat->getnbNormal() ; i++)
+    for(unsigned int i = 0 ; i < _stat->getnbNormal() ; i++)
     {
         std::string directory = FilenameLevelDirectory;
         std::ostringstream oss;
         oss << i + 1 ;
-        SelectLevel* temp = new SelectLevel(_stat, i+1, Normal);
+        SelectLevel* temp = new SelectLevel(_stat, i + 1, Normal);
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
         button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy()) ));
         m_layoutNormal->Pack(button);
     }
 
-    for (unsigned int i = 0 ; i < _stat->getnbHard() ; i++)
+    for(unsigned int i = 0 ; i < _stat->getnbHard() ; i++)
     {
         std::string directory = FilenameLevelDirectory;
         std::ostringstream oss;
         oss << i +1;
-        SelectLevel* temp = new SelectLevel(_stat, i+1, Hard);
+        SelectLevel* temp = new SelectLevel(_stat, i + 1, Hard);
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
         button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy() + _stat->getnbNormal()) ));
@@ -101,7 +101,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
 
 ScreenLevelChoice::~ScreenLevelChoice()
 {
-    std::cout << "ScreenLevelCHoice's destrcutor" << std::endl;
+    // std::cout << "ScreenLevelCHoice's destrcutor" << std::endl;
     for( unsigned int i = 0 ; i < m_selectionLevel.size();i++)
     {
         m_selectionLevel.pop_back();

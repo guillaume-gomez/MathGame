@@ -1,20 +1,22 @@
 #ifndef EDITOR_H
 #define EDITOR_H
 
+#include <fstream>
+#include <sstream>
+
 #include "SFML/Graphics.hpp"
-using namespace sf;
+
 #include "Axis.hpp"
+#include "ButtonPerso.hpp"
 #include "ConstrueFunction.hpp"
 #include "GraphView.hpp"
 #include "ManageText.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
-#include "ButtonPerso.hpp"
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
-#include <fstream>
-#include <sstream>
 
+using namespace sf;
 
 
 class Editor
@@ -40,12 +42,10 @@ class Editor
         void popPoint();
         void deletePoint(int x , int y);
         ~Editor();
+
     private:
-        View m_viewPerso;
-        Event m_event;
         Axis m_axis;
-        ConstrueFonction m_graphModel;
-        GraphView   m_graphView;
+        GraphView m_graphView;
         TextAreaSFML2_0 m_textAreaFunction;
         ButtonPerso m_buttonReset;
         ButtonPerso m_buttonSave;
@@ -54,10 +54,6 @@ class Editor
         ButtonPerso m_buttonGoalButton;
         ButtonPerso m_buttonNormalButton;
         ButtonPerso m_buttonPanel;
-        std::vector<sf::Sprite> m_spriteList;
-        sf::Texture m_Buttonpoint;
-        sf::Texture m_Buttongoal;
-        ManageText m_textVerifSave;
         bool m_isBack;
         bool m_isAnimLeft;
         bool m_isAnimRight;
@@ -65,11 +61,17 @@ class Editor
         bool m_chooseTexture;
         bool m_drawable;
         bool m_saving;
-        sf::Clock m_timer;
-        sf::Clock m_timerPanel;
 
         Sprite m_spriteBG;
+        sf::Texture m_Buttonpoint;
+        sf::Texture m_Buttongoal;
 
+        View m_viewPerso;
+        Event m_event;
+        ConstrueFunction m_graphModel;
+        std::vector<sf::Sprite> m_spriteList;
+        sf::Clock m_timer;
+        sf::Clock m_timerPanel;
+        ManageText m_textVerifSave;
 };
-
 #endif // EDITOR_H

@@ -1,20 +1,20 @@
 #include "../include/AniSprite.hpp"
 
 AniSprite::AniSprite(void)
-	: sf::Sprite()
+: sf::Sprite()
 {
-	this->fps=1;
-	this->currentFrame=0;
+	this->fps = 1;
+	this->currentFrame = 0;
 	this->isPlaying = false;
 	this->loopStart = 0;
 	this->SetFrameSize(0, 0);
 }
 
 AniSprite::AniSprite(const sf::Texture& Img, int frameW, int frameH)
-		: sf::Sprite(Img)
+: sf::Sprite(Img)
 {
-	this->fps=1;
-	this->currentFrame=0;
+	this->fps = 1;
+	this->currentFrame = 0;
 	this->isPlaying = false;
 	this->loopStart = 0;
 	this->SetFrameSize(frameW, frameH);
@@ -24,6 +24,7 @@ AniSprite::AniSprite(const sf::Texture& Img, int frameW, int frameH)
 AniSprite::~AniSprite(void)
 {
 }
+
 int AniSprite::GetFrameCount()
 {
 	unsigned int across =
@@ -33,8 +34,9 @@ int AniSprite::GetFrameCount()
 		getTexture()->getSize().y /
 		this->frameHeight;
 
-	return across*down;
+	return across * down;
 }
+
 //first frame is frame ZERO
 sf::IntRect AniSprite::GetFramePosition(int frame)
 {
@@ -47,25 +49,22 @@ sf::IntRect AniSprite::GetFramePosition(int frame)
 		frameWidth,
 		frameHeight);
 	return result;
-
 }
 //
-void
-AniSprite::SetFrameSize(int frameW, int frameH)
+void AniSprite::SetFrameSize(int frameW, int frameH)
 {
 	this->frameWidth = (frameW>0 ? frameW : 1);
 	this->frameHeight = (frameH>0 ? frameH : 1);
-	this->setTextureRect(sf::IntRect(0,0,frameW,frameH));
+	this->setTextureRect(sf::IntRect(0, 0, frameW, frameH));
 }
+
 //Sets current frame
-void
-AniSprite::SetFrame(int frame)
+void AniSprite::SetFrame(int frame)
 {
 	this->currentFrame = frame;
 }
 //sets loop speed in fps
-void
-AniSprite::SetLoopSpeed(float newfps)
+void AniSprite::SetLoopSpeed(float newfps)
 {
 	this->fps = newfps;
 }
@@ -77,21 +76,19 @@ void AniSprite::SetLoopTime(float seconds)
 }
 
 //start looping
-void
-AniSprite::Play()
+void AniSprite::Play()
 {
 	this->Play(0,GetFrameCount());
 }
-void
-AniSprite::Play(int start, int end)
+
+void AniSprite::Play(int start, int end)
 {
 	loopStart = start;
 	loopEnd = end;
 	isPlaying = true;
 }
 //stop
-void
-AniSprite::Pause()
+void AniSprite::Pause()
 {
 	isPlaying = false;
 }
@@ -104,8 +101,7 @@ void AniSprite::Stop(int frameStop)
 	isPlaying = false;
 }
 //update function
-void
-AniSprite::Update()
+void AniSprite::Update()
 {
 	if(isPlaying)
 	{

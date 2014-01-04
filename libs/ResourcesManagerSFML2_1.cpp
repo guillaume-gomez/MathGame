@@ -23,8 +23,15 @@ TextureManager* TextureManager::getTextureManager()
 void TextureManager::loadFromFile(const std::string& fileName)
 {
     sf::Texture* tmpText = new sf::Texture;
-    tmpText->loadFromFile(fileName);
-    m_resources.insert(std::pair<std::string, sf::Texture* >(fileName, tmpText));
+    if(tmpText->loadFromFile(fileName))
+        m_resources.insert(std::pair<std::string, sf::Texture* >(fileName, tmpText));
+    else
+    {
+        delete tmpText;
+        #ifdef DEBUG
+            // std::cout << "CANT LOAD : " << fileName << std::endl;
+        #endif
+    }
 }
 
 void TextureManager::loadFromFile(const std::string &fileName, const sf::IntRect &area)
@@ -40,4 +47,33 @@ TextureManager::TextureManager()
 {}
 
 TextureManager::~TextureManager()
+{}
+
+/***********************************************************************************************************/
+/*********************************************** FontManager ***********************************************/
+
+FontManager* FontManager::getFontManager()
+{
+    static FontManager manager;
+    return &manager;
+}
+
+void FontManager::loadFromFile(const std::string& fileName)
+{
+    sf::Font* tmpFont = new sf::Font;
+    if(tmpFont->loadFromFile(fileName))
+        m_resources.insert(std::pair<std::string, sf::Font* >(fileName, tmpFont));
+    else
+    {
+        delete tmpFont;
+        #ifdef DEBUG
+            // std::cout << "CANT LOAD : " << fileName << std::endl;
+        #endif
+    }
+}
+
+FontManager::FontManager()
+{}
+
+FontManager::~FontManager()
 {}
