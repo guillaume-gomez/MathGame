@@ -32,6 +32,7 @@ class CharacterModel
         void setHeight(int _h);
         void setSize(int _w, int _h);
         sf::FloatRect getRect() const;
+        sf::FloatRect getRectScaled(float graphScale)const;
         void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
         virtual ~CharacterModel();
         void setMoveType(MoveType moveType);

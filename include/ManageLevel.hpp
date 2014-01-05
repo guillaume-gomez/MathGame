@@ -48,15 +48,14 @@ class ManageLevel
         void setDiff(Difficulty _diff);
 
     private:
-        Difficulty m_difficulty;
-        unsigned int m_levelCurrent;
         bool m_changeLevel;
-        bool m_isDisplayToolTip;
-
+        Difficulty m_difficulty;
         std::string m_filenameCurrent;
         sf::Font m_font;
+        unsigned int m_levelCurrent;
         LevelModel* m_levelModel;
         LevelView* m_levelView;
+        bool m_isDisplayToolTip;
         sf::Text m_nbAttemp;
         sf::String m_string;
         sf::Text m_text;

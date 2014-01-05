@@ -13,10 +13,13 @@
 #include "ConstrueFunction.hpp"
 #include "../files.hpp"
 #include "GraphView.hpp"
+#include "GravityCircle.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
 #include "ManageLevel.hpp"
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
+
+#include "IntegralView.hpp"
 
 
 using namespace sf;
@@ -45,31 +48,27 @@ class Game
 
     private:
         Axis m_axis;
-        GraphView m_graphView;
-        CharacterModel m_player1Model;
-        CharacterView m_player1View;
-        TextAreaSFML2_0 m_textAreaFunction;
-        ManageLevel m_level;
         ButtonPerso m_buttonReset;
         ButtonAnim m_buttonSound;
         ButtonPerso m_buttonBack;
+        Event m_event;
         bool m_gameStarted ;
+        ConstrueFunction m_graphModel;
+        GraphView m_graphView;
         bool m_isZoom;
         bool m_isSound;
         bool m_isBack;
-
-        Sprite m_spriteBG;
-
-        Event m_event;
-        ConstrueFunction m_graphModel;
-        View m_viewPerso;
-
+        ManageLevel m_level;
         sf::Clock m_timer;
-
     #ifdef DEBUG
         int m_frameCount;
         sf::Clock m_frameCountClock;
         sf::Text m_frameCountText;
     #endif
+        CharacterModel m_player1Model;
+        CharacterView m_player1View;
+        Sprite m_spriteBG;
+        TextAreaSFML2_0 m_textAreaFunction;
+        View m_viewPerso;
 };
 #endif // GAME_H

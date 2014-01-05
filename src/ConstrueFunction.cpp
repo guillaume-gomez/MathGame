@@ -50,6 +50,7 @@ float ConstrueFunction::getFunctionValue( float x) const
 
 }
 
+
 float ConstrueFunction::getDerivative(float x) const
 {
 	exprtk::symbol_table<float> symbol_table;
@@ -63,6 +64,7 @@ float ConstrueFunction::getDerivative(float x) const
 
 	return exprtk::derivative(expression, x);
 }
+
 
 void ConstrueFunction::clearFunction()
 {

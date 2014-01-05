@@ -5,13 +5,14 @@
 Game::Game( RenderWindow& _app , Difficulty _diff)
 :m_app(_app), m_axis(GraphScale), m_graphView(m_graphModel, Thickness, GraphScale), m_player1Model(true, sf::Vector2f(0.0f, 0.0f), 12), m_player1View(m_player1Model, GraphScale)
 ,m_textAreaFunction(6), m_level(1,_diff,GraphScale), m_buttonReset(FilenameButtonReset), m_buttonSound(FilenameSound, WidthIcon, HeightIcon), m_buttonBack(FilenameButtonBack),
- /*m_modelIntegral("cos(x)"),m_viewIntegral(m_modelIntegral, GraphScale),*/
+ //test(3.0f,10.0f),
  m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false),
  m_frameCount(0), m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf"))
 {
+   // test.setScale(GraphScale,GraphScale);
+
     loadConfigFile();
     setCenterCamera();
-
     sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
     text->setRepeated(true);
     m_spriteBG.setTexture(*text);
@@ -23,6 +24,8 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 
     int __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionTextAreaX*m_app.getSize().x , PositionTextAreaY*m_app.getSize().y)))).x;
     int __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionTextAreaX*m_app.getSize().x , PositionTextAreaY*m_app.getSize().y)))).y ;
+
+
     //won't work
     m_textAreaFunction.setCharacterSize(20);
 
@@ -30,8 +33,8 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).y ;
     m_level.setnbAttempTextPosition(sf::Vector2f(__x, __y));
 
-    __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).x;
-    __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).y ;
+     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).x;
+     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonResetX*m_app.getSize().x , PositionButtonResetY*m_app.getSize().y)))).y ;
     m_buttonReset.setPosition(__x, __y);
 
     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonSoundX*m_app.getSize().x , PositionButtonSoundY*m_app.getSize().y)))).x;
@@ -86,17 +89,10 @@ bool  Game::handleInput()
                             m_timer.restart();
                             m_gameStarted = true;
                         }
-						m_graphModel.setFunction(m_textAreaFunction.getString());
-						m_graphModel.getRepresentativeCurve(-MaxSizeGraph, MaxSizeGraph, Step);
-						Physics::Engine::getEngine()->setFunction(&m_graphModel);
-						m_level.decrementAttempt();
-						//float tmpY;
-						//if(tt.isDefined(player1Model.getCoords().x, &tmpY))
-						//{
-							//player1Model.setCoordY(tmpY);
-						//}
-
-						//player1Model.setCoordY(-(tt.getFunctionValue(0)*GraphsCale));
+                        m_graphModel.setFunction(m_textAreaFunction.getString());
+                        m_graphModel.getRepresentativeCurve(-MaxSizeGraph, MaxSizeGraph, Step);
+                        Physics::Engine::getEngine()->setFunction(&m_graphModel);
+                        m_level.decrementAttempt();
                     }
                     if(m_event.key.code == sf::Keyboard::Escape)
                     {
@@ -106,6 +102,7 @@ bool  Game::handleInput()
                 default:
                     break;
                 }
+//                test.isCollide(m_player1Model.getRectScaled(GraphScale));
 
             //    m_textFunction.handle_input(m_event, m_graphView);
                 m_textAreaFunction.handleInput(m_event, m_app);
@@ -130,6 +127,7 @@ void Game::show()
     m_level.displayNbAttempt();
     m_buttonSound.switchTile();
     m_textAreaFunction.blinkCaret();
+//    test.grow(0.001f);
 }
 
 void Game::draw()
@@ -142,15 +140,17 @@ void Game::draw()
     m_axis.draw(m_app);
 //    m_viewIntegral.draw(m_app);
     m_graphView.draw(m_app);
+   // test.draw(m_app);
     m_level.drawPoints(m_app);
     m_player1View.draw(m_app);
-
 
     m_app.setView(m_app.getDefaultView());
     m_level.drawUI(m_app);
     m_buttonReset.draw(m_app);
     m_buttonSound.draw(m_app);
     m_buttonBack.draw(m_app);
+
+
     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
 	  m_app.draw(m_textAreaFunction);
     //m_textFunction.draw(m_app);
@@ -239,9 +239,10 @@ int Game::levelOperation(ScreenLink& stat)
 
 void Game::reset()
 {
+
          m_player1Model.setCoords(sf::Vector2f(0.0f, 0.0f));
          m_player1Model.setAngle(0.0f);
-  //       Physics::Engine::getEngine()->cleanEngine();
+     //    Physics::Engine::getEngine()->cleanEngine();
          m_graphModel.setChanged(true);
          m_graphModel.clearFunction();
          m_gameStarted = false;
@@ -291,9 +292,10 @@ void Game::loadConfigFile()
 
 	m_player1Model.setMoveType(moveType);
 	m_player1Model.setFrictionCoefficient(frictionCoef);
+	m_player1View.setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
 	#ifdef DEBUG
         // std::cout << "GAME CPP width : " << width << "height : " << height << std::endl;
 	#endif
-	m_player1View.setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
+
 }
 

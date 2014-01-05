@@ -3,10 +3,16 @@
 ButtonPerso::ButtonPerso(const char* _filename)
 :m_filename(_filename), m_clicked(false)
 {
-  m_texture.loadFromFile(m_filename);
-  this->setTexture(m_texture);
-  setAlpha(Blur);
-
+    sf::Texture * texture = nullptr;
+    texture = TextureManager::getTextureManager()->getResource(std::string(m_filename));
+    if(texture)
+    {
+        this->setTexture(*texture);
+    }
+    else
+    {
+        std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << m_filename << std::endl;
+    }
 }
 
 void ButtonPerso::handle_input(sf::Event& event,sf::RenderTarget& target)

@@ -6,10 +6,11 @@
 #endif //DEBUG
 #include <string>
 
+
 #include <SFML/Graphics.hpp>
 
 #include "../constants.hpp"
-
+#include "../libs/ResourcesManagerSFML2_1.hpp"
 
 class ButtonPerso :  public sf::Sprite
 {
@@ -23,8 +24,8 @@ class ButtonPerso :  public sf::Sprite
         void unclick();
 
     protected:
-        std::string m_filename;
         bool m_clicked;
+        std::string m_filename;
         sf::Texture m_texture;
 };
 

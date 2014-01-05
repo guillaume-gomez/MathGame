@@ -28,23 +28,21 @@ class SelectLevel
         unsigned int m_level;
         GameMode m_modeSelectLevel;
         bool m_isClicked;
+
 };
+
 
 class ScreenLevelChoice : public Screen
 {
     public:
         friend class SelectLevel;
-
         ScreenLevelChoice(ScreenLink* _stat);
         virtual ~ScreenLevelChoice();
         virtual int Run(sf::RenderWindow & App) = 0 ;
 
     protected:
-        bool m_playing;
-        std::vector<SelectLevel*> m_selectionLevel;
-        int m_changingMenu;
-
         sf::Sprite m_background;
+        int m_changingMenu;
         sf::Sprite m_easyBar;
         sf::Texture m_easyTex;
         sfg::Frame::Ptr m_frameEasy;
@@ -57,7 +55,9 @@ class ScreenLevelChoice : public Screen
         sfg::Box::Ptr m_layoutEasy;
         sfg::Box::Ptr m_layoutNormal;
         sfg::Box::Ptr m_layoutHard;
+        bool m_playing;
         sfg::Box::Ptr m_scrolled_window_box;
+        std::vector<SelectLevel*> m_selectionLevel;
         sfg::SFGUI m_sfgui;
         sfg::Window::Ptr m_window;
 };

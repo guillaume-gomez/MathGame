@@ -1,5 +1,6 @@
 #include "Screen_MainMenu.hpp"
 
+
 Screen_MainMenu::Screen_MainMenu()
 : m_alpha_max(3 * 255), m_alpha_div(3), m_playing(false), m_changingMenu(SCREEN_EXIT)
  {
@@ -20,6 +21,7 @@ Screen_MainMenu::Screen_MainMenu()
     m_credit_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::creditButtonClick, this));
     m_option_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::optionButtonClick, this));
     m_editor_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::editorButtonClick, this));
+
 }
 
 
@@ -60,7 +62,8 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 
     App.resetGLStates();
 
-    sfg::Box::Ptr box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 45.f );
+    sfg::Box::Ptr box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 45.f );
+
     box->Pack( m_play_button );
     box->Pack( m_play2_button );
     box->Pack( m_credit_button );

@@ -1,12 +1,21 @@
 #include "Editor.hpp"
+#include <cmath>
+#include <algorithm>
+
+#include "ObjectFactoryAbstract.hpp"
 
 Editor::Editor(sf::RenderWindow& App)
 :m_app(App),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_textAreaFunction(6),
 m_buttonReset(FilenameButtonReset), m_buttonSave(FilenameButtonSave), m_buttonBack(FilenameButtonBack), m_buttonCursor(FilenameButtonCursor),
-m_buttonGoalButton(FilenamePointGoalTex), m_buttonNormalButton(FilenameNormalPointTex),
-m_buttonPanel(FilenameButtonPanel), m_isBack(false), m_isAnimLeft(false), m_isAnimRight(false), m_isZoom(false), m_chooseTexture(false), m_drawable(false),
-m_saving(false)
+m_buttonGoalButton(FilenamePointGoalTex), m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(TypeObject::Point), m_isBack(false), m_isZoom(false), m_isNormalPoint(false),
+m_saving(false), m_radiusBuilder(0.0f, 0.0f)
 {
+    //build all the template method
+    ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
+    ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
+    ObjectFactoryAbstract::_register(TypeObject::GoalPoint,new Point(sizePoint, true));
+
+
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
 	text->setRepeated(true);
 	m_spriteBG.setTexture(*text);
@@ -18,30 +27,21 @@ m_saving(false)
     m_Buttonpoint.loadFromFile(FilenameNormalPointTex);
     m_Buttongoal.loadFromFile(FilenamePointGoalTex);
 
-    int __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(m_app.getSize().x - m_buttonPanel.getLocalBounds().width , 0)))).x;
-    int __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(m_app.getSize().x , 0)))).y ;
-
-    float Y =  (m_buttonPanel.getLocalBounds().height - (m_buttonReset.getLocalBounds().height / 5)) / 5 ;
-    int offsetY = int (Y) / 5;
-    float X = m_buttonPanel.getLocalBounds().width / 2 - m_buttonReset.getLocalBounds().width/2 + __x;
+    int __x = (sf::Vector2f(m_app.mapPixelToCoords(sf::Vector2i(m_app.getSize().x - m_buttonPanel.getLocalBounds().width , 0)))).x;
+    int __y = (sf::Vector2f(m_app.mapPixelToCoords(sf::Vector2i(m_app.getSize().x , 0)))).y ;
 
     setCenterCamera();
 
 	m_textAreaFunction.setCharacterSize(20);
 
-    m_buttonPanel.setPosition(__x, __y);
-    m_buttonPanel.setAlpha(200);
-
-    m_buttonReset.setPosition(X, offsetY);
-
-    m_buttonSave.setPosition(X, offsetY + Y);
-
-    m_buttonBack.setPosition(X, offsetY + Y*2);
-
-    m_buttonNormalButton.setPosition(X,offsetY + Y*3);
-
-    m_buttonGoalButton.setPosition(X,offsetY + Y*4);
-
+    m_panel.setPosition(__x, __y);
+    m_panel.setAlpha(200);
+    m_panel.addButton(&m_buttonReset);
+    m_panel.addButton(&m_buttonSave);
+    m_panel.addButton(&m_buttonBack);
+    m_panel.addButton(&m_buttonNormalButton);
+    m_panel.addButton(&m_buttonGoalButton);
+    m_panel.addButton(&m_buttonCircle);
 }
 
 void Editor::zoom()
@@ -63,43 +63,58 @@ bool Editor::handleInput()
     {
         switch(m_event.type)
         {
-            case Event::Closed:
+            case sf::Event::Closed:
                 m_app.close();
                 return false;
             break;
 
-             case Event::MouseMoved:
+             case sf::Event::MouseMoved:
                  {
                      int x = m_event.mouseMove.x - m_buttonCursor.getLocalBounds().width / 2;
                      int y = m_event.mouseMove.y - m_buttonCursor.getLocalBounds().height / 2;
                      sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x, y)));
-                     managePanel(x);
                      m_buttonCursor.setPosition(coord);
                  }
             break;
 
-             case Event::MouseButtonPressed:
+             case sf::Event::MouseButtonPressed:
                  {
-                     if (Mouse::isButtonPressed(Mouse::Left))
+                     m_radiusBuilder = sf::Vector2f(m_event.mouseButton.x , m_event.mouseButton.y);
+                     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
                      {
-                        int x = m_event.mouseButton.x - m_buttonCursor.getLocalBounds().width / 2;
-                        int y = m_event.mouseButton.y - m_buttonCursor.getLocalBounds().height / 2;
-                        addPoint(x, y);
+                        if(m_creatingType == TypeObject::Point || m_creatingType == TypeObject::GoalPoint)
+                        {
+                            addPoint(m_event.mouseButton.x , m_event.mouseButton.y);
+                        }
+                        else if (m_creatingType == TypeObject::Circle)
+                        {
+                            //the radius is starting to be drawn
+                            m_radiusBuilder = sf::Vector2f(m_event.mouseButton.x , m_event.mouseButton.y);
+                        }
                      }
-                     else if (Mouse::isButtonPressed(Mouse::Right))
+                     else if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
                      {
                         deletePoint(m_event.mouseButton.x, m_event.mouseButton.y);
                      }
                  }
             break;
-
-            case Event::MouseWheelMoved:
+            case sf::Event::MouseButtonReleased:
+                {
+                    if(m_creatingType == TypeObject::Circle)
+                    {
+                        sf::Vector2f origin = m_radiusBuilder;
+                        m_radiusBuilder = sf::Vector2f(m_radiusBuilder - sf::Vector2f(m_event.mouseButton.x, m_event.mouseButton.y));
+                        addCircle(origin.x, origin.y);
+                    }
+                }
+            break;
+            case sf::Event::MouseWheelMoved:
                     m_isZoom = true;
                     zoom();
             break;
 
-            case Event::KeyPressed:
-                if(m_event.key.code == Keyboard::F8)
+            case sf::Event::KeyPressed:
+                if(m_event.key.code == sf::Keyboard::F8)
                 {
                     resetWindow();
                 }
@@ -118,20 +133,14 @@ bool Editor::handleInput()
                     {
                         popPoint();
                     }
-
                 }
             break;
-
             default:
-                break;
+            break;
         }
 
         m_textAreaFunction.handleInput(m_event, m_app);
-        m_buttonReset.handle_input(m_event, m_app);
-        m_buttonSave.handle_input(m_event, m_app);
-        m_buttonBack.handle_input(m_event, m_app);
-        m_buttonGoalButton.handle_input(m_event, m_app);
-        m_buttonNormalButton.handle_input(m_event, m_app);
+        m_panel.handle_input(m_event, m_app);
 
         if(m_buttonGoalButton.isClicked())
         {
@@ -140,6 +149,10 @@ bool Editor::handleInput()
     	if(m_buttonNormalButton.isClicked())
         {
     		m_buttonCursor.setColor(sf::Color(0, 0, 0, Blur));
+        }
+        if(m_buttonCircle.isClicked())
+        {
+            m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
         }
     }
     return true ;
@@ -159,29 +172,24 @@ void Editor::draw()
 
     m_app.setView(m_viewPerso);
     m_app.draw(m_spriteBG);
+    m_axis.draw(m_app);
 
-    for( unsigned int i = 0 ; i < m_spriteList.size();i++)
+    for (auto it : m_spriteList)
     {
-        m_app.draw(m_spriteList[i]);
+        m_app.draw(*(it));
     }
 
 
-    if (5 > m_timer.getElapsedTime().asSeconds())
+    if (m_timer.getElapsedTime().asSeconds() < 5)
     {
          m_textVerifSave.draw(m_app);
     }
-
-    m_axis.draw(m_app);
     m_graphView.draw(m_app);
 
     m_app.setView(m_app.getDefaultView());
 
-    m_buttonPanel.draw(m_app);
-    m_buttonReset.draw(m_app);
-    m_buttonSave.draw(m_app);
-    m_buttonBack.draw(m_app);
-    m_buttonNormalButton.draw(m_app);
-    m_buttonGoalButton.draw(m_app);
+    m_panel.draw(m_app);
+
     m_buttonCursor.draw(m_app);
     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
     m_app.draw(m_textAreaFunction);
@@ -191,7 +199,7 @@ void Editor::draw()
 void Editor::resetWindow()
 {
     sf::View view;
-    view.setSize(Vector2f(m_app.getSize()));
+    view.setSize(sf::Vector2f(m_app.getSize()));
     view.setCenter(0, 0);
 }
 
@@ -200,16 +208,20 @@ void Editor::deletePoint(int x , int y)
     sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x , y)), m_viewPerso);
     for(unsigned int i = 0 ; i < m_spriteList.size() ; i++)
     {
-       if( m_spriteList[i].getGlobalBounds().contains(coord.x, coord.y))
+       if( m_spriteList[i]->getGlobalBounds().contains(coord.x, coord.y))
        {
            m_spriteList.erase(m_spriteList.begin() + i);
        }
     }
 }
 
+void Editor::deleteGravityCircle(int x, int y)
+{
+}
+
 void Editor::move()
 {
-    movePanel ();
+    m_panel.movePanel(m_app);
 
     if(m_buttonReset.isClicked())
     {
@@ -230,14 +242,21 @@ void Editor::move()
 
     if(m_buttonGoalButton.isClicked())
     {
-        m_chooseTexture = true;
+        m_creatingType = TypeObject::GoalPoint;
+        m_isNormalPoint = true;
         m_buttonGoalButton.unclick();
     }
 
     if(m_buttonNormalButton.isClicked())
     {
-        m_chooseTexture = false;
+        m_creatingType = TypeObject::Point;
+        m_isNormalPoint = false;
         m_buttonNormalButton.unclick();
+    }
+    if(m_buttonCircle.isClicked())
+    {
+        m_creatingType = TypeObject::Circle;
+        m_buttonCircle.unclick();
     }
 
     if(m_graphModel.getChanged())
@@ -262,58 +281,7 @@ void Editor::setCenterCamera()
    m_viewPerso.setCenter(0,0);
 }
 
-void Editor::managePanel( int coordMouseX )
-{
-    if(coordMouseX >= m_app.getSize().x*0.9)
-    {
-        m_drawable = false;
-        m_isAnimLeft = true;
-        m_isAnimRight = false;
-    }
 
-    if(coordMouseX < m_app.getSize().x*0.9 )
-    {
-        m_drawable = true;
-        m_isAnimRight = true;
-        m_isAnimLeft = false;
-    }
-}
-
-void Editor::movePanel ()
-{
-    int offset = 4;
-    if(m_isAnimLeft && (m_buttonPanel.getPosition().x + m_buttonPanel.getGlobalBounds().width - offset) >= m_app.getSize().x)
-    {
-        if(m_timerPanel.getElapsedTime().asMilliseconds() > TimePanel)
-        {
-            m_buttonPanel.setPosition(m_buttonPanel.getPosition().x - offset , m_buttonPanel.getPosition().y);
-            m_buttonReset.setPosition(sf::Vector2f(m_buttonReset.getPosition().x - offset, m_buttonReset.getPosition().y));
-            m_buttonSave.setPosition(sf::Vector2f(m_buttonSave.getPosition().x - offset, m_buttonSave.getPosition().y));
-            m_buttonBack.setPosition(sf::Vector2f(m_buttonBack.getPosition().x - offset, m_buttonBack.getPosition().y));
-            m_buttonNormalButton.setPosition(sf::Vector2f(m_buttonNormalButton.getPosition().x - offset, m_buttonNormalButton.getPosition().y));
-            m_buttonGoalButton.setPosition(sf::Vector2f(m_buttonGoalButton.getPosition().x - offset, m_buttonGoalButton.getPosition().y));
-
-            m_timerPanel.restart();
-        }
-    }
-
-    if(m_isAnimRight && (m_buttonPanel.getPosition().x) < m_app.getSize().x)
-    {
-        if(m_timerPanel.getElapsedTime().asMilliseconds() > TimePanel)
-        {
-            m_buttonPanel.setPosition(m_buttonPanel.getPosition().x +offset, m_buttonPanel.getPosition().y);
-            m_buttonReset.setPosition(sf::Vector2f(m_buttonReset.getPosition().x + offset, m_buttonReset.getPosition().y));
-            m_buttonSave.setPosition(sf::Vector2f(m_buttonSave.getPosition().x + offset, m_buttonSave.getPosition().y));
-            m_buttonBack.setPosition(sf::Vector2f(m_buttonBack.getPosition().x + offset, m_buttonBack.getPosition().y));
-            m_buttonNormalButton.setPosition(sf::Vector2f(m_buttonNormalButton.getPosition().x + offset, m_buttonNormalButton.getPosition().y));
-            m_buttonGoalButton.setPosition(sf::Vector2f(m_buttonGoalButton.getPosition().x + offset, m_buttonGoalButton.getPosition().y));
-
-            m_timerPanel.restart();
-        }
-
-    }
-
-}
 
 int Editor::save(ScreenLink * link)
 {
@@ -327,15 +295,15 @@ int Editor::save(ScreenLink * link)
     {
         m_textVerifSave.setString(sf::String("Level not Saved : not enough points "));
         m_textVerifSave.setColor(sf::Color(237,28,36));
-          return -1;
+        return -1;
     }
-
 
     int nbGoalPoint = 0;
     //if there is one red points
-    for(unsigned int i = 0 ; i < m_spriteList.size(); i++)
+    //for(std::vector<EditorCircle*>::iterator it = m_spriteList.begin(); it != m_spriteList.end() ; it++)
+    for(auto it : m_spriteList)
     {
-       if(m_spriteList[i].getTexture() == &m_Buttongoal)
+        if(it->getType() == TypeObject::GoalPoint)
         {
             nbGoalPoint++;
         }
@@ -347,18 +315,8 @@ int Editor::save(ScreenLink * link)
         return -1;
     }
 
-
-
     //sort m_spriteList
-    for(unsigned int i = 0 ; i < m_spriteList.size() ; i++)
-    {
-        if(m_spriteList[i].getTexture() == &m_Buttongoal)
-        {
-            sf::Sprite temp( m_spriteList[i]);
-            m_spriteList[i] = m_spriteList[ m_spriteList.size() - 1];
-            m_spriteList[ m_spriteList.size() - 1] = temp;
-        }
-    }
+    std::sort (m_spriteList.begin(), m_spriteList.end(), EditorObject::compare);
 
         std::vector<std::string> fileList;
         fileList.push_back("Easy");
@@ -387,7 +345,12 @@ int Editor::save(ScreenLink * link)
 
                for( unsigned int j = 0 ; j < m_spriteList.size();j++)
                {
-                   file << m_spriteList[j].getPosition().x / GraphScale <<" " << m_spriteList[j].getPosition().y / GraphScale << std::endl ;
+                    file << m_spriteList[j]->getTypeStr() << std::endl;
+                    if(m_spriteList[j]->getType() == TypeObject::Circle)
+                    {
+                        file << m_spriteList[j]->getRadius() << std::endl;
+                    }
+                    file << m_spriteList[j]->getPosition().x / GraphScale <<" "<< - m_spriteList[j]->getPosition().y / GraphScale << std::endl ;
                }
 
               file.close();
@@ -408,47 +371,68 @@ int Editor::save(ScreenLink * link)
 
 }
 
-void Editor::addPoint( int x , int y)
+void Editor::addPoint(int x , int y)
 {
-    if(m_drawable)
+    if(m_panel.isVisible())
     {
-		sf::Sprite temp;
+	    Point *newPoint = nullptr;
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
-        temp.setPosition(coord);
 
-        if(!m_chooseTexture)
+        if(!m_isNormalPoint)
         {
-             temp.setTexture(m_Buttonpoint);
+            newPoint = dynamic_cast<Point*>(ObjectFactoryAbstract::create(TypeObject::Point));
         }
         else
         {
         	static sf::Vector2f goalCoords;
 
-        	std::vector<sf::Sprite>::iterator it=m_spriteList.begin();
+        	std::vector<EditorCircle*>::iterator it = m_spriteList.begin();
 			bool goalSpriteFound=false;
 			while(it!=m_spriteList.end() && !goalSpriteFound)
 			{
-				if(it->getPosition() == goalCoords)
+				if((*it)->getPosition() == goalCoords)
 				{
 					m_spriteList.erase(it);
 					goalSpriteFound = true;
 				}
 				else
+                {
 					it++;
+                }
 			}
 			goalCoords = coord;
-
-            temp.setTexture(m_Buttongoal);
+            newPoint = dynamic_cast<Point*>(ObjectFactoryAbstract::create(TypeObject::GoalPoint));
         }
-
-        m_spriteList.push_back(temp);
+        newPoint->setPosition(coord);
+        m_spriteList.push_back(newPoint);
     }
+}
+
+void Editor::addCircle(int x, int y)
+{
+    float radius = abs(m_radiusBuilder.x);
+    if(radius > 0.0f)
+    {
+        GravityCircle* newCircle = new GravityCircle(radius);
+        sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
+        newCircle->setPosition(coord);
+        m_spriteList.push_back(newCircle);
+    }
+    else
+    {
+        std::cerr << "In Editor::addCircle : you tried to create a gravityCircle with a negative radius" << std::endl;
+    }
+
 }
 
 void Editor::popPoint()
 {
+
     if(m_spriteList.size() > 0)
-    m_spriteList.pop_back();
+    {
+        m_spriteList.pop_back();
+    }
+
 }
 
 

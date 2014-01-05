@@ -9,8 +9,17 @@ const float GraphScale = 20.0f;
 
 const unsigned int TotalDifficulty = 3 ;
 
-enum Difficulty { Easy , Normal , Hard};
+enum Difficulty {Easy , Normal , Hard};
 enum GameMode {Classic , NoChance};
+enum class TypeObject
+{
+    Abstract, Circle, Point, GoalPoint
+};
+
+const char AbstractStr[]  = "Abstract";
+const char CircleStr[]  = "Circle";
+const char PointStr[]  = "Point";
+const char GoalPointStr[]  = "GoalPoint";
 
 const int Blur = 120;
 const int Clear = 220;
@@ -55,7 +64,7 @@ const float PositionButtonNormalY = 280.0f;
 const float PositionButtonHardY = 430.0f;
 const unsigned int nbButtonLevelChoose = 4 ;
 
-
+const float sizePoint = 0.15f;
 
 const int backgroundColor = 230;
 const int gridGameColor = 235;
@@ -77,4 +86,7 @@ const unsigned int DefaultCharHeight = 34;
 const unsigned int Bikefriction = 0.05;
 const unsigned int BikeWidth = 50;
 const unsigned int BikeHeight = 50;
+
+const float sentinelX = -10000.0f;
+const float sentinelY = -10000.0f;
 #endif // CONSTANTS_HPP

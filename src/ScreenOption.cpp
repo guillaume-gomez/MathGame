@@ -88,7 +88,8 @@ void ScreenOption::save()
         width = BikeWidth ;
         height = BikeHeight;
     }
-    // std::cout << m_filenameChar << std::endl;
+
+    std::cout << m_filenameChar << std::endl;
     configFile <<"FilenameCharacterTex = "<< m_filenameChar << std::endl;
     configFile << "width = "<< width << std::endl;
     configFile << "height = "<< height<< std::endl;

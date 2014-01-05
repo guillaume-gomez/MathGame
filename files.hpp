@@ -35,7 +35,7 @@ const char FilenameHardButton [] = "resources/design/hardArea.png";
 const char FilenameChooseLevel [] = "resources/design/choiceLevel.png";
 
 const char FilenameButtonOption2 [] = "resources/design/buttonOption.png";
-
+const char FilenameButtonCircleTex [] = "resources/tooltip2.png";
 const char FilenameButtonSave[] = "resources/design/buttonSave.png";
 const char FilenameButtonCursor[] = "resources/design/buttonCursor.png";
 const char FilenameButtonPanel[] = "resources/design/buttonPanel.png";

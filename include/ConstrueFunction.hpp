@@ -20,6 +20,7 @@
 
 class ConstrueFunction
 {
+
     struct IntervalOfDefinition
 		{
 			float xStart;
@@ -44,8 +45,8 @@ class ConstrueFunction
         void clearFunction();
 
     protected:
-        std::string m_function;
         bool m_changed;
+        std::string m_function;
         std::vector<IntervalOfDefinition> intervals;
 };
 

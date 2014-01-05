@@ -22,9 +22,11 @@ class Button :  public sf::Sprite
         bool isClicked() const;
 
     protected:
-        std::string m_filename;
+
         bool m_clicked;
+        std::string m_filename;
         sf::Texture m_texture;
+
 };
 
 /**

@@ -36,7 +36,6 @@ CharacterView::CharacterView(const CharacterModel& model, float scale, int _w, i
 	configFile >> tmpString;
 
 //	m_animation(CharacterView::characterTex,_w,_h);
-
     setTexture(TextureManager::getTextureManager()->getResource(tmpString), _w, _h);
 
 	m_animation.SetLoopTime(1);
@@ -50,6 +49,10 @@ CharacterView::~CharacterView()
     {
         delete m_ArtTexture;
     }
+    if(!m_loadedTextureSuccess)
+    {
+        delete m_ArtTexture;
+    }
 }
 
 void CharacterView::draw( sf::RenderTarget& target)
@@ -57,10 +60,8 @@ void CharacterView::draw( sf::RenderTarget& target)
     m_animation.setOrigin(m_animation.getLocalBounds().width / 2, m_animation.getLocalBounds().height);
 //    m_animation.setPosition(m_model.getCoords().x*m_scale-m_animation.getLocalBounds().width/2
 //							, -m_model.getCoords().y*m_scale-m_animation.getLocalBounds().height);
-
     m_animation.setPosition(m_model.getCoords().x * m_scale
                             , -m_model.getCoords().y * m_scale);
-
     m_animation.setRotation(-(m_model.getAngle() * 180) / M_PI );
 	target.draw(m_animation);
 }

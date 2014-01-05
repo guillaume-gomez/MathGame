@@ -70,32 +70,31 @@ const sf::Vector2f CharacterModel::getVelocity() const
 {return m_PhysicsBox.getVelocity();}
 
 
-
  void CharacterModel::handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction)
  {
     if(event.type == sf::Event::KeyPressed)
      {
         switch(event.key.code)
-     	{
-//		case sf::Keyboard::Up:
-//		    m_thrust.y = -m_speed;
-//			break;
+        {
+//      case sf::Keyboard::Up:
+//          m_thrust.y = -m_speed;
+//          break;
 
 //        case sf::Keyboard::Down:
-//		   m_thrust.y = +m_speed;
-//			break;
+//         m_thrust.y = +m_speed;
+//          break;
 
         case sf::Keyboard::Left:
-		    m_PhysicsBox.setThrust(sf::Vector2f(-m_speed, m_PhysicsBox.getThrust().y));
-			break;
+            m_PhysicsBox.setThrust(sf::Vector2f(-m_speed, m_PhysicsBox.getThrust().y));
+            break;
 
         case sf::Keyboard::Right:
-		    m_PhysicsBox.setThrust(sf::Vector2f(m_speed, m_PhysicsBox.getThrust().y));
-			break;
+            m_PhysicsBox.setThrust(sf::Vector2f(m_speed, m_PhysicsBox.getThrust().y));
+            break;
 
-		default:
-			break;
-     	}
+        default:
+            break;
+        }
      }
      else if(event.type == sf::Event::KeyReleased)
      {
@@ -124,8 +123,8 @@ const sf::Vector2f CharacterModel::getVelocity() const
     }
     if(textAreaFunction.getAlphaColor()==Clear)
     {
-		m_PhysicsBox.setThrust(sf::Vector2f(0.0f, m_PhysicsBox.getThrust().y));
- 	}
+        m_PhysicsBox.setThrust(sf::Vector2f(0.0f, m_PhysicsBox.getThrust().y));
+    }
  }
 
 
@@ -151,6 +150,10 @@ sf::FloatRect CharacterModel::getRect() const
     return sf::FloatRect(m_PhysicsBox.getPosition().x , m_PhysicsBox.getPosition().y, (float) m_width, (float)m_height);
 }
 
+sf::FloatRect CharacterModel::getRectScaled(float graphScale)const
+{
+    return sf::FloatRect(m_PhysicsBox.getPosition().x  , m_PhysicsBox.getPosition().y , (float) m_width / graphScale , (float)m_height / graphScale);
+}
 
 /**
 * @brief : Destructor of the class

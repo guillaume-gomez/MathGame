@@ -1,5 +1,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
+
+#include <iostream>
 using namespace sf;
 
 #include "constants.hpp"

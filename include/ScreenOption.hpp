@@ -39,17 +39,16 @@ class ScreenOption : public Screen
         inline void setFilenameChar(std::string str){m_filenameChar = str;};
 
     private:
-        unsigned int m_nbButton;
-        std::string m_gravityType;
-        std::vector<ChoiceCharacter> m_character_array;
-
         sf::Sprite m_background;
         sfg::Box::Ptr m_box;
+        std::vector<ChoiceCharacter> m_character_array;
         AniSprite currentChoice;
+        std::string m_gravityType;
         sfg::Frame::Ptr m_frameCharacter;
         sfg::Frame::Ptr m_framePhysics;
         sfg::Box::Ptr m_layoutCharacter;
         sfg::Box::Ptr m_layoutPhysics;
+        unsigned int m_nbButton;
         sfg::SFGUI m_sfgui;
         sfg::Window::Ptr m_window;
 };
