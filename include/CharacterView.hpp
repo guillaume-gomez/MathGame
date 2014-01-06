@@ -13,24 +13,25 @@
 #include "AniSprite.hpp"
 #include "CharacterModel.hpp"
 #include "../files.hpp"
+#include "EditorObject.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
 
-class CharacterView
+class CharacterView /*: public EditorObject*/
 {
 	public:
 	CharacterView(const CharacterModel& model, float scale = 1.0f, int _w = 1, int _h = 1);
 	/** Default destructor */
 	virtual ~CharacterView();
-	void show();
-	void draw(sf::RenderTarget& target);
-        sf::Vector2f getCoords()const;
-        sf::FloatRect getRectLocal()const;
-        sf::Sound m_sound;
-        void setSize(int width, int height);
-        void setTexture(const sf::Texture* texture, int frameWidth, int frameHeight);
+	virtual void show();
+	virtual void draw(sf::RenderTarget& target);
+    sf::Vector2f getCoords()const;
+    sf::FloatRect getRectLocal()const;
+    sf::Sound m_sound;
+    void setSize(int width, int height);
+    void setTexture(const sf::Texture* texture, int frameWidth, int frameHeight);
 
-	private:
+	protected:
         AniSprite m_animation;
         const CharacterModel& m_model;
         bool m_left;

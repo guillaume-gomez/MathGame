@@ -33,14 +33,14 @@ class CharacterModel
         void setSize(int _w, int _h);
         sf::FloatRect getRect() const;
         sf::FloatRect getRectScaled(float graphScale)const;
-        void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
+        virtual void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
         virtual ~CharacterModel();
         void setMoveType(MoveType moveType);
 		void setFrictionCoefficient(float frictionCoefficient);
 		float getAngle() const;
 		void setAngle(float angle);
 
-    private:
+    protected:
         Physics::Box m_PhysicsBox;
         bool m_life;
         float m_frictionCoefficient;

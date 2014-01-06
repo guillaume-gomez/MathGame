@@ -59,7 +59,6 @@ unsigned int i = 0;
         temp.setOutlineColor(sf::Color(0,0,0));
         temp.setOutlineThickness(1);
        // temp.setPosition(10, 20);
-        std::cout << "LINE ADDED " << std::endl;
         m_lineList.push_back(temp);
         index++;
     }

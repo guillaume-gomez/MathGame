@@ -8,8 +8,10 @@
 #include "Axis.hpp"
 #include "ButtonAnim.hpp"
 #include "../constants.hpp"
-#include "CharacterModel.hpp"
-#include "CharacterView.hpp"
+//#include "CharacterModel.hpp"
+//#include "CharacterView.hpp"
+#include "EnemyModel.hpp"
+#include "EnemyView.hpp"
 #include "ConstrueFunction.hpp"
 #include "../files.hpp"
 #include "GraphView.hpp"
@@ -65,8 +67,8 @@ class Game
         sf::Clock m_frameCountClock;
         sf::Text m_frameCountText;
     #endif
-        CharacterModel m_player1Model;
-        CharacterView m_player1View;
+        EnemyModel m_player1Model;
+        EnemyView m_player1View;
         Sprite m_spriteBG;
         TextAreaSFML2_0 m_textAreaFunction;
         View m_viewPerso;
