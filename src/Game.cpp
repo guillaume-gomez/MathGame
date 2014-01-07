@@ -93,6 +93,7 @@ bool  Game::handleInput()
                         m_graphModel.getRepresentativeCurve(-MaxSizeGraph, MaxSizeGraph, Step);
                         Physics::Engine::getEngine()->setFunction(&m_graphModel);
                         m_level.decrementAttempt();
+                        m_player1Model.decrementAttempt();
                     }
                     if(m_event.key.code == sf::Keyboard::Escape)
                     {

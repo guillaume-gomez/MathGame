@@ -16,7 +16,7 @@ CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, Mov
 /**
 * @brief : Accessor of life
 **/
-bool CharacterModel::getLife() const
+bool CharacterModel::isAlive() const
 {return m_life;}
 
 /**

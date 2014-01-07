@@ -19,7 +19,7 @@ class CharacterModel
     public:
         enum MoveType{/*ConstantSpeed, NaturalPhysic,*/ NoSliding, WithSliding};
         CharacterModel(bool life = true , sf::Vector2f coord = sf::Vector2f(0.0f, 0.0f), float speed = 6.0f, MoveType moveType = NoSliding);
-        bool getLife() const;
+        bool isAlive() const;
         const sf::Vector2f getCoords() const;
         const sf::Vector2f getVelocity() const;
         void setLife(bool _life);

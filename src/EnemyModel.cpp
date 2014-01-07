@@ -7,6 +7,7 @@ EnemyModel::EnemyModel(bool life, sf::Vector2f coord, float speed, MoveType move
     {
     	m_isActive = true;
     }
+
 }
 
 EnemyModel::~EnemyModel()
@@ -19,6 +20,20 @@ EnemyModel::~EnemyModel()
     if(isActive())
     {
         CharacterModel::handle_input(event,textAreaFunction);
+    }
+    if(isActive())
+    {
+        float speed = 0;
+        if(m_orientedRight)
+        {
+            speed = m_speed;    
+        }
+        else
+        {
+            speed = -m_speed;
+        }
+        m_PhysicsBox.setThrust(sf::Vector2f(speed, m_PhysicsBox.getThrust().y));
+        
     }
  }
 
@@ -50,7 +65,7 @@ EnemyModel::~EnemyModel()
  unsigned int EnemyModel::getNbAttempt() const {return m_nbAttempt;}
 
 
- std::string EnemyModel::getNbAttemptStr() const
+std::string EnemyModel::getNbAttemptStr() const
 {
     std::ostringstream oss;
     oss << m_nbAttempt;

@@ -365,7 +365,7 @@ int Editor::save(ScreenLink * link)
         }
         link->setnbFiles(link->getNbFiles()+1);
    }
-   sf::FloatRect coord = m_textVerifSave.m_text.getLocalBounds ();
+   sf::FloatRect coord = m_textVerifSave.getText().getLocalBounds ();
    m_textVerifSave.setPosition(sf::Vector2f(-coord.width/2 , 0));
    return 0 ;
 

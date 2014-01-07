@@ -89,4 +89,6 @@ const unsigned int BikeHeight = 50;
 
 const float sentinelX = -10000.0f;
 const float sentinelY = -10000.0f;
+
+const float offsetNbAttemptEnemy = 15.0f;
 #endif // CONSTANTS_HPP
