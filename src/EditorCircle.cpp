@@ -76,7 +76,7 @@ bool EditorCircle::isCollide(const sf::FloatRect& rect)
 std::string EditorCircle::save(float scale) const
 {
   std::stringstream flux;
-  flux << this->getPosition().x / scale <<" " << this->getPosition().y / scale << std::endl;
+  flux << this->getPosition().x / scale <<" " << - this->getPosition().y / scale << std::endl;
   return flux.str();
 }
 

@@ -23,8 +23,6 @@ LevelView::LevelView()
 LevelView::LevelView(const LevelModel& model, float _scale)
 :m_model(model), m_scale(_scale)
 {
-    int nbPoints = m_model.getNbPoints();
-
     //build all the template method
     ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
     ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
@@ -34,6 +32,23 @@ LevelView::LevelView(const LevelModel& model, float _scale)
 //    float widthTex  = (float) m_texGoal.getSize().x / 2;
 //    float heightTex = (float) m_texGoal.getSize().y / 2;
 
+    loadCoord();
+}
+
+
+LevelView::~LevelView()
+{
+    //dtor
+}
+
+void LevelView::reset()
+{
+}
+
+// To load if the model change
+void LevelView::loadCoord()
+{
+    int nbPoints = m_model.getNbPoints();
     for(int i = 0 ; i < nbPoints - 1 ; i++)
     {
         if(m_model.getType(i) == TypeObject::Circle)
@@ -60,7 +75,7 @@ LevelView::LevelView(const LevelModel& model, float _scale)
             Enemy* newEnemy =  dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(m_model.getType(i)));
             if(newEnemy != nullptr)
             {
-                newEnemy->set_Position(m_model.getCoordPoints(i).x /*- widthTex*/ , - m_model.getCoordPoints(i).y /* - heightTex*/);
+                newEnemy->set_Position(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
                 newEnemy->setNbAttempt(m_model.getAttempt(i));
                 m_listSprite.push_back(newEnemy);
             }
@@ -69,29 +84,8 @@ LevelView::LevelView(const LevelModel& model, float _scale)
 
     //the goal sprite
     Point * NewPoint = dynamic_cast<Point*>(ObjectFactoryAbstract::create(TypeObject::GoalPoint));
-    NewPoint->setPosition(m_model.getGoalCoord().x * m_scale/*- widthTex*/ ,  - m_model.getGoalCoord().y * m_scale/* - heightTex*/);
+    NewPoint->setPosition(m_model.getGoalCoord().x * m_scale/*- widthTex*/ , - m_model.getGoalCoord().y * m_scale/* - heightTex*/);
     m_listSprite.push_back(NewPoint);
-}
-
-
-LevelView::~LevelView()
-{
-    //dtor
-}
-
-// To load if the model change
-void LevelView::loadCoord()
-{
-//    float widthTex  = (float) m_texGoal.getSize().x / 2;
-//    float heightTex = (float) m_texGoal.getSize().y / 2;
-
-    for(unsigned int i = 0 ; i < m_listSprite.size() - 1 ; i++)
-    {
-        sf::Vector2f coord(m_model.getCoordPoints(i).x * m_scale/* - widthTex*/, - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
-        m_listSprite[ i ]->set_Position(coord);
-    }
-     sf::Vector2f coord(m_model.getGoalCoord().x * m_scale/* - widthTex*/, - m_model.getGoalCoord().y * m_scale/*  - heightTex*/);
-     m_listSprite[ m_listSprite.size() - 1 ]->set_Position(coord);
 
 }
 

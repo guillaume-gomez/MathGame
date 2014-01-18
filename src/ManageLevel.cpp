@@ -115,6 +115,7 @@ int  ManageLevel::changeLevel (ScreenLink * link)
 void ManageLevel::reset()
 {
     m_levelModel->reset();
+    resetEnemies();
     m_changeLevel = false;
 }
 
@@ -134,6 +135,29 @@ void ManageLevel::showEnemies()
         }
     }
 }
+
+void ManageLevel::resetEnemies()
+{
+    std::vector<EditorObject*> listEnemies = m_levelView->getSpriteList();
+    unsigned int index = 0;
+    for(auto it : m_levelView->getSpriteList())
+    {
+        if(it->getType() == TypeObject::Enemy)
+        {
+            Enemy* enemy = dynamic_cast<Enemy*>(it);
+            if( enemy == nullptr)
+            {
+                std::runtime_error("Error in ManageLevel::showEnemies : cannot dynamic_cast in enemy");
+            }
+            enemy->reset();
+            sf::Vector2f pos = m_levelModel->getCoordPoints(index);
+            enemy->setNbAttempt(m_levelModel->getAttempt(index));
+            enemy->set_Position(pos);
+        }
+        index++;
+    }
+}
+
 
 
 void ManageLevel::decrementAttempt()

@@ -57,8 +57,17 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
             }
             else if (type == EnemyStr)
             {
+                unsigned int nbAttempt;
+                bool direction;
+                m_fileLevel >> nbAttempt;
+                m_fileLevel >> direction;
+
                 newElmt.setType(TypeObject::Enemy);
-                newElmt.setAttempt(2);
+                newElmt.setAttempt(nbAttempt);
+                newElmt.setSens(direction);
+
+                 //because it is not a point
+                m_pointsCheck[i] = true;
             }
             sf::Vector2f temp;
             m_fileLevel >> temp.x;
@@ -71,7 +80,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
     else
     {
 
-//        std::cerr << "Error file :'" << _filename.c_str() << "' cannot exist" << std::endl;
+        std::cerr << "Error file :'" << _filename.c_str() << "' cannot exist" << std::endl;
         m_fileLevel.close();
     }
 
@@ -83,7 +92,7 @@ std::ostream& operator<<( std::ostream &flux, const LevelModel& level )
      flux << level.m_nbElements << std::endl;
      for(unsigned int i = 0 ; i < level.m_nbElements ; i++)
      {
-         flux << "Elements  "<< i << ": x = " << level.m_coordElements[i].getCoord().x << " y = " << level.m_coordElements[i].getCoord().y << std::endl;
+         flux << "Elements  ("<< i <<") "<< ": x = " << level.m_coordElements[i].getCoord().x << " y = " << level.m_coordElements[i].getCoord().y << std::endl;
      }
      return flux;
 }
@@ -119,7 +128,7 @@ void LevelModel::IsFinishing ( const CharacterModel& charactermodel ,float _scal
              playableSound = false;
     }
 
- m_win = true;
+    m_win = true;
     for(unsigned int i = 0 ; i < getNbPoints() ; i++)
     {
        if(m_pointsCheck[i] == false)

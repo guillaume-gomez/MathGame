@@ -356,7 +356,15 @@ int Editor::save(ScreenLink * link)
         fileList.push_back("Hard");
 
 
-        unsigned int numberattempt = m_spriteList.size() - 1;
+        unsigned int numberattempt = 0;
+        for( auto it : m_spriteList)
+        {
+            if(it->getType() == TypeObject::Point || it->getType() == TypeObject::GoalPoint)
+            {
+                numberattempt++;
+            }
+        }
+
         if(numberattempt < 1)
         {
             //to avoid negative number
@@ -377,13 +385,7 @@ int Editor::save(ScreenLink * link)
 
                for( unsigned int j = 0 ; j < m_spriteList.size();j++)
                {
-                    file << m_spriteList[j]->getTypeStr() << std::endl;
-                    if(m_spriteList[j]->getType() == TypeObject::Circle)
-                    {
-                        GravityCircle* circle = dynamic_cast<GravityCircle*>(m_spriteList[j]);
-                        file << circle->getRadius() << std::endl;
-                    }
-                    file << m_spriteList[j]->get_Position().x / GraphScale <<" "<< - m_spriteList[j]->get_Position().y / GraphScale << std::endl ;
+                    file <<  m_spriteList[j]->save(GraphScale);
                }
 
               file.close();

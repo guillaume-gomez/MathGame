@@ -26,6 +26,7 @@ class LevelView
         void draw( sf::RenderTarget& target );
         std::vector<EditorObject*> getSpriteList () const;
         void loadCoord();
+        void reset();
     private:
         LevelView();
         std::vector<EditorObject*> m_listSprite;

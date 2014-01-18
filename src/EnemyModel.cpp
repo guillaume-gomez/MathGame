@@ -9,13 +9,14 @@ EnemyModel::EnemyModel(bool life, sf::Vector2f coord, float speed, MoveType move
     	m_isActive = true;
     }
 
+    //temporaire
+    m_nbAttempt = 3;
 }
 
 EnemyModel::EnemyModel(const EnemyModel& copy)
 :CharacterModel(copy.m_life, copy.getCoords(), copy.m_speed, copy.m_moveType),
  m_nbAttempt(copy.m_nbAttempt), m_isActive(copy.m_isActive)
 {
-    std::cout << "Coonstructuer de copy EnemyModel" << std::endl;
     if(m_nbAttempt == 0)
     {
         m_isActive = true;

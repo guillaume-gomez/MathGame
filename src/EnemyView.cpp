@@ -48,10 +48,6 @@ EnemyView::EnemyView(const EnemyView& copy)
  //share the same texture for all the instance
 // m_ArtTexture(copy.m_ArtTexture)
 {
-	std::cout << "Copy Constructor of EnemyView Class" << std::endl;
 	m_nbAttempt.setColor(sf::Color(0,0,0,240));
 	m_nbAttempt.setFont(14);
-
-
-
 }

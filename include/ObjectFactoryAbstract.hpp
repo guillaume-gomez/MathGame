@@ -16,7 +16,6 @@ class ObjectFactoryAbstract
         virtual ~ObjectFactoryAbstract();
         static void _register(TypeObject key, EditorObject* obj);
         static EditorObject* create(const TypeObject& key);
-        EditorObject* makeObject(std::string type);
     protected:
     private:
 };
