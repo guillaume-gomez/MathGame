@@ -1,5 +1,15 @@
 #include "EditorObject.hpp"
 
+
+const std::map<TypeObject,int> EditorObject::objectValueMap =
+{
+    {TypeObject::Abstract,-1},
+    {TypeObject::Point, 3},
+    {TypeObject::GoalPoint, 4},
+    {TypeObject::Circle, 2},
+    {TypeObject::Enemy, 1}
+};
+
 EditorObject::EditorObject()
 {
 
@@ -31,6 +41,14 @@ std::ostream& operator<<( std::ostream &flux, TypeObject const type )
             flux << GoalPointStr;
         break;
 
+        case TypeObject::Enemy:
+            flux << EnemyStr;
+        break;
+
+        case TypeObject::Hero:
+            flux << HeroStr;
+        break;
+
         default:
             flux <<" Error invalid type";
         break;
@@ -42,29 +60,7 @@ std::ostream& operator<<( std::ostream &flux, TypeObject const type )
 
 std::string EditorObject::getTypeStr() const
 {
-    switch(m_type)
-    {
-        case TypeObject::Abstract:
-            return AbstractStr;
-        break;
-
-        case TypeObject::Circle:
-            return CircleStr;
-        break;
-
-        case TypeObject::Point:
-            return PointStr;
-        break;
-
-        case TypeObject::GoalPoint:
-            return GoalPointStr;
-        break;
-
-        default:
-            return " Error invalid type";
-        break;
-
-    }
+    return getTypeStr(m_type);
 }
 
 std::string EditorObject::getTypeStr(const TypeObject& type)
@@ -87,54 +83,23 @@ std::string EditorObject::getTypeStr(const TypeObject& type)
             return GoalPointStr;
         break;
 
+        case TypeObject::Enemy:
+            return EnemyStr;
+        break;
+
+        case TypeObject::Hero:
+            return HeroStr;
+        break;
+
         default:
             return " Error invalid type";
         break;
 
-    }  
+    }
 }
 
 
 bool EditorObject::compare(const EditorObject* r1, const EditorObject* r2)
 {
-	int valueR1 = 0;
-	int valueR2 = 0;
-
-
-	if(r1->getType() == TypeObject::Abstract)
-	{
-		valueR1 = -1;
-	}
-	else if(r1->getType() == TypeObject::Point)
-	{
-		valueR1 = 2;
-	}
-	else if (r1->getType() == TypeObject::GoalPoint)
-	{
-		valueR1 = 3;
-	}
-	else if(r1->getType() == TypeObject::Circle)
-	{
-		valueR1 = 1;
-	}
-
-
-	if(r2->getType() == TypeObject::Abstract)
-	{
-		valueR2 = -1;
-	}
-	else if(r2->getType() == TypeObject::Point)
-	{
-		valueR2 = 2;
-	}
-	else if (r2->getType() == TypeObject::GoalPoint)
-	{
-		valueR2 = 3;
-	}
-	else if(r2->getType() == TypeObject::Circle)
-	{
-		valueR2 = 1;
-	}
-
-    return valueR1 < valueR2;
+    return EditorObject::objectValueMap.at(r1->getType()) < EditorObject::objectValueMap.at(r2->getType());
 }

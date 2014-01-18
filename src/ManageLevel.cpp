@@ -73,7 +73,7 @@ void ManageLevel::IsNextLevel()
     }
 }
 
-void ManageLevel::levelFinished (CharacterModel& charModel, bool & soundplayable)
+void ManageLevel::levelFinished (const CharacterModel& charModel, bool & soundplayable)
 {
     m_levelModel->IsLosing();
     m_levelModel->IsFinishing(charModel,m_scale, soundplayable);
@@ -118,9 +118,63 @@ void ManageLevel::reset()
     m_changeLevel = false;
 }
 
+void ManageLevel::showEnemies()
+{
+    std::vector<EditorObject*> listEnemies = m_levelView->getSpriteList();
+    for(auto it : m_levelView->getSpriteList())
+    {
+        if(it->getType() == TypeObject::Enemy)
+        {
+            Enemy* enemy = dynamic_cast<Enemy*>(it);
+            if( enemy == nullptr)
+            {
+                std::runtime_error("Error in ManageLevel::showEnemies : cannot dynamic_cast in enemy");
+            }
+            enemy->show();
+        }
+    }
+}
+
+
+void ManageLevel::decrementAttempt()
+{
+    m_levelModel->decrementAttempt();
+
+    std::vector<EditorObject*> listEnemies = m_levelView->getSpriteList();
+    for(auto it : m_levelView->getSpriteList())
+    {
+        if(it->getType() == TypeObject::Enemy)
+        {
+            Enemy* enemy = dynamic_cast<Enemy*>(it);
+            if( enemy == nullptr)
+            {
+                std::runtime_error("Error in ManageLevel::decrementAttempt : cannot dynamic_cast in enemy");
+            }
+            enemy->decrementAttempt();
+        }
+    }
+}
+
+void ManageLevel::handle_inputEnnemies(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction)
+{
+    std::vector<EditorObject*> listEnemies = m_levelView->getSpriteList();
+    for(auto it : m_levelView->getSpriteList())
+    {
+        if(it->getType() == TypeObject::Enemy)
+        {
+            Enemy* enemy = dynamic_cast<Enemy*>(it);
+            if( enemy == nullptr)
+            {
+                std::runtime_error("Error in ManageLevel::decrementAttempt : cannot dynamic_cast in enemy");
+            }
+            enemy->handle_input(event, textAreaFunction);
+        }
+    }
+}
+
 void ManageLevel::displaying(sf::Event& event , sf::RenderTarget& target , sf::View& myView)
 {
-	std::vector<EditorCircle*> temp = m_levelView->getSpriteList();
+	std::vector<EditorObject*> temp = m_levelView->getSpriteList();
 	if(event.type == sf::Event::MouseMoved)
 	{
         m_isDisplayToolTip = false;
@@ -132,10 +186,11 @@ void ManageLevel::displaying(sf::Event& event , sf::RenderTarget& target , sf::V
         {
             if(temp[i]->getType() == TypeObject::Point || temp[i]->getType() == TypeObject::GoalPoint)
             {
-                if(temp[i]->getGlobalBounds().contains(coord.x, coord.y))
+
+                if(temp[i]->get_GlobalBounds().contains(coord.x, coord.y))
                 {
                         m_isDisplayToolTip = true;
-                        sf::Vector2i position = target.mapCoordsToPixel(temp[i]->getPosition(), myView);
+                        sf::Vector2i position = target.mapCoordsToPixel(temp[i]->get_Position(), myView);
 
                         position.x -= toolTipTex.getSize().x ;
                         position.y -= toolTipTex.getSize().y ;

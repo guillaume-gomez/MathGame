@@ -1,3 +1,4 @@
+
 #include "EnemyModel.hpp"
 
 EnemyModel::EnemyModel(bool life, sf::Vector2f coord, float speed, MoveType moveType, unsigned int _nbActive)
@@ -8,6 +9,17 @@ EnemyModel::EnemyModel(bool life, sf::Vector2f coord, float speed, MoveType move
     	m_isActive = true;
     }
 
+}
+
+EnemyModel::EnemyModel(const EnemyModel& copy)
+:CharacterModel(copy.m_life, copy.getCoords(), copy.m_speed, copy.m_moveType),
+ m_nbAttempt(copy.m_nbAttempt), m_isActive(copy.m_isActive)
+{
+    std::cout << "Coonstructuer de copy EnemyModel" << std::endl;
+    if(m_nbAttempt == 0)
+    {
+        m_isActive = true;
+    }
 }
 
 EnemyModel::~EnemyModel()
@@ -26,21 +38,18 @@ EnemyModel::~EnemyModel()
         float speed = 0;
         if(m_orientedRight)
         {
-            speed = m_speed;    
+            speed = m_speed;
         }
         else
         {
-            speed = -m_speed;
+            speed = - m_speed;
         }
         m_PhysicsBox.setThrust(sf::Vector2f(speed, m_PhysicsBox.getThrust().y));
-        
     }
  }
 
 
-
-
- void EnemyModel::decrementAttempt()
+void EnemyModel::decrementAttempt()
 {
     if(m_nbAttempt > 0)
     {
@@ -55,19 +64,13 @@ EnemyModel::~EnemyModel()
 
  bool EnemyModel::isActive()const {return m_isActive;}
 
-
- void EnemyModel::setDirection(bool _dir) { m_direction = _dir;}
-
-
- bool EnemyModel::getDirection()const { return m_direction;}
-
-
- unsigned int EnemyModel::getNbAttempt() const {return m_nbAttempt;}
+ unsigned int EnemyModel::getNbAttempt() const { return m_nbAttempt;}
 
 
 std::string EnemyModel::getNbAttemptStr() const
 {
     std::ostringstream oss;
-    oss << m_nbAttempt;
+    //std::cout << "EnemyModel::getNbAttemptStr"<< m_nbAttempt << std::endl;
+    oss << getNbAttempt();
     return oss.str();
 }

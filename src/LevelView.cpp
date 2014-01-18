@@ -29,7 +29,7 @@ LevelView::LevelView(const LevelModel& model, float _scale)
     ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
     ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
     ObjectFactoryAbstract::_register(TypeObject::GoalPoint,new Point(sizePoint, true));
-
+    ObjectFactoryAbstract::_register(TypeObject::Enemy,new Enemy());
     //pré loading
 //    float widthTex  = (float) m_texGoal.getSize().x / 2;
 //    float heightTex = (float) m_texGoal.getSize().y / 2;
@@ -38,7 +38,7 @@ LevelView::LevelView(const LevelModel& model, float _scale)
     {
         if(m_model.getType(i) == TypeObject::Circle)
         {
-            GravityCircle * NewCircle = dynamic_cast<GravityCircle*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+            GravityCircle * NewCircle =  dynamic_cast<GravityCircle*>(ObjectFactoryAbstract::create(m_model.getType(i)));
             NewCircle->setRadius(m_model.getRadius(i));
             NewCircle->setOrigin(m_model.getRadius(i), m_model.getRadius(i));
             NewCircle->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
@@ -47,11 +47,22 @@ LevelView::LevelView(const LevelModel& model, float _scale)
 
         else if (m_model.getType(i) == TypeObject::Point)
         {
-            Point * NewPoint = dynamic_cast<Point*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+            Point * NewPoint =  dynamic_cast<Point*>(ObjectFactoryAbstract::create(m_model.getType(i)));
             if(NewPoint != nullptr)
             {
                 NewPoint->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
                 m_listSprite.push_back(NewPoint);
+            }
+        }
+
+        else if (m_model.getType(i) == TypeObject::Enemy)
+        {
+            Enemy* newEnemy =  dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+            if(newEnemy != nullptr)
+            {
+                newEnemy->set_Position(m_model.getCoordPoints(i).x /*- widthTex*/ , - m_model.getCoordPoints(i).y /* - heightTex*/);
+                newEnemy->setNbAttempt(m_model.getAttempt(i));
+                m_listSprite.push_back(newEnemy);
             }
         }
     }
@@ -77,10 +88,10 @@ void LevelView::loadCoord()
     for(unsigned int i = 0 ; i < m_listSprite.size() - 1 ; i++)
     {
         sf::Vector2f coord(m_model.getCoordPoints(i).x * m_scale/* - widthTex*/, - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
-        m_listSprite[ i ]->setPosition(coord);
+        m_listSprite[ i ]->set_Position(coord);
     }
      sf::Vector2f coord(m_model.getGoalCoord().x * m_scale/* - widthTex*/, - m_model.getGoalCoord().y * m_scale/*  - heightTex*/);
-     m_listSprite[ m_listSprite.size() - 1 ]->setPosition(coord);
+     m_listSprite[ m_listSprite.size() - 1 ]->set_Position(coord);
 
 }
 
@@ -93,13 +104,13 @@ void LevelView::draw(sf::RenderTarget& app)
         {
             if(!m_model.getCheckValue(i))
             {
-               app.draw(*m_listSprite[i]);
+               m_listSprite[i]->draw(app);
             }
         }
         //other element can't be deleted, so they haven't got a check value parameter
         else
         {
-            app.draw(*m_listSprite[i]);
+             m_listSprite[i]->draw(app);
         }
     }
 }

@@ -9,7 +9,7 @@
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
 /**
-@brief : a wrapper class to manage different kind of object circleShape
+@brief : a wrapper class to manage different kind of object
 **/
 
 class EditorObject
@@ -23,7 +23,14 @@ class EditorObject
         static std::string getTypeStr(const TypeObject& type);
         static bool compare(const EditorObject* r1, const EditorObject* r2);
         virtual EditorObject* clone() const = 0;
+        virtual void set_Position(sf::Vector2f& position) = 0;
+        virtual void set_Position(float x, float y) = 0;
+        virtual sf::FloatRect get_GlobalBounds() const = 0;
+        virtual sf::Vector2f get_Position() const = 0;
+        virtual std::string save(float scale = GraphScale) const = 0;
+
     protected:
+        static const std::map<TypeObject, int> objectValueMap;
     	TypeObject m_type;
     private:
 };

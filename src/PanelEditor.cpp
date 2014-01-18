@@ -1,7 +1,7 @@
 #include "PanelEditor.hpp"
 
 PanelEditor::PanelEditor()
-:m_isAnimLeft(false), m_isAnimRight(false),m_visible(false)
+:m_isAnimLeft(false), m_isAnimRight(false),m_visible(true)
 {
 	sf::Texture * texture = 0;
     texture = TextureManager::getTextureManager()->getResource(std::string(FilenameButtonPanel));

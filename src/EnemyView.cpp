@@ -1,7 +1,8 @@
 #include "EnemyView.hpp"
+#include <sstream>
 
-EnemyView::EnemyView(const EnemyModel& model, float scale, int _w, int _h)
-:CharacterView(model,scale,_w,_h)
+EnemyView::EnemyView(const EnemyModel& model, float scale)
+:CharacterView(model,scale)
 {
 	m_nbAttempt.setColor(sf::Color(0,0,0,240));
 	m_nbAttempt.setFont(14);
@@ -18,13 +19,19 @@ void EnemyView::draw( sf::RenderTarget& target)
 	{
 		CharacterView::draw(target);
 		m_nbAttempt.draw(target);
-	}	
+	}
+}
+
+void EnemyView::setStringAttempt( std::string str)
+{
+	m_nbAttempt.setString(str);
 }
 
 void EnemyView::show()
 {
 	CharacterView::show();
 
+	//std::cout << " m_model-->" << &m_model <<"(" << m_model.getCoords().x <<" , " << m_model.getCoords().y << ") " << std::endl;
 	sf::Vector2f pos =  m_model.getCoords() * m_scale;
 	sf::FloatRect rect = m_animation.getLocalBounds();
 
@@ -32,14 +39,19 @@ void EnemyView::show()
 	pos.y = - pos.y - rect.height - (m_nbAttempt.getText().getLocalBounds().height / 2) - offsetNbAttemptEnemy;
 	m_nbAttempt.setPosition(pos);
 
-	const EnemyModel* m_modelEnemyTemp = dynamic_cast<const EnemyModel*>(&m_model);
-	if(m_modelEnemyTemp != nullptr)
-	{
-        m_nbAttempt.setString(sf::String(m_modelEnemyTemp->getNbAttemptStr()));
-    }
-    else
-    {
-        std::runtime_error("void EnemyView::show() : Cannot dynamic_cast<const EnemyModel*>(&m_model)");
-    }
+	//setStringAttempt Done in the upper class
+
 }
 
+EnemyView::EnemyView(const EnemyView& copy)
+:CharacterView(copy.m_model,copy.m_scale)
+ //share the same texture for all the instance
+// m_ArtTexture(copy.m_ArtTexture)
+{
+	std::cout << "Copy Constructor of EnemyView Class" << std::endl;
+	m_nbAttempt.setColor(sf::Color(0,0,0,240));
+	m_nbAttempt.setFont(14);
+
+
+
+}

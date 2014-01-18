@@ -12,6 +12,7 @@
 #include <SFML/Graphics/Texture.hpp>
 
 #include "../files.hpp"
+#include "Enemy.hpp"
 #include "LevelModel.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "GravityCircle.hpp"
@@ -23,11 +24,11 @@ class LevelView
         LevelView(const LevelModel& model,  float _scale);
         virtual ~LevelView();
         void draw( sf::RenderTarget& target );
-        std::vector<EditorCircle*> getSpriteList () const;
+        std::vector<EditorObject*> getSpriteList () const;
         void loadCoord();
     private:
         LevelView();
-        std::vector<EditorCircle*> m_listSprite;
+        std::vector<EditorObject*> m_listSprite;
         const LevelModel& m_model;
         static sf::Texture m_texNormal;
         static sf::Texture m_texGoal;
@@ -41,7 +42,7 @@ class LevelView
 **
 ******************************************************/
 
-inline std::vector<EditorCircle*> LevelView::getSpriteList () const { return m_listSprite;};
+inline std::vector<EditorObject*> LevelView::getSpriteList () const { return m_listSprite;};
 
 
 /****************************************************

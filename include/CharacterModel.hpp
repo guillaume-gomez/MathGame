@@ -19,6 +19,7 @@ class CharacterModel
     public:
         enum MoveType{/*ConstantSpeed, NaturalPhysic,*/ NoSliding, WithSliding};
         CharacterModel(bool life = true , sf::Vector2f coord = sf::Vector2f(0.0f, 0.0f), float speed = 6.0f, MoveType moveType = NoSliding);
+        CharacterModel(const CharacterModel& copy);
         bool isAlive() const;
         const sf::Vector2f getCoords() const;
         const sf::Vector2f getVelocity() const;
@@ -39,6 +40,9 @@ class CharacterModel
 		void setFrictionCoefficient(float frictionCoefficient);
 		float getAngle() const;
 		void setAngle(float angle);
+        void checkisAlive();
+        void setDirection(bool dir);
+        bool getDirection() const;
 
     protected:
         Physics::Box m_PhysicsBox;

@@ -55,6 +55,11 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
             {
                 newElmt.setType(TypeObject::GoalPoint);
             }
+            else if (type == EnemyStr)
+            {
+                newElmt.setType(TypeObject::Enemy);
+                newElmt.setAttempt(2);
+            }
             sf::Vector2f temp;
             m_fileLevel >> temp.x;
             m_fileLevel >> temp.y;
@@ -87,7 +92,7 @@ std::ostream& operator<<( std::ostream &flux, const LevelModel& level )
 /**
 **
 **/
-void LevelModel::IsFinishing ( CharacterModel& charactermodel ,float _scale , bool& playableSound)
+void LevelModel::IsFinishing ( const CharacterModel& charactermodel ,float _scale , bool& playableSound)
 {
     playableSound = false;
     sf::FloatRect position_and_Size = charactermodel.getRect();

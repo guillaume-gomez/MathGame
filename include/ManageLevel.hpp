@@ -35,7 +35,7 @@ class ManageLevel
         void drawUI(sf::RenderTarget& app);
         std::string convertEnum (Difficulty _diff);
         void displaying(sf::Event& event, sf::RenderTarget& target, sf::View& myView);
-        void levelFinished (CharacterModel& charModel, bool& soundPlayable);
+        void levelFinished (const CharacterModel& charModel, bool& soundPlayable);
         void setToolTipPos (sf::Vector2f _temp);
         sf::Vector2f getToolTipPos ()const;
         void setToolTipScale (sf::Vector2f _scale);
@@ -46,6 +46,8 @@ class ManageLevel
         void setnbAttempTextPosition(sf::Vector2f _pos);
         void setnbAttempTextScale(sf::Vector2f _pos);
         void setDiff(Difficulty _diff);
+        void showEnemies();
+        void handle_inputEnnemies(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
 
     private:
         bool m_changeLevel;
@@ -98,8 +100,6 @@ inline sf::Vector2f ManageLevel::getToolTipScale() const
 {
     return m_tooltip.getScale();
 }
-
-inline void ManageLevel::decrementAttempt() {m_levelModel->decrementAttempt();};
 
 inline bool ManageLevel::getChangeLevel() const {return m_changeLevel;};
 

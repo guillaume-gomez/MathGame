@@ -1,4 +1,5 @@
 #include "EditorCircle.hpp"
+#include <sstream>
 
 EditorCircle::EditorCircle()
 :EditorObject()
@@ -70,6 +71,13 @@ bool EditorCircle::isCollide(const sf::FloatRect& rect)
         return true;
     }
     return false;
+}
+
+std::string EditorCircle::save(float scale) const
+{
+  std::stringstream flux;
+  flux << this->getPosition().x / scale <<" " << this->getPosition().y / scale << std::endl;
+  return flux.str();
 }
 
 void EditorCircle::draw(sf::RenderTarget& app)

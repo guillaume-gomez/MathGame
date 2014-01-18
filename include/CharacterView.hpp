@@ -13,23 +13,24 @@
 #include "AniSprite.hpp"
 #include "CharacterModel.hpp"
 #include "../files.hpp"
-#include "EditorObject.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
 
-class CharacterView /*: public EditorObject*/
+class CharacterView
 {
 	public:
-	CharacterView(const CharacterModel& model, float scale = 1.0f, int _w = 1, int _h = 1);
-	/** Default destructor */
-	virtual ~CharacterView();
-	virtual void show();
-	virtual void draw(sf::RenderTarget& target);
-    sf::Vector2f getCoords()const;
-    sf::FloatRect getRectLocal()const;
-    sf::Sound m_sound;
-    void setSize(int width, int height);
-    void setTexture(const sf::Texture* texture, int frameWidth, int frameHeight);
+    	CharacterView(const CharacterModel& model, float scale = 1.0f);
+    	/** Default destructor */
+    	virtual ~CharacterView();
+    	virtual void show();
+    	virtual void draw(sf::RenderTarget& target);
+        sf::Vector2f getPosition()const;
+        sf::FloatRect getRectLocal()const;
+        sf::Sound m_sound;
+        void setSize(int width, int height);
+        void setTexture(const sf::Texture* texture, int frameWidth, int frameHeight);
+        sf::FloatRect getGlobalBounds() const;
+        bool getDirection() const;
 
 	protected:
         AniSprite m_animation;
@@ -43,16 +44,23 @@ class CharacterView /*: public EditorObject*/
 
         bool m_loadedTextureSuccess;
         sf::Texture* m_ArtTexture;
+    private:
+         CharacterView(const CharacterView& copy);
 };
 
-inline sf::FloatRect CharacterView::getRectLocal()const{return m_animation.getLocalBounds();};
-inline sf::Vector2f CharacterView::getCoords()const{return m_animation.getPosition();};
+inline sf::FloatRect CharacterView::getRectLocal() const {return m_animation.getLocalBounds();};
+
+inline sf::Vector2f CharacterView::getPosition() const {return m_animation.getPosition();};
+
+inline sf::FloatRect CharacterView::getGlobalBounds() const{ return m_animation.getGlobalBounds();};
 
 inline void CharacterView::setSize(int width, int height)
 {
 	m_animation.SetFrameSize(width, height);
 	m_animation.SetLoopTime(1);
 }
+
+inline bool CharacterView::getDirection() const {return m_left;}
 
 inline void CharacterView::setTexture(const sf::Texture* texture, int frameWidth, int frameHeight)
 {
