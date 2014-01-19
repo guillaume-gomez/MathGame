@@ -1,6 +1,7 @@
 #include "GravityCircle.hpp"
 #include <stdexcept>
 #include <iostream>
+#include <sstream>
 
 GravityCircle::GravityCircle(float _radius, float radiusMax, bool defOriginCenter, std::string filename)
 :EditorCircle(), m_filename(filename),m_radiusMax(radiusMax), m_texture(*TextureManager::getTextureManager()->getResource("resources/sprites/smiley.png"))
@@ -36,6 +37,16 @@ void GravityCircle::grow(float step)
         this->setRadius(currentRadius + step);
         this->setOrigin(currentRadius + step,currentRadius + step);
     }
+}
+
+
+std::string GravityCircle::save(float scale) const
+{
+  std::stringstream flux;
+  flux << this->getTypeStr() << std::endl;
+  flux << this->getRadius() << std::endl;
+  flux << EditorCircle::save(scale);
+  return flux.str();
 }
 
 EditorObject* GravityCircle::clone() const

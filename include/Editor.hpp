@@ -9,6 +9,7 @@
 #include "Axis.hpp"
 #include "ButtonPerso.hpp"
 #include "ConstrueFunction.hpp"
+#include "Enemy.hpp"
 #include "GraphView.hpp"
 #include "GravityCircle.hpp"
 #include "ManageText.hpp"
@@ -38,7 +39,7 @@ class Editor
         void managePanel(  int coordMouseX);
         void movePanel ();
         int save(ScreenLink * link);
-        void addPoint( int x , int y);
+        void addObject( int x , int y);
         void addCircle(int x, int y);
         void popPoint();
         void deleteGravityCircle(int x, int y);
@@ -54,6 +55,7 @@ class Editor
         ButtonPerso m_buttonGoalButton;
         ButtonPerso m_buttonCircle;
         ButtonPerso m_buttonNormalButton;
+        ButtonPerso m_buttonEnemy;
         ButtonPerso m_buttonPanel;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
@@ -73,7 +75,7 @@ class Editor
         sf::Vector2f m_radiusBuilder;
         sf:: View m_viewPerso;
 
-        std::vector<EditorCircle*> m_spriteList;
+        std::vector<EditorObject*> m_spriteList;
         sf::Clock m_timer;
         sf::Clock m_timerPanel;
 

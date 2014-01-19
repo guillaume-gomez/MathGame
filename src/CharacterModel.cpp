@@ -13,12 +13,43 @@ CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, Mov
 	Physics::Engine::getEngine()->addObject(&m_PhysicsBox);
 }
 
+
+CharacterModel::CharacterModel(const CharacterModel& copy)
+:m_life(copy.m_life), m_frictionCoefficient(copy.m_frictionCoefficient), m_speed(copy.m_speed), m_moveType(copy.m_moveType)
+{
+  m_orientedRight = (m_PhysicsBox.getVelocity().x>0);
+  Physics::Engine::getEngine()->addObject(&m_PhysicsBox);
+}
+
+void CharacterModel::setDirection(bool dir)
+{
+  m_orientedRight = dir;
+}
+
+bool CharacterModel::getDirection() const
+{
+  return m_orientedRight;
+}
+
 /**
 * @brief : Accessor of life
 **/
-bool CharacterModel::getLife() const
+bool CharacterModel::isAlive() const
 {return m_life;}
 
+
+void CharacterModel::checkisAlive()
+{
+    if(this->getCoords().y > sentinelY)
+    {
+        m_life = false;
+    }
+
+    if(this->getCoords().x > sentinelX)
+    {
+        m_life = false;
+    }
+}
 /**
 * @brief : Accessor of life
 **/

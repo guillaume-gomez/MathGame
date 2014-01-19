@@ -13,13 +13,15 @@ enum Difficulty {Easy , Normal , Hard};
 enum GameMode {Classic , NoChance};
 enum class TypeObject
 {
-    Abstract, Circle, Point, GoalPoint
+    Abstract, Circle, Point, GoalPoint, Enemy, Hero
 };
 
 const char AbstractStr[]  = "Abstract";
 const char CircleStr[]  = "Circle";
 const char PointStr[]  = "Point";
 const char GoalPointStr[]  = "GoalPoint";
+const char EnemyStr[]  = "Enemy";
+const char HeroStr[] = "Hero";
 
 const int Blur = 120;
 const int Clear = 220;
@@ -89,4 +91,6 @@ const unsigned int BikeHeight = 50;
 
 const float sentinelX = -10000.0f;
 const float sentinelY = -10000.0f;
+
+const float offsetNbAttemptEnemy = 15.0f;
 #endif // CONSTANTS_HPP

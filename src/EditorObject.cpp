@@ -1,5 +1,26 @@
 #include "EditorObject.hpp"
 
+const std::map<TypeObject,std::string> EditorObject::objectStrMap =
+{
+    {TypeObject::Hero, HeroStr},
+    {TypeObject::Abstract, AbstractStr},
+    {TypeObject::Point, PointStr},
+    {TypeObject::GoalPoint, GoalPointStr},
+    {TypeObject::Circle, CircleStr},
+    {TypeObject::Enemy, EnemyStr}
+};
+
+const std::map<TypeObject,int> EditorObject::objectValueMap =
+{
+    {TypeObject::Hero, -1},
+    {TypeObject::Abstract, -1},
+    {TypeObject::Point, 3},
+    {TypeObject::GoalPoint, 4},
+    {TypeObject::Circle, 2},
+    {TypeObject::Enemy, 1}
+};
+
+
 EditorObject::EditorObject()
 {
 
@@ -13,128 +34,41 @@ EditorObject::~EditorObject()
 
 std::ostream& operator<<( std::ostream &flux, TypeObject const type )
 {
-    switch(type)
-    {
-        case TypeObject::Abstract:
-            flux << AbstractStr;
-        break;
-
-        case TypeObject::Circle:
-            flux << CircleStr;
-        break;
-
-        case TypeObject::Point:
-            flux << PointStr;
-        break;
-
-        case TypeObject::GoalPoint:
-            flux << GoalPointStr;
-        break;
-
-        default:
-            flux <<" Error invalid type";
-        break;
-
-    }
-    return flux;
+ // TODO
 }
 
+TypeObject EditorObject::getTypeByStr(const std::string str)
+{
+    for (auto it : EditorObject::objectStrMap)
+    {
+        if(it.second == str)
+        {
+            return it.first;
+        }
+    }
+    std::runtime_error("EditorObject::getTypeByStr(const std::string str)  cannot find this value");
+}
 
 std::string EditorObject::getTypeStr() const
 {
-    switch(m_type)
-    {
-        case TypeObject::Abstract:
-            return AbstractStr;
-        break;
-
-        case TypeObject::Circle:
-            return CircleStr;
-        break;
-
-        case TypeObject::Point:
-            return PointStr;
-        break;
-
-        case TypeObject::GoalPoint:
-            return GoalPointStr;
-        break;
-
-        default:
-            return " Error invalid type";
-        break;
-
-    }
+    return getTypeStr(m_type);
 }
 
 std::string EditorObject::getTypeStr(const TypeObject& type)
 {
-    switch(type)
+    const std::map<TypeObject,std::string>::const_iterator it =  EditorObject::objectStrMap.find(type);
+    if(it != objectStrMap.end())
     {
-        case TypeObject::Abstract:
-            return AbstractStr;
-        break;
-
-        case TypeObject::Circle:
-            return CircleStr;
-        break;
-
-        case TypeObject::Point:
-            return PointStr;
-        break;
-
-        case TypeObject::GoalPoint:
-            return GoalPointStr;
-        break;
-
-        default:
-            return " Error invalid type";
-        break;
-
-    }  
+        return it->second;
+    }
+    else
+    {
+        return AbstractStr;
+    }
 }
 
 
 bool EditorObject::compare(const EditorObject* r1, const EditorObject* r2)
 {
-	int valueR1 = 0;
-	int valueR2 = 0;
-
-
-	if(r1->getType() == TypeObject::Abstract)
-	{
-		valueR1 = -1;
-	}
-	else if(r1->getType() == TypeObject::Point)
-	{
-		valueR1 = 2;
-	}
-	else if (r1->getType() == TypeObject::GoalPoint)
-	{
-		valueR1 = 3;
-	}
-	else if(r1->getType() == TypeObject::Circle)
-	{
-		valueR1 = 1;
-	}
-
-
-	if(r2->getType() == TypeObject::Abstract)
-	{
-		valueR2 = -1;
-	}
-	else if(r2->getType() == TypeObject::Point)
-	{
-		valueR2 = 2;
-	}
-	else if (r2->getType() == TypeObject::GoalPoint)
-	{
-		valueR2 = 3;
-	}
-	else if(r2->getType() == TypeObject::Circle)
-	{
-		valueR2 = 1;
-	}
-
-    return valueR1 < valueR2;
+    return EditorObject::objectValueMap.at(r1->getType()) < EditorObject::objectValueMap.at(r2->getType());
 }

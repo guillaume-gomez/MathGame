@@ -15,6 +15,7 @@ class GravityCircle : public EditorCircle
         virtual ~GravityCircle();
         void grow(float step = 0.1f);
         virtual EditorObject* clone() const;
+        virtual std::string save(float scale = GraphScale) const;
     protected:
           std::string m_filename;
           float m_radiusMax;

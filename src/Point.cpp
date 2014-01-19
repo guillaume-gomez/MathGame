@@ -1,4 +1,5 @@
 #include "Point.hpp"
+#include <sstream>
 
 
 Point::Point(float radius,bool goalPoint, float scale, std::string filename)
@@ -47,6 +48,14 @@ EditorObject* Point::clone() const
 Point::Point()
 {
 
+}
+
+std::string Point::save(float scale) const
+{
+  std::stringstream flux;
+  flux << this->getTypeStr() << std::endl;
+  flux << EditorCircle::save(scale);
+  return flux.str();
 }
 
 Point::~Point()
