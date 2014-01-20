@@ -1,4 +1,7 @@
+#include <stdexcept>
+
 #include "LevelModel.hpp"
+
 
 ///an element does not contain always a radius (example, an ennemy)
 Element::Element()
@@ -79,8 +82,8 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
     }
     else
     {
-
         std::cerr << "Error file :'" << _filename.c_str() << "' cannot exist" << std::endl;
+        std::runtime_error("Cannot load the file level\n");
         m_fileLevel.close();
     }
 

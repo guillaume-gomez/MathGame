@@ -9,40 +9,47 @@ Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
 
 int Screen_Game::Run(sf::RenderWindow& App)
 {
-    bool Running = true;
-    m_game.loadConfigFile();
-    m_game.selectLevel(*m_stat);
-    int gameFinish = 0;
-    m_game.setBack(false);
-    m_game.setCenterCamera();
-    m_game.setZoom(true);
-
-    while(Running && gameFinish == 0)
+    try
     {
+        bool Running = true;
+        m_game.loadConfigFile();
+        m_game.selectLevel(*m_stat);
+        int gameFinish = 0;
+        m_game.setBack(false);
+        m_game.setCenterCamera();
+        m_game.setZoom(true);
 
-        /*if ( alpha < m_alpha_max)
+        while(Running && gameFinish == 0)
         {
-            alpha++;
-        }*/
-       Running =  m_game.handleInput();
 
-        if(m_game.isBacked())
-        {
-            recenterCamera();
-            return MENU;
+            /*if ( alpha < m_alpha_max)
+            {
+                alpha++;
+            }*/
+           Running =  m_game.handleInput();
+
+            if(m_game.isBacked())
+            {
+                recenterCamera();
+                return MENU;
+            }
+            gameFinish = m_game.levelOperation(*m_stat);
+            if(gameFinish == -1)
+            {
+                return ENDING;
+            }
+            m_game.move();
+            m_game.manageSound();
+            m_game.show();
+            m_game.draw();
+            App.display();
         }
-        gameFinish = m_game.levelOperation(*m_stat);
-        if(gameFinish == -1)
-        {
-            return ENDING;
-        }
-        m_game.move();
-        m_game.manageSound();
-        m_game.show();
-        m_game.draw();
-        App.display();
+        return (SCREEN_EXIT);
     }
-    return (SCREEN_EXIT);
+    catch(std::exception& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 }
 
 

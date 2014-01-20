@@ -18,7 +18,7 @@
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
-#include "IntegralView.hpp"
+#include "Integral.hpp"
 
 
 using namespace sf;
@@ -68,5 +68,7 @@ class Game
         Sprite m_spriteBG;
         TextAreaSFML2_0 m_textAreaFunction;
         View m_viewPerso;
+
+        Integral m_integral;
 };
 #endif // GAME_H

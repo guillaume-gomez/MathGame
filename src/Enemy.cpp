@@ -55,6 +55,6 @@ std::string Enemy::save(float scale) const
     flux << this->getTypeStr() << std::endl;
     flux << m_model.getNbAttemptStr() << std::endl;
     flux << m_model.getDirection() << std::endl;
-    flux << m_model.getCoords().x  << " " << - m_model.getCoords().y  << std::endl;
+    flux << m_model.getCoords().x  << " " <<  m_model.getCoords().y  << std::endl;
     return flux.str();
 }

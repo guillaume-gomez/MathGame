@@ -6,6 +6,20 @@ IntegralModel::IntegralModel(std::string _function)
     getIntegraleCurveShape(-7,7,0.25f);
 }
 
+IntegralModel::IntegralModel(const IntegralModel& copy)
+:ConstrueFunction(copy.getFunction())
+{
+    for(auto it : copy.m_listCoordShapes)
+    {
+        m_listCoordShapes.push_back(it);
+    }
+
+    for(auto it : copy.m_nbCoordByShape)
+    {
+        m_nbCoordByShape.push_back(it);
+    }
+}
+
  void IntegralModel::getIntegraleCurveShape(float _begin , float _end , float step)
  {
      std::list<sf::Vector2f>::iterator firstPoint = m_coords.begin();
@@ -55,7 +69,7 @@ IntegralModel::IntegralModel(std::string _function)
                     addList = true;
                     sign = 0;
                 }
-              //  std::cout << "X " << itNext->x << " Y " << itNext->y << std::endl;
+                //std::cout << "X " << itNext->x << " Y " << itNext->y << std::endl;
             }
             m_listCoordShapes.push_back(*it);
             nbCoord++;
@@ -75,6 +89,16 @@ IntegralModel::IntegralModel(std::string _function)
         m_nbCoordByShape.push_back(nbCoord);
     }
  }
+
+
+void IntegralModel::showPoints()
+{
+    unsigned int index = 0;
+    for (auto it : m_listCoordShapes)
+    {
+        std::cout <<"("<< it.x << ", " << it.y <<")" << std::endl;
+    }
+}
 
  IntegralModel::~IntegralModel()
  {}

@@ -20,7 +20,7 @@ ConstrueFunction::~ConstrueFunction()
 /**
 * @brief : Accessor of m_function
 **/
-std::string& ConstrueFunction::getFunction() {return m_function ;}
+std::string ConstrueFunction::getFunction() const {return m_function ;}
 
 /**
 * @brief : Accessor of m_function
