@@ -39,7 +39,6 @@ void GravityCircle::grow(float step)
     }
 }
 
-
 std::string GravityCircle::save(float scale) const
 {
   std::stringstream flux;
@@ -48,6 +47,15 @@ std::string GravityCircle::save(float scale) const
   flux << EditorCircle::save(scale);
   return flux.str();
 }
+
+ EditorObject* GravityCircle::loadView(const Element& elmt, float scale)
+ {
+    GravityCircle * NewCircle =  new GravityCircle();
+    NewCircle->setRadius(elmt.getRadius());
+    NewCircle->setOrigin(elmt.getRadius(), elmt.getRadius());
+    NewCircle->setPosition(elmt.getCoord().x * scale/*- widthTex*/ , - elmt.getCoord().y * scale/* - heightTex*/);
+    return NewCircle;
+ }
 
 EditorObject* GravityCircle::clone() const
 {

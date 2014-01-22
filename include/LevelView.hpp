@@ -13,6 +13,7 @@
 
 #include "../files.hpp"
 #include "Enemy.hpp"
+#include "Integral.hpp"
 #include "LevelModel.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "GravityCircle.hpp"

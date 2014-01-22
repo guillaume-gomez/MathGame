@@ -22,6 +22,7 @@ class Hero : public EditorObject
         void setFrictionCoefficient(float frictionCoefficient);
         void setTexture(const sf::Texture* texture, int frameWidth, int frameHeight);
         void playSound();
+        inline EditorObject* loadView(const Element& elmt, float scale) {std::cerr << "Nothing to do " << std::endl;}
 
         virtual sf::Vector2f get_Position() const;
         virtual void set_Position(sf::Vector2f& pos);

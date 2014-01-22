@@ -3,7 +3,6 @@
 IntegralModel::IntegralModel(std::string _function)
 :ConstrueFunction(_function)
 {
-    getIntegraleCurveShape(-7,7,0.25f);
 }
 
 IntegralModel::IntegralModel(const IntegralModel& copy)
@@ -42,12 +41,12 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
     {
         addList = false;
         unsigned int nbCoord = 0;
-        if ( sign == 0)
+        if (sign == 0)
         {
             m_listCoordShapes.push_back(coordZero);
             nbCoord++;
         }
-        //while the curve stay on on down the abscissa
+        //while the curve stay on or down the abscissa
         while(it != m_coords.end() && !addList)
         {
             if( itNext != m_coords.end())
@@ -94,10 +93,12 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
 void IntegralModel::showPoints()
 {
     unsigned int index = 0;
+    std::cout << "-----------------Coord---------------" << std::endl;
     for (auto it : m_listCoordShapes)
     {
         std::cout <<"("<< it.x << ", " << it.y <<")" << std::endl;
     }
+    std::cout << "------------------------------------" << std::endl;
 }
 
  IntegralModel::~IntegralModel()

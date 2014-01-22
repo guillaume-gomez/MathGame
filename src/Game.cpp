@@ -47,7 +47,7 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 
 
 
-    m_integral.build(-5.0, 5.0);
+    m_integral.build(-14.0, 14.0);
 
 }
 

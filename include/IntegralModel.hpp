@@ -22,11 +22,37 @@ class IntegralModel : public ConstrueFunction
         inline unsigned int getNbPoints () const {return m_listCoordShapes.size();}
         inline unsigned int getNbCoordByShape(unsigned int index) const { if(index < m_nbCoordByShape.size())return m_nbCoordByShape[index];}
         void showPoints();
+        sf::Vector2f getBegin() const;
+        sf::Vector2f getEnd() const;
     private:
     	std::vector<sf::Vector2f> m_listCoordShapes;
     	std::vector<unsigned int> m_nbCoordByShape;
 
 
 };
+
+inline sf::Vector2f IntegralModel::getBegin() const
+{
+    if(m_listCoordShapes.size() > 0)
+    {
+        return m_listCoordShapes.front();
+    }
+    else
+    {
+        std::runtime_error("IntegralModel::getBegin() : the array is empty");
+    }
+}
+
+inline sf::Vector2f IntegralModel::getEnd() const 
+{
+    if(m_listCoordShapes.size() > 0)
+    {
+        return m_listCoordShapes.back();
+    }
+    else
+    {
+        std::runtime_error("IntegralModel::getBegin() : the array is empty");
+    }
+}
 
 #endif // IntegralModel_HPP_H

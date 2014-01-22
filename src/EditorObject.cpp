@@ -7,7 +7,8 @@ const std::map<TypeObject,std::string> EditorObject::objectStrMap =
     {TypeObject::Point, PointStr},
     {TypeObject::GoalPoint, GoalPointStr},
     {TypeObject::Circle, CircleStr},
-    {TypeObject::Enemy, EnemyStr}
+    {TypeObject::Enemy, EnemyStr},
+    {TypeObject::Integral, IntegralStr}
 };
 
 const std::map<TypeObject,int> EditorObject::objectValueMap =
@@ -17,7 +18,8 @@ const std::map<TypeObject,int> EditorObject::objectValueMap =
     {TypeObject::Point, 3},
     {TypeObject::GoalPoint, 4},
     {TypeObject::Circle, 2},
-    {TypeObject::Enemy, 1}
+    {TypeObject::Enemy, 1},
+    {TypeObject::Integral,0}
 };
 
 

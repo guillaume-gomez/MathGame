@@ -6,7 +6,6 @@
 ConstrueFunction::ConstrueFunction(std::string _function)
 :m_function(_function), m_changed(false)/*, m_scale(scale), m_begin(0.0f), m_end(0.0f), m_step(0.0f)*/
 {
-    //ctor
 }
 
 /**

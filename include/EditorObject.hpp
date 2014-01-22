@@ -7,6 +7,7 @@
 
 #include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
+#include "Element.hpp"
 
 /**
 @brief : a wrapper class to manage different kind of object
@@ -29,6 +30,7 @@ class EditorObject
         virtual sf::FloatRect get_GlobalBounds() const = 0;
         virtual sf::Vector2f get_Position() const = 0;
         virtual std::string save(float scale = GraphScale) const = 0;
+        virtual EditorObject* loadView(const Element& elmt, float scale) = 0;
 
     protected:
         static const std::map<TypeObject,std::string> objectStrMap;

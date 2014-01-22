@@ -23,11 +23,11 @@ LevelView::LevelView()
 LevelView::LevelView(const LevelModel& model, float _scale)
 :m_model(model), m_scale(_scale)
 {
-    //build all the template method
     ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
     ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
     ObjectFactoryAbstract::_register(TypeObject::GoalPoint,new Point(sizePoint, true));
     ObjectFactoryAbstract::_register(TypeObject::Enemy,new Enemy());
+    ObjectFactoryAbstract::_register(TypeObject::Integral,new Integral());
     //pré loading
 //    float widthTex  = (float) m_texGoal.getSize().x / 2;
 //    float heightTex = (float) m_texGoal.getSize().y / 2;
@@ -51,34 +51,56 @@ void LevelView::loadCoord()
     int nbPoints = m_model.getNbPoints();
     for(int i = 0 ; i < nbPoints - 1 ; i++)
     {
-        if(m_model.getType(i) == TypeObject::Circle)
+        switch(m_model.getType(i))
         {
-            GravityCircle * NewCircle =  dynamic_cast<GravityCircle*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-            NewCircle->setRadius(m_model.getRadius(i));
-            NewCircle->setOrigin(m_model.getRadius(i), m_model.getRadius(i));
-            NewCircle->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
-            m_listSprite.push_back(NewCircle);
-        }
-
-        else if (m_model.getType(i) == TypeObject::Point)
-        {
-            Point * NewPoint =  dynamic_cast<Point*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-            if(NewPoint != nullptr)
+            case (TypeObject::Circle):
             {
-                NewPoint->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
-                m_listSprite.push_back(NewPoint);
+                GravityCircle * NewCircle =  dynamic_cast<GravityCircle*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+                if(NewCircle != nullptr)
+                {
+                    NewCircle->setRadius(m_model.getRadius(i));
+                    NewCircle->setOrigin(m_model.getRadius(i), m_model.getRadius(i));
+                    NewCircle->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
+                    m_listSprite.push_back(NewCircle);
+                }
             }
-        }
-
-        else if (m_model.getType(i) == TypeObject::Enemy)
-        {
-            Enemy* newEnemy =  dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-            if(newEnemy != nullptr)
+            break;
+            case (TypeObject::Point):
             {
-                newEnemy->set_Position(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
-                newEnemy->setNbAttempt(m_model.getAttempt(i));
-                m_listSprite.push_back(newEnemy);
+                Point * NewPoint =  dynamic_cast<Point*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+                if(NewPoint != nullptr)
+                {
+                    NewPoint->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
+                    m_listSprite.push_back(NewPoint);
+                }
             }
+            break;
+            case (TypeObject::Enemy):
+            {
+                Enemy* newEnemy =  dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+                if(newEnemy != nullptr)
+                {
+                    newEnemy->set_Position(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
+                    newEnemy->setNbAttempt(m_model.getAttempt(i));
+                    m_listSprite.push_back(newEnemy);
+                }
+            }
+            break;
+
+            case (TypeObject::Integral):
+            {
+                std::cout << "CURVES" << std::endl;
+                Integral* integral =  dynamic_cast<Integral*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+                if(integral != nullptr)
+                {
+                    integral->setFunction(m_model.getFunction(i));
+                    integral->build(m_model.getBegin(i), m_model.getEnd(i));
+                    m_listSprite.push_back(integral);
+                }
+            }
+            default:
+            break;
+
         }
     }
 
