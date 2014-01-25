@@ -20,7 +20,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
     m_fileLevel.open(_filename.c_str());
     if(m_fileLevel.is_open())
     {
-        std::cout << " file :'" << _filename.c_str() <<"'"<< std::endl;
+//        std::cout << " file :'" << _filename.c_str() <<"'"<< std::endl;
         m_fileLevel >> m_nbElements;
         m_pointsCheck.clear();
         m_pointsCheck.resize(m_nbElements);
@@ -51,7 +51,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 m_fileLevel >> temp.x;
                 m_fileLevel >> temp.y;
                 newElmt.setCoord(temp);
-                       
+
                 //because it is not a point
                 m_pointsCheck[i] = true;
             }
@@ -62,7 +62,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 m_fileLevel >> temp.x;
                 m_fileLevel >> temp.y;
                 newElmt.setCoord(temp);
-                       
+
             }
             else if (type == GoalPointStr)
             {
@@ -71,7 +71,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 m_fileLevel >> temp.x;
                 m_fileLevel >> temp.y;
                 newElmt.setCoord(temp);
-                       
+
             }
             else if (type == EnemyStr)
             {
@@ -109,13 +109,15 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 m_pointsCheck[i] = true;
 
             }
-            
+
             m_coordElements.push_back(newElmt);
         }
     }
     else
     {
-        std::cerr << "Error file :'" << _filename.c_str() << "' cannot exist" << std::endl;
+        #ifdef DEBUG
+            std::cerr << "Error file :'" << _filename.c_str() << "' cannot exist" << std::endl;
+        #endif
         std::runtime_error("Cannot load the file level\n");
         m_fileLevel.close();
     }

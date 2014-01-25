@@ -29,12 +29,18 @@ class Integral : public EditorObject
         virtual void set_Position(float x, float y);
         virtual sf::FloatRect get_GlobalBounds() const ;
         virtual sf::Vector2f get_Position() const;
-        virtual inline EditorObject* loadView(const Element& elmt, float scale){std::cerr << "nothing to do for the moment";}
+        virtual EditorObject* loadView(const Element& elmt, float scale);
 
         IntegralModel m_model;
         IntegralView m_view;
 };
 
+inline EditorObject* Integral::loadView(const Element& elmt, float scale)
+{
+#ifdef DEBUG
+std::cerr << "nothing to do for the moment";
+#endif
+}
 
 inline void Integral::set_Position(sf::Vector2f& position)
 {
@@ -67,7 +73,6 @@ inline std::string Integral::getFunction() const
 
 inline void Integral::setFunction(std::string str)
 {
-    std::cout << "COut" << std::endl;
     m_model.setFunction(str);
 }
 

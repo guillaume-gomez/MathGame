@@ -5,12 +5,12 @@
 Game::Game( RenderWindow& _app , Difficulty _diff)
 :m_app(_app), m_axis(GraphScale), m_graphView(m_graphModel, Thickness, GraphScale)
 ,m_textAreaFunction(6), m_level(1,_diff,GraphScale), m_buttonReset(FilenameButtonReset), m_buttonSound(FilenameSound, WidthIcon, HeightIcon), m_buttonBack(FilenameButtonBack),
- //test(3.0f,10.0f),
- m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false),
- m_frameCount(0), m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf"))
+#ifdef DEBUG
+ m_frameCount(0),
+ m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf"))
+    #endif
+ m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false)
 {
-   // test.setScale(GraphScale,GraphScale);
-
     loadConfigFile();
     setCenterCamera();
     sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
@@ -43,10 +43,10 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonBackX*m_app.getSize().x , PositionButtonBackY*m_app.getSize().y)))).y ;
     m_buttonBack.setPosition(__x, __y);
 
-    m_frameCountText.setColor(sf::Color::Black);
 
-
-
+    #ifdef DEBUG
+       m_frameCountText.setColor(sf::Color::Black);
+    #endif
 //    m_integral.build(-14.0, 14.0);
 
 }
@@ -139,11 +139,7 @@ void Game::draw()
     m_app.draw(m_spriteBG);
 
     m_axis.draw(m_app);
-
-//    m_integral.draw(m_app);
-
     m_graphView.draw(m_app);
-   // test.draw(m_app);
     m_level.drawPoints(m_app);
     m_player.draw(m_app);
 

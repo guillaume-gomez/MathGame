@@ -10,10 +10,10 @@ PanelEditor::PanelEditor()
     {
         this->setTexture(*texture);
     }
-    else
+  /*  else
     {
         std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << FilenameButtonPanel << std::endl;
-    }
+    }*/
 
 }
 

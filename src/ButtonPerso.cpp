@@ -9,10 +9,10 @@ ButtonPerso::ButtonPerso(const char* _filename)
     {
         this->setTexture(*texture);
     }
-    else
+    /*else
     {
         std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << m_filename << std::endl;
-    }
+    }*/
 }
 
 void ButtonPerso::handle_input(sf::Event& event,sf::RenderTarget& target)

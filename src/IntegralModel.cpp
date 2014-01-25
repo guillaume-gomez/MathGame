@@ -92,13 +92,15 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
 
 void IntegralModel::showPoints()
 {
-    unsigned int index = 0;
-    std::cout << "-----------------Coord---------------" << std::endl;
-    for (auto it : m_listCoordShapes)
-    {
-        std::cout <<"("<< it.x << ", " << it.y <<")" << std::endl;
-    }
-    std::cout << "------------------------------------" << std::endl;
+    #ifdef DEBUG
+        unsigned int index = 0;
+        std::cout << "-----------------Coord---------------" << std::endl;
+        for (auto it : m_listCoordShapes)
+        {
+            std::cout <<"("<< it.x << ", " << it.y <<")" << std::endl;
+        }
+        std::cout << "------------------------------------" << std::endl;
+    #endif
 }
 
  IntegralModel::~IntegralModel()
