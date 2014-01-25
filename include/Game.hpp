@@ -18,7 +18,7 @@
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
-#include "IntegralView.hpp"
+#include "Integral.hpp"
 
 
 using namespace sf;

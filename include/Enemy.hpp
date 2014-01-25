@@ -30,6 +30,7 @@ class Enemy : public EditorObject
         virtual sf::FloatRect get_GlobalBounds() const;
         virtual EditorObject* clone() const;
         virtual std::string save(float scale = GraphScale) const;
+        virtual EditorObject* loadView(const Element& elmt, float scale);
     private:
         EnemyModel m_model;
         EnemyView m_view;

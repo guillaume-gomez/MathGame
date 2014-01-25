@@ -45,8 +45,9 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 
     m_frameCountText.setColor(sf::Color::Black);
 
-//    m_modelIntegral.getIntegraleCurve(-5.0,5.0,Step);
-//    m_viewIntegral.represent();
+
+
+//    m_integral.build(-14.0, 14.0);
 
 }
 
@@ -91,7 +92,7 @@ bool  Game::handleInput()
                         m_graphModel.getRepresentativeCurve(-MaxSizeGraph, MaxSizeGraph, Step);
                         Physics::Engine::getEngine()->setFunction(&m_graphModel);
                         m_level.decrementAttempt();
-                       // m_level.decrementAttempt();
+
                     }
                     if(m_event.key.code == sf::Keyboard::Escape)
                     {
@@ -138,7 +139,9 @@ void Game::draw()
     m_app.draw(m_spriteBG);
 
     m_axis.draw(m_app);
-//    m_viewIntegral.draw(m_app);
+
+//    m_integral.draw(m_app);
+
     m_graphView.draw(m_app);
    // test.draw(m_app);
     m_level.drawPoints(m_app);

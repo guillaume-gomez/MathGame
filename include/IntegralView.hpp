@@ -22,6 +22,8 @@ class IntegralView
         void representLine();
         void representShape();
     private:
+        IntegralView(const IntegralView& copy);
+
         const IntegralModel& m_model;
         std::vector<sf::RectangleShape> m_lineList;
         std::vector<thor::ConcaveShape> m_shapeList;

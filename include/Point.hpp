@@ -18,6 +18,7 @@ class Point : public EditorCircle
         inline bool isGoal() const {return m_goalPoint;}
         virtual EditorObject* clone() const;
         virtual std::string save(float scale = GraphScale) const;
+        EditorObject* loadView(const Element& elmt, float scale);
     protected:
         //if is the final point
         bool m_goalPoint;

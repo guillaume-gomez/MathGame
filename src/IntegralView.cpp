@@ -23,13 +23,13 @@ unsigned int i = 0;
         {
             temp.setPoint(j, sf::Vector2f(m_model.getCoordToShapes(i).x * m_scale, - m_model.getCoordToShapes(i).y * m_scale));
             //add the scale
-         i++;
+            i++;
         }
         // TEMP
         temp.setFillColor(sf::Color(23,20,20,100));
         temp.setOutlineColor(sf::Color(0,0,0));
         temp.setOutlineThickness(1);
-       // temp.setPosition(10, 20);
+
         if(temp.getPointCount() > 2)
         {
             m_shapeList.push_back(temp);

@@ -14,30 +14,7 @@
 #include "../constants.hpp"
 #include "CharacterModel.hpp"
 #include "EditorCircle.hpp"
-
-struct Element
-{
-    private:
-        sf::Vector2f coord;
-        TypeObject type;
-        float radius;
-        bool sens;
-        unsigned int nb_attempt;
-
-    public:
-        Element();
-        inline bool getSens() const { return sens;}
-        inline unsigned int getAttempt() const { return nb_attempt;}
-        inline Element& setCoord(sf::Vector2f v) {coord = v;return (*this);}
-        inline Element& setType(TypeObject v) {type = v;return (*this);}
-        inline Element& setRadius(float r){radius = r; return (*this);}
-        inline void setSens(bool _s) { sens = _s;}
-        inline void setAttempt(unsigned int i){ nb_attempt = i;}
-        Element& setType(std::string v);
-        inline sf::Vector2f getCoord() const {return coord;}
-        inline TypeObject getType() const {return type;}
-        inline float getRadius() const {return radius;}
-};
+#include "Element.hpp"
 
 //note : la last points read in a file is the goal to reach
 class LevelModel
@@ -59,6 +36,9 @@ class LevelModel
         void IsLosing();
         friend std::ostream& operator<<(std::ostream &flux, const LevelModel& level);
         unsigned int getNbAttempt()const;
+        float getEnd(unsigned int i) const;
+        float getBegin(unsigned int i) const;
+        std::string getFunction(unsigned int i) const;
         void decrementAttempt();
         void reset();
         int getSaveAttempt()const;
@@ -144,6 +124,33 @@ inline unsigned int LevelModel::getAttempt(unsigned int i) const
         return m_coordElements[ i ].getAttempt();
     }
     return 1;
+}
+
+inline std::string LevelModel::getFunction(unsigned int i) const
+{
+    if (i < m_coordElements.size())
+    {
+        return m_coordElements[ i ].getFunction();
+    }
+    return std::string();
+}
+
+inline float LevelModel::getBegin(unsigned int i) const
+{
+    if (i < m_coordElements.size())
+    {
+        return m_coordElements[ i ].getBegin();
+    }
+    return -10000.0f;
+}
+
+inline float LevelModel::getEnd(unsigned int i) const
+{
+    if (i < m_coordElements.size())
+    {
+        return m_coordElements[ i ].getEnd();
+    }
+    return 10000.0f;
 }
 
 

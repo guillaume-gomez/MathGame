@@ -48,6 +48,13 @@ EditorObject* Enemy::clone() const
 	return new Enemy(*this);
 }
 
+EditorObject* Enemy::loadView(const Element& elmt, float scale)
+{
+    Enemy* newEnemy = new Enemy();
+    newEnemy->set_Position(elmt.getCoord().x /*- widthTex*/ ,  elmt.getCoord().y /* - heightTex*/);
+    newEnemy->setNbAttempt(elmt.getAttempt());
+    return newEnemy;
+}
 
 std::string Enemy::save(float scale) const
 {

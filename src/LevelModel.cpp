@@ -1,4 +1,7 @@
+#include <stdexcept>
+
 #include "LevelModel.hpp"
+
 
 ///an element does not contain always a radius (example, an ennemy)
 Element::Element()
@@ -44,16 +47,31 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 m_fileLevel >> radius;
                 newElmt.setRadius(radius);
                 newElmt.setType(TypeObject::Circle);
+                sf::Vector2f temp;
+                m_fileLevel >> temp.x;
+                m_fileLevel >> temp.y;
+                newElmt.setCoord(temp);
+                       
                 //because it is not a point
                 m_pointsCheck[i] = true;
             }
             else if (type == PointStr)
             {
                 newElmt.setType(TypeObject::Point);
+                sf::Vector2f temp;
+                m_fileLevel >> temp.x;
+                m_fileLevel >> temp.y;
+                newElmt.setCoord(temp);
+                       
             }
             else if (type == GoalPointStr)
             {
                 newElmt.setType(TypeObject::GoalPoint);
+                sf::Vector2f temp;
+                m_fileLevel >> temp.x;
+                m_fileLevel >> temp.y;
+                newElmt.setCoord(temp);
+                       
             }
             else if (type == EnemyStr)
             {
@@ -66,21 +84,39 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 newElmt.setAttempt(nbAttempt);
                 newElmt.setSens(direction);
 
+                sf::Vector2f temp;
+                m_fileLevel >> temp.x;
+                m_fileLevel >> temp.y;
+                newElmt.setCoord(temp);
+
                  //because it is not a point
                 m_pointsCheck[i] = true;
             }
-            sf::Vector2f temp;
-            m_fileLevel >> temp.x;
-            m_fileLevel >> temp.y;
-            newElmt.setCoord(temp);
+            else if(type == IntegralStr)
+            {
+                std::string function;
+                float min, max;
+                m_fileLevel >> function;
+                m_fileLevel >> min;
+                m_fileLevel >> max;
 
+                newElmt.setType(TypeObject::Integral);
+                newElmt.setFunction(function);
+                newElmt.setBegin(min);
+                newElmt.setEnd(max);
+
+                 //because it is not a point
+                m_pointsCheck[i] = true;
+
+            }
+            
             m_coordElements.push_back(newElmt);
         }
     }
     else
     {
-
         std::cerr << "Error file :'" << _filename.c_str() << "' cannot exist" << std::endl;
+        std::runtime_error("Cannot load the file level\n");
         m_fileLevel.close();
     }
 

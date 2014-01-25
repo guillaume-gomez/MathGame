@@ -28,6 +28,7 @@ class EditorCircle : public sf::CircleShape , public EditorObject
     	virtual sf::Vector2f get_Position() const ;
     	virtual sf::FloatRect get_GlobalBounds() const;
         virtual std::string save(float scale = GraphScale) const;
+        virtual EditorObject* loadView(const Element& elmt, float scale) = 0;
     protected:
 
 };

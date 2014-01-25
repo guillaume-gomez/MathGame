@@ -30,7 +30,7 @@ class ConstrueFunction
     public:
         std::list<sf::Vector2f> m_coords;
         ConstrueFunction( std::string function = std::string() );
-        std::string& getFunction();
+        std::string getFunction()const ;
         float getFunctionValue(float x) const;
         float getDerivative(float x) const;
         void getRepresentativeCurve(float _begin, float _end, float step);

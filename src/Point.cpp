@@ -58,6 +58,13 @@ std::string Point::save(float scale) const
   return flux.str();
 }
 
+ EditorObject* Point::loadView(const Element& elmt, float scale)
+ {
+    Point * NewPoint =  new Point(sizePoint);
+        NewPoint->setPosition(elmt.getCoord().x * scale/*- widthTex*/ , - elmt.getCoord().y * scale/* - heightTex*/);
+        return NewPoint;
+ }
+
 Point::~Point()
 {
     //dtor
