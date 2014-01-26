@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ProjetMath" />
+		<Option pch_mode="2" />
+		<Option default_target="Debug" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ProjetMath" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/IHateMaths" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DRELEASE" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="Debug;Release;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-g" />
+			<Add option="-fexceptions" />
+			<Add option="-DSFML_STATIC" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add library="/usr/local/lib/libsfml-audio.so" />
+			<Add library="/usr/local/lib/libsfml-graphics.so" />
+			<Add library="/usr/local/lib/libsfml-network.so" />
+			<Add library="/usr/local/lib/libsfml-system.so" />
+			<Add library="/usr/local/lib/libsfml-window.so" />
+			<Add library="/usr/local/lib/libsfgui.so" />
+			<Add library="/usr/local/lib/libthor.so" />
+			<Add directory="libs" />
+		</Linker>
+		<Unit filename="constants.hpp" />
+		<Unit filename="files.hpp" />
+		<Unit filename="include/AniSprite.hpp" />
+		<Unit filename="include/Axis.hpp" />
+		<Unit filename="include/ButtonAnim.hpp" />
+		<Unit filename="include/ButtonPerso.hpp" />
+		<Unit filename="include/CharacterModel.hpp" />
+		<Unit filename="include/CharacterView.hpp" />
+		<Unit filename="include/ConstrueFunction.hpp" />
+		<Unit filename="include/Editor.hpp" />
+		<Unit filename="include/EditorObject.hpp" />
+		<Unit filename="include/Game.hpp" />
+		<Unit filename="include/GraphView.hpp" />
+		<Unit filename="include/GravityCircle.hpp" />
+		<Unit filename="include/LevelModel.hpp" />
+		<Unit filename="include/LevelView.hpp" />
+		<Unit filename="include/ManageLevel.hpp" />
+		<Unit filename="include/ManageText.hpp" />
+		<Unit filename="include/PanelEditor.hpp" />
+		<Unit filename="include/Point.hpp" />
+		<Unit filename="include/Screen.hpp" />
+		<Unit filename="include/ScreenCredit.hpp" />
+		<Unit filename="include/ScreenFinish.hpp" />
+		<Unit filename="include/ScreenLevelChoice.hpp" />
+		<Unit filename="include/ScreenLevelChoiceClassic.hpp" />
+		<Unit filename="include/ScreenLevelChoiceNoChance.hpp" />
+		<Unit filename="include/ScreenLink.hpp" />
+		<Unit filename="include/ScreenOption.hpp" />
+		<Unit filename="include/Screen_Editor.hpp" />
+		<Unit filename="include/Screen_Game.hpp" />
+		<Unit filename="include/Screen_MainMenu.hpp" />
+		<Unit filename="include/Screens.hpp" />
+		<Unit filename="libs/AbstractCursor.hpp" />
+		<Unit filename="libs/AbstractPanel.hpp" />
+		<Unit filename="libs/AbstractWidget.hpp" />
+		<Unit filename="libs/AbstractWidgetEvent.hpp" />
+		<Unit filename="libs/Cursor.hpp" />
+		<Unit filename="libs/LineSFML2_1.cpp" />
+		<Unit filename="libs/LineSFML2_1.hpp" />
+		<Unit filename="libs/Menu.hpp" />
+		<Unit filename="libs/PtrList.hpp" />
+		<Unit filename="libs/PtrVector.hpp" />
+		<Unit filename="libs/ResourcesManagerSFML2_1.cpp" />
+		<Unit filename="libs/ResourcesManagerSFML2_1.hpp" />
+		<Unit filename="libs/ScopedPtr.hpp" />
+		<Unit filename="libs/TextAreaSFML2_0.cpp" />
+		<Unit filename="libs/TextAreaSFML2_0.hpp" />
+		<Unit filename="libs/WidgetEvent.hpp" />
+		<Unit filename="libs/exprtk.hpp" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/AniSprite.cpp" />
+		<Unit filename="src/Axis.cpp" />
+		<Unit filename="src/ButtonAnim.cpp" />
+		<Unit filename="src/ButtonPerso.cpp" />
+		<Unit filename="src/CharacterModel.cpp" />
+		<Unit filename="src/CharacterView.cpp" />
+		<Unit filename="src/ConstrueFunction.cpp" />
+		<Unit filename="src/Editor.cpp" />
+		<Unit filename="src/EditorObject.cpp" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/GraphView.cpp" />
+		<Unit filename="src/GravityCircle.cpp" />
+		<Unit filename="src/LevelModel.cpp" />
+		<Unit filename="src/LevelView.cpp" />
+		<Unit filename="src/ManageLevel.cpp" />
+		<Unit filename="src/ManageText.cpp" />
+		<Unit filename="src/PanelEditor.cpp" />
+		<Unit filename="src/Point.cpp" />
+		<Unit filename="src/Screen.cpp" />
+		<Unit filename="src/ScreenCredit.cpp" />
+		<Unit filename="src/ScreenFinish.cpp" />
+		<Unit filename="src/ScreenLevelChoice.cpp" />
+		<Unit filename="src/ScreenLevelChoiceClassic.cpp" />
+		<Unit filename="src/ScreenLevelChoiceNoChance.cpp" />
+		<Unit filename="src/ScreenLink.cpp" />
+		<Unit filename="src/ScreenOption.cpp" />
+		<Unit filename="src/Screen_Editor.cpp" />
+		<Unit filename="src/Screen_Game.cpp" />
+		<Unit filename="src/Screen_MainMenu.cpp" />
+		<Extensions>
+			<code_completion>
+				<search_path add="/home/guillaume/Documents/SFML-2.1/src" />
+				<search_path add="/home/guillaume/SFGUI/src/SFGUI" />
+			</code_completion>
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

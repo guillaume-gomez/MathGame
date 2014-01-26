@@ -1,0 +1,13 @@
+police de caractères : Alamain par Eric Leproust : http://www.dafont.com/fr/eric-leproust.d920
+
+sprite personnage de Paul Greasley Indie game developer : http://www.farmergnome.com/2012/01/coffee-break-time.html
+
+
+ *          C++ Mathematical Expression Toolkit Library         *
+ *                                                              *
+ * Author: Arash Partow (1999-2012)                             *
+ * URL: http://www.partow.net/programming/exprtk/index.html
+ 
+ lib pour le menu ?
+ 
+ lib pour les screen ?
