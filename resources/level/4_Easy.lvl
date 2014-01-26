@@ -1,4 +1,4 @@
-9
+15
 4
 Integral
 sin(x)*x
@@ -18,11 +18,24 @@ Circle
 Circle
 28
 -11.55 -2.6
-Point
 2.65 4.55
 Point
--6 9.5
+5.4 2.8
 Point
--5.55 -8.95
+9.2 3
+Point
+11.25 2.7
+Point
+12.75 1.15
+Point
+13.95 -1.8
+Point
+14.6 -4.15
+Point
+14.9 -6.55
+Point
+15.6 -9
+Point
+15.5 -11.9
 GoalPoint
 9.4 10.7
