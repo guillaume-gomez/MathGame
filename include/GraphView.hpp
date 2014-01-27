@@ -18,18 +18,21 @@ class GraphView
 {
     public:
         GraphView( ConstrueFunction& model, float thickness = 1.0f, float scale = 1.0f);
+        GraphView(float thickness = 1.0f, float scale = 1.0F);
         virtual ~GraphView();
         void represent(float step);
-        void draw( sf::RenderWindow& App );
+        void draw(sf::RenderTarget& App );
         void setGraphColor(const sf::Color& graphColor);
-
-	private:
+        void standAloneRepresent(const ConstrueFunction& function, float step);
+    private:
+        GraphView(const GraphView& copy);
         sf::Color m_graphColor;
+        //without only one model
+        const bool m_isStandAlone;
         std::list<LineSFML2_1> m_lines;
-        const ConstrueFunction& m_model;
+        const ConstrueFunction* m_model;
         float m_scale;
         float m_thickness;
-
 };
 
 /**
@@ -38,7 +41,7 @@ class GraphView
 
 inline void GraphView::setGraphColor(const sf::Color& graphColor)
 {
-	m_graphColor = graphColor;
+    m_graphColor = graphColor;
 }
 
 /**

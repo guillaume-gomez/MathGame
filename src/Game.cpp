@@ -7,7 +7,7 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 ,m_textAreaFunction(6), m_level(1,_diff,GraphScale), m_buttonReset(FilenameButtonReset), m_buttonSound(FilenameSound, WidthIcon, HeightIcon), m_buttonBack(FilenameButtonBack),
 #ifdef DEBUG
  m_frameCount(0),
- m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf"))
+ m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf")),
     #endif
  m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false)
 {

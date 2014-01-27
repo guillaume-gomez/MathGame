@@ -40,6 +40,7 @@ inline EditorObject* Integral::loadView(const Element& elmt, float scale)
 #ifdef DEBUG
 std::cerr << "nothing to do for the moment";
 #endif
+return nullptr;
 }
 
 inline void Integral::set_Position(sf::Vector2f& position)

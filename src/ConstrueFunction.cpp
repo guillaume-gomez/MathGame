@@ -8,6 +8,20 @@ ConstrueFunction::ConstrueFunction(std::string _function)
 {
 }
 
+ConstrueFunction::ConstrueFunction(const ConstrueFunction& copy)
+:m_function(copy.m_function), m_changed(copy.m_changed)
+{
+	for (auto it : copy.intervals)
+	{
+		intervals.push_back(it);
+	}
+
+	for (auto it : copy.m_coords)
+	{
+		m_coords.push_back(it);
+	}
+}
+
 /**
 * @brief : Destructor of the class
 **/
