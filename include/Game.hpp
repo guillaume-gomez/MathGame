@@ -9,16 +9,18 @@
 #include "ButtonAnim.hpp"
 #include "../constants.hpp"
 #include "Hero.hpp"
-#include "ConstrueFunction.hpp"
 #include "../files.hpp"
-#include "GraphView.hpp"
 #include "GravityCircle.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
 #include "ManageLevel.hpp"
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
+#include "ManageFunctions.hpp"
+
 #include "Integral.hpp"
+
+#include "Curves.hpp"
 
 
 using namespace sf;
@@ -50,10 +52,9 @@ class Game
         ButtonPerso m_buttonReset;
         ButtonAnim m_buttonSound;
         ButtonPerso m_buttonBack;
+        Curves m_curves;
         Event m_event;
-        bool m_gameStarted ;
-        ConstrueFunction m_graphModel;
-        GraphView m_graphView;
+        bool m_gameStarted;
         bool m_isZoom;
         bool m_isSound;
         bool m_isBack;
@@ -68,5 +69,7 @@ class Game
         Sprite m_spriteBG;
         TextAreaSFML2_0 m_textAreaFunction;
         View m_viewPerso;
+
+        ManageFunctions test;
 };
 #endif // GAME_H

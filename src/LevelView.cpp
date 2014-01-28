@@ -89,7 +89,6 @@ void LevelView::loadCoord()
 
             case (TypeObject::Integral):
             {
-                std::cout << "CURVES" << std::endl;
                 Integral* integral =  dynamic_cast<Integral*>(ObjectFactoryAbstract::create(m_model.getType(i)));
                 if(integral != nullptr)
                 {

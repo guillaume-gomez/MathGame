@@ -43,7 +43,7 @@ void Integral::draw(sf::RenderTarget& app)
 	m_view.drawShape(app);
 }
 
-void Integral::build(int _begin , int _end, int step)
+void Integral::build(int _begin , int _end, float step)
 {
 	m_model.getIntegraleCurveShape(_begin, _end, Step);
 	m_view.representShape();

@@ -1,7 +1,7 @@
-#include "ManageFunctions.h"
+#include "ManageFunctions.hpp"
 
 ManageFunctions::ManageFunctions()
-:m_changed(false), currentIndex(0)
+:m_changed(false), m_currentIndex(0)
 {
     //ctor
 }
@@ -12,9 +12,8 @@ ManageFunctions::~ManageFunctions()
 }
 
 
-void handle_input(sf::Event& event)
+void ManageFunctions::handle_input(sf::Event& event)
 {
-    m_changed = false;
 	if(event.type == sf::Event::KeyPressed)
     {
         switch(event.key.code)
@@ -23,7 +22,7 @@ void handle_input(sf::Event& event)
         case sf::Keyboard::P:
             m_currentIndex++;
             m_changed = true;
-            if (m_currentIndex > m_vectorModel.size())
+            if (m_currentIndex >= m_vectorCurves.size())
             {
             	m_currentIndex = 0;
             }
@@ -34,7 +33,7 @@ void handle_input(sf::Event& event)
             m_changed = true;
             if( m_currentIndex < 0)
             {
-            	m_currentIndex = m_vectorModel.size() - 1;
+            	m_currentIndex = m_vectorCurves.size() - 1;
             }
             break;
 
@@ -42,26 +41,44 @@ void handle_input(sf::Event& event)
             break;
         }
     }
-     
+
 }
 
 void ManageFunctions::represent(float step)
 {
     if(m_changed)
     {
-	   m_view.standAloneRepresent(m_vectorModel[m_currentIndex], step);
+       std::cout << "Represent " << m_currentIndex << std::endl;
+	   m_vectorCurves.at(m_currentIndex).represent(step);
+	   m_changed = false;
     }
+}
+
+const ConstrueFunction* ManageFunctions::getModelIndex()
+{
+    return m_vectorCurves.at(m_currentIndex).getModel();
 }
 
 
 void ManageFunctions::draw(sf::RenderTarget& app)
 {
-	m_view.draw(app);
+	m_vectorCurves.at(m_currentIndex).draw(app);
 }
 
 
 void ManageFunctions::addFunction(std::string function)
 {
-    ConstrueFunction newFunction(function);
-    m_vectorModel.push_back(newFunction);
+    Curves newFunction(function);
+    m_vectorCurves.push_back(newFunction);
+
+}
+
+void ManageFunctions::reset()
+{
+    m_changed = true;
+    for (auto it : m_vectorCurves)
+    {
+        it.reset();
+    }
+    //m_graphModel.clearFunction();
 }

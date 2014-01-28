@@ -20,7 +20,7 @@ class Integral : public EditorObject
         virtual EditorObject* clone() const ;
         virtual std::string save(float scale = GraphScale) const ;
         virtual void draw(sf::RenderTarget& app);
-        void build(int _begin = - MaxSizeGraph, int _end = MaxSizeGraph, int step = Step);
+        void build(int _begin = - MaxSizeGraph, int _end = MaxSizeGraph, float step = Step);
         std::string getFunction() const;
         void setFunction(std::string str);
 

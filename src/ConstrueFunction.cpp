@@ -97,6 +97,7 @@ void ConstrueFunction::getRepresentativeCurve(float _begin, float _end, float st
 	const float StepLimits = 100.0f;
 	IntervalOfDefinition intervalTmp;
 	intervalTmp.xStart = _begin;
+	std::cout << _begin << "  " << _end << std::endl;
    for(float x = _begin ; x <= _end ; x += step )
    {
 		float y;
@@ -143,7 +144,6 @@ void ConstrueFunction::getRepresentativeCurve(float _begin, float _end, float st
 	{
 		intervals.push_back(intervalTmp);
 	}
-
 }
 
 bool ConstrueFunction::isDefined(float x, float* y) const

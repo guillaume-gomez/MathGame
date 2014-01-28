@@ -3,7 +3,7 @@
 
 //TODO m_playerModel has to change
 Game::Game( RenderWindow& _app , Difficulty _diff)
-:m_app(_app), m_axis(GraphScale), m_graphView(m_graphModel, Thickness, GraphScale)
+:m_app(_app), m_axis(GraphScale) /*,m_graphView(m_graphModel, Thickness, GraphScale)*/
 ,m_textAreaFunction(6), m_level(1,_diff,GraphScale), m_buttonReset(FilenameButtonReset), m_buttonSound(FilenameSound, WidthIcon, HeightIcon), m_buttonBack(FilenameButtonBack),
 #ifdef DEBUG
  m_frameCount(0),
@@ -49,6 +49,11 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
     #endif
 //    m_integral.build(-14.0, 14.0);
 
+
+    test.addFunction("4*x");
+    test.addFunction("floor(x)");
+    test.addFunction("cos(x)x");
+
 }
 
 void Game::zoom()
@@ -88,9 +93,12 @@ bool  Game::handleInput()
                             m_timer.restart();
                             m_gameStarted = true;
                         }
-                        m_graphModel.setFunction(m_textAreaFunction.getString());
-                        m_graphModel.getRepresentativeCurve(-MaxSizeGraph, MaxSizeGraph, Step);
-                        Physics::Engine::getEngine()->setFunction(&m_graphModel);
+                        //m_graphModel.setFunction(m_textAreaFunction.getString());
+                        //m_graphModel.getRepresentativeCurve(-MaxSizeGraph, MaxSizeGraph, Step);
+                        m_curves.setFunction(m_textAreaFunction.getString());
+                        m_curves.build(-MaxSizeGraph, MaxSizeGraph, Step);
+
+                        Physics::Engine::getEngine()->setFunction(m_curves.getModel());
                         m_level.decrementAttempt();
 
                     }
@@ -102,6 +110,8 @@ bool  Game::handleInput()
                 default:
                     break;
                 }
+
+                test.handle_input(m_event);
 //                test.isCollide(m_player1Model.getRectScaled(GraphScale));
 
             //    m_textFunction.handle_input(m_event, m_graphView);
@@ -139,7 +149,11 @@ void Game::draw()
     m_app.draw(m_spriteBG);
 
     m_axis.draw(m_app);
-    m_graphView.draw(m_app);
+    //_graphView.draw(m_app);
+    m_curves.draw(m_app);
+    test.draw(m_app);
+
+
     m_level.drawPoints(m_app);
     m_player.draw(m_app);
 
@@ -193,11 +207,14 @@ void Game::move()
        // m_app.setView(m_viewPerso);
     }
 
-    if ( m_graphModel.getChanged())
+    //test.represent(Step);
+
+   /* if ( m_graphModel.getChanged())
     {
         m_graphView.represent(Step);
         m_graphModel.setChanged(false);
     }
+    */
 }
 
 void Game::selectLevel(ScreenLink& stat)
@@ -238,8 +255,9 @@ void Game::reset()
 {
          m_player.reset();
      //    Physics::Engine::getEngine()->cleanEngine();
-         m_graphModel.setChanged(true);
-         m_graphModel.clearFunction();
+     //    m_graphModel.setChanged(true);
+     //    m_graphModel.clearFunction();
+         m_curves.reset();
          m_gameStarted = false;
 }
 

@@ -3,8 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "ConstrueFunction.hpp"
-#include "GraphView.hpp"
+#include "Curves.hpp"
+#include "../constants.hpp"
 
 class ManageFunctions
 {
@@ -15,11 +15,19 @@ class ManageFunctions
         void draw(sf::RenderTarget& app);
         void addFunction(std::string function);
         void represent(float step);
+        bool isChanged() const;
+        void reset();
+        const ConstrueFunction* getModelIndex();
     private:
     	bool m_changed;
-    	unsigned int currentIndex;
-    	std::vector<ConstrueFunction> m_vectorModel;
-    	GraphView m_view;
+    	int m_currentIndex;
+    	std::vector<Curves> m_vectorCurves;
 };
+
+
+inline bool ManageFunctions::isChanged() const
+{
+    return m_changed;
+}
 
 #endif // MANAGEFUNCTIONS_H
