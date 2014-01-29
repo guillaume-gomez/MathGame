@@ -28,6 +28,7 @@ LevelView::LevelView(const LevelModel& model, float _scale)
     ObjectFactoryAbstract::_register(TypeObject::GoalPoint,new Point(sizePoint, true));
     ObjectFactoryAbstract::_register(TypeObject::Enemy,new Enemy());
     ObjectFactoryAbstract::_register(TypeObject::Integral,new Integral());
+    ObjectFactoryAbstract::_register(TypeObject::Function,new Curves());
     //pré loading
 //    float widthTex  = (float) m_texGoal.getSize().x / 2;
 //    float heightTex = (float) m_texGoal.getSize().y / 2;
@@ -97,6 +98,17 @@ void LevelView::loadCoord()
                     m_listSprite.push_back(integral);
                 }
             }
+
+            case (TypeObject::Function):
+            {
+                Curves* curves =  dynamic_cast<Curves*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+                if(curves != nullptr)
+                {
+                    curves->setFunction(m_model.getFunction(i));
+                    m_listFunctionLevel.push_back(curves);
+                }
+            }
+
             default:
             break;
 

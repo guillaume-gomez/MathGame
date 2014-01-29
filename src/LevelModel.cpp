@@ -109,6 +109,17 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 m_pointsCheck[i] = true;
 
             }
+            else if(type == FunctionStr)
+            {
+                std::string function;
+                m_fileLevel >> function;
+
+                newElmt.setType(TypeObject::Function);
+                newElmt.setFunction(function);
+
+                 //because it is not a point
+                m_pointsCheck[i] = true;
+            }
 
             m_coordElements.push_back(newElmt);
         }

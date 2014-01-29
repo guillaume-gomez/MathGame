@@ -13,7 +13,7 @@ enum Difficulty {Easy , Normal , Hard};
 enum GameMode {Classic , NoChance};
 enum class TypeObject
 {
-    Abstract, Circle, Point, GoalPoint, Enemy, Hero, Integral
+    Abstract, Circle, Point, GoalPoint, Enemy, Hero, Integral, Function
 };
 
 const char AbstractStr[]  = "Abstract";
@@ -23,6 +23,7 @@ const char GoalPointStr[]  = "GoalPoint";
 const char EnemyStr[]  = "Enemy";
 const char HeroStr[] = "Hero";
 const char IntegralStr[] = "Integral";
+const char FunctionStr[] = "Function";
 
 const int Blur = 120;
 const int Clear = 220;
