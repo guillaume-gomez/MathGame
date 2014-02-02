@@ -15,7 +15,7 @@ LevelModel::LevelModel()
 }
 
 LevelModel::LevelModel(std::string _filename , GameMode mode )
-:m_nbElements(0), m_win(false), m_lose(false), m_nbAttempt(0), m_mode(mode)
+:m_beginPoint(0), m_nbElements(0), m_win(false), m_lose(false), m_nbAttempt(0), m_mode(mode)
 {
     m_fileLevel.open(_filename.c_str());
     if(m_fileLevel.is_open())
@@ -120,7 +120,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                  //because it is not a point
                 m_pointsCheck[i] = true;
             }
-
+            std::cout << "i " << i << " type " << type << std::endl;
             m_coordElements.push_back(newElmt);
         }
     }
@@ -165,8 +165,9 @@ void LevelModel::IsFinishing ( const CharacterModel& charactermodel ,float _scal
         //test the colissions and if the colission already done between the point and the chracter
         if(!m_pointsCheck[i] && position_and_Size.contains( m_coordElements[i].getCoord() ) )
         {
-             m_pointsCheck[i] = true;
-             playableSound = true;
+            std::cout << "index " << i << std::endl;
+            m_pointsCheck[i] = true;
+            playableSound = true;
         }
     }
 
