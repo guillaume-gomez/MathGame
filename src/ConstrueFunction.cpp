@@ -8,6 +8,20 @@ ConstrueFunction::ConstrueFunction(std::string _function)
 {
 }
 
+ConstrueFunction::ConstrueFunction(const ConstrueFunction& copy)
+:m_function(copy.m_function), m_changed(copy.m_changed)
+{
+	for (auto it : copy.intervals)
+	{
+		intervals.push_back(it);
+	}
+
+	for (auto it : copy.m_coords)
+	{
+		m_coords.push_back(it);
+	}
+}
+
 /**
 * @brief : Destructor of the class
 **/
@@ -83,6 +97,7 @@ void ConstrueFunction::getRepresentativeCurve(float _begin, float _end, float st
 	const float StepLimits = 100.0f;
 	IntervalOfDefinition intervalTmp;
 	intervalTmp.xStart = _begin;
+	std::cout << _begin << "  " << _end << std::endl;
    for(float x = _begin ; x <= _end ; x += step )
    {
 		float y;
@@ -129,7 +144,6 @@ void ConstrueFunction::getRepresentativeCurve(float _begin, float _end, float st
 	{
 		intervals.push_back(intervalTmp);
 	}
-
 }
 
 bool ConstrueFunction::isDefined(float x, float* y) const

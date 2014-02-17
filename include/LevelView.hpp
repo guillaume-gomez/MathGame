@@ -6,6 +6,7 @@
 #endif //DEBUG
 #include <string>
 #include <vector>
+#include <stdexcept>
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Sprite.hpp>
@@ -17,7 +18,9 @@
 #include "LevelModel.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "GravityCircle.hpp"
+#include "ManageFunctions.hpp"
 #include "Point.hpp"
+
 
 class LevelView
 {
@@ -31,6 +34,7 @@ class LevelView
     private:
         LevelView();
         std::vector<EditorObject*> m_listSprite;
+        std::vector<std::string> m_listFunctionLevel;
         const LevelModel& m_model;
         static sf::Texture m_texNormal;
         static sf::Texture m_texGoal;
@@ -45,7 +49,6 @@ class LevelView
 ******************************************************/
 
 inline std::vector<EditorObject*> LevelView::getSpriteList () const { return m_listSprite;};
-
 
 /****************************************************
 **

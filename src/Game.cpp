@@ -1,14 +1,20 @@
 #include "Game.hpp"
 #include <iostream>
 
-//TODO m_playerModel has to change
+
 Game::Game( RenderWindow& _app , Difficulty _diff)
-:m_app(_app), m_axis(GraphScale), m_graphView(m_graphModel, Thickness, GraphScale)
-,m_textAreaFunction(6), m_level(1,_diff,GraphScale), m_buttonReset(FilenameButtonReset), m_buttonSound(FilenameSound, WidthIcon, HeightIcon), m_buttonBack(FilenameButtonBack),
+:m_app(_app),
+ m_axis(GraphScale),
+ m_gameMode(GameMode::Dynamic),
+ m_textAreaFunction(6),
+ m_level(1,_diff,GraphScale),
+ m_buttonReset(FilenameButtonReset),
+ m_buttonSound(FilenameSound, WidthIcon, HeightIcon),
+ m_buttonBack(FilenameButtonBack),
 #ifdef DEBUG
  m_frameCount(0),
- m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf"))
-    #endif
+ m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf")),
+#endif
  m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false)
 {
     loadConfigFile();
@@ -83,15 +89,20 @@ bool  Game::handleInput()
                     }
                     if(m_event.key.code == sf::Keyboard::Return)
                     {
-                        if(!m_gameStarted)
+                        if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
                         {
-                            m_timer.restart();
-                            m_gameStarted = true;
+                            if(!m_gameStarted)
+                            {
+                               m_timer.restart();
+                               m_gameStarted = true;
+                            }
+
+                            m_curves.setFunction(m_textAreaFunction.getString());
+                            m_curves.build(-MaxSizeGraph, MaxSizeGraph, Step);
+
+                            Physics::Engine::getEngine()->setFunction(m_curves.getModel());
+                            m_level.decrementAttempt();
                         }
-                        m_graphModel.setFunction(m_textAreaFunction.getString());
-                        m_graphModel.getRepresentativeCurve(-MaxSizeGraph, MaxSizeGraph, Step);
-                        Physics::Engine::getEngine()->setFunction(&m_graphModel);
-                        m_level.decrementAttempt();
 
                     }
                     if(m_event.key.code == sf::Keyboard::Escape)
@@ -101,6 +112,11 @@ bool  Game::handleInput()
                     break;
                 default:
                     break;
+                }
+
+                if(getGameMode() == GameMode::Dynamic)
+                {
+                    test.handle_input(m_event);
                 }
 //                test.isCollide(m_player1Model.getRectScaled(GraphScale));
 
@@ -112,7 +128,7 @@ bool  Game::handleInput()
 
               //  m_textAreaFunction.resize();
 
-        m_player.handle_input(m_event, m_textAreaFunction);
+                m_player.handle_input(m_event, m_textAreaFunction);
                 m_buttonReset.handle_input(m_event, m_app);
                 m_buttonSound.handle_input(m_event, m_app);
                 m_buttonBack.handle_input(m_event, m_app);
@@ -139,7 +155,17 @@ void Game::draw()
     m_app.draw(m_spriteBG);
 
     m_axis.draw(m_app);
-    m_graphView.draw(m_app);
+
+    if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
+    {
+        m_curves.draw(m_app);
+    }
+    if(getGameMode() == GameMode::Dynamic)
+    {
+        test.draw(m_app);
+    }
+
+
     m_level.drawPoints(m_app);
     m_player.draw(m_app);
 
@@ -155,7 +181,6 @@ void Game::draw()
     //m_textFunction.draw(m_app);
 
     #ifdef DEBUG
-//        frameCountText.setString("test");
         m_frameCount++;
         if(m_frameCountClock.getElapsedTime().asMilliseconds()>250)
         {
@@ -189,15 +214,24 @@ void Game::move()
         //
         //to following the character
         //
-        //m_viewPerso.setCenter(m_player1View.getCoords());
-       // m_app.setView(m_viewPerso);
+        //m_viewPerso.setCenter(m_player.getView().getPosition());
+        //m_app.setView(m_viewPerso);
     }
 
-    if ( m_graphModel.getChanged())
+    if(getGameMode() == GameMode::Dynamic)
     {
-        m_graphView.represent(Step);
-        m_graphModel.setChanged(false);
+        if(test.isChanged())
+        {
+            Physics::Engine::getEngine()->setFunction(test.getModelIndex());
+            test.represent(Step);
+            m_textAreaFunction.setString(test.getFunction());
+            m_level.decrementAttempt();
+            m_timer.restart();
+
+
+        }
     }
+
 }
 
 void Game::selectLevel(ScreenLink& stat)
@@ -205,6 +239,19 @@ void Game::selectLevel(ScreenLink& stat)
     reset();
     m_level.setDiff(stat.getDiff());
     m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
+
+    if(getGameMode() == GameMode::Dynamic)
+    {
+        m_gameStarted = true;
+        m_timer.restart();
+        m_level.fillLevelFunctions(test);
+        Physics::Engine::getEngine()->setFunction(test.getModelIndex());
+        test.represent(Step);
+
+        m_textAreaFunction.setString(test.getFunction());
+    }
+
+
 }
 
 int Game::levelOperation(ScreenLink& stat)
@@ -238,9 +285,13 @@ void Game::reset()
 {
          m_player.reset();
      //    Physics::Engine::getEngine()->cleanEngine();
-         m_graphModel.setChanged(true);
-         m_graphModel.clearFunction();
-         m_gameStarted = false;
+     //    m_graphModel.setChanged(true);
+     //    m_graphModel.clearFunction();
+        if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
+        {
+            m_curves.reset();
+            m_gameStarted = false;
+        }
 }
 
 Game::~Game()

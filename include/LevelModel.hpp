@@ -44,10 +44,15 @@ class LevelModel
         int getSaveAttempt()const;
         void setMode(GameMode _mode);
         GameMode getMode() const;
-
+        std::vector<std::string> getVectorFunctions();
 
     private:
         LevelModel();
+        /* the Level file is sorted by type of element.
+        Points and obviously GoalPoint are at the end of the file, so the variable m_beginPoint detect the first Point to check during the game
+        the good colission.  
+        */
+        unsigned int m_beginPoint;
         std::vector<Element> m_coordElements;
         std::ifstream m_fileLevel;
         bool m_lose;

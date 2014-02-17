@@ -258,6 +258,23 @@ void ManageLevel::drawUI( sf::RenderTarget& app)
         app.draw(m_nbAttemp);
 }
 
+ void ManageLevel::fillLevelFunctions(ManageFunctions& func)
+ {
+    func.reset();
+    #ifdef DEBUG
+        /*if(m_levelModel->getVectorFunctions())
+        {
+            std::runtime_error("Error in ManageLevel::fillLevelFunctions : no curves loaded");
+        }*/
+    #endif
+    for(auto it : m_levelModel->getVectorFunctions())
+    {
+        #ifdef DEBUG
+			std::cerr << "function added " << it << std::endl;
+    	#endif
+        func.addFunction(it);
+    }
+ }
 
 std::string ManageLevel::convertEnum ( Difficulty _diff)
 {
