@@ -17,8 +17,6 @@
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
-#include "ManageFunctions.hpp"
-
 
 
 using namespace sf;

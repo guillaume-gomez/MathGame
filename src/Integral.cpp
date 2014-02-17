@@ -2,7 +2,7 @@
 
 Integral::Integral(std::string function, float _begin, float _end, float step)
 :m_model(function),//function),
- m_view(m_model, GraphScale)
+ m_view(m_model, GraphScale)//, m_type(TypeObject::Integral)
 {
     if(_begin != 0.0f && _end != 0.1f)
     {
@@ -16,7 +16,7 @@ Integral::~Integral()
 }
 
 Integral::Integral(const Integral& copy)
-: m_model(copy.m_model), m_view(m_model,GraphScale)
+: m_model(copy.m_model), m_view(m_model,GraphScale)//, m_type(TypeObject::Integral)
 {
 
 }

@@ -17,6 +17,7 @@ class ManageFunctions
         void represent(float step);
         bool isChanged() const;
         void reset();
+        std::string getFunction()const; 
         const ConstrueFunction* getModelIndex();
     private:
     	bool m_changed;
@@ -28,6 +29,11 @@ class ManageFunctions
 inline bool ManageFunctions::isChanged() const
 {
     return m_changed;
+}
+
+inline std::string ManageFunctions::getFunction() const
+{
+    return m_vectorCurves.at(m_currentIndex).getFunction();
 }
 
 #endif // MANAGEFUNCTIONS_H

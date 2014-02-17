@@ -21,7 +21,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
 
 
         //temp
-        m_game.setGameMode(GameMode::Classic);
+        m_game.setGameMode(GameMode::Dynamic);
         //
         
         while(Running && gameFinish == 0)

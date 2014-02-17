@@ -77,9 +77,6 @@ void ManageFunctions::addFunction(std::string function)
 void ManageFunctions::reset()
 {
     m_changed = true;
-    for (auto it : m_vectorCurves)
-    {
-        it.reset();
-    }
+    m_vectorCurves.clear();
     //m_graphModel.clearFunction();
 }

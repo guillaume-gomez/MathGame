@@ -2,7 +2,7 @@
 
 Curves::Curves(std::string function, float _begin, float _end, float step)
 :m_model(function),//function),
- m_view(m_model, Thickness, GraphScale)
+ m_view(m_model, Thickness, GraphScale)//, m_type(TypeObject::Curves)
 {
     if(_begin != 0.0f && _end != 0.1f)
     {
@@ -16,7 +16,7 @@ Curves::~Curves()
 }
 
 Curves::Curves(const Curves& copy)
-: m_model(copy.m_model), m_view(m_model, Thickness, GraphScale)
+: m_model(copy.m_model), m_view(m_model, Thickness, GraphScale)//, m_type(TypeObject::Curves)
 {
     if(copy.m_model.m_coords.front().x != 0.0f && copy.m_model.m_coords.back().x != 0.1f)
     {
@@ -52,8 +52,6 @@ void Curves::represent(float step)
 void Curves::build(int _begin , int _end, float step)
 {
 	m_model.getRepresentativeCurve(_begin, _end, step);
-    std::cout << "vui" << std::endl;
-    std::cout << m_model.getFunction() << std::endl;
 	m_view.represent(step);
 }
 

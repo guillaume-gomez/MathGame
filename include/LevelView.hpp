@@ -14,12 +14,13 @@
 
 #include "../files.hpp"
 #include "Enemy.hpp"
-#include "Curves.hpp"
 #include "Integral.hpp"
 #include "LevelModel.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "GravityCircle.hpp"
+#include "ManageFunctions.hpp"
 #include "Point.hpp"
+
 
 class LevelView
 {
@@ -30,12 +31,10 @@ class LevelView
         std::vector<EditorObject*> getSpriteList () const;
         void loadCoord();
         void reset();
-        unsigned int getNbCurves() const;
-        std::string getFunction(unsigned int index) const ;
     private:
         LevelView();
         std::vector<EditorObject*> m_listSprite;
-        std::vector<Curves*> m_listFunctionLevel;
+        std::vector<std::string> m_listFunctionLevel;
         const LevelModel& m_model;
         static sf::Texture m_texNormal;
         static sf::Texture m_texGoal;
@@ -50,21 +49,6 @@ class LevelView
 ******************************************************/
 
 inline std::vector<EditorObject*> LevelView::getSpriteList () const { return m_listSprite;};
-
-
-inline std::string LevelView::getFunction(unsigned int index) const
-{
-    if(index < m_listFunctionLevel.size())
-    {
-        m_listFunctionLevel.at(index)->getFunction();
-    }
-    else
-    {
-        std::runtime_error("std::string getFunction(unsigned int index) bad index");
-    }
-}
-
-inline unsigned int LevelView::getNbCurves() const { return m_listFunctionLevel.size();};
 
 /****************************************************
 **

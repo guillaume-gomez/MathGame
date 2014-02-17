@@ -39,7 +39,13 @@ LevelView::LevelView(const LevelModel& model, float _scale)
 
 LevelView::~LevelView()
 {
-    //dtor
+    for (auto it : m_listSprite)
+    {
+        #ifdef DEBUG
+            std::cout << "Suppression de type " << EditorObject::getTypeStr(it->getType()) << std::endl;
+        #endif
+        delete it;
+    }
 }
 
 void LevelView::reset()
@@ -105,7 +111,8 @@ void LevelView::loadCoord()
                 if(curves != nullptr)
                 {
                     curves->setFunction(m_model.getFunction(i));
-                    m_listFunctionLevel.push_back(curves);
+                    m_listSprite.push_back(curves);
+                    m_listFunctionLevel.push_back(m_model.getFunction(i));
                 }
             }
 

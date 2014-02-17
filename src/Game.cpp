@@ -1,11 +1,11 @@
 #include "Game.hpp"
 #include <iostream>
 
-//TODO m_playerModel has to change
+
 Game::Game( RenderWindow& _app , Difficulty _diff)
 :m_app(_app),
  m_axis(GraphScale),
- m_gameMode(GameMode::Classic),
+ m_gameMode(GameMode::Dynamic),
  m_textAreaFunction(6),
  m_level(1,_diff,GraphScale),
  m_buttonReset(FilenameButtonReset),
@@ -55,19 +55,6 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
     #endif
 //    m_integral.build(-14.0, 14.0);
 
-    if(getGameMode() == GameMode::Dynamic)
-    {
-        m_gameStarted = true;
-        m_timer.restart();
-        test.addFunction("4*x");
-        test.addFunction("floor(x)");
-        test.addFunction("cos(x)x");
-        test.addFunction("x*x - 4x");
-        Physics::Engine::getEngine()->setFunction(test.getModelIndex());
-        test.represent(Step);
-    }
-
-
 }
 
 void Game::zoom()
@@ -102,20 +89,20 @@ bool  Game::handleInput()
                     }
                     if(m_event.key.code == sf::Keyboard::Return)
                     {
-                        //if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
-                        //{
-                            //if(!m_gameStarted)
-                            //{
-                                m_timer.restart();
+                        if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
+                        {
+                            if(!m_gameStarted)
+                            {
+                               m_timer.restart();
                                m_gameStarted = true;
-                            //}
+                            }
 
-                            //m_curves.setFunction(m_textAreaFunction.getString());
-                            //m_curves.build(-MaxSizeGraph, MaxSizeGraph, Step);
+                            m_curves.setFunction(m_textAreaFunction.getString());
+                            m_curves.build(-MaxSizeGraph, MaxSizeGraph, Step);
 
-                            //Physics::Engine::getEngine()->setFunction(m_curves.getModel());
+                            Physics::Engine::getEngine()->setFunction(m_curves.getModel());
                             m_level.decrementAttempt();
-                        //}
+                        }
 
                     }
                     if(m_event.key.code == sf::Keyboard::Escape)
@@ -227,8 +214,8 @@ void Game::move()
         //
         //to following the character
         //
-        //m_viewPerso.setCenter(m_player1View.getCoords());
-       // m_app.setView(m_viewPerso);
+        //m_viewPerso.setCenter(m_player.getView().getPosition());
+        //m_app.setView(m_viewPerso);
     }
 
     if(getGameMode() == GameMode::Dynamic)
@@ -237,18 +224,13 @@ void Game::move()
         {
             Physics::Engine::getEngine()->setFunction(test.getModelIndex());
             test.represent(Step);
+            m_textAreaFunction.setString(test.getFunction());
             m_level.decrementAttempt();
             m_timer.restart();
 
 
         }
     }
-
-    /*if ( m_graphModel.getChanged())
-    {
-        m_graphView.represent(Step);
-        m_graphModel.setChanged(false);
-    }*/
 
 }
 
@@ -257,6 +239,19 @@ void Game::selectLevel(ScreenLink& stat)
     reset();
     m_level.setDiff(stat.getDiff());
     m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
+
+    if(getGameMode() == GameMode::Dynamic)
+    {
+        m_gameStarted = true;
+        m_timer.restart();
+        m_level.fillLevelFunctions(test);
+        Physics::Engine::getEngine()->setFunction(test.getModelIndex());
+        test.represent(Step);
+
+        m_textAreaFunction.setString(test.getFunction());
+    }
+
+
 }
 
 int Game::levelOperation(ScreenLink& stat)

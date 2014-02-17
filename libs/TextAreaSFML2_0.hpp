@@ -39,7 +39,7 @@ class TextAreaSFML2_0 : public sf::Drawable
 		const sf::FloatRect getGlobalBounds() const;
 		sf::String getString();
 
-		void setString(std::string& str);
+		void setString(std::string str);
 
 //		/** Copy constructor
 //		 *  \param other Object to copy from
@@ -137,7 +137,7 @@ inline sf::String TextAreaSFML2_0::getString()
 	return tmpString;
 }
 
-inline void TextAreaSFML2_0::setString(std::string& str)
+inline void TextAreaSFML2_0::setString(std::string str)
 {
 	m_string = str;
 	m_text.setString(m_string);

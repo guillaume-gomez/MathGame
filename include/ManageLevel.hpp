@@ -49,6 +49,7 @@ class ManageLevel
         void showEnemies();
         void resetEnemies();
         void handle_inputEnnemies(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
+        void fillLevelFunctions(ManageFunctions& func);
 
     private:
         bool m_changeLevel;

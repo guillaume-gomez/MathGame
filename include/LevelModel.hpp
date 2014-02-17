@@ -44,7 +44,7 @@ class LevelModel
         int getSaveAttempt()const;
         void setMode(GameMode _mode);
         GameMode getMode() const;
-
+        std::vector<std::string> getVectorFunctions();
 
     private:
         LevelModel();

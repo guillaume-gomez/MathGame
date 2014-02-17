@@ -120,7 +120,10 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                  //because it is not a point
                 m_pointsCheck[i] = true;
             }
+
+            #ifdef DEBUG
             std::cout << "i " << i << " type " << type << std::endl;
+            #endif
             m_coordElements.push_back(newElmt);
         }
     }
@@ -212,6 +215,19 @@ void LevelModel::reset()
     m_nbAttempt = m_saveNbAttemp;
 
 
+}
+
+std::vector<std::string> LevelModel::getVectorFunctions()
+{
+    std::vector<std::string> vector;
+    for (auto it: m_coordElements)
+    {
+        if(it.getType() == TypeObject::Function)
+        {
+            vector.push_back(it.getFunction());
+        }
+    }
+    return vector;
 }
 
 LevelModel::~LevelModel()
