@@ -70,7 +70,7 @@ class Game
         TextAreaSFML2_0 m_textAreaFunction;
         View m_viewPerso;
 
-        ManageFunctions test;
+        ManageFunctions m_functionManager;
 };
 
 inline void Game::setGameMode( GameMode mode) {m_gameMode = mode;}

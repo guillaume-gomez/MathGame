@@ -1,9 +1,9 @@
 countEasy
-4
+2
 countNormal
-4
+2
 countHard
-4
+2
 maxEasy
 2
 maxNormal

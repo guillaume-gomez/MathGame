@@ -116,9 +116,9 @@ bool  Game::handleInput()
 
                 if(getGameMode() == GameMode::Dynamic)
                 {
-                    test.handle_input(m_event);
+                    m_functionManager.handle_input(m_event);
                 }
-//                test.isCollide(m_player1Model.getRectScaled(GraphScale));
+//                m_functionManager.isCollide(m_player1Model.getRectScaled(GraphScale));
 
             //    m_textFunction.handle_input(m_event, m_graphView);
                 m_textAreaFunction.handleInput(m_event, m_app);
@@ -144,7 +144,7 @@ void Game::show()
     m_level.displayNbAttempt();
     m_buttonSound.switchTile();
     m_textAreaFunction.blinkCaret();
-//    test.grow(0.001f);
+//    m_functionManager.grow(0.001f);
 }
 
 void Game::draw()
@@ -162,7 +162,7 @@ void Game::draw()
     }
     if(getGameMode() == GameMode::Dynamic)
     {
-        test.draw(m_app);
+        m_functionManager.draw(m_app);
     }
 
 
@@ -220,11 +220,11 @@ void Game::move()
 
     if(getGameMode() == GameMode::Dynamic)
     {
-        if(test.isChanged())
+        if(m_functionManager.isChanged())
         {
-            Physics::Engine::getEngine()->setFunction(test.getModelIndex());
-            test.represent(Step);
-            m_textAreaFunction.setString(test.getFunction());
+            Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
+            m_functionManager.represent(Step);
+            m_textAreaFunction.setString(m_functionManager.getFunction());
             m_level.decrementAttempt();
             m_timer.restart();
 
@@ -244,11 +244,11 @@ void Game::selectLevel(ScreenLink& stat)
     {
         m_gameStarted = true;
         m_timer.restart();
-        m_level.fillLevelFunctions(test);
-        Physics::Engine::getEngine()->setFunction(test.getModelIndex());
-        test.represent(Step);
+        m_level.fillLevelFunctions(m_functionManager);
+        Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
+        m_functionManager.represent(Step);
 
-        m_textAreaFunction.setString(test.getFunction());
+        m_textAreaFunction.setString(m_functionManager.getFunction());
     }
 
 

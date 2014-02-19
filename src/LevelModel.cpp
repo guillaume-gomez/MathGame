@@ -168,7 +168,9 @@ void LevelModel::IsFinishing ( const CharacterModel& charactermodel ,float _scal
         //test the colissions and if the colission already done between the point and the chracter
         if(!m_pointsCheck[i] && position_and_Size.contains( m_coordElements[i].getCoord() ) )
         {
+            #ifdef DEBUG
             std::cout << "index " << i << std::endl;
+            #endif
             m_pointsCheck[i] = true;
             playableSound = true;
         }

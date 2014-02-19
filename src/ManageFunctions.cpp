@@ -56,7 +56,9 @@ void ManageFunctions::represent(float step)
 
 const ConstrueFunction* ManageFunctions::getModelIndex()
 {
+#ifdef DEBUG
     std::cout << m_currentIndex << " INDEX " << std::endl;
+#endif
     return m_vectorCurves.at(m_currentIndex).getModel();
 }
 
