@@ -6,6 +6,8 @@ Enemy::Enemy()
 {
      m_model.setSize(m_view.getRectLocal().width, m_view.getRectLocal().height);
      m_type = TypeObject::Enemy;
+
+    m_model.setAngle(0.0f);
 }
 
 Enemy::Enemy(const Enemy& copy)
@@ -13,6 +15,8 @@ Enemy::Enemy(const Enemy& copy)
 {
     m_model.setSize(m_view.getRectLocal().width, m_view.getRectLocal().height);
     m_type = TypeObject::Enemy;
+
+     m_model.setAngle(0.0f);
 
 }
 
@@ -30,6 +34,12 @@ void Enemy::show()
 {
      m_view.setStringAttempt(m_model.getNbAttemptStr());
      m_view.show();
+}
+
+void Enemy::setDirection(bool _dir)
+{
+  m_model.setDirection(_dir);
+
 }
 
 void Enemy::draw(sf::RenderTarget& app)
@@ -53,6 +63,7 @@ EditorObject* Enemy::loadView(const Element& elmt, float scale)
     Enemy* newEnemy = new Enemy();
     newEnemy->set_Position(elmt.getCoord().x /*- widthTex*/ ,  elmt.getCoord().y /* - heightTex*/);
     newEnemy->setNbAttempt(elmt.getAttempt());
+//    newEnemy->setDirection(elmt.setDirection());
     return newEnemy;
 }
 

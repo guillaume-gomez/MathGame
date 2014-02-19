@@ -18,6 +18,7 @@ class Enemy : public EditorObject
         virtual void draw(sf::RenderTarget& app);
         virtual void reset();
         void setMoveType(CharacterModel::MoveType moveType);
+        void setDirection(bool _dir);
         void setFrictionCoefficient(float frictionCoefficient);
         void setTexture(const sf::Texture* texture, int frameWidth, int frameHeight);
         void playSound();

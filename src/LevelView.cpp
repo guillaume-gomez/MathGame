@@ -89,6 +89,7 @@ void LevelView::loadCoord()
                 {
                     newEnemy->set_Position(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
                     newEnemy->setNbAttempt(m_model.getAttempt(i));
+                    newEnemy->setDirection(m_model.getSens(i));
                     m_listSprite.push_back(newEnemy);
                 }
             }
@@ -141,8 +142,8 @@ void LevelView::draw(sf::RenderTarget& app)
                m_listSprite[i]->draw(app);
             }
         }
-        //other element can't be deleted, so they haven't got a check value parameter
-        else
+        //other element can't be deleted, so they haven't got a check value parameter. then function still in this list(bad conception)
+        else if (m_model.getType(i) != TypeObject::Function)
         {
              m_listSprite[i]->draw(app);
         }

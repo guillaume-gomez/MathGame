@@ -12,17 +12,15 @@ int Screen_Game::Run(sf::RenderWindow& App)
     try
     {
         bool Running = true;
+         //temp
+        m_game.setGameMode(GameMode::Classic);
+        //
         m_game.loadConfigFile();
         m_game.selectLevel(*m_stat);
         int gameFinish = 0;
         m_game.setBack(false);
         m_game.setCenterCamera();
         m_game.setZoom(true);
-
-
-        //temp
-        m_game.setGameMode(GameMode::Dynamic);
-        //
         
         while(Running && gameFinish == 0)
         {

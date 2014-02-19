@@ -1,4 +1,3 @@
-
 #include "EnemyModel.hpp"
 
 EnemyModel::EnemyModel(bool life, sf::Vector2f coord, float speed, MoveType moveType, unsigned int _nbActive)
@@ -9,8 +8,6 @@ EnemyModel::EnemyModel(bool life, sf::Vector2f coord, float speed, MoveType move
     	m_isActive = true;
     }
 
-    //temporaire
-    m_nbAttempt = 3;
 }
 
 EnemyModel::EnemyModel(const EnemyModel& copy)

@@ -5,7 +5,7 @@
 Game::Game( RenderWindow& _app , Difficulty _diff)
 :m_app(_app),
  m_axis(GraphScale),
- m_gameMode(GameMode::Dynamic),
+ m_gameMode(GameMode::Classic),
  m_textAreaFunction(6),
  m_level(1,_diff,GraphScale),
  m_buttonReset(FilenameButtonReset),
