@@ -78,7 +78,8 @@ const int Font  = 16;
 const float TimePanel = 10.0f;
 
 //const float CHARACTER_VELOCITY = 6.0f; // vitesse du personnage en graduation/sec
-const sf::Vector2f GravityAcceleration(0.0f, -16.677f);
+const sf::Vector2f GravityAcceleration(0.0f, -26.677f);
+const unsigned int JumpSpeed = 11;
 
 const char Sliding[] = "Sliding";
 const char NoSliding[] = "NoSliding";

@@ -17,7 +17,7 @@ EditorObject* FactoryObjectPoint::setTypeObject (std::string type)
 
 	if (type == PointStr)
 	{
-		newPoint = new Point(sizePoint);
+		newPoint = new Point(sizePoint, GraphScale, GraphScale, FilenameNormalPointTex);
 		if(newPoint == nullptr)
 		{
 			std::runtime_error("In the class FactoryObjectPoint::setTypeObject : cannot allocate à new object \"Point\"");
@@ -25,7 +25,7 @@ EditorObject* FactoryObjectPoint::setTypeObject (std::string type)
 	}
 	else if (type == GoalPointStr)
 	{
-		newPoint = new Point(sizePoint,true);
+		newPoint = new Point(sizePoint,true, GraphScale, FilenamePointGoalTex);
 		if(newPoint == nullptr)
 		{
 			std::runtime_error("In the class FactoryObjectPoint::setTypeObject : cannot allocate à new object \"Point\"");

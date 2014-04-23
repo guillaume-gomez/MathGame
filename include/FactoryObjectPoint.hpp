@@ -2,6 +2,7 @@
 #define FACTORYOBJECTPOINT_HPP
 
 #include "../constants.hpp"
+#include "../files.hpp"
 #include "ObjectFactoryAbstract.hpp"
 #include "Point.hpp"
 

@@ -107,9 +107,10 @@ const sf::Vector2f CharacterModel::getVelocity() const
      {
         switch(event.key.code)
         {
-//      case sf::Keyboard::Up:
-//          m_thrust.y = -m_speed;
-//          break;
+        case sf::Keyboard::Up:
+            if(!m_PhysicsBox.isJumping())
+                m_PhysicsBox.jump();
+            break;
 
 //        case sf::Keyboard::Down:
 //         m_thrust.y = +m_speed;
@@ -121,6 +122,10 @@ const sf::Vector2f CharacterModel::getVelocity() const
 
         case sf::Keyboard::Right:
             m_PhysicsBox.setThrust(sf::Vector2f(m_speed, m_PhysicsBox.getThrust().y));
+             #ifdef DEBUG
+          //     std::cout << "characterModel this : " << this << " thrust : " << m_PhysicsBox.getThrust().x << std::endl;
+            //    std::cout << "charracterModel getPhysicsBox().getThrust() : " << getPhysicsBox("xthrust").getThrust().x << std::endl;
+            #endif
             break;
 
         default:

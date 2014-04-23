@@ -30,6 +30,13 @@ namespace Physics
             float getAngle() const;
             void setAngle(float angle);
 
+            void isOnCurve(bool isIt=true);
+
+            void jump(bool isJumping=true);
+            bool isJumping() const;
+
+            void setAllToNull();
+
         private:
             sf::Vector2f m_Position;
             sf::Vector2f m_Velocity;
@@ -37,7 +44,9 @@ namespace Physics
             sf::Vector2f m_Thrust;
             float m_angle;
 
-            bool inEngine;
+            bool m_inEngine;
+            bool m_onCurve;
+            bool m_jumping;
     };
 
     inline sf::Vector2f Object::getPosition() const
@@ -59,6 +68,10 @@ namespace Physics
     inline float Object::getAngle() const { return m_angle; }
     inline void Object::setAngle(float angle) { m_angle = angle; }
 
+    inline void Object::isOnCurve(bool onCurve) { m_onCurve=onCurve; }
+
+    inline bool Object::isJumping() const { return m_jumping; }
+
     class Box : public Object
     {
         public:
@@ -69,6 +82,8 @@ namespace Physics
             float getWidth() const;
             float getHeight() const;
             void setSize(float width, float height);
+
+            void setAllToNull();
 
         private:
             float m_width, m_height;

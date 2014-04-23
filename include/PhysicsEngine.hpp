@@ -4,8 +4,11 @@
 #include "ConstrueFunction.hpp"
 #include "PhysicsObject.hpp"
 
+#include "../constants.hpp"
+
 #include <SFML/System/Vector2.hpp>
 
+#include <cmath>
 #include <list>
 namespace Physics
 {
@@ -25,9 +28,10 @@ namespace Physics
             void setFunction(const ConstrueFunction* Function);
             const ConstrueFunction* getFunction() const;
             std::list<Object*> m_PhysicsObjects;
+            void resetAllObjects();
 
         private:
-            Engine(sf::Vector2f GravityAcceleration = sf::Vector2f(0.0f, -16.677f));
+            Engine(sf::Vector2f GravityAcceleration = GravityAcceleration);
             ~Engine();
             Engine(const Engine& original);
 

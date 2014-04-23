@@ -29,7 +29,7 @@ EnemyModel::~EnemyModel()
  {
     if(isActive())
     {
-        CharacterModel::handle_input(event,textAreaFunction);
+      //  CharacterModel::handle_input(event,textAreaFunction);
     }
     if(isActive())
     {

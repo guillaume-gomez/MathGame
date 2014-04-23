@@ -21,7 +21,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
         m_game.setBack(false);
         m_game.setCenterCamera();
         m_game.setZoom(true);
-        
+
         while(Running && gameFinish == 0)
         {
 
@@ -38,6 +38,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
             }
             gameFinish = m_game.levelOperation(*m_stat);
             if(gameFinish == -1)
+
             {
                 return ENDING;
             }

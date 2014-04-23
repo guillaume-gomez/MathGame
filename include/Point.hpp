@@ -7,13 +7,14 @@
 
 #include "EditorCircle.hpp"
 #include "../constants.hpp"
+#include "../files.hpp"
 
 
 class Point : public EditorCircle
 {
     public:
         Point();
-        Point(float radius = 1.0f,bool goalPoint = false, float scale = GraphScale, std::string filename = "");
+        Point(float radius = 1.0f,bool goalPoint = false, float scale = GraphScale, std::string filename = FilenameNormalPointTex);
         virtual ~Point();
         inline bool isGoal() const {return m_goalPoint;}
         virtual EditorObject* clone() const;

@@ -292,6 +292,7 @@ void Game::reset()
             m_curves.reset();
             m_gameStarted = false;
         }
+        Physics::Engine::getEngine()->resetAllObjects();
 }
 
 Game::~Game()

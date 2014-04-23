@@ -102,14 +102,19 @@ void CharacterView::draw( sf::RenderTarget& target)
 void CharacterView::show()
 {
     //setTexture(TextureManager::getTextureManager()->getResource(FilenameCharacterTex),34, 34);
-    sf::Vector2f velocity = m_model.getVelocity();
+    sf::Vector2f thrust = m_model.getPhysicsBox("show").getThrust();
 
-    if(velocity.x < 0)
+    #ifdef DEBUG
+         //   std::cout << "CharacterView &m_model : " << &m_model << " thrust : " << m_model.getPhysicsBox("show").getThrust().x << std::endl;
+     // std::cout << "m_model.getPhysicsBox().getThrust() : " << m_model.getPhysicsBox("xthrust").getThrust().x << std::endl;
+    #endif
+
+    if(thrust.x < 0)
     {
         m_left = true;
         m_animation.Play(0,m_animation.GetFrameCount() / 2 -1);
     }
-    else if(velocity.x > 0)
+    else if(thrust.x > 0)
     {
         m_animation.Play(m_animation.GetFrameCount() / 2, m_animation.GetFrameCount() -1);
         m_left = false;
