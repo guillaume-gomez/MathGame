@@ -122,7 +122,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
             }
 
             #ifdef DEBUG
-            std::cout << "i " << i << " type " << type << std::endl;
+            std::cout << "i " << i << " type " << type  << " x: " << newElmt.getCoord().x << " y: " << newElmt.getCoord().y<<std::endl;
             #endif
             m_coordElements.push_back(newElmt);
         }

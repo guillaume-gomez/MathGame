@@ -142,7 +142,8 @@ void LevelView::draw(sf::RenderTarget& app)
                m_listSprite[i]->draw(app);
             }
         }
-        //other element can't be deleted, so they haven't got a check value parameter. then function still in this list(bad conception)
+        //other element can't be deleted, so they haven't got a check value parameter. then function still in this list
+        //<!>(bad conception)<!>
         else if (m_model.getType(i) != TypeObject::Function)
         {
              m_listSprite[i]->draw(app);
