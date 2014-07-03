@@ -123,8 +123,8 @@ const sf::Vector2f CharacterModel::getVelocity() const
         case sf::Keyboard::Right:
             m_PhysicsBox.setThrust(sf::Vector2f(m_speed, m_PhysicsBox.getThrust().y));
              #ifdef DEBUG
-          //     std::cout << "characterModel this : " << this << " thrust : " << m_PhysicsBox.getThrust().x << std::endl;
-            //    std::cout << "charracterModel getPhysicsBox().getThrust() : " << getPhysicsBox("xthrust").getThrust().x << std::endl;
+          //     // std::cout << "characterModel this : " << this << " thrust : " << m_PhysicsBox.getThrust().x << std::endl;
+            //    // std::cout << "charracterModel getPhysicsBox().getThrust() : " << getPhysicsBox("xthrust").getThrust().x << std::endl;
             #endif
             break;
 

@@ -135,6 +135,12 @@ void Engine::resetAllObjects()
 {
     for(Physics::Object* object : m_PhysicsObjects)
     {
+        #ifdef DEBUG
+            // std::cout << " caca caca caca caca caca caca avant : " << object->getVelocity().x << std::endl;
+        #endif
         object->setAllToNull();
+        #ifdef DEBUG
+            // std::cout << " caca caca caca caca caca caca apres : " << object->getVelocity().x << std::endl;
+        #endif
     }
 }

@@ -49,7 +49,7 @@ int main()
     while( screen >= 0)
     {
        screen = screens[ screen ]->Run(App);
-       // std::cout << screen << std::endl;
+       // // std::cout << screen << std::endl;
     }
 
     stat->save();

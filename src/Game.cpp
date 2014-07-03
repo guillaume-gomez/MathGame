@@ -189,7 +189,7 @@ void Game::draw()
             m_frameCount=0;
         }
 //        m_frameCountText.setString(std::to_string(1000/m_frameCountClock.restart().asMilliseconds()));
-//        std::cout << std::to_string(1000/frameCountClock.restart().asMilliseconds()) << std::endl;
+//        // std::cout << std::to_string(1000/frameCountClock.restart().asMilliseconds()) << std::endl;
         m_app.draw(m_frameCountText);
     #endif
 }
@@ -283,6 +283,9 @@ int Game::levelOperation(ScreenLink& stat)
 
 void Game::reset()
 {
+#ifdef DEBUG
+// // std::cout << "RESET RESET RESET" << std::endl << std::endl << std::endl;
+#endif
          m_player.reset();
      //    Physics::Engine::getEngine()->cleanEngine();
      //    m_graphModel.setChanged(true);
@@ -341,7 +344,7 @@ void Game::loadConfigFile()
 	m_player.setFrictionCoefficient(frictionCoef);
 	m_player.setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
 	#ifdef DEBUG
-        // std::cout << "GAME CPP width : " << width << "height : " << height << std::endl;
+        // // std::cout << "GAME CPP width : " << width << "height : " << height << std::endl;
 	#endif
 
 }

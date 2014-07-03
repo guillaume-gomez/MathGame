@@ -52,13 +52,16 @@ int Screen_Game::Run(sf::RenderWindow& App)
     }
     catch(std::exception& e)
     {
-        std::cout << e.what() << std::endl;
+        // std::cout << e.what() << std::endl;
     }
 }
 
 
 void Screen_Game::recenterCamera()
 {
+ #ifdef DEBUG
+  //// std::cout << "caca" << std::endl;
+ #endif
     sf::View   viewPerso = m_game.m_app.getView();
    viewPerso.reset(sf::FloatRect(0,0,WindowWidth, WindowHeight));
 	m_game.m_app.setView(viewPerso);

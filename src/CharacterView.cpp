@@ -30,7 +30,7 @@ CharacterView::CharacterView(const CharacterModel& model, float scale)
 :m_sound(CharacterView::soundBuff), m_model(model), m_left(false), m_scale(scale)
 {
 
-    std::cout << "Main constructor of CharacterView" << std::endl;
+    // std::cout << "Main constructor of CharacterView" << std::endl;
 
 	std::ifstream configFile(FilenameConfigFile);
 	std::string tmpString;
@@ -66,7 +66,7 @@ m_sound(copy.m_sound),  m_left(copy.m_left), m_scale(copy.m_scale)
  //share the same texture for all the instance
  //m_ArtTexture(copy.m_ArtTexture)
 {
-    std::cout << "Copy constructor of the class CharacterView  " << &m_model << std::endl;
+    // std::cout << "Copy constructor of the class CharacterView  " << &m_model << std::endl;
 
     std::ifstream configFile(FilenameConfigFile);
     std::string tmpString;
@@ -105,8 +105,8 @@ void CharacterView::show()
     sf::Vector2f thrust = m_model.getPhysicsBox("show").getThrust();
 
     #ifdef DEBUG
-         //   std::cout << "CharacterView &m_model : " << &m_model << " thrust : " << m_model.getPhysicsBox("show").getThrust().x << std::endl;
-     // std::cout << "m_model.getPhysicsBox().getThrust() : " << m_model.getPhysicsBox("xthrust").getThrust().x << std::endl;
+         //   // std::cout << "CharacterView &m_model : " << &m_model << " thrust : " << m_model.getPhysicsBox("show").getThrust().x << std::endl;
+     // // std::cout << "m_model.getPhysicsBox().getThrust() : " << m_model.getPhysicsBox("xthrust").getThrust().x << std::endl;
     #endif
 
     if(thrust.x < 0)

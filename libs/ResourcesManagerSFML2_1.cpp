@@ -29,7 +29,7 @@ void TextureManager::loadFromFile(const std::string& fileName)
     {
         delete tmpText;
         #ifdef DEBUG
-            // std::cout << "CANT LOAD : " << fileName << std::endl;
+            // // std::cout << "CANT LOAD : " << fileName << std::endl;
         #endif
     }
 }
@@ -67,7 +67,7 @@ void FontManager::loadFromFile(const std::string& fileName)
     {
         delete tmpFont;
         #ifdef DEBUG
-            // std::cout << "CANT LOAD : " << fileName << std::endl;
+            // // std::cout << "CANT LOAD : " << fileName << std::endl;
         #endif
     }
 }

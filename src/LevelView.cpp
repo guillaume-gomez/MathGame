@@ -42,7 +42,7 @@ LevelView::~LevelView()
     for (auto it : m_listSprite)
     {
         #ifdef DEBUG
-            std::cout << "Suppression de type " << EditorObject::getTypeStr(it->getType()) << std::endl;
+            // std::cout << "Suppression de type " << EditorObject::getTypeStr(it->getType()) << std::endl;
         #endif
         delete it;
     }

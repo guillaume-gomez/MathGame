@@ -58,7 +58,7 @@ void Curves::build(int _begin , int _end, float step)
 const ConstrueFunction* Curves::getModel()
 {
     #ifdef DEBUG
-     std::cout << "fdsfsfds" << std::endl;
+     // std::cout << "fdsfsfds" << std::endl;
     #endif
     return &m_model;
 }

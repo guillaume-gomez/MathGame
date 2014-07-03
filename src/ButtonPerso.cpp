@@ -11,7 +11,7 @@ ButtonPerso::ButtonPerso(const char* _filename)
     }
     /*else
     {
-        std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << m_filename << std::endl;
+        // std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << m_filename << std::endl;
     }*/
 }
 

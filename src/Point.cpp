@@ -14,7 +14,7 @@ Point::Point(float radius,bool goalPoint, float scale, std::string filename)
    }
    else
    {
-        std::cout << "Warning : in the class Point, Constructor didn't find the texture file" << filename << std::endl;
+        // std::cout << "Warning : in the class Point, Constructor didn't find the texture file" << filename << std::endl;
     /*if(m_goalPoint)
         {
             this->setFillColor(sf::Color(255, 0, 0));
