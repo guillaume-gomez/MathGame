@@ -6,6 +6,7 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 :m_app(_app),
  m_axis(GraphScale),
  m_gameMode(GameMode::Classic),
+ m_typeOfCamera(TypeOfCamera::Moveable),
  m_textAreaFunction(6),
  m_level(1,_diff,GraphScale),
  m_buttonReset(FilenameButtonReset),
@@ -22,7 +23,7 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
     sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
     text->setRepeated(true);
     m_spriteBG.setTexture(*text);
-    m_spriteBG.setTextureRect(sf::IntRect(0, 0, 2048, 2048));
+    m_spriteBG.setTextureRect(sf::IntRect(0, 0, WidthWorld, HeightWorld));
     m_spriteBG.setPosition(-1030, -1030);
     m_spriteBG.setColor(sf::Color(gridGameColor, gridGameColor, gridGameColor));
 
@@ -59,10 +60,13 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 
 void Game::zoom()
 {
-    float zoom = m_viewPerso.getSize().x * (1 - float(m_event.mouseWheel.delta) / 10);
-    if ( zoom >= ZoomMax && zoom <= ZoomMin)
+    if( m_typeOfCamera == TypeOfCamera::Static)
     {
-        m_viewPerso.zoom(1 - float(m_event.mouseWheel.delta) / 10);
+        float zoom = m_viewPerso.getSize().x * (1 - float(m_event.mouseWheel.delta) / 10);
+        if ( zoom >= ZoomMax && zoom <= ZoomMin)
+        {
+            m_viewPerso.zoom(1 - float(m_event.mouseWheel.delta) / 10);
+        }
     }
 }
 
@@ -144,7 +148,7 @@ void Game::show()
     m_level.displayNbAttempt();
     m_buttonSound.switchTile();
     m_textAreaFunction.blinkCaret();
-//    m_functionManager.grow(0.001f);
+//   m_functionManager.grow(0.001f);
 }
 
 void Game::draw()
@@ -200,6 +204,46 @@ void Game::resetWindow()
     m_viewPerso.setCenter(0, 0);
 }
 
+void Game::cameraMoved()
+{
+    if(m_typeOfCamera == TypeOfCamera::Moveable)
+    {
+        float centerX = m_player.getView().getPosition().x,
+              centerY = m_player.getView().getPosition().y;
+
+        //Si on dépasse à gauche
+        if(centerX - m_viewPerso.getSize().x < -(WidthWorld/2))
+        {
+           centerX = -(WidthWorld/2) + m_viewPerso.getSize().x;
+           std::cout << "on depasse à gauche "<< centerX  - m_viewPerso.getSize().x << std::endl;
+        }
+
+        //Si on dépasse en haut
+        if(centerY - m_viewPerso.getSize().y < -(HeightWorld/2))
+        {
+           centerY = -(HeightWorld/2) + m_viewPerso.getSize().y;
+           std::cout << "on depasse à haut "<<  centerY - m_viewPerso.getSize().y <<std::endl;
+        }
+
+        //Si on dépasse à droite
+        if(centerX + m_viewPerso.getSize().x > (WidthWorld/2))
+        {
+            centerX = (WidthWorld/2) - m_viewPerso.getSize().x;
+            //std::cout << "on depasse à droite "<< centerX + m_viewPerso.getSize().x<<std::endl;
+        }
+
+        //si on dépasse en bas
+        if(centerY + m_viewPerso.getSize().y > (HeightWorld/2))
+        {
+           centerY = (HeightWorld/2) - m_viewPerso.getSize().y;
+           // std::cout << "on depasse à bas "<< centerY + m_viewPerso.getSize().y<<std::endl;
+        }
+
+
+        m_viewPerso.setCenter(centerX, centerY);
+    }
+}
+
 void Game::move()
 {
     if(m_gameStarted)
@@ -211,11 +255,10 @@ void Game::move()
         Physics::Engine::getEngine()->update(elapsedSeconds);
 
         m_timer.restart();
-        //
-        //to following the character
-        //
-        //m_viewPerso.setCenter(m_player.getView().getPosition());
-        //m_app.setView(m_viewPerso);
+
+       //if the mode is activated
+        cameraMoved();
+
     }
 
     if(getGameMode() == GameMode::Dynamic)
@@ -284,6 +327,7 @@ int Game::levelOperation(ScreenLink& stat)
 void Game::reset()
 {
          m_player.reset();
+         resetWindow();
      //    Physics::Engine::getEngine()->cleanEngine();
      //    m_graphModel.setChanged(true);
      //    m_graphModel.clearFunction();
