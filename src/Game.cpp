@@ -212,31 +212,31 @@ void Game::cameraMoved()
               centerY = m_player.getView().getPosition().y;
 
         //Si on dépasse à gauche
-        if(centerX - m_viewPerso.getSize().x < -(WidthWorld/2))
+        if(centerX - (m_viewPerso.getSize().x/2) < -(WidthWorld/2))
         {
-           centerX = -(WidthWorld/2) + m_viewPerso.getSize().x;
-           std::cout << "on depasse à gauche "<< centerX  - m_viewPerso.getSize().x << std::endl;
+           centerX = -(WidthWorld/2) + (m_viewPerso.getSize().x/2);
+           //std::cout << "on depasse à gauche "<< centerX  - m_viewPerso.getSize().x << std::endl;
         }
 
         //Si on dépasse en haut
-        if(centerY - m_viewPerso.getSize().y < -(HeightWorld/2))
+        if(centerY - (m_viewPerso.getSize().y/2) < -(HeightWorld/2))
         {
-           centerY = -(HeightWorld/2) + m_viewPerso.getSize().y;
-           std::cout << "on depasse à haut "<<  centerY - m_viewPerso.getSize().y <<std::endl;
+           centerY = -(HeightWorld/2) + (m_viewPerso.getSize().y/2);
+           //std::cout << "on depasse à haut "<<  centerY - m_viewPerso.getSize().y <<std::endl;
         }
 
         //Si on dépasse à droite
-        if(centerX + m_viewPerso.getSize().x > (WidthWorld/2))
+        if(centerX + (m_viewPerso.getSize().x /2) > (WidthWorld/2))
         {
-            centerX = (WidthWorld/2) - m_viewPerso.getSize().x;
+            centerX = (WidthWorld/2) - (m_viewPerso.getSize().x/2);
             //std::cout << "on depasse à droite "<< centerX + m_viewPerso.getSize().x<<std::endl;
         }
 
         //si on dépasse en bas
-        if(centerY + m_viewPerso.getSize().y > (HeightWorld/2))
+        if(centerY + (m_viewPerso.getSize().y/2) > (HeightWorld/2))
         {
-           centerY = (HeightWorld/2) - m_viewPerso.getSize().y;
-           // std::cout << "on depasse à bas "<< centerY + m_viewPerso.getSize().y<<std::endl;
+           centerY = (HeightWorld/2) - (m_viewPerso.getSize().y/2);
+            //std::cout << "on depasse à bas "<< centerY + m_viewPerso.getSize().y<<std::endl;
         }
 
 
