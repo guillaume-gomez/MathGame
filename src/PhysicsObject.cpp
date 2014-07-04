@@ -44,7 +44,7 @@ void Object::setAllToNull()
 
 
 Box::Box(float width, float height)
-:m_width(width), m_height(height), collisionStrategy(new CollisionAABoxAABox)
+:m_width(width), m_height(height)
 {
     if(m_width<0.0)
         m_width*=-1;
@@ -54,7 +54,6 @@ Box::Box(float width, float height)
 
 Box::~Box()
 {
-    delete collisionStrategy;
 }
 
 Box::Box(const Box& original)

@@ -3,6 +3,7 @@
 
 #include "ConstrueFunction.hpp"
 #include "PhysicsObject.hpp"
+#include "PhysicsCollisions.hpp"
 
 #include "../constants.hpp"
 

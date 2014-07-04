@@ -48,8 +48,24 @@ void Engine::cleanEngine()
 void Engine::update(float elapsedSeconds)
 {
     static float yCurve, derivative;
-    for(Physics::Object* object : m_PhysicsObjects)
+    Physics::Object* object;
+    //for(Physics::Object* object : m_PhysicsObjects)
+//    #ifdef DEBUG
+//        std::cout << "m_PhysicsObjects.size() : " << m_PhysicsObjects.size() << std::endl;
+//    #endif // DEBUG
+    for(std::list<Object*>::iterator itPhysicsObjects=m_PhysicsObjects.begin(); itPhysicsObjects!=m_PhysicsObjects.end(); itPhysicsObjects++)
     {
+        object = *itPhysicsObjects;
+        for(std::list<Object*>::const_iterator it = std::next(itPhysicsObjects, 1) ; it != m_PhysicsObjects.cend() ; it++)
+        {
+            #ifdef DEBUG
+                std::cout << "15" << std::endl;
+            #endif // DEBUG
+        }
+            #ifdef DEBUG
+                std::cout << "U     U" << std::endl;
+            #endif // DEBUG
+
         if((!object->m_onCurve && std::abs(object->m_Velocity.x)<std::abs(object->m_Thrust.x))
         || ((object->m_Thrust.x<0 && object->m_Velocity.x>0) || (object->m_Thrust.x>0 && object->m_Velocity.x<0))
         )
@@ -129,6 +145,9 @@ void Engine::update(float elapsedSeconds)
             object->isOnCurve(false);
         }
     }
+            #ifdef DEBUG
+                std::cout << "**************" << std::endl;
+            #endif // DEBUG
 }
 
 void Engine::resetAllObjects()

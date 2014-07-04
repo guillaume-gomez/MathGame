@@ -7,8 +7,6 @@
     #include <iostream>
 #endif
 
-class CollisionStrategy;
-
 namespace Physics
 {
     class Object
@@ -49,8 +47,6 @@ namespace Physics
             bool m_inEngine;
             bool m_onCurve;
             bool m_jumping;
-
-            CollisionStrategy *collisionStrategy;
     };
 
     inline sf::Vector2f Object::getPosition() const
