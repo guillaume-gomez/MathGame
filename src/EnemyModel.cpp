@@ -68,7 +68,7 @@ void EnemyModel::decrementAttempt()
 std::string EnemyModel::getNbAttemptStr() const
 {
     std::ostringstream oss;
-    //std::cout << "EnemyModel::getNbAttemptStr"<< m_nbAttempt << std::endl;
+    //// std::cout << "EnemyModel::getNbAttemptStr"<< m_nbAttempt << std::endl;
     oss << getNbAttempt();
     return oss.str();
 }

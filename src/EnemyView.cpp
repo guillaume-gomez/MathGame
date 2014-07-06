@@ -31,7 +31,7 @@ void EnemyView::show()
 {
 	CharacterView::show();
 
-	//std::cout << " m_model-->" << &m_model <<"(" << m_model.getCoords().x <<" , " << m_model.getCoords().y << ") " << std::endl;
+	//// std::cout << " m_model-->" << &m_model <<"(" << m_model.getCoords().x <<" , " << m_model.getCoords().y << ") " << std::endl;
 	sf::Vector2f pos =  m_model.getCoords() * m_scale;
 	sf::FloatRect rect = m_animation.getLocalBounds();
 

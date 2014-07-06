@@ -43,7 +43,8 @@ class CharacterModel
         void checkisAlive();
         void setDirection(bool dir);
         bool getDirection() const;
-        const Physics::Box getPhysicsBox(char debugText[10]="default") const;
+        const Physics::Box& getPhysicsBox(char debugText[10]="default") const;
+        void addToEngine();
 
     protected:
         Physics::Box m_PhysicsBox;
@@ -108,13 +109,15 @@ class CharacterModel
             m_PhysicsBox.setAngle(angle);
         }
 
-        inline const Physics::Box CharacterModel::getPhysicsBox(char debugText[10]) const
+        inline const Physics::Box& CharacterModel::getPhysicsBox(char debugText[10]) const
         {
 //            #ifdef DEBUG
-//                std::cout << "CharacterModel::getPhysicsBox() : debugText : " << debugText << std::endl;
+//                // std::cout << "CharacterModel::getPhysicsBox() : debugText : " << debugText << std::endl;
 //            #endif
             return m_PhysicsBox;
         }
+
+        inline void CharacterModel::addToEngine() { m_PhysicsBox.collidable(true);}
 /**/
 /***************************************** // Definitions *****************************************/
 

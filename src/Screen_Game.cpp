@@ -1,7 +1,7 @@
 #include "Screen_Game.hpp"
 
 Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
-:m_game(_app), m_stat(_stat)
+:m_game(new Game(_app)), m_stat(_stat)
 {
     //to change the camera sets in m_game
     recenterCamera();
@@ -9,63 +9,75 @@ Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
 
 int Screen_Game::Run(sf::RenderWindow& App)
 {
+    #ifdef DEBUG
+        std::cout << std::endl << std::endl;
+    #endif // DEBUG
     try
     {
+        if(m_game == 0)
+            m_game = new Game(App);
+
         bool Running = true;
          //temp
-        m_game.setGameMode(GameMode::Classic);
+        m_game->setGameMode(GameMode::Classic);
         //
-        m_game.loadConfigFile();
-        m_game.selectLevel(*m_stat);
+        m_game->loadConfigFile();
+        m_game->selectLevel(*m_stat);
         int gameFinish = 0;
-        m_game.setBack(false);
-        m_game.setCenterCamera();
-        m_game.setZoom(true);
+        m_game->setBack(false);
+        m_game->setCenterCamera();
+        m_game->setZoom(true);
 
         while(Running && gameFinish == 0)
         {
-
             /*if ( alpha < m_alpha_max)
             {
                 alpha++;
             }*/
-           Running =  m_game.handleInput();
+           Running =  m_game->handleInput();
 
-            if(m_game.isBacked())
+            if(m_game->isBacked())
             {
                 recenterCamera();
+                Physics::Engine::getEngine()->cleanEngine();
+                delete m_game;
+                m_game=0;
                 return MENU;
             }
-            gameFinish = m_game.levelOperation(*m_stat);
+            gameFinish = m_game->levelOperation(*m_stat);
             if(gameFinish == -1)
 
             {
                 return ENDING;
             }
-            m_game.move();
-            m_game.manageSound();
-            m_game.show();
-            m_game.draw();
+            m_game->move();
+            m_game->manageSound();
+            m_game->show();
+            m_game->draw();
             App.display();
         }
         return (SCREEN_EXIT);
     }
     catch(std::exception& e)
     {
-        std::cout << e.what() << std::endl;
+        // std::cout << e.what() << std::endl;
     }
 }
 
 
 void Screen_Game::recenterCamera()
 {
-    sf::View   viewPerso = m_game.m_app.getView();
+ #ifdef DEBUG
+  //// std::cout << "caca" << std::endl;
+ #endif
+    sf::View   viewPerso = m_game->m_app.getView();
    viewPerso.reset(sf::FloatRect(0,0,WindowWidth, WindowHeight));
-	m_game.m_app.setView(viewPerso);
+	m_game->m_app.setView(viewPerso);
 }
 
 
 Screen_Game::~Screen_Game()
 {
-
+    delete m_game;
+    m_game=0;
 }

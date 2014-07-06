@@ -29,11 +29,13 @@ LevelView::LevelView(const LevelModel& model, float _scale)
     ObjectFactoryAbstract::_register(TypeObject::Enemy,new Enemy());
     ObjectFactoryAbstract::_register(TypeObject::Integral,new Integral());
     ObjectFactoryAbstract::_register(TypeObject::Function,new Curves());
+
     //pré loading
 //    float widthTex  = (float) m_texGoal.getSize().x / 2;
 //    float heightTex = (float) m_texGoal.getSize().y / 2;
 
     loadCoord();
+
 }
 
 
@@ -42,7 +44,7 @@ LevelView::~LevelView()
     for (auto it : m_listSprite)
     {
         #ifdef DEBUG
-            std::cout << "Suppression de type " << EditorObject::getTypeStr(it->getType()) << std::endl;
+            // std::cout << "Suppression de type " << EditorObject::getTypeStr(it->getType()) << std::endl;
         #endif
         delete it;
     }
@@ -90,6 +92,7 @@ void LevelView::loadCoord()
                     newEnemy->set_Position(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
                     newEnemy->setNbAttempt(m_model.getAttempt(i));
                     newEnemy->setDirection(m_model.getSens(i));
+                    newEnemy->addToEngine();
                     m_listSprite.push_back(newEnemy);
                 }
             }

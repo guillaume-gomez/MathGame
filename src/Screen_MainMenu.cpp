@@ -21,7 +21,6 @@ Screen_MainMenu::Screen_MainMenu()
     m_credit_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::creditButtonClick, this));
     m_option_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::optionButtonClick, this));
     m_editor_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::editorButtonClick, this));
-
 }
 
 

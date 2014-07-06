@@ -74,8 +74,8 @@ inline void CharacterView::setTexture(const sf::Texture* texture, int frameWidth
     else
     {
         #ifdef DEBUG
-            // std::cout << "PROBLEME pas charge limage du personnage !" << std::endl;
-            // std::cout << "w : " << frameWidth << " h : " << frameHeight << std::endl;
+            // // std::cout << "PROBLEME pas charge limage du personnage !" << std::endl;
+            // // std::cout << "w : " << frameWidth << " h : " << frameHeight << std::endl;
         #endif
         m_ArtTexture = new sf::Texture;
         m_ArtTexture->create(frameWidth, frameHeight);

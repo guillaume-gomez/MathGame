@@ -48,7 +48,7 @@ void ManageFunctions::represent(float step)
 {
     if(m_changed)
     {
-       //std::cout << "Represent " << m_currentIndex << std::endl;
+       //// std::cout << "Represent " << m_currentIndex << std::endl;
 	   m_vectorCurves.at(m_currentIndex).represent(step);
 	   m_changed = false;
     }
@@ -57,7 +57,7 @@ void ManageFunctions::represent(float step)
 const ConstrueFunction* ManageFunctions::getModelIndex()
 {
 #ifdef DEBUG
-    std::cout << m_currentIndex << " INDEX " << std::endl;
+    // std::cout << m_currentIndex << " INDEX " << std::endl;
 #endif
     return m_vectorCurves.at(m_currentIndex).getModel();
 }

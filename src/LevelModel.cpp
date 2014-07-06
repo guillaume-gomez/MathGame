@@ -20,7 +20,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
     m_fileLevel.open(_filename.c_str());
     if(m_fileLevel.is_open())
     {
-//        std::cout << " file :'" << _filename.c_str() <<"'"<< std::endl;
+//        // std::cout << " file :'" << _filename.c_str() <<"'"<< std::endl;
         m_fileLevel >> m_nbElements;
         m_pointsCheck.clear();
         m_pointsCheck.resize(m_nbElements);
@@ -121,9 +121,6 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 m_pointsCheck[i] = true;
             }
 
-            #ifdef DEBUG
-            std::cout << "i " << i << " type " << type  << " x: " << newElmt.getCoord().x << " y: " << newElmt.getCoord().y<<std::endl;
-            #endif
             m_coordElements.push_back(newElmt);
         }
     }
@@ -169,7 +166,7 @@ void LevelModel::IsFinishing ( const CharacterModel& charactermodel ,float _scal
         if(!m_pointsCheck[i] && position_and_Size.contains( m_coordElements[i].getCoord() ) )
         {
             #ifdef DEBUG
-            std::cout << "index " << i << std::endl;
+            // std::cout << "index " << i << std::endl;
             #endif
             m_pointsCheck[i] = true;
             playableSound = true;

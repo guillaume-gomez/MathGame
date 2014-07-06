@@ -9,6 +9,9 @@
 CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, MoveType moveType)
 :m_life(life), m_frictionCoefficient(0.0f), m_speed(speed), m_moveType(moveType)
 {
+    #ifdef DEBUG
+//        std::cout << "CharacterModel constructor : &m_PhysicsBox : " << &m_PhysicsBox << std::endl;
+    #endif // DEBUG
 	m_orientedRight = (m_PhysicsBox.getVelocity().x>0);
 	Physics::Engine::getEngine()->addObject(&m_PhysicsBox);
 }
@@ -17,6 +20,9 @@ CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, Mov
 CharacterModel::CharacterModel(const CharacterModel& copy)
 :m_life(copy.m_life), m_frictionCoefficient(copy.m_frictionCoefficient), m_speed(copy.m_speed), m_moveType(copy.m_moveType)
 {
+    #ifdef DEBUG
+//        std::cout << " copy constryctor CharacterModel" << std::endl;
+    #endif // DEBUG
   m_orientedRight = (m_PhysicsBox.getVelocity().x>0);
   Physics::Engine::getEngine()->addObject(&m_PhysicsBox);
 }
@@ -123,8 +129,8 @@ const sf::Vector2f CharacterModel::getVelocity() const
         case sf::Keyboard::Right:
             m_PhysicsBox.setThrust(sf::Vector2f(m_speed, m_PhysicsBox.getThrust().y));
              #ifdef DEBUG
-          //     std::cout << "characterModel this : " << this << " thrust : " << m_PhysicsBox.getThrust().x << std::endl;
-            //    std::cout << "charracterModel getPhysicsBox().getThrust() : " << getPhysicsBox("xthrust").getThrust().x << std::endl;
+          //     // std::cout << "characterModel this : " << this << " thrust : " << m_PhysicsBox.getThrust().x << std::endl;
+            //    // std::cout << "charracterModel getPhysicsBox().getThrust() : " << getPhysicsBox("xthrust").getThrust().x << std::endl;
             #endif
             break;
 
@@ -196,5 +202,8 @@ sf::FloatRect CharacterModel::getRectScaled(float graphScale)const
 **/
 CharacterModel::~CharacterModel()
 {
+    #ifdef DEBUG
+//        std::cout << "destructor CharacterModel" << std::endl;
+    #endif // DEBUG
 	Physics::Engine::getEngine()->delObject(&m_PhysicsBox);
 }

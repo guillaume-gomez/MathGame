@@ -31,7 +31,7 @@ void LineSFML2_1::compute()
 {
     m_length = sqrt(pow(m_endCoords.x-m_startCoords.x,2)+pow(m_endCoords.y-m_startCoords.y,2));
     #ifdef DEBUG
-//        // std::cout << "m_length : " << m_length << std::endl;
+//        // // std::cout << "m_length : " << m_length << std::endl;
     #endif // DEBUG
     setSize(sf::Vector2f(getLength(),getThickness()));
     setPosition(getStartCoords());

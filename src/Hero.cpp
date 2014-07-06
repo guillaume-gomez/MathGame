@@ -5,9 +5,13 @@ Hero::Hero()
 : m_model(true, sf::Vector2f(0.0f, 0.0f), 12),
   m_view(m_model,GraphScale)
 {
+    #ifdef DEBUG
+//        std::cout << "Hero constructor" << std::endl;
+    #endif // DEBUG
     this->m_type = TypeObject::Hero;
 
     m_model.setSize(m_view.getRectLocal().width, m_view.getRectLocal().height);
+    m_model.addToEngine();
 }
 
 Hero::~Hero()

@@ -27,7 +27,9 @@ class EnemyModel : public CharacterModel
 inline void EnemyModel::setNbAttempt(unsigned int i)
 {
     m_nbAttempt = i;
+    m_isActive = i==0;
 }
+
 
 #endif // ENEMYMODEL
 

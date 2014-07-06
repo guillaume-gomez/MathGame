@@ -3,6 +3,7 @@
 
 #include "ConstrueFunction.hpp"
 #include "PhysicsObject.hpp"
+#include "VisitorObjectCollidable.h"
 
 #include "../constants.hpp"
 
@@ -29,6 +30,7 @@ namespace Physics
             const ConstrueFunction* getFunction() const;
             std::list<Object*> m_PhysicsObjects;
             void resetAllObjects();
+            VisitBox visitor;
 
         private:
             Engine(sf::Vector2f GravityAcceleration = GravityAcceleration);
@@ -37,6 +39,8 @@ namespace Physics
 
             sf::Vector2f m_GravityAcceleration;
             const ConstrueFunction* m_Function;
+
+            //ensuite transformé ce visiteur par une map de visiteur avec pour clé le type de l'objet
     };
 
     inline void Engine::setGravity(sf::Vector2f GravityAcceleration)

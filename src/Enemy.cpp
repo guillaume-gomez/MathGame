@@ -49,6 +49,11 @@ void Enemy::draw(sf::RenderTarget& app)
 
 void Enemy::reset()
 {
+#ifdef DEBUG
+
+ //// std::cout << " caca caca caca caca caca caca" << std::endl;
+#endif
+    // std::cout << m_model.getPhysicsBox().getVelocity().x << std::endl;
     m_model.setCoords(sf::Vector2f(0.0f, 0.0f));
     m_model.setAngle(0.0f);
 }

@@ -12,7 +12,7 @@ PanelEditor::PanelEditor()
     }
   /*  else
     {
-        std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << FilenameButtonPanel << std::endl;
+        // std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << FilenameButtonPanel << std::endl;
     }*/
 
 }

@@ -13,7 +13,7 @@ class Screen_Game : public Screen
         int Run(sf::RenderWindow& App);
         void recenterCamera();
     private:
-        Game m_game;
+        Game *m_game;
         ScreenLink *m_stat;
 };
 

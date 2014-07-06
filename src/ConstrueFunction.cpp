@@ -98,7 +98,7 @@ void ConstrueFunction::getRepresentativeCurve(float _begin, float _end, float st
 	IntervalOfDefinition intervalTmp;
 	intervalTmp.xStart = _begin;
 	#ifdef DEBUG
-	std::cout << _begin << "  " << _end << std::endl;
+	// std::cout << _begin << "  " << _end << std::endl;
 	#endif
    for(float x = _begin ; x <= _end ; x += step )
    {

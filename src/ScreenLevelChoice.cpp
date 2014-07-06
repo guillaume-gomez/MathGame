@@ -12,7 +12,7 @@ SelectLevel::~SelectLevel()
 
 void SelectLevel::selectingLevel()
 {
-    // std::cout << m_difficulty << " " <<  m_level << "  " << m_modeSelectLevel << std::endl;
+    // // std::cout << m_difficulty << " " <<  m_level << "  " << m_modeSelectLevel << std::endl;
     m_stat->setParamLevel(m_difficulty,m_level,m_modeSelectLevel);
     m_isClicked = true;
 }
@@ -101,7 +101,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
 
 ScreenLevelChoice::~ScreenLevelChoice()
 {
-    // std::cout << "ScreenLevelCHoice's destrcutor" << std::endl;
+    // // std::cout << "ScreenLevelCHoice's destrcutor" << std::endl;
     for( unsigned int i = 0 ; i < m_selectionLevel.size();i++)
     {
         m_selectionLevel.pop_back();

@@ -11,7 +11,7 @@ class Enemy : public EditorObject
         Enemy();
         Enemy(const Enemy& copy);
         virtual ~Enemy();
-        virtual const EnemyModel& getModel();
+        virtual const EnemyModel& getModel() const;
         virtual const EnemyView& getView();
         virtual void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
         virtual void show();
@@ -32,13 +32,14 @@ class Enemy : public EditorObject
         virtual EditorObject* clone() const;
         virtual std::string save(float scale = GraphScale) const;
         virtual EditorObject* loadView(const Element& elmt, float scale);
+        void addToEngine();
     private:
         EnemyModel m_model;
         EnemyView m_view;
 };
 
 
-inline const EnemyModel& Enemy::getModel() { return m_model;}
+inline const EnemyModel& Enemy::getModel() const { return m_model;}
 
 inline const EnemyView& Enemy::getView() { return m_view;}
 
@@ -63,5 +64,6 @@ inline sf::Vector2f Enemy::get_Position() const { return m_model.getCoords();};
 
 inline sf::FloatRect Enemy::get_GlobalBounds() const{ return m_view.getGlobalBounds();};
 
+inline void Enemy::addToEngine() { m_model.addToEngine();}
 
 #endif // ENEMY_H

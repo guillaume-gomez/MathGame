@@ -68,7 +68,7 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
                     addList = true;
                     sign = 0;
                 }
-                //std::cout << "X " << itNext->x << " Y " << itNext->y << std::endl;
+                //// std::cout << "X " << itNext->x << " Y " << itNext->y << std::endl;
             }
             m_listCoordShapes.push_back(*it);
             nbCoord++;
@@ -94,12 +94,12 @@ void IntegralModel::showPoints()
 {
     #ifdef DEBUG
         unsigned int index = 0;
-        std::cout << "-----------------Coord---------------" << std::endl;
+        // std::cout << "-----------------Coord---------------" << std::endl;
         for (auto it : m_listCoordShapes)
         {
-            std::cout <<"("<< it.x << ", " << it.y <<")" << std::endl;
+            // std::cout <<"("<< it.x << ", " << it.y <<")" << std::endl;
         }
-        std::cout << "------------------------------------" << std::endl;
+        // std::cout << "------------------------------------" << std::endl;
     #endif
 }
 
@@ -122,7 +122,7 @@ void IntegralModel::showPoints()
     #ifdef DEBUG
 		FOR_STL_ITERATOR(std::list<sf::Vector2f>, m_coords, it)
         {
-            std::cout <<" x : "<< it->x << " y : " << it->y << std::endl;
+            // std::cout <<" x : "<< it->x << " y : " << it->y << std::endl;
         }
     #endif // DEBUG
 
