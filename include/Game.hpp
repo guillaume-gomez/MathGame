@@ -24,7 +24,9 @@ using namespace sf;
 class Game
 {
     public:
-         RenderWindow &m_app;
+        TypeOfCamera m_typeOfCamera;
+
+        RenderWindow &m_app;
         Game( RenderWindow& _app, Difficulty _diff = Normal );
         virtual ~Game();
         bool handleInput();
@@ -44,6 +46,7 @@ class Game
         void setGameMode( GameMode mode);
         GameMode getGameMode() const;
         void loadConfigFile();
+        void cameraMoved();
 
     private:
         Game(const Game& orig);

@@ -11,6 +11,7 @@ const unsigned int TotalDifficulty = 3 ;
 
 enum Difficulty {Easy , Normal , Hard};
 enum GameMode {Classic , NoChance, Dynamic};
+enum class TypeOfCamera {Static, Moveable};
 enum class TypeObject
 {
     Abstract, Circle, Point, GoalPoint, Enemy, Hero, Integral, Function
@@ -27,6 +28,9 @@ const char FunctionStr[] = "Function";
 
 const int Blur = 120;
 const int Clear = 220;
+
+const int WidthWorld = 2048;
+const int HeightWorld = 2048;
 
 const float ZoomMin = 2000.0f;
 const float ZoomMax = 360.0f;
