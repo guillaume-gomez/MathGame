@@ -1,4 +1,5 @@
 #include "ScreenOption.hpp"
+#include <ostream>
 
 
 //std::vector<Button*> m_listButton;
@@ -8,13 +9,15 @@ std::string ScreenOption::m_filenameChar = FilenameDefaultChar;
 
 
 ScreenOption::ScreenOption(unsigned int _button)
-: m_nbButton(_button), m_gravityType(NoSliding), m_character_array(0)
+: m_nbButton(_button), m_gravityType(NoSliding), m_character_array(0),
+ m_quit(false)
 {
 
    m_window = sfg::Window::Create();
    m_window->SetTitle( "Option" );
 
-   m_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+   m_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 10.0f);
+   m_boxClose = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
    m_layoutPhysics = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
    m_layoutCharacter = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
 
@@ -26,9 +29,13 @@ ScreenOption::ScreenOption(unsigned int _button)
 
     for ( unsigned int i = 0 ; i < m_nbButton ; i++)
     {
+        std::ostringstream oss;
+
+        oss << i + 1;
         ChoiceCharacter temp = ChoiceCharacter(i+1);
         m_character_array.push_back(temp);
-        sfg::Button::Ptr button (sfg::Button::Create("Character"));
+        sfg::Button::Ptr button (sfg::Button::Create("Character_" + oss.str()));
+
         button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&ChoiceCharacter::defineCharacter , &(m_character_array.at(i))));
         m_layoutCharacter->Pack(button);
 
@@ -36,11 +43,14 @@ ScreenOption::ScreenOption(unsigned int _button)
 
     sfg::RadioButton::Ptr radio1(sfg::RadioButton::Create("Sliging"));
     sfg::RadioButton::Ptr radio2(sfg::RadioButton::Create("No Sliding", radio1->GetGroup()));
-    radio1->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::desactivateSliding, this));
-    radio2->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::activateSliding, this));
+    radio1->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::activateSliding, this));
+    radio2->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::desactivateSliding, this));
 
     sfg::Button::Ptr saveButton(sfg::Button::Create("Save"));
     saveButton->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::save, this));
+
+    sfg::Button::Ptr quitButton(sfg::Button::Create("Go back main menu"));
+    quitButton->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::quit, this));
 
     m_layoutPhysics->Pack(radio1);
     m_layoutPhysics->Pack(radio2);
@@ -51,6 +61,7 @@ ScreenOption::ScreenOption(unsigned int _button)
     m_box->Pack(m_frameCharacter);
     m_box->Pack(m_framePhysics);
     m_box->Pack(saveButton);
+    m_box->Pack(quitButton);
 
 	m_window->Add(m_box);
 
@@ -65,6 +76,11 @@ void ScreenOption::desactivateSliding()
 void ScreenOption::activateSliding()
 {
     m_gravityType = Sliding;
+}
+
+void ScreenOption::quit()
+{
+    m_quit = true;
 }
 
 void ScreenOption::save()
@@ -89,14 +105,14 @@ void ScreenOption::save()
         height = BikeHeight;
     }
 
-    // std::cout << m_filenameChar << std::endl;
+     std::cout << m_filenameChar << std::endl;
     configFile <<"FilenameCharacterTex = "<< m_filenameChar << std::endl;
     configFile << "width = "<< width << std::endl;
     configFile << "height = "<< height<< std::endl;
-    configFile << "MoveType = "<<m_gravityType << std::endl;
-    configFile << "FrictionCoefficient = "<<friction << std::endl;
+    configFile << "MoveType = "<< m_gravityType << std::endl;
+    configFile << "FrictionCoefficient = "<< friction << std::endl;
 
-    // // std::cout << "Saved" << std::endl;
+    std::cout << "Saved" << std::endl;
 }
 
 
@@ -130,6 +146,14 @@ int ScreenOption::Run( sf::RenderWindow& App)
                      return MENU;
                 }
             }
+
+            if(m_quit)
+            {
+
+                m_window->Show(false);
+                m_quit = false;
+                return MENU;
+            }
         }
 
         m_window->Update( 0.f );
@@ -150,7 +174,7 @@ ScreenOption::~ScreenOption()
 
 ChoiceCharacter::ChoiceCharacter(unsigned int type)
 :m_type(type)
-{}
+{std::cout << "Constructor " << m_type<<std::endl;}
 
 ChoiceCharacter::~ChoiceCharacter()
 {}
@@ -161,10 +185,15 @@ void ChoiceCharacter::defineCharacter()
     {
         case 1:
             ScreenOption::m_filenameChar = FilenameDefaultChar;
+
         break;
         case 2:
             ScreenOption::m_filenameChar = FilenameBike;
+
+        break;
+        default:
+        //degeux mais je ne comprends pas le probleme
+            ScreenOption::m_filenameChar = FilenameDefaultChar;
         break;
     }
-
 }
