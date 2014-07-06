@@ -15,8 +15,12 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
  m_frameCount(0),
  m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf")),
 #endif
- m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false)
+ m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false),
+ m_player(new Hero), m_playerDead(false)
 {
+    #ifdef DEBUG
+//        std::cout << "game constructor" << std::endl;
+    #endif // DEBUG
     loadConfigFile();
     setCenterCamera();
     sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
@@ -128,7 +132,7 @@ bool  Game::handleInput()
 
               //  m_textAreaFunction.resize();
 
-                m_player.handle_input(m_event, m_textAreaFunction);
+                m_player->handle_input(m_event, m_textAreaFunction);
                 m_buttonReset.handle_input(m_event, m_app);
                 m_buttonSound.handle_input(m_event, m_app);
                 m_buttonBack.handle_input(m_event, m_app);
@@ -139,7 +143,7 @@ bool  Game::handleInput()
 
 void Game::show()
 {
-    m_player.show();
+    m_player->show();
     m_level.showEnemies();
     m_level.displayNbAttempt();
     m_buttonSound.switchTile();
@@ -167,7 +171,7 @@ void Game::draw()
 
 
     m_level.drawPoints(m_app);
-    m_player.draw(m_app);
+    m_player->draw(m_app);
 
     m_app.setView(m_app.getDefaultView());
     m_level.drawUI(m_app);
@@ -210,11 +214,37 @@ void Game::move()
 
         Physics::Engine::getEngine()->update(elapsedSeconds);
 
+//        #ifdef DEBUG
+//            std::cout << "hero collision : ";
+//        #endif // DEBUG
+
+        for(const EditorObject* object : m_level.getSpriteList() )
+        {
+            if(object->getType() == TypeObject::Enemy)
+            {
+//                #ifdef DEBUG
+//                    std::cout << "Méchant !" << std::endl;
+//                #endif // DEBUG
+                if(m_player->getModel().getPhysicsBox().testCollision(Physics::Engine::getEngine()->visitor,
+                                                                   dynamic_cast<const Enemy*>(object)->getModel().getPhysicsBox())
+                   )
+                {
+                    m_playerDead = true;
+                }
+            }
+        }
+        if(m_player->get_Position().y<-(m_spriteBG.getTextureRect().height+m_spriteBG.getPosition().y)/GraphScale)
+            m_playerDead = true;
+                #ifdef DEBUG
+//                    std::cout << m_spriteBG.getTextureRect().height << std::endl;
+                #endif // DEBUG
+
+
         m_timer.restart();
         //
         //to following the character
         //
-        //m_viewPerso.setCenter(m_player.getView().getPosition());
+        //m_viewPerso.setCenter(m_player->getView().getPosition());
         //m_app.setView(m_viewPerso);
     }
 
@@ -258,18 +288,22 @@ int Game::levelOperation(ScreenLink& stat)
 {
     int changing = 0;
     bool soundPlayable = false;
-    m_level.levelFinished(m_player.getModel(), soundPlayable);
+    m_level.levelFinished(m_player->getModel(), soundPlayable);
 
       //  m_player1View.m_sound.Stop();
       if(m_isSound && soundPlayable)
       {
-          m_player.playSound();
+          m_player->playSound();
       }
 
-      if(m_buttonReset.isClicked() || m_level.getChangeLevel ())
+      if(m_buttonReset.isClicked() || m_level.getChangeLevel () || m_playerDead)
       {
+//          #ifdef DEBUG
+//            std::cout << "m_buttonReset.isClicked() || m_level.getChangeLevel ()" << std::endl;
+//          #endif // DEBUG
         reset();
         changing = m_level.changeLevel(&stat);
+        m_playerDead = false;
       }
 
       if(m_buttonBack.isClicked())
@@ -286,7 +320,7 @@ void Game::reset()
 #ifdef DEBUG
 // // std::cout << "RESET RESET RESET" << std::endl << std::endl << std::endl;
 #endif
-         m_player.reset();
+         m_player->reset();
      //    Physics::Engine::getEngine()->cleanEngine();
      //    m_graphModel.setChanged(true);
      //    m_graphModel.clearFunction();
@@ -300,6 +334,7 @@ void Game::reset()
 
 Game::~Game()
 {    //dtor
+    delete m_player;
 }
 
 void Game::manageSound()
@@ -340,9 +375,9 @@ void Game::loadConfigFile()
 	if(moveTypeString=="WithSliding")
 		moveType = CharacterModel::WithSliding;
 
-	m_player.setMoveType(moveType);
-	m_player.setFrictionCoefficient(frictionCoef);
-	m_player.setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
+	m_player->setMoveType(moveType);
+	m_player->setFrictionCoefficient(frictionCoef);
+	m_player->setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
 	#ifdef DEBUG
         // // std::cout << "GAME CPP width : " << width << "height : " << height << std::endl;
 	#endif

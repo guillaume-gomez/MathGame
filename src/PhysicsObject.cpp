@@ -2,12 +2,19 @@
 
 using namespace Physics;
 
+std::list<Object*> Object::m_CollidableObjects;
+
 Object::Object()
-:m_Position(sf::Vector2f(0.0f,0.0f)), m_Velocity(sf::Vector2f(0.0f,0.0f)), m_inEngine(false), m_onCurve(false), m_jumping(false)
+:m_Position(sf::Vector2f(0.0f,0.0f)), m_Velocity(sf::Vector2f(0.0f,0.0f)), m_inEngine(false), m_onCurve(false), m_jumping(false), m_isCollidable(false)
 {}
 
 Object::~Object()
 {
+    if(m_isCollidable)
+    {
+        m_isCollidable = false;
+        m_CollidableObjects.remove(this);
+    }
 //    #ifdef DEBUG
 //         std::cout << "destructeur Object::Object" << std::endl;
 //    #endif
@@ -37,6 +44,24 @@ void Object::setAllToNull()
     m_angle = 0.0f;
 }
 
+bool Object::collidable() const
+{
+    return m_isCollidable;
+}
+
+void Object::collidable(bool isCollidable)
+{
+    if(!m_isCollidable && isCollidable)
+    {
+        m_isCollidable = true;
+        m_CollidableObjects.push_back(this);
+    }
+    else if(m_isCollidable && !isCollidable)
+    {
+        m_isCollidable = false;
+        m_CollidableObjects.remove(this);
+    }
+}
 
 /***************************************************************/
 /************************** Class Box **************************/
@@ -67,4 +92,18 @@ Box::Box(const Box& original)
 void Box::setAllToNull()
 {
     Object::setAllToNull();
+}
+
+bool Box::testCollision(VisitorObjectCollidable& visitor, const Object& obj) const
+{
+   // bool truc = visitor.visit(*this, obj);
+   const Box* box = dynamic_cast<const Box*>(&obj);
+   return testCollision(visitor, *box);
+   // std::cout << "Box::testCollision with PhysicObject" << truc << std::endl;
+}
+
+
+bool Box::testCollision(VisitorObjectCollidable& visitor, const Box& obj) const
+{
+    return visitor.visit(*this, obj);
 }

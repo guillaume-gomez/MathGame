@@ -30,5 +30,6 @@ inline void EnemyModel::setNbAttempt(unsigned int i)
     m_isActive = i==0;
 }
 
+
 #endif // ENEMYMODEL
 

@@ -1,6 +1,10 @@
 #ifndef PhysicsObject_HPP
 #define PhysicsObject_HPP
 
+#include "VisitorObjectCollidable.h"
+#include "../constants.hpp"
+
+#include <list>
 #include <SFML/System/Vector2.hpp>
 
 #ifdef DEBUG
@@ -9,6 +13,10 @@
 
 namespace Physics
 {
+    //it is implemented lower in this file
+    class Box;
+    class VisitorObjectCollidable;
+
     class Object
     {
         friend class Engine;
@@ -35,7 +43,15 @@ namespace Physics
             void jump(bool isJumping=true);
             bool isJumping() const;
 
+
             void setAllToNull();
+
+            bool collidable() const;
+            void collidable(bool isCollidable);
+
+            //
+            virtual bool testCollision(VisitorObjectCollidable& visitor, const Object& obj) const = 0;
+            virtual bool testCollision(VisitorObjectCollidable& visitor, const Box& obj) const = 0;
 
         private:
             sf::Vector2f m_Position;
@@ -47,6 +63,10 @@ namespace Physics
             bool m_inEngine;
             bool m_onCurve;
             bool m_jumping;
+
+            bool m_isCollidable;
+
+            static std::list<Object*> m_CollidableObjects;
     };
 
     inline sf::Vector2f Object::getPosition() const
@@ -72,10 +92,11 @@ namespace Physics
 
     inline bool Object::isJumping() const { return m_jumping; }
 
+
     class Box : public Object
     {
         public:
-            Box(float width=1.0f, float height=1.0f);
+            Box(float width = 1.0f, float height = 1.0f);
             ~Box();
             Box(const Box& original);
 
@@ -85,13 +106,17 @@ namespace Physics
 
             void setAllToNull();
 
+            virtual bool testCollision(VisitorObjectCollidable& visitor, const Object& obj) const;
+            virtual bool testCollision(VisitorObjectCollidable& visitor, const Box& obj) const;
+
         private:
+//            Box();
             float m_width, m_height;
     };
 
     inline float Box::getWidth() const { return m_width;  }
     inline float Box::getHeight() const { return m_height;  }
-    inline void Box::setSize(float width, float height) { m_width=width, m_height=height ; }
+    inline void Box::setSize(float width, float height) { m_width=width/GraphScale, m_height=height/GraphScale ; }
 } // namespace Physics
 
 #endif // PhysicsObject_HPP

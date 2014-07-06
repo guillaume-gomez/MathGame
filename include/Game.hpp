@@ -65,10 +65,11 @@ class Game
         sf::Clock m_frameCountClock;
         sf::Text m_frameCountText;
     #endif
-        Hero m_player;
+        Hero *m_player;
         Sprite m_spriteBG;
         TextAreaSFML2_0 m_textAreaFunction;
         View m_viewPerso;
+        bool m_playerDead;
 
         ManageFunctions m_functionManager;
 };

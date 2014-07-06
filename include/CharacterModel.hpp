@@ -44,6 +44,7 @@ class CharacterModel
         void setDirection(bool dir);
         bool getDirection() const;
         const Physics::Box& getPhysicsBox(char debugText[10]="default") const;
+        void addToEngine();
 
     protected:
         Physics::Box m_PhysicsBox;
@@ -115,6 +116,8 @@ class CharacterModel
 //            #endif
             return m_PhysicsBox;
         }
+
+        inline void CharacterModel::addToEngine() { m_PhysicsBox.collidable(true);}
 /**/
 /***************************************** // Definitions *****************************************/
 
