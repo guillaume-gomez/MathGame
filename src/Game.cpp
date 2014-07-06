@@ -136,7 +136,10 @@ bool  Game::handleInput()
 
               //  m_textAreaFunction.resize();
 
-                m_player->handle_input(m_event, m_textAreaFunction);
+                if(m_gameStarted)
+                {
+                    m_player->handle_input(m_event, m_textAreaFunction);
+                }
                 m_buttonReset.handle_input(m_event, m_app);
                 m_buttonSound.handle_input(m_event, m_app);
                 m_buttonBack.handle_input(m_event, m_app);
