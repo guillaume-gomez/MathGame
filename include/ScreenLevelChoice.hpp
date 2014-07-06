@@ -38,9 +38,12 @@ class ScreenLevelChoice : public Screen
         friend class SelectLevel;
         ScreenLevelChoice(ScreenLink* _stat);
         virtual ~ScreenLevelChoice();
+
         virtual int Run(sf::RenderWindow & App) = 0 ;
 
     protected:
+        void loadLevelUnlocked();
+
         sf::Sprite m_background;
         int m_changingMenu;
         sf::Sprite m_easyBar;
@@ -60,5 +63,6 @@ class ScreenLevelChoice : public Screen
         std::vector<SelectLevel*> m_selectionLevel;
         sfg::SFGUI m_sfgui;
         sfg::Window::Ptr m_window;
+        ScreenLink* m_stat;
 };
 #endif // SCREENLEVELCHOICE_H
