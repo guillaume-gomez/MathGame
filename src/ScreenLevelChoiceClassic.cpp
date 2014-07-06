@@ -9,6 +9,8 @@ ScreenLevelChoiceClassic::ScreenLevelChoiceClassic(ScreenLink* _stat)
     }
 }
 
+
+
 ScreenLevelChoiceClassic::~ScreenLevelChoiceClassic()
 {
     //dtor
@@ -31,6 +33,7 @@ int ScreenLevelChoiceClassic::Run(sf::RenderWindow & App)
 	m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width / 2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height / 2.0f));
 
 	//m_scrolled_window_box->Pack( scrolledwindow, false, true );
+    loadLevelUnlocked();
     m_window->Show(true);
 
     while(Running)

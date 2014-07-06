@@ -10,6 +10,57 @@ SelectLevel::~SelectLevel()
 
 }
 
+void ScreenLevelChoice::loadLevelUnlocked()
+{
+    std::cout <<"_____________________________" <<std::endl;
+    std::cout << (*m_stat) << std::endl;
+    std::cout <<"_____________________________" <<std::endl;
+    int increment = 1;
+    for (auto it : m_layoutEasy->GetChildren())
+    {
+        if(increment > m_stat->getMaxLevel(Difficulty::Easy))
+        {
+            //std::cout << it->GetId() << std::endl;
+            it->SetState(sfg::Widget::State::INSENSITIVE);
+        }
+        else
+        {
+            it->SetState(sfg::Widget::State::NORMAL);
+        }
+        increment++;
+    }
+
+    increment = 1;
+    for (auto it : m_layoutNormal->GetChildren())
+    {
+        if(increment > m_stat->getMaxLevel(Difficulty::Normal))
+        {
+            //std::cout << it->GetId() << std::endl;
+            it->SetState(sfg::Widget::State::INSENSITIVE);
+        }
+        else
+        {
+            it->SetState(sfg::Widget::State::NORMAL);
+        }
+        increment++;
+    }
+
+    increment = 1;
+    for (auto it : m_layoutHard->GetChildren())
+    {
+        if(increment > m_stat->getMaxLevel(Difficulty::Hard))
+        {
+            //std::cout << it->GetId() << std::endl;
+            it->SetState(sfg::Widget::State::INSENSITIVE);
+        }
+        else
+        {
+            it->SetState(sfg::Widget::State::NORMAL);
+        }
+        increment++;
+    }
+}
+
 void SelectLevel::selectingLevel()
 {
     // // std::cout << m_difficulty << " " <<  m_level << "  " << m_modeSelectLevel << std::endl;
@@ -25,6 +76,8 @@ void SelectLevel::selectingLevel()
 ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
 :m_playing(false), m_selectionLevel(0), m_changingMenu(-1)
 {
+
+    m_stat = _stat;
 //   m_backgroundTex.loadFromFile(FilenameBackGroundMenu);
 //   m_background.setTexture(m_backgroundTex);
    m_background.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBackGroundMenu)));
@@ -62,6 +115,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
         button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i)));
+        button->SetId("EasyButton" + oss.str());
         m_layoutEasy->Pack(button);
     }
 
@@ -74,6 +128,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
         button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy())));
+        button->SetId("NormalButton" + oss.str());
         m_layoutNormal->Pack(button);
     }
 
@@ -86,6 +141,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
         button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy() + _stat->getnbNormal())) );
+        button->SetId("HardButton" + oss.str());
         m_layoutHard->Pack(button);
     }
     m_frameEasy->Add(m_layoutEasy);

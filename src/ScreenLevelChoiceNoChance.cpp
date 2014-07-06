@@ -30,6 +30,7 @@ int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
 	scrolledwindow->SetRequisition( sf::Vector2f(500.f, 100.f ));
 	m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width / 2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height / 2.0f));
 
+    loadLevelUnlocked();
     m_window->Show(true);
 	//m_scrolled_window_box->Pack( scrolledwindow, false, true );
     while(Running)
