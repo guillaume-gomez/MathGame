@@ -17,7 +17,7 @@
 class ChoiceCharacter
 {
     public:
-        ChoiceCharacter(unsigned int type = 1);
+        ChoiceCharacter(unsigned int type = 13);
         void defineCharacter();
         ~ChoiceCharacter();
     private:
@@ -33,6 +33,7 @@ class ScreenOption : public Screen
         void activateSliding();
         void desactivateSliding();
         void save();
+        void quit();
         virtual ~ScreenOption();
         int Run(sf::RenderWindow& app);
         inline std::string getFilenameChar()const {return m_filenameChar;};
@@ -41,6 +42,7 @@ class ScreenOption : public Screen
     private:
         sf::Sprite m_background;
         sfg::Box::Ptr m_box;
+        sfg::Box::Ptr m_boxClose;
         std::vector<ChoiceCharacter> m_character_array;
         AniSprite currentChoice;
         std::string m_gravityType;
@@ -51,5 +53,7 @@ class ScreenOption : public Screen
         unsigned int m_nbButton;
         sfg::SFGUI m_sfgui;
         sfg::Window::Ptr m_window;
+        bool m_quit;
+        unsigned int valeur;
 };
 #endif // SCREENOPTION_H
