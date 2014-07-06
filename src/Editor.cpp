@@ -7,8 +7,10 @@
 Editor::Editor(sf::RenderWindow& App)
 :m_app(App),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_textAreaFunction(6),
 m_buttonReset(FilenameButtonReset), m_buttonSave(FilenameButtonSave), m_buttonBack(FilenameButtonBack), m_buttonCursor(FilenameButtonCursor),
-m_buttonGoalButton(FilenamePointGoalTex), m_buttonEnemy(FilenameButtonSave), m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(TypeObject::Point), m_isBack(false), m_isZoom(false), m_isNormalPoint(true),
-m_saving(false), m_radiusBuilder(0.0f, 0.0f)
+m_buttonGoalButton(FilenamePointGoalTex), m_buttonLeftEnemy(FilenameButtonEnemy),
+m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(TypeObject::Point), m_isBack(false), m_isZoom(false), m_isNormalPoint(true),
+m_saving(false), m_radiusBuilder(0.0f, 0.0f),
+m_isLeftEnemy(true), m_enemyBool(false)
 {
     //build all the template method
     ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
@@ -37,7 +39,7 @@ m_saving(false), m_radiusBuilder(0.0f, 0.0f)
     m_panel.addButton(&m_buttonReset);
     m_panel.addButton(&m_buttonSave);
     m_panel.addButton(&m_buttonBack);
-    m_panel.addButton(&m_buttonEnemy);
+    m_panel.addButton(&m_buttonLeftEnemy);
     m_panel.addButton(&m_buttonNormalButton);
     m_panel.addButton(&m_buttonGoalButton);
     m_panel.addButton(&m_buttonCircle);
@@ -133,13 +135,29 @@ bool Editor::handleInput()
                         popPoint();
                     }
                 }
+
+                if()
                 if(m_event.key.code == sf::Keyboard::Left)
                 {
-                    m_buttonCursor.setColor(sf::Color(10,16,233));
+                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
+                       m_isLeftEnemy = true;
+                       std::cout << "click " << m_isLeftEnemy << std::endl;
                 }
                 if(m_event.key.code == sf::Keyboard::Right)
                 {
-                    m_buttonCursor.setColor(sf::Color(222,16,233));
+                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonRightEnemy)));
+                       m_isLeftEnemy = false;
+                       std::cout << "clickRight " << m_isLeftEnemy << std::endl;
+                }
+
+                if(m_event.key.code == sf::Keyboard::Up)
+                {
+
+                }
+
+                if(m_event.key.code == sf::Keyboard::Down)
+                {
+
                 }
             break;
             default:
@@ -164,10 +182,10 @@ bool Editor::handleInput()
             m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)));
             m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
         }
-        if(m_buttonEnemy.isClicked())
+        if(m_buttonLeftEnemy.isClicked())
         {
             m_buttonCursor.setColor(sf::Color(255, 255, 255, Blur));
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameCharacterTex)));
+            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
         }
     }
     return true ;
@@ -176,18 +194,6 @@ bool Editor::handleInput()
 
 void Editor::show()
 {
-    /*for (auto it : m_spriteList)
-    {
-        if(it->getType() == TypeObject::Enemy)
-        {
-            EnemyView * temp = dynamic_cast<EnemyView*>(it);
-            if(temp == nullptr)
-            {
-                std::runtime_error("Error in void Editor::show : cannot dynamic_cast an EnemyView instance");
-            }
-            temp->show();
-        }
-    }*/
 	m_textAreaFunction.blinkCaret();
 }
 
@@ -201,10 +207,8 @@ void Editor::draw()
 
     for (auto it : m_spriteList)
     {
-        //m_app.draw(*(it));
         it->draw(m_app);
     }
-
 
     if (m_timer.getElapsedTime().asSeconds() < 5)
     {
@@ -219,7 +223,6 @@ void Editor::draw()
     m_buttonCursor.draw(m_app);
     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
     m_app.draw(m_textAreaFunction);
-//    m_textAreaFunction.draw(m_app);
 }
 
 void Editor::resetWindow()
@@ -285,10 +288,10 @@ void Editor::move()
         m_buttonCircle.unclick();
     }
 
-    if(m_buttonEnemy.isClicked())
+    if(m_buttonLeftEnemy.isClicked())
     {
         m_creatingType = TypeObject::Enemy;
-        m_buttonEnemy.unclick();
+        m_buttonLeftEnemy.unclick();
     }
 
     if(m_graphModel.getChanged())
@@ -446,6 +449,9 @@ void Editor::addObject(int x , int y)
         {
             Enemy* newEnemy = dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(TypeObject::Enemy));
             newEnemy->set_Position(coord.x / GraphScale, - coord.y / GraphScale);
+            newEnemy->setDirection(m_isLeftEnemy);
+            newEnemy->show();
+            std::cout << "know your enemy " << m_isLeftEnemy << std::endl;
             m_spriteList.push_back(newEnemy);
         }
     }
