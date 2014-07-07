@@ -37,7 +37,7 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 
     //doesn't work
     m_textAreaFunction.setCharacterSize(20);
-     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
+    m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
 
     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).x;
     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).y ;
@@ -88,6 +88,11 @@ void Game::resize(float scaleX, float scaleY)
     #ifdef DEBUG
        m_frameCountText.scale(scaleX, scaleY);
     #endif
+
+     std::cout << m_buttonBack.getPosition().x <<" : "<< m_buttonBack.getPosition().y << std::endl;
+     std::cout << "____________________________________________" << std::endl;
+
+
 }
 
 bool  Game::handleInput()
@@ -105,7 +110,6 @@ bool  Game::handleInput()
                     break;
 
                 case sf::Event::Resized:
-                    std::cout << "YOUI" << std::endl;
                     resize((float)oldWidth/m_event.size.width, (float)oldHeight/m_event.size.height);
                     break;
 

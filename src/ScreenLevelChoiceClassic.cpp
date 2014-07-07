@@ -36,6 +36,9 @@ int ScreenLevelChoiceClassic::Run(sf::RenderWindow & App)
     loadLevelUnlocked();
     m_window->Show(true);
 
+    m_desktop.LoadThemeFromFile(FilenameTheme);
+    m_desktop.Add(m_window);
+
     while(Running)
     {
          sf::Event event;
@@ -71,7 +74,7 @@ int ScreenLevelChoiceClassic::Run(sf::RenderWindow & App)
             }
 
         }
-    m_window->Update(0.f);
+    m_desktop.Update(0.f);
 
     App.clear();
     App.draw(m_background);

@@ -51,6 +51,7 @@ ScreenOption::ScreenOption(unsigned int _button)
 
     sfg::Button::Ptr quitButton(sfg::Button::Create("Go back main menu"));
     quitButton->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&ScreenOption::quit, this));
+    quitButton->SetId("quitButton");
 
     m_layoutPhysics->Pack(radio1);
     m_layoutPhysics->Pack(radio2);
@@ -64,6 +65,9 @@ ScreenOption::ScreenOption(unsigned int _button)
     m_box->Pack(quitButton);
 
 	m_window->Add(m_box);
+
+    m_desktop.LoadThemeFromFile(FilenameTheme);
+    m_desktop.Add(m_window);
 
 
 }
@@ -156,7 +160,7 @@ int ScreenOption::Run( sf::RenderWindow& App)
             }
         }
 
-        m_window->Update( 0.f );
+        m_desktop.Update( 0.f );
 
 		App.clear();
 		App.draw(m_background);

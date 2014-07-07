@@ -79,7 +79,7 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 
     m_window = sfg::Window::Create();
 	m_window->SetTitle( "Main Menu" );
-   // m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
+    m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
     m_window->Add( box );
     m_window->Show(true);
     m_changingMenu = SCREEN_EXIT;
@@ -87,6 +87,8 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
 
 
+    m_desktop.LoadThemeFromFile(FilenameTheme);
+    m_desktop.Add(m_window);
 
 	while(Running)
 	{
@@ -126,7 +128,7 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 
 		// Update the GUI, note that you shouldn't normally
 		// pass 0 seconds to the update method.
-		m_window->Update( 0.f );
+		m_desktop.Update( 0.f );
 
 		// Clear screen
 		App.clear();

@@ -152,6 +152,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
     m_scrolled_window_box->Pack(m_frameNormal);
     m_scrolled_window_box->Pack(m_frameHard);
     m_window->Add(m_scrolled_window_box);
+     m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
 }
 
 

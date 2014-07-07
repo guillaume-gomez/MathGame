@@ -31,7 +31,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
 
 
         std::cout << App.getSize().x << "  "<< App.getSize().y << std::endl;
-      //  m_game->resize(WindowWidth / App.getSize().x,  WindowHeight/ App.getSize().y);
+        m_game->resize(WindowWidth / App.getSize().x,  WindowHeight/ App.getSize().y);
 
         while(Running && gameFinish == 0)
         {

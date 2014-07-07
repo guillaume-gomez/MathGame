@@ -21,8 +21,8 @@ m_isLeftEnemy(true), m_nbAttempt(1)
 {
     //
     m_nbAttemptView.setColor(sf::Color(23,0,34,225));
-    m_nbAttemptView.setString(sf::String("1"));
-    m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 100, m_app.getSize().y - 25));
+    m_nbAttemptView.setString(sf::String("Enemy : 1"));
+    m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 200, m_app.getSize().y - 25));
 
     //build all the template method
     ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
@@ -48,7 +48,7 @@ m_isLeftEnemy(true), m_nbAttempt(1)
     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
 
     m_panel.setPosition(__x, __y);
-    m_panel.setAlpha(200);
+    m_panel.setAlpha(150);
     m_panel.addButton(&m_buttonReset);
     m_panel.addButton(&m_buttonSave);
     m_panel.addButton(&m_buttonBack);
@@ -190,7 +190,7 @@ bool Editor::handleInput()
                         m_nbAttempt = MaxAttempt;
                     }
                     std::ostringstream oss;
-                    oss << m_nbAttempt;
+                    oss <<"Enemy :" << m_nbAttempt;
                     m_nbAttemptView.setString(sf::String(oss.str()));
                 }
 
@@ -202,7 +202,7 @@ bool Editor::handleInput()
                         m_nbAttempt = 1;
                     }
                     std::ostringstream oss;
-                    oss << m_nbAttempt;
+                    oss <<"Enemy :"<< m_nbAttempt;
                     m_nbAttemptView.setString(sf::String(oss.str()));
                 }
             break;
