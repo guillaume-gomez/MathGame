@@ -21,7 +21,7 @@ using namespace sf;
 int main()
 {
     ContextSettings contextPerso(0, 0, 2);
-    RenderWindow App(VideoMode(WindowWidth, WindowHeight),"I Hate Maths",Style::Default, contextPerso);
+    RenderWindow App(VideoMode(WindowWidth, WindowHeight),"I Hate Maths",Style::Close | Style::Titlebar, contextPerso);
 
     std::vector<Screen*> screens;
     int screen = 0 ;

@@ -22,10 +22,12 @@ void ScreenLevelChoice::loadLevelUnlocked()
         {
             //std::cout << it->GetId() << std::endl;
             it->SetState(sfg::Widget::State::INSENSITIVE);
+            it->SetId("Lock");
         }
         else
         {
             it->SetState(sfg::Widget::State::NORMAL);
+            it->SetId("Unlock");
         }
         increment++;
     }
@@ -37,10 +39,12 @@ void ScreenLevelChoice::loadLevelUnlocked()
         {
             //std::cout << it->GetId() << std::endl;
             it->SetState(sfg::Widget::State::INSENSITIVE);
+            it->SetId("Lock");
         }
         else
         {
             it->SetState(sfg::Widget::State::NORMAL);
+            it->SetId("Unlock");
         }
         increment++;
     }
@@ -52,10 +56,12 @@ void ScreenLevelChoice::loadLevelUnlocked()
         {
             //std::cout << it->GetId() << std::endl;
             it->SetState(sfg::Widget::State::INSENSITIVE);
+            it->SetId("Lock");
         }
         else
         {
             it->SetState(sfg::Widget::State::NORMAL);
+            it->SetId("unLock");
         }
         increment++;
     }
@@ -152,6 +158,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
     m_scrolled_window_box->Pack(m_frameNormal);
     m_scrolled_window_box->Pack(m_frameHard);
     m_window->Add(m_scrolled_window_box);
+     m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
 }
 
 

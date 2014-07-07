@@ -49,6 +49,14 @@ void Screen_MainMenu::optionButtonClick()
      m_changingMenu = OPTION;
 }
 
+void Screen_MainMenu::resize(float x, float y, sf::RenderWindow& App)
+{
+  // sf::View viewPerso = App.getView();
+  // viewPerso.setCenter(0,0);
+  // App.setView(viewPerso);
+  //  m_background.scale(x,y);
+}
+
 int Screen_MainMenu::Run(sf::RenderWindow& App)
 {
     bool Running = true;
@@ -71,7 +79,7 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 
     m_window = sfg::Window::Create();
 	m_window->SetTitle( "Main Menu" );
-   // m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
+    m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
     m_window->Add( box );
     m_window->Show(true);
     m_changingMenu = SCREEN_EXIT;
@@ -79,16 +87,25 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
 
 
+    m_desktop.LoadThemeFromFile(FilenameTheme);
+    m_desktop.Add(m_window);
 
 	while(Running)
 	{
 		// Process events
 		sf::Event event;
+		float oldWidth = App.getSize().x;
+		float oldHeight = App.getSize().y;
 
 		while(App.pollEvent(event))
 		{
 			// Handle events
 			m_window->HandleEvent(event);
+
+			if(event.type == sf::Event::Resized)
+			{
+                resize((float)oldWidth/event.size.width, (float)oldHeight/event.size.height, App);
+			}
 
 			// Close window : exit
 			if(event.type == sf::Event::Closed)
@@ -111,7 +128,7 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 
 		// Update the GUI, note that you shouldn't normally
 		// pass 0 seconds to the update method.
-		m_window->Update( 0.f );
+		m_desktop.Update( 0.f );
 
 		// Clear screen
 		App.clear();

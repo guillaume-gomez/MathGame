@@ -307,6 +307,13 @@ void TextAreaSFML2_0::checkForMaxHeightCharacter()
 		checkBoundsCharacter(specialCodesUint32[i]);
 }
 
+void TextAreaSFML2_0::scale(float scaleX, float scaleY)
+{
+    m_background.scale(scaleX,scaleY);
+    m_text.scale(scaleX, scaleY);
+    m_caret.scale(scaleX, scaleY);
+}
+
 void TextAreaSFML2_0::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(m_background);

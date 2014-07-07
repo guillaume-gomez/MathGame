@@ -33,6 +33,10 @@ int Screen_Game::Run(sf::RenderWindow& App)
         m_game->setCenterCamera();
         m_game->setZoom(true);
 
+
+        std::cout << App.getSize().x << "  "<< App.getSize().y << std::endl;
+        m_game->resize(WindowWidth / App.getSize().x,  WindowHeight/ App.getSize().y);
+
         while(Running && gameFinish == 0)
         {
             /*if ( alpha < m_alpha_max)
@@ -46,7 +50,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
                 recenterCamera();
                 Physics::Engine::getEngine()->cleanEngine();
                 delete m_game;
-                m_game=0;
+                m_game = 0;
                 return MENU;
             }
             gameFinish = m_game->levelOperation(*m_stat);

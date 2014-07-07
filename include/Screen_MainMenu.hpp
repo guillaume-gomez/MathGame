@@ -22,6 +22,7 @@ class Screen_MainMenu : public Screen
         void creditButtonClick();
         void editorButtonClick();
         void optionButtonClick();
+        void resize(float scaleX, float scaleY,sf::RenderWindow& App);
     protected:
     private:
         int m_alpha_max;
