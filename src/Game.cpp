@@ -287,19 +287,19 @@ void Game::move()
 
         Physics::Engine::getEngine()->update(elapsedSeconds);
 
-//        #ifdef DEBUG
-//            std::cout << "hero collision : ";
-//        #endif // DEBUG
-
         for(const EditorObject* object : m_level.getSpriteList() )
         {
             if(object->getType() == TypeObject::Enemy)
             {
-//                #ifdef DEBUG
-//                    std::cout << "Méchant !" << std::endl;
-//                #endif // DEBUG
-                if(m_player->getModel().getPhysicsBox().testCollision(Physics::Engine::getEngine()->visitor,
-                                                                   dynamic_cast<const Enemy*>(object)->getModel().getPhysicsBox())
+                if(m_player->getModel().getPhysicsBox().testCollision(dynamic_cast<const Enemy*>(object)->getModel().getPhysicsBox())
+                   )
+                {
+                    m_playerDead = true;
+                }
+            }
+            if(object->getType() == TypeObject::Circle)
+            {
+                if(m_player->getModel().getPhysicsBox().testCollision(dynamic_cast<const GravityCircle*>(object)->getPhysicsCircle())
                    )
                 {
                     m_playerDead = true;
@@ -308,10 +308,6 @@ void Game::move()
         }
         if(m_player->get_Position().y<-(m_spriteBG.getTextureRect().height+m_spriteBG.getPosition().y)/GraphScale)
             m_playerDead = true;
-                #ifdef DEBUG
-//                    std::cout << m_spriteBG.getTextureRect().height << std::endl;
-                #endif // DEBUG
-
 
         m_timer.restart();
 
@@ -340,20 +336,29 @@ void Game::selectLevel(ScreenLink& stat)
 {
     reset();
     m_level.setDiff(stat.getDiff());
-    m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
-
-    if(getGameMode() == GameMode::Dynamic)
+    try
     {
-        m_gameStarted = true;
-        m_timer.restart();
-        m_level.fillLevelFunctions(m_functionManager);
-        Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
-        m_functionManager.represent(Step);
+        m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
 
-        m_textAreaFunction.setString(m_functionManager.getFunction());
+        if(getGameMode() == GameMode::Dynamic)
+        {
+            m_gameStarted = true;
+            m_timer.restart();
+            m_level.fillLevelFunctions(m_functionManager);
+            Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
+            m_functionManager.represent(Step);
+
+            m_textAreaFunction.setString(m_functionManager.getFunction());
+        }
     }
-
-
+    catch(std::ios_base::failure& failure)
+    {
+//        #ifdef DEBUG
+//            std::cout << "fdsfsdfdsfdsfsdfsdfdsfsdfdsdfdsdf" << std::endl;
+//            std::cout << failure.what() << std::endl;
+//        #endif // DEBUG
+        throw;
+    }
 }
 
 int Game::levelOperation(ScreenLink& stat)

@@ -21,7 +21,7 @@ m_isLeftEnemy(true), m_nbAttempt(1)
 {
     //
     m_nbAttemptView.setColor(sf::Color(23,0,34,225));
-    m_nbAttemptView.setString(sf::String("Enemy : 1"));
+    m_nbAttemptView.setString(sf::String("EnemyLife : 1"));
     m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 200, m_app.getSize().y - 25));
 
     //build all the template method
@@ -190,7 +190,7 @@ bool Editor::handleInput()
                         m_nbAttempt = MaxAttempt;
                     }
                     std::ostringstream oss;
-                    oss <<"Enemy :" << m_nbAttempt;
+                    oss <<"EnemyLife : " << m_nbAttempt;
                     m_nbAttemptView.setString(sf::String(oss.str()));
                 }
 
@@ -202,7 +202,7 @@ bool Editor::handleInput()
                         m_nbAttempt = 1;
                     }
                     std::ostringstream oss;
-                    oss <<"Enemy :"<< m_nbAttempt;
+                    oss <<"EnemyLife : "<< m_nbAttempt;
                     m_nbAttemptView.setString(sf::String(oss.str()));
                 }
             break;
@@ -494,7 +494,7 @@ void Editor::addObject(int x , int y)
         else if (m_creatingType == TypeObject::Enemy)
         {
             Enemy* newEnemy = dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(TypeObject::Enemy));
-            newEnemy->set_Position(coord.x / GraphScale, - coord.y / GraphScale);
+            newEnemy->setPosition(coord.x / GraphScale, - coord.y / GraphScale);
             newEnemy->setDirection(m_isLeftEnemy);
             newEnemy->setNbAttempt(m_nbAttempt);
             newEnemy->show();
@@ -511,7 +511,7 @@ void Editor::addCircle(int x, int y)
     {
         GravityCircle* newCircle = new GravityCircle(radius);
         sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
-        newCircle->set_Position(coord);
+        newCircle->setPosition(coord);
         m_spriteList.push_back(newCircle);
     }
     else

@@ -109,14 +109,14 @@ void ScreenOption::save()
         height = BikeHeight;
     }
 
-     std::cout << m_filenameChar << std::endl;
+//     std::cout << m_filenameChar << std::endl;
     configFile <<"FilenameCharacterTex = "<< m_filenameChar << std::endl;
     configFile << "width = "<< width << std::endl;
     configFile << "height = "<< height<< std::endl;
     configFile << "MoveType = "<< m_gravityType << std::endl;
     configFile << "FrictionCoefficient = "<< friction << std::endl;
 
-    std::cout << "Saved" << std::endl;
+//    std::cout << "Saved" << std::endl;
 }
 
 
@@ -178,7 +178,9 @@ ScreenOption::~ScreenOption()
 
 ChoiceCharacter::ChoiceCharacter(unsigned int type)
 :m_type(type)
-{std::cout << "Constructor " << m_type<<std::endl;}
+{
+//    std::cout << "Constructor " << m_type<<std::endl;
+}
 
 ChoiceCharacter::~ChoiceCharacter()
 {}

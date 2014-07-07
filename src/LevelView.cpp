@@ -89,7 +89,7 @@ void LevelView::loadCoord()
                 Enemy* newEnemy =  dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(m_model.getType(i)));
                 if(newEnemy != nullptr)
                 {
-                    newEnemy->set_Position(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
+                    newEnemy->setPosition(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
                     newEnemy->setNbAttempt(m_model.getAttempt(i));
                     newEnemy->setDirection(m_model.getSens(i));
                     newEnemy->addToEngine();

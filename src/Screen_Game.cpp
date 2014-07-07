@@ -10,13 +10,18 @@ Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
 int Screen_Game::Run(sf::RenderWindow& App)
 {
     #ifdef DEBUG
-        std::cout << std::endl << std::endl;
+//        std::cout << std::endl << "---------- Screen_Game::Run ----------" << std::endl << std::endl;
     #endif // DEBUG
 
     try
     {
         if(m_game == 0)
+        {
+//            #ifdef DEBUG
+//                std::cout << "m_game == 0" << std::endl;
+//            #endif // DEBUG
             m_game = new Game(App);
+        }
 
         bool Running = true;
          //temp
@@ -51,7 +56,6 @@ int Screen_Game::Run(sf::RenderWindow& App)
             }
             gameFinish = m_game->levelOperation(*m_stat);
             if(gameFinish == -1)
-
             {
                 return ENDING;
             }
@@ -62,6 +66,15 @@ int Screen_Game::Run(sf::RenderWindow& App)
             App.display();
         }
         return (SCREEN_EXIT);
+    }
+    catch(std::ios_base::failure& failure)
+    {
+        #ifdef DEBUG
+//            std::cout << "Screen_Game Run" << std::endl;
+            std::cerr << failure.what() << std::endl;
+        #endif // DEBUG
+        delete m_game;
+        m_game=0;
     }
     catch(std::exception& e)
     {

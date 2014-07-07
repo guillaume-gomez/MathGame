@@ -15,6 +15,7 @@ class Point : public EditorCircle
     public:
         Point();
         Point(float radius = 1.0f,bool goalPoint = false, float scale = GraphScale);
+        Point(const Point& original);
         virtual ~Point();
         inline bool isGoal() const {return m_goalPoint;}
         virtual EditorObject* clone() const;
