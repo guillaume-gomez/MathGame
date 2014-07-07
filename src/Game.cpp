@@ -35,8 +35,9 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
     int __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionTextAreaX*m_app.getSize().x , PositionTextAreaY*m_app.getSize().y)))).y ;
 
 
-    //won't work
+    //doesn't work
     m_textAreaFunction.setCharacterSize(20);
+     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
 
     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).x;
     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionNBAttempX*m_app.getSize().x , PositionNBAttempY*m_app.getSize().y)))).y ;
@@ -53,6 +54,8 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
     __x = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonBackX*m_app.getSize().x , PositionButtonBackY*m_app.getSize().y)))).x;
     __y = (Vector2f(m_app.mapPixelToCoords(Vector2i(PositionButtonBackX*m_app.getSize().x , PositionButtonBackY*m_app.getSize().y)))).y ;
     m_buttonBack.setPosition(__x, __y);
+
+
 
 
     #ifdef DEBUG
@@ -74,8 +77,24 @@ void Game::zoom()
     }
 }
 
+void Game::resize(float scaleX, float scaleY)
+{
+    resetWindow();
+    m_buttonReset.scale(scaleX, scaleY);
+    m_buttonBack.scale(scaleX, scaleY);
+    m_buttonSound.scale(scaleX, scaleY);
+    m_textAreaFunction.scale(scaleX, scaleY);
+    m_level.scaleNbAttempt(scaleX, scaleY);
+    #ifdef DEBUG
+       m_frameCountText.scale(scaleX, scaleY);
+    #endif
+}
+
 bool  Game::handleInput()
 {
+  int oldWidth = m_app.getSize().x;
+  int oldHeight = m_app.getSize().y;
+
     while(m_app.pollEvent(m_event))
             {
                 switch(m_event.type)
@@ -83,6 +102,11 @@ bool  Game::handleInput()
                 case Event::Closed:
                     m_app.close();
                     return false;
+                    break;
+
+                case sf::Event::Resized:
+                    std::cout << "YOUI" << std::endl;
+                    resize((float)oldWidth/m_event.size.width, (float)oldHeight/m_event.size.height);
                     break;
 
                  case Event::MouseWheelMoved:
@@ -186,9 +210,7 @@ void Game::draw()
     m_buttonSound.draw(m_app);
     m_buttonBack.draw(m_app);
 
-
-    m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
-	  m_app.draw(m_textAreaFunction);
+    m_app.draw(m_textAreaFunction);
     //m_textFunction.draw(m_app);
 
     #ifdef DEBUG

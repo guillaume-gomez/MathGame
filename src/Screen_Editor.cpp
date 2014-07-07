@@ -13,7 +13,6 @@ Screen_Editor::~Screen_Editor()
 
 int Screen_Editor::Run(sf::RenderWindow& App)
 {
-
     bool Running = true;
     m_editor.setBack(false);
     m_editor.setCenterCamera();

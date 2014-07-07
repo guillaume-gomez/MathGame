@@ -7,16 +7,22 @@
 
 Editor::Editor(sf::RenderWindow& App)
 :m_app(App),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_textAreaFunction(6),
-m_buttonReset(FilenameButtonReset), m_buttonSave(FilenameButtonSave), m_buttonBack(FilenameButtonBack), m_buttonCursor(FilenameButtonCursor),
-m_buttonGoalButton(FilenamePointGoalTex), m_buttonLeftEnemy(FilenameButtonEnemy),
-m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(TypeObject::Point), m_isBack(false), m_isZoom(false), m_isNormalPoint(true),
+m_buttonReset(FilenameButtonReset),
+m_buttonSave(FilenameButtonSave),
+m_buttonBack(FilenameButtonBack),
+m_buttonCursor(FilenameButtonCursor),
+m_buttonGoalButton(FilenamePointGoalTex),
+m_buttonLeftEnemy(FilenameButtonEnemy),
+m_buttonNormalButton(FilenameNormalPointTex),
+m_buttonCircle(FilenameButtonCircleTex),
+m_creatingType(TypeObject::Point), m_isBack(false), m_isZoom(false), m_isNormalPoint(true),
 m_saving(false), m_radiusBuilder(0.0f, 0.0f),
 m_isLeftEnemy(true), m_nbAttempt(1)
 {
     //
     m_nbAttemptView.setColor(sf::Color(23,0,34,225));
-   // m_nbAttemptView.setPosition(sf::Vector2f(0 ,  WindowHeight - 200));
     m_nbAttemptView.setString(sf::String("1"));
+    m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 100, m_app.getSize().y - 25));
 
     //build all the template method
     ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
@@ -39,6 +45,7 @@ m_isLeftEnemy(true), m_nbAttempt(1)
     setCenterCamera();
 
 	m_textAreaFunction.setCharacterSize(20);
+    m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
 
     m_panel.setPosition(__x, __y);
     m_panel.setAlpha(200);
@@ -63,9 +70,25 @@ void Editor::zoom()
     }
 }
 
+void Editor::resize(float scaleX, float scaleY)
+{
+    resetWindow();
+    m_panel.scale(scaleX, 1);
+    m_buttonReset.scale(scaleX, scaleY);
+    m_buttonBack.scale(scaleX, scaleY);
+    m_buttonSave.scale(scaleX, scaleY);
+    m_buttonCursor.scale(scaleX, scaleY);
+    m_buttonGoalButton.scale(scaleX, scaleY);
+    m_buttonLeftEnemy.scale(scaleX, scaleY);
+    m_buttonNormalButton.scale(scaleX, scaleY);
+    m_buttonCircle.scale(scaleX, scaleY);
+    m_textAreaFunction.scale(scaleX, scaleY);
+}
 
 bool Editor::handleInput()
 {
+    float oldWidth = m_app.getSize().x;
+    float oldHeight = m_app.getSize().y;
     while(m_app.pollEvent(m_event))
     {
         switch(m_event.type)
@@ -73,6 +96,10 @@ bool Editor::handleInput()
             case sf::Event::Closed:
                 m_app.close();
                 return false;
+            break;
+
+            case sf::Event::Resized:
+                resize((float)oldWidth/m_event.size.width, (float)oldHeight/m_event.size.height);
             break;
 
              case sf::Event::MouseMoved:
@@ -240,18 +267,15 @@ void Editor::draw()
     m_panel.draw(m_app);
 
     m_nbAttemptView.draw(m_app);
-    m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 100, m_app.getSize().y - 25));
 
     m_buttonCursor.draw(m_app);
-    m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
     m_app.draw(m_textAreaFunction);
 }
 
 void Editor::resetWindow()
 {
-    sf::View view;
-    view.setSize(sf::Vector2f(m_app.getSize()));
-    view.setCenter(0, 0);
+    m_viewPerso.setSize(sf::Vector2f(m_app.getSize()));
+    m_viewPerso.setCenter(0, 0);
 }
 
 void Editor::deletePoint(int x , int y)

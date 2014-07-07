@@ -51,6 +51,7 @@ class ManageLevel
         void handle_inputEnnemies(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
         void fillLevelFunctions(ManageFunctions& func);
         const std::vector<EditorObject*> getSpriteList () const;
+        void scaleNbAttempt(float scaleX, float scaleY) ;
     private:
         bool m_changeLevel;
         Difficulty m_difficulty;

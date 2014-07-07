@@ -244,6 +244,11 @@ void ManageLevel::displayNbAttempt()
      m_nbAttemp.setString(nbAttemp);
 }
 
+void ManageLevel::scaleNbAttempt(float scaleX, float scaleY)
+{
+    m_nbAttemp.scale(scaleX, scaleY);
+}
+
 void ManageLevel::drawPoints( sf::RenderTarget& app)
 {
 	m_levelView->draw(app);

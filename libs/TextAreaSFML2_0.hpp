@@ -39,6 +39,7 @@ class TextAreaSFML2_0 : public sf::Drawable
 		const sf::FloatRect getGlobalBounds() const;
 		sf::String getString();
 
+
 		void setString(std::string str);
 
 //		/** Copy constructor
@@ -74,6 +75,7 @@ class TextAreaSFML2_0 : public sf::Drawable
 		void setCharacterSize(unsigned int size);
 
 		void blinkCaret(sf::Int32 millisecondsElapsedTime = 500);
+		void scale(float scaleX, float scaleY);
 
 	protected:
 	private:

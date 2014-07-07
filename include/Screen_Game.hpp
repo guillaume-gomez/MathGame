@@ -12,6 +12,7 @@ class Screen_Game : public Screen
         virtual ~Screen_Game();
         int Run(sf::RenderWindow& App);
         void recenterCamera();
+        void resize();
     private:
         Game *m_game;
         ScreenLink *m_stat;

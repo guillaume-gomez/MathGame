@@ -49,6 +49,14 @@ void Screen_MainMenu::optionButtonClick()
      m_changingMenu = OPTION;
 }
 
+void Screen_MainMenu::resize(float x, float y, sf::RenderWindow& App)
+{
+  // sf::View viewPerso = App.getView();
+  // viewPerso.setCenter(0,0);
+  // App.setView(viewPerso);
+  //  m_background.scale(x,y);
+}
+
 int Screen_MainMenu::Run(sf::RenderWindow& App)
 {
     bool Running = true;
@@ -84,11 +92,18 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 	{
 		// Process events
 		sf::Event event;
+		float oldWidth = App.getSize().x;
+		float oldHeight = App.getSize().y;
 
 		while(App.pollEvent(event))
 		{
 			// Handle events
 			m_window->HandleEvent(event);
+
+			if(event.type == sf::Event::Resized)
+			{
+                resize((float)oldWidth/event.size.width, (float)oldHeight/event.size.height, App);
+			}
 
 			// Close window : exit
 			if(event.type == sf::Event::Closed)

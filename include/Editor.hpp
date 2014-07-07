@@ -38,6 +38,7 @@ class Editor
         void setCenterCamera();
         void managePanel(  int coordMouseX);
         void movePanel ();
+        void resize(float scaleX, float scaleY);
         int save(ScreenLink * link);
         void addObject( int x , int y);
         void addCircle(int x, int y);
