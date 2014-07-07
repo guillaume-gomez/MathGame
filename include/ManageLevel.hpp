@@ -8,6 +8,7 @@
 #ifdef DEBUG
 	 #include <iostream>
 #endif //DEBUG
+#include <fstream>
 #include <sstream>
 #include <string>
 

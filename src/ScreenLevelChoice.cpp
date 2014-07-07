@@ -12,9 +12,9 @@ SelectLevel::~SelectLevel()
 
 void ScreenLevelChoice::loadLevelUnlocked()
 {
-    std::cout <<"_____________________________" <<std::endl;
-    std::cout << (*m_stat) << std::endl;
-    std::cout <<"_____________________________" <<std::endl;
+//    std::cout <<"_____________________________" <<std::endl;
+//    std::cout << (*m_stat) << std::endl;
+//    std::cout <<"_____________________________" <<std::endl;
     int increment = 1;
     for (auto it : m_layoutEasy->GetChildren())
     {

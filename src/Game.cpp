@@ -310,20 +310,29 @@ void Game::selectLevel(ScreenLink& stat)
 {
     reset();
     m_level.setDiff(stat.getDiff());
-    m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
-
-    if(getGameMode() == GameMode::Dynamic)
+    try
     {
-        m_gameStarted = true;
-        m_timer.restart();
-        m_level.fillLevelFunctions(m_functionManager);
-        Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
-        m_functionManager.represent(Step);
+        m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
 
-        m_textAreaFunction.setString(m_functionManager.getFunction());
+        if(getGameMode() == GameMode::Dynamic)
+        {
+            m_gameStarted = true;
+            m_timer.restart();
+            m_level.fillLevelFunctions(m_functionManager);
+            Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
+            m_functionManager.represent(Step);
+
+            m_textAreaFunction.setString(m_functionManager.getFunction());
+        }
     }
-
-
+    catch(std::ios_base::failure& failure)
+    {
+//        #ifdef DEBUG
+//            std::cout << "fdsfsdfdsfdsfsdfsdfdsfsdfdsdfdsdf" << std::endl;
+//            std::cout << failure.what() << std::endl;
+//        #endif // DEBUG
+        throw;
+    }
 }
 
 int Game::levelOperation(ScreenLink& stat)

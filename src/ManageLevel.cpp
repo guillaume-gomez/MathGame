@@ -23,12 +23,15 @@ ManageLevel::ManageLevel(unsigned int _level, Difficulty _diff, float _scale)
     m_levelModel = new LevelModel(directory);
     m_levelView = new LevelView(*m_levelModel, m_scale);
 
+//    	#ifdef DEBUG
+//			std::cout << "ManageLevel::ManageLevel()" << std::endl;
+//    	#endif // DEBUG
     m_tooltip.setTexture(toolTipTex);
 
     if(!m_font.loadFromFile(FilenameFont))
     {
     	#ifdef DEBUG
-			std::cerr << "Error : ManageText::ManageText()" << std::endl;
+			std::cerr << "ManageLevel::ManageLevel()" << std::endl;
     	#endif // DEBUG
     }
     m_nbAttemp.setColor(sf::Color::Black);
@@ -43,15 +46,21 @@ ManageLevel::ManageLevel(unsigned int _level, Difficulty _diff, float _scale)
 
 ManageLevel::~ManageLevel()
 {
-    delete m_levelView;
-    delete m_levelModel;
+    if(m_levelView !=0 )
+        delete m_levelView;
+
+    if(m_levelModel != 0)
+        delete m_levelModel;
 }
 
 
 void ManageLevel::loadFile(int numLevel, GameMode mode)
 {
-    delete m_levelView;
-    delete m_levelModel;
+    if(m_levelView !=0 )
+        delete m_levelView;
+
+    if(m_levelModel != 0)
+        delete m_levelModel;
 
     std::string directory = FilenameLevelDirectory;
 
@@ -60,6 +69,19 @@ void ManageLevel::loadFile(int numLevel, GameMode mode)
     oss << numLevel << "_" << convertEnum(m_difficulty) << ".lvl";
     directory += oss.str();
     m_filenameCurrent = oss.str();
+
+    std::ifstream ifile(directory);
+    if(ifile.fail())
+    {
+        m_levelView=0;
+        m_levelModel=0;
+        throw std::ios_base::failure("unable to open level");
+    }
+
+//    #ifdef DEBUG
+//        std::cout << "ManageLevel::loadFile - directory : " << directory << std::endl;
+//        std::cout << "ManageLevel::loadFile - m_filenameCurrent : " << m_filenameCurrent << std::endl;
+//    #endif // DEBUG
 
     m_levelModel = new LevelModel(directory, mode );
     m_levelView = new LevelView(*m_levelModel, m_scale);
