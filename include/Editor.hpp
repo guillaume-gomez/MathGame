@@ -71,6 +71,9 @@ class Editor
         bool m_isLeftEnemy;
         sf::Sprite m_spriteBG;
         TextAreaSFML2_0 m_textAreaFunction;
+        ManageText m_nbAttemptView;
+
+        unsigned int m_nbAttempt;
 
         // HAVE TO IMPROVE IT
         sf::Vector2f m_radiusBuilder;

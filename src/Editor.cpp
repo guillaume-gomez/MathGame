@@ -1,6 +1,7 @@
 #include "Editor.hpp"
 #include <cmath>
 #include <algorithm>
+#include <iostream>
 
 #include "ObjectFactoryAbstract.hpp"
 
@@ -10,8 +11,13 @@ m_buttonReset(FilenameButtonReset), m_buttonSave(FilenameButtonSave), m_buttonBa
 m_buttonGoalButton(FilenamePointGoalTex), m_buttonLeftEnemy(FilenameButtonEnemy),
 m_buttonNormalButton(FilenameNormalPointTex),m_buttonCircle(FilenameButtonCircleTex),m_creatingType(TypeObject::Point), m_isBack(false), m_isZoom(false), m_isNormalPoint(true),
 m_saving(false), m_radiusBuilder(0.0f, 0.0f),
-m_isLeftEnemy(true), m_enemyBool(false)
+m_isLeftEnemy(true), m_nbAttempt(1)
 {
+    //
+    m_nbAttemptView.setColor(sf::Color(23,0,34,225));
+   // m_nbAttemptView.setPosition(sf::Vector2f(0 ,  WindowHeight - 200));
+    m_nbAttemptView.setString(sf::String("1"));
+
     //build all the template method
     ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
     ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
@@ -22,7 +28,7 @@ m_isLeftEnemy(true), m_enemyBool(false)
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
 	text->setRepeated(true);
 	m_spriteBG.setTexture(*text);
-	m_spriteBG.setTextureRect(sf::IntRect(0, 0, 2048, 2048));
+	m_spriteBG.setTextureRect(sf::IntRect(0, 0, WidthWorld, HeightWorld));
 	m_spriteBG.setPosition(-1030, -1030);
 
 	m_buttonCursor.setColor(sf::Color(0, 0, 0, Blur));
@@ -35,7 +41,7 @@ m_isLeftEnemy(true), m_enemyBool(false)
 	m_textAreaFunction.setCharacterSize(20);
 
     m_panel.setPosition(__x, __y);
-    m_panel.setAlpha(200);
+    m_panel.setAlpha(230);
     m_panel.addButton(&m_buttonReset);
     m_panel.addButton(&m_buttonSave);
     m_panel.addButton(&m_buttonBack);
@@ -75,6 +81,7 @@ bool Editor::handleInput()
                      int y = m_event.mouseMove.y - m_buttonCursor.getLocalBounds().height / 2;
                      sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x, y)));
                      m_buttonCursor.setPosition(coord);
+
                  }
             break;
 
@@ -136,7 +143,6 @@ bool Editor::handleInput()
                     }
                 }
 
-                if()
                 if(m_event.key.code == sf::Keyboard::Left)
                 {
                        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
@@ -152,12 +158,25 @@ bool Editor::handleInput()
 
                 if(m_event.key.code == sf::Keyboard::Up)
                 {
-
+                    m_nbAttempt++;
+                    if( m_nbAttempt > MaxAttempt) {
+                        m_nbAttempt = MaxAttempt;
+                    }
+                    std::ostringstream oss;
+                    oss << m_nbAttempt;
+                    m_nbAttemptView.setString(sf::String(oss.str()));
                 }
 
                 if(m_event.key.code == sf::Keyboard::Down)
                 {
-
+                    m_nbAttempt--;
+                    if(m_nbAttempt < 1)
+                    {
+                        m_nbAttempt = 1;
+                    }
+                    std::ostringstream oss;
+                    oss << m_nbAttempt;
+                    m_nbAttemptView.setString(sf::String(oss.str()));
                 }
             break;
             default:
@@ -219,6 +238,9 @@ void Editor::draw()
     m_app.setView(m_app.getDefaultView());
 
     m_panel.draw(m_app);
+
+    m_nbAttemptView.draw(m_app);
+    m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 100, m_app.getSize().y - 25));
 
     m_buttonCursor.draw(m_app);
     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
@@ -450,6 +472,7 @@ void Editor::addObject(int x , int y)
             Enemy* newEnemy = dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(TypeObject::Enemy));
             newEnemy->set_Position(coord.x / GraphScale, - coord.y / GraphScale);
             newEnemy->setDirection(m_isLeftEnemy);
+            newEnemy->setNbAttempt(m_nbAttempt);
             newEnemy->show();
             std::cout << "know your enemy " << m_isLeftEnemy << std::endl;
             m_spriteList.push_back(newEnemy);

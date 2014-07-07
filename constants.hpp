@@ -7,6 +7,8 @@ const unsigned int WindowWidth = 800U;
 const unsigned int WindowHeight = 600U;
 const float GraphScale = 20.0f;
 
+const int MaxAttempt = 10;
+
 const unsigned int TotalDifficulty = 3 ;
 
 enum Difficulty {Easy , Normal , Hard};
