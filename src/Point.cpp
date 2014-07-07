@@ -5,21 +5,40 @@
 Point::Point(float radius,bool goalPoint, float scale)
 :EditorCircle(), m_goalPoint(goalPoint)
 {
-
-   if(m_goalPoint)
+    if(m_goalPoint)
     {
-            this->m_type = TypeObject::GoalPoint;
-            this->setFillColor(sf::Color(255, 0, 0));
-            std::cout << "Colored in the class point" << std::endl;
+        this->m_type = TypeObject::GoalPoint;
+        this->setFillColor(sf::Color(255, 0, 0));
+//        std::cout << "Colored in the class point" << std::endl;
     }
     else
     {
-            this->m_type = TypeObject::Point;
-            this->setFillColor(sf::Color(0, 0, 0));
-            std::cout << "UnColored in the class point" << std::endl;
+        this->m_type = TypeObject::Point;
+        this->setFillColor(sf::Color(0, 0, 0));
+//        std::cout << "UnColored in the class point" << std::endl;
     }
     this->setRadius(radius);
     this->setOrigin(radius, radius);
+    this->setScale(GraphScale, GraphScale);
+}
+
+Point::Point(const Point& original)
+:EditorCircle(original), m_goalPoint(original.m_goalPoint)
+{
+    if(m_goalPoint)
+    {
+        this->m_type = TypeObject::GoalPoint;
+        this->setFillColor(sf::Color(255, 0, 0));
+//        std::cout << "Colored in the class point" << std::endl;
+    }
+    else
+    {
+        this->m_type = TypeObject::Point;
+        this->setFillColor(sf::Color(0, 0, 0));
+//        std::cout << "UnColored in the class point" << std::endl;
+    }
+    this->setRadius(original.getRadius());
+    this->setOrigin(original.getRadius(), original.getRadius());
     this->setScale(GraphScale, GraphScale);
 }
 

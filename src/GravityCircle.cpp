@@ -6,6 +6,9 @@
 GravityCircle::GravityCircle(float _radius, float radiusMax, bool defOriginCenter, std::string filename)
 :EditorCircle(), m_filename(filename),m_radiusMax(radiusMax), m_texture(*TextureManager::getTextureManager()->getResource("resources/sprites/smiley.png"))
 {
+//    #ifdef DEBUG
+//        std::cout << "*****GravityCircle::GravityCircle::m_physicsCircle : " << &(getPhysicsCircle()) <<  std::endl;
+//    #endif // DEBUG
     if(_radius > 0.0f)
     {
         this->m_type = TypeObject::Circle;
@@ -21,12 +24,24 @@ GravityCircle::GravityCircle(float _radius, float radiusMax, bool defOriginCente
         }
 
         this->setTexture(&m_texture);
+//        m_physicsCircle.setAsGravityCircle();
     }
     else
     {
         throw std::runtime_error("An instance of GravityCircle can't be created because the radius is equal to zero");
     }
+}
 
+GravityCircle::GravityCircle(const GravityCircle& original)
+:EditorCircle(original), m_filename(original.m_filename),m_radiusMax(original.m_radiusMax),
+ m_texture(original.m_texture)
+{
+//    #ifdef DEBUG
+//        std::cout << "*****GravityCircle::GravityCircleCOPYYYYYYYYYY::m_physicsCircle : " << &(getPhysicsCircle()) <<  std::endl;
+//    #endif // DEBUG
+
+    this->setTexture(&m_texture);
+    m_physicsCircle.setAsGravityCircle();
 }
 
 void GravityCircle::grow(float step)

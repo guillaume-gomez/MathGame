@@ -66,7 +66,7 @@ EditorObject* Enemy::clone() const
 EditorObject* Enemy::loadView(const Element& elmt, float scale)
 {
     Enemy* newEnemy = new Enemy();
-    newEnemy->set_Position(elmt.getCoord().x /*- widthTex*/ ,  elmt.getCoord().y /* - heightTex*/);
+    newEnemy->setPosition(elmt.getCoord().x /*- widthTex*/ ,  elmt.getCoord().y /* - heightTex*/);
     newEnemy->setNbAttempt(elmt.getAttempt());
 //    newEnemy->setDirection(elmt.setDirection());
     return newEnemy;

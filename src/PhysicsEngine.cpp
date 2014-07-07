@@ -24,12 +24,12 @@ void Engine::addObject(Object* object)
 {
     if(!object->m_inEngine)
     {
+        #ifdef DEBUG
+//            std::cout << "Engine::addObject object : " << object << std::endl;
+        #endif // DEBUG
         m_PhysicsObjects.push_back(object);
         object->m_inEngine = true;
     }
-    #ifdef DEBUG
-//        std::cout << "ADD OBJECT, list size : " << m_PhysicsObjects.size() << std::endl;
-    #endif // DEBUG
 }
 
 void Engine::delObject(Object* object)
@@ -40,9 +40,6 @@ void Engine::delObject(Object* object)
         m_PhysicsObjects.remove(object);
         object->m_inEngine = false;
     }
-    #ifdef DEBUG
-//        std::cout << "DEL OBJECT, list size : " << m_PhysicsObjects.size() << std::endl;
-    #endif // DEBUG
 }
 
 void Engine::cleanEngine()
@@ -52,10 +49,6 @@ void Engine::cleanEngine()
         delObject(m_PhysicsObjects.front());
     }
 
-    #ifdef DEBUG
-//        std::cout << "CLEAN, list size : " << m_PhysicsObjects.size() << std::endl;
-    #endif // DEBUG
-
     m_Function = nullptr;
 }
 
@@ -63,44 +56,35 @@ void Engine::update(float elapsedSeconds)
 {
     static float yCurve, derivative;
     Physics::Object* object;
-    //for(Physics::Object* object : m_PhysicsObjects)
-//    #ifdef DEBUG
-//        std::cout << "m_PhysicsObjects.size() : " << m_PhysicsObjects.size() << std::endl;
-//    #endif // DEBUG
-    #ifdef DEBUG
-//        std::cout << Object::m_CollidableObjects.size() << std::endl;
-    #endif // DEBUG
 
     for(std::list<Object*>::iterator itPhysicsObjects=m_PhysicsObjects.begin(); itPhysicsObjects!=m_PhysicsObjects.end(); itPhysicsObjects++)
     {
         object = *itPhysicsObjects;
-             #ifdef DEBUG
-//                std::cout << "object->getPosition().x : " << object->getPosition().x << std::endl;
-//                std::cout << "object->getPosition().y : " << object->getPosition().y << std::endl;
-//                std::cout << std::endl;
-             #endif // DEBUG
 
-//        for(std::list<Object*>::const_iterator it = Object::m_CollidableObjects.cbegin() ; it != Object::m_CollidableObjects.cend() ; it++)
-//        {
-////            for(std::list<Object*>::const_iterator it = std::next(itPhysicsObjects, 1) ; it != m_PhysicsObjects.cend() ; it++)
-//            for(std::list<Object*>::const_iterator it2 = std::next(it, 1); it2 != Object::m_CollidableObjects.cend() ; it2++)
-//            {
-////                std::cout << "YOLO" << std::endl;
-//
-//                #ifdef DEBUG
-//                    std::cout << "collision : " << (*it)->testCollision(visitor, *(*it2)) << std::endl;
-//                #else
-//                    (*it)->testCollision(visitor, *(*it2));
-//                #endif // DEBUG
-//
-//               //renyoyer le bon visitor en fonction de l'object appellant
-//               //design patter strategy
-//            }
-//        }
+        sf::Vector2f oldGravityAcceleration(getGravity());
 
-        if((!object->m_onCurve && std::abs(object->m_Velocity.x)<std::abs(object->m_Thrust.x))
-        || ((object->m_Thrust.x<0 && object->m_Velocity.x>0) || (object->m_Thrust.x>0 && object->m_Velocity.x<0))
-        )
+        if(object->collidable())
+        {
+//            #ifdef DEBUG
+//            std::cout << "***************************************************" << std::endl;
+//            #endif // DEBUG
+            for(std::list<Circle*>::iterator itGravityCircle=Circle::m_gravityCircles.begin(); itGravityCircle!=Circle::m_gravityCircles.end(); itGravityCircle++)
+            {
+                if(object->testCollision(*(*itGravityCircle)))
+                {
+                    setGravity(sf::Vector2f(getGravity().x, -getGravity().y));
+                    if(getGravity().y>0)
+                        object->m_Position.y+=0.001;
+                }
+            }
+//            #ifdef DEBUG
+//            std::cout << "***************************************************" << std::endl;
+//            #endif // DEBUG
+        }
+
+        if( (!object->m_onCurve && std::abs(object->m_Velocity.x) < std::abs(object->m_Thrust.x))
+         || ((object->m_Thrust.x<0 && object->m_Velocity.x>0) || (object->m_Thrust.x>0 && object->m_Velocity.x<0))
+          )
             object->m_Velocity.x += object->m_Thrust.x*elapsedSeconds;
 
         object->m_angle = 0.0f;
@@ -176,6 +160,8 @@ void Engine::update(float elapsedSeconds)
             object->m_Position += object->m_Velocity * elapsedSeconds;
             object->isOnCurve(false);
         }
+
+        setGravity(oldGravityAcceleration);
     }
             #ifdef DEBUG
 //                std::cout << "**************" << std::endl;

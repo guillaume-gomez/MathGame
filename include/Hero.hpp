@@ -25,8 +25,8 @@ class Hero : public EditorObject
         inline EditorObject* loadView(const Element& elmt, float scale);
 
         virtual sf::Vector2f get_Position() const;
-        virtual void set_Position(sf::Vector2f& pos);
-        virtual void set_Position(float x, float y);
+        virtual void setPosition(sf::Vector2f& pos);
+        virtual void setPosition(float x, float y);
         virtual sf::FloatRect get_GlobalBounds() const;
         virtual EditorObject* clone() const;
         virtual std::string save(float scale = GraphScale) const;
@@ -70,8 +70,8 @@ inline void Hero::playSound()
 //
 // had to be used only for the editor, during the game, the model define it position
 //
-inline void Hero::set_Position(sf::Vector2f& pos) {  m_model.setCoords(pos);};
-inline void Hero::set_Position(float x, float y) { m_model.setCoords(x,y);};
+inline void Hero::setPosition(sf::Vector2f& pos) {  m_model.setCoords(pos);};
+inline void Hero::setPosition(float x, float y) { m_model.setCoords(x,y);};
 
 inline sf::Vector2f Hero::get_Position() const { return m_model.getCoords();};
 

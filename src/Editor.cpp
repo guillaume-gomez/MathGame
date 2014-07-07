@@ -470,7 +470,7 @@ void Editor::addObject(int x , int y)
         else if (m_creatingType == TypeObject::Enemy)
         {
             Enemy* newEnemy = dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(TypeObject::Enemy));
-            newEnemy->set_Position(coord.x / GraphScale, - coord.y / GraphScale);
+            newEnemy->setPosition(coord.x / GraphScale, - coord.y / GraphScale);
             newEnemy->setDirection(m_isLeftEnemy);
             newEnemy->setNbAttempt(m_nbAttempt);
             newEnemy->show();
@@ -487,7 +487,7 @@ void Editor::addCircle(int x, int y)
     {
         GravityCircle* newCircle = new GravityCircle(radius);
         sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
-        newCircle->set_Position(coord);
+        newCircle->setPosition(coord);
         m_spriteList.push_back(newCircle);
     }
     else

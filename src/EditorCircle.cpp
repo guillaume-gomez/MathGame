@@ -5,13 +5,25 @@ EditorCircle::EditorCircle()
 :EditorObject()
 {
     this->m_type = TypeObject::Abstract;
+//    #ifdef DEBUG
+//        std::cout << "================================================" << &m_physicsCircle << std::endl;
+//        std::cout << "EditorCircle::EditorCircle()::m_physicsCircle : " << &m_physicsCircle << std::endl;
+//    #endif // DEBUG
+//    Physics::Engine::getEngine()->addObject(&m_physicsCircle);
+}
+
+EditorCircle::EditorCircle(const EditorCircle& original)
+:EditorObject(original)
+{
+    this->m_type = TypeObject::Abstract;
+//    Physics::Engine::getEngine()->addObject(&m_physicsCircle);
 }
 
 EditorCircle::~EditorCircle()
 {
     //dtor
+//	Physics::Engine::getEngine()->delObject(&m_physicsCircle);
 }
-
 
 float EditorCircle::distance(sf::Vector2f pointOne, sf::Vector2f pointTwo)
 {
@@ -82,7 +94,19 @@ std::string EditorCircle::save(float scale) const
 
 void EditorCircle::draw(sf::RenderTarget& app)
 {
+//    #ifdef DEBUG
+//        std::cout << "mkjjdffguijuhdgdjfsgftrbhjgfjhsfggfvfiudfdsegfedgefgyufeufqgfqgfqegqfegy" << std::endl;
+//        std::cout << "EditorCircle::m_physicsCircle : " << &m_physicsCircle << std::endl;
+//    #endif // DEBUG
+//    CircleShape::setPosition(m_physicsCircle.getPosition()); C'était un test
     app.draw(*this);
 }
 
-
+void EditorCircle::setRadius(float radius)
+{
+//    #ifdef DEBUG
+//        std::cout << "setRadius" << std::endl;
+//    #endif // DEBUG
+    CircleShape::setRadius(radius);
+    m_physicsCircle.setRadius(radius);
+}

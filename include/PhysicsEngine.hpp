@@ -30,7 +30,6 @@ namespace Physics
             const ConstrueFunction* getFunction() const;
             std::list<Object*> m_PhysicsObjects;
             void resetAllObjects();
-            VisitBox visitor;
 
         private:
             Engine(sf::Vector2f GravityAcceleration = GravityAcceleration);
