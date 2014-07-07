@@ -29,8 +29,8 @@ class Curves : public EditorObject
         void represent(float step);
 
         private:
-    	virtual void set_Position(sf::Vector2f& position);
-        virtual void set_Position(float x, float y);
+    	virtual void setPosition(sf::Vector2f& position);
+        virtual void setPosition(float x, float y);
         virtual sf::FloatRect get_GlobalBounds() const ;
         virtual sf::Vector2f get_Position() const;
         virtual EditorObject* loadView(const Element& elmt, float scale);
@@ -47,15 +47,15 @@ std::cerr << "nothing to do for the moment";
 return nullptr;
 }
 
-inline void Curves::set_Position(sf::Vector2f& position)
+inline void Curves::setPosition(sf::Vector2f& position)
 {
-	std::runtime_error("In the class Curves::set_Position -> nothing to do");
+	std::runtime_error("In the class Curves::setPosition -> nothing to do");
 }
 
 
-inline void Curves::set_Position(float x, float y)
+inline void Curves::setPosition(float x, float y)
 {
-	std::runtime_error("In the class Curves::set_Position -> nothing to do");
+	std::runtime_error("In the class Curves::setPosition -> nothing to do");
 }
 
 

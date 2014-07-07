@@ -10,7 +10,7 @@ Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
 int Screen_Game::Run(sf::RenderWindow& App)
 {
     #ifdef DEBUG
-        std::cout << std::endl << std::endl;
+//        std::cout << std::endl << "---------- Screen_Game::Run ----------" << std::endl << std::endl;
     #endif // DEBUG
     try
     {

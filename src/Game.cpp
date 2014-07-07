@@ -261,19 +261,19 @@ void Game::move()
 
         Physics::Engine::getEngine()->update(elapsedSeconds);
 
-//        #ifdef DEBUG
-//            std::cout << "hero collision : ";
-//        #endif // DEBUG
-
         for(const EditorObject* object : m_level.getSpriteList() )
         {
             if(object->getType() == TypeObject::Enemy)
             {
-//                #ifdef DEBUG
-//                    std::cout << "Méchant !" << std::endl;
-//                #endif // DEBUG
-                if(m_player->getModel().getPhysicsBox().testCollision(Physics::Engine::getEngine()->visitor,
-                                                                   dynamic_cast<const Enemy*>(object)->getModel().getPhysicsBox())
+                if(m_player->getModel().getPhysicsBox().testCollision(dynamic_cast<const Enemy*>(object)->getModel().getPhysicsBox())
+                   )
+                {
+                    m_playerDead = true;
+                }
+            }
+            if(object->getType() == TypeObject::Circle)
+            {
+                if(m_player->getModel().getPhysicsBox().testCollision(dynamic_cast<const GravityCircle*>(object)->getPhysicsCircle())
                    )
                 {
                     m_playerDead = true;
@@ -282,10 +282,6 @@ void Game::move()
         }
         if(m_player->get_Position().y<-(m_spriteBG.getTextureRect().height+m_spriteBG.getPosition().y)/GraphScale)
             m_playerDead = true;
-                #ifdef DEBUG
-//                    std::cout << m_spriteBG.getTextureRect().height << std::endl;
-                #endif // DEBUG
-
 
         m_timer.restart();
 

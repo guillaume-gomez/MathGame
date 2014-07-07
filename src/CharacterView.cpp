@@ -102,7 +102,7 @@ void CharacterView::draw( sf::RenderTarget& target)
 void CharacterView::show()
 {
     //setTexture(TextureManager::getTextureManager()->getResource(FilenameCharacterTex),34, 34);
-    sf::Vector2f thrust = m_model.getPhysicsBox("show").getThrust();
+    sf::Vector2f thrust = m_model.getPhysicsBox().getThrust();
 
     #ifdef DEBUG
          //   // std::cout << "CharacterView &m_model : " << &m_model << " thrust : " << m_model.getPhysicsBox("show").getThrust().x << std::endl;

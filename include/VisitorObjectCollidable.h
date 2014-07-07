@@ -5,6 +5,7 @@ namespace Physics
 {
     class Object;
     class Box;
+    class Circle;
     /**
     @brief : Interface to visit each object collidable
     **/
@@ -13,12 +14,8 @@ namespace Physics
         public:
             VisitorObjectCollidable();
             virtual ~VisitorObjectCollidable();
-
-//            virtual bool visit(const Object& object1, const Object& object2) = 0;
-//            virtual bool visit(const Box& box, const Object& object) = 0;
-//
-//            virtual bool visit(const Object& object, const Box& box) = 0;
             virtual bool visit(const Box& box1, const Box& box2) = 0;
+            virtual bool visit(const Box& box, const Circle& circle) = 0;
     };
 
     /**
@@ -26,22 +23,14 @@ namespace Physics
     **/
     class VisitBox : public VisitorObjectCollidable
     {
-//        virtual bool visit(const Object& object1, const Object& object2);
-//        virtual bool visit(const Box& box, const Object& object);
-//
-//        virtual bool visit(const Object& object, const Box& box);
-        virtual bool visit(const Box& box1, const Box& box2);
-
+        public:
+            virtual bool visit(const Box& box1, const Box& box2);
+            virtual bool visit(const Box& box, const Circle& circle);
     };
 
-    //TODO
 //    class VisitCircle : public VisitorObjectCollidable
 //    {
-////        virtual bool visit(const Object& object1, const Object& object2);
-////        virtual bool visit(const Box& box, const Object& object);
-////
-////        virtual bool visit(const Object& object, const Box& box);
-//        virtual bool visit(const Box& box1, const Box& box2);
+//        virtual bool visit(const Box& box, const Circle& circle);
 //    };
 
 } //namespace Physics

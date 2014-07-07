@@ -152,7 +152,7 @@ void ManageLevel::resetEnemies()
             enemy->reset();
             sf::Vector2f pos = m_levelModel->getCoordPoints(index);
             enemy->setNbAttempt(m_levelModel->getAttempt(index));
-            enemy->set_Position(pos);
+            enemy->setPosition(pos);
         }
         index++;
     }
