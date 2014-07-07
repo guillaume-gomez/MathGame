@@ -31,6 +31,7 @@ class CharacterView
         void setTexture(const sf::Texture* texture, int frameWidth, int frameHeight);
         sf::FloatRect getGlobalBounds() const;
         bool getDirection() const;
+        void setDirection(bool direction);
 
 	protected:
         AniSprite m_animation;
@@ -61,6 +62,8 @@ inline void CharacterView::setSize(int width, int height)
 }
 
 inline bool CharacterView::getDirection() const {return m_left;}
+
+inline void CharacterView::setDirection(bool direction) {m_left = direction;}
 
 inline void CharacterView::setTexture(const sf::Texture* texture, int frameWidth, int frameHeight)
 {

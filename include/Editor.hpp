@@ -55,7 +55,7 @@ class Editor
         ButtonPerso m_buttonGoalButton;
         ButtonPerso m_buttonCircle;
         ButtonPerso m_buttonNormalButton;
-        ButtonPerso m_buttonEnemy;
+        ButtonPerso m_buttonLeftEnemy;
         ButtonPerso m_buttonPanel;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
@@ -68,8 +68,12 @@ class Editor
         bool m_isZoom;
         PanelEditor m_panel;
         bool m_saving;
+        bool m_isLeftEnemy;
         sf::Sprite m_spriteBG;
         TextAreaSFML2_0 m_textAreaFunction;
+        ManageText m_nbAttemptView;
+
+        unsigned int m_nbAttempt;
 
         // HAVE TO IMPROVE IT
         sf::Vector2f m_radiusBuilder;
