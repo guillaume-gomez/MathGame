@@ -38,8 +38,9 @@ void Enemy::show()
 
 void Enemy::setDirection(bool _dir)
 {
-  m_model.setDirection(_dir);
-  m_view.setDirection(_dir);
+    _dir = !_dir;
+    m_model.setDirection(_dir);
+    m_view.setDirection(_dir);
 }
 
 void Enemy::draw(sf::RenderTarget& app)

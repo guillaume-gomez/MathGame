@@ -114,6 +114,9 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 std::string function;
                 m_fileLevel >> function;
 
+//                #ifdef DEBUG
+//                    std::cout << "LevelModel::LevelModel if(type == FunctionStr) function : " << function << std::endl;
+//                #endif // DEBUG
                 newElmt.setType(TypeObject::Function);
                 newElmt.setFunction(function);
 

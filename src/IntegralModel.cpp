@@ -1,12 +1,15 @@
 #include "IntegralModel.hpp"
 
 IntegralModel::IntegralModel(std::string _function)
-:ConstrueFunction(_function)
+:ConstrueFunction(_function), m_inPhysicsEngine(false)
 {
+    #ifdef DEBUG
+//        std::cout << "IntegralModel::IntegralModel (ctor) : " << this << " m_function : " << m_function<< std::endl;
+    #endif // DEBUG
 }
 
 IntegralModel::IntegralModel(const IntegralModel& copy)
-:ConstrueFunction(copy.getFunction())
+:ConstrueFunction(copy.getFunction()), m_inPhysicsEngine(false)
 {
     for(auto it : copy.m_listCoordShapes)
     {
@@ -17,6 +20,11 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
     {
         m_nbCoordByShape.push_back(it);
     }
+    #ifdef DEBUG
+        std::cout << "IntegralModel::IntegralModel (copy ctor) : " << this << " m_function : " << m_function<< std::endl;
+    #endif // DEBUG
+    Physics::Engine::getEngine()->addIntegral(this);
+    m_inPhysicsEngine = true;
 }
 
  void IntegralModel::getIntegraleCurveShape(float _begin , float _end , float step)
@@ -89,22 +97,28 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
     }
  }
 
-
-void IntegralModel::showPoints()
-{
-    #ifdef DEBUG
-        unsigned int index = 0;
-        // std::cout << "-----------------Coord---------------" << std::endl;
-        for (auto it : m_listCoordShapes)
-        {
-            // std::cout <<"("<< it.x << ", " << it.y <<")" << std::endl;
-        }
-        // std::cout << "------------------------------------" << std::endl;
-    #endif
-}
+//
+//void IntegralModel::showPoints()
+//{
+////    #ifdef DEBUG
+////        unsigned int index = 0;
+////        // std::cout << "-----------------Coord---------------" << std::endl;
+//////        for (auto it : m_listCoordShapes)
+//////        {
+//////            // std::cout <<"("<< it.x << ", " << it.y <<")" << std::endl;
+//////        }
+////        // std::cout << "------------------------------------" << std::endl;
+////    #endif
+//}
 
  IntegralModel::~IntegralModel()
- {}
+ {
+    if(m_inPhysicsEngine)
+    {
+        Physics::Engine::getEngine()->delIntegral(this);
+        m_inPhysicsEngine = false;
+    }
+ }
 
 /*
  void IntegralModelOld::getIntegraleCurve(float _begin , float _end , float step)

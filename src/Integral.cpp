@@ -24,6 +24,9 @@ Integral::Integral(const Integral& copy)
 
 EditorObject* Integral::clone() const
 {
+//    #ifdef DEBUG
+//        std::cout << "EditorObject* Integral::clone() const" << std::endl;
+//    #endif // DEBUG
 	return new Integral(*this);
 }
 

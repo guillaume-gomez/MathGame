@@ -10,7 +10,9 @@ Engine* Engine::getEngine()
 
 Engine::Engine(sf::Vector2f GravityAcceleration)
 :m_GravityAcceleration(GravityAcceleration)
-{}
+{
+    m_functionsList.push_back(&m_Function);
+}
 
 Engine::~Engine()
 {
@@ -42,6 +44,33 @@ void Engine::delObject(Object* object)
     }
 }
 
+void Engine::addIntegral(IntegralModel* integral)
+{
+    if(!integral->inPhysicsEngine())
+    {
+        #ifdef DEBUG
+//            std::cout << "Engine::addIntegral &integral : " << &integral << " integral : " << integral << " integral->getFunction() : " << integral->getFunction() << std::endl;
+        #endif // DEBUG
+        integral->m_inPhysicsEngine=true;
+        m_integrals.push_back(integral);
+        m_functionsList.push_back((const ConstrueFunction**)&integral);
+        #ifdef DEBUG
+            std::cout << "Engine::addIntegral &integral : " << &integral << " (const ConstrueFunction**)&integral : " << (const ConstrueFunction**)&integral << std::endl;
+//            std::cout << "Engine::addIntegral m_functionsList.back() : " << m_functionsList.back() << " (*m_functionsList.back())->getFunction() : " << (*m_functionsList.back())->getFunction() << std::endl;
+        #endif // DEBUG
+    }
+}
+
+void Engine::delIntegral(IntegralModel* integral)
+{
+//    #ifdef DEBUG
+//        std::cout << "Engine::delIntegral integral : " << integral << std::endl;
+//    #endif // DEBUG
+    m_integrals.remove(integral);
+    m_functionsList.remove((const ConstrueFunction**)&integral);
+    integral->m_inPhysicsEngine=false;
+}
+
 void Engine::cleanEngine()
 {
     while(!m_PhysicsObjects.empty())
@@ -49,11 +78,21 @@ void Engine::cleanEngine()
         delObject(m_PhysicsObjects.front());
     }
 
+    while(!m_integrals.empty())
+    {
+        delIntegral(m_integrals.front());
+    }
+
+//    m_functionsList.remove(&m_Function);
+
     m_Function = nullptr;
 }
 
 void Engine::update(float elapsedSeconds)
 {
+    #ifdef DEBUG
+        std::cout << "------------------------ Update ------------------------" << std::endl;
+    #endif // DEBUG
     static float yCurve, derivative;
     Physics::Object* object;
 
@@ -82,12 +121,28 @@ void Engine::update(float elapsedSeconds)
 //            #endif // DEBUG
         }
 
-        if( (!object->m_onCurve && std::abs(object->m_Velocity.x) < std::abs(object->m_Thrust.x))
+        // permet le deplacement (au ralenti) d'un objet si il est en l'air
+        if( (!object->isOnCurve() && std::abs(object->m_Velocity.x) < std::abs(object->m_Thrust.x))
          || ((object->m_Thrust.x<0 && object->m_Velocity.x>0) || (object->m_Thrust.x>0 && object->m_Velocity.x<0))
           )
             object->m_Velocity.x += object->m_Thrust.x*elapsedSeconds;
 
         object->m_angle = 0.0f;
+        #ifdef DEBUG
+            std::cout << "m_functionsList.size() : " << m_functionsList.size() << std::endl << std::endl;
+        #endif // DEBUG
+        for(auto functionPtr : m_functionsList)
+        {
+            #ifdef DEBUG
+                std::cout << "functionPtr : " << functionPtr << " *functionPtr : " << *functionPtr << std::endl;
+            #endif // DEBUG
+        }
+        for(auto integralsPtr : m_integrals)
+        {
+            #ifdef DEBUG
+                std::cout << "integralsPtr : " << integralsPtr << " *integralsPtr : " << "integralsPtr->getFunction() : " << integralsPtr->getFunction() << std::endl;
+            #endif // DEBUG
+        }
         if(m_Function->isRepresented(object->m_Position.x))
         {
             yCurve = m_Function->getFunctionValue(object->m_Position.x);

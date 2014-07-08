@@ -6,11 +6,21 @@
 ConstrueFunction::ConstrueFunction(std::string _function)
 :m_function(_function), m_changed(false)/*, m_scale(scale), m_begin(0.0f), m_end(0.0f), m_step(0.0f)*/
 {
+    #ifdef DEBUG
+//        std::cout << "ConstrueFunction::ConstrueFunction : " << this << std::endl;
+    #endif // DEBUG
 }
 
 ConstrueFunction::ConstrueFunction(const ConstrueFunction& copy)
 :m_function(copy.m_function), m_changed(copy.m_changed)
 {
+    #ifdef DEBUG
+//        std::cout << std::endl;
+//        std::cout << "ConstrueFunction::ConstrueFunction(const ConstrueFunction& copy) : " << this << std::endl;
+    #endif // DEBUG
+//    #ifdef DEBUG
+//        std::cout << "ConstrueFunction::ConstrueFunction m_function : " << m_function << std::endl;
+//    #endif // DEBUG
 	for (auto it : copy.intervals)
 	{
 		intervals.push_back(it);
@@ -33,7 +43,13 @@ ConstrueFunction::~ConstrueFunction()
 /**
 * @brief : Accessor of m_function
 **/
-std::string ConstrueFunction::getFunction() const {return m_function ;}
+std::string ConstrueFunction::getFunction() const
+{
+//    #ifdef DEBUG
+//        std::cout << "ConstrueFunction::getFunction() : " << m_function << std::endl;
+//    #endif // DEBUG
+    return m_function ;
+}
 
 /**
 * @brief : Accessor of m_function
@@ -43,6 +59,9 @@ void ConstrueFunction::setFunction(std::string _function)
 {
     m_function = _function;
     setChanged(true);
+    #ifdef DEBUG
+        std::cout << "ConstrueFunction::setFunction : " << this << " getFunction() : " << getFunction() << std::endl;
+    #endif // DEBUG
 }
 
 /**
@@ -50,6 +69,9 @@ void ConstrueFunction::setFunction(std::string _function)
 **/
 float ConstrueFunction::getFunctionValue( float x) const
 {
+    #ifdef DEBUG
+        std::cout << "ConstrueFunction::getFunctionValue m_function : " << m_function << std::endl;
+    #endif // DEBUG
    exprtk::symbol_table<float> symbol_table;
    symbol_table.add_variable("x",x);
 

@@ -2,6 +2,7 @@
 #define PHYSICSENGINE_HPP
 
 #include "ConstrueFunction.hpp"
+#include "IntegralModel.hpp"
 #include "PhysicsObject.hpp"
 #include "VisitorObjectCollidable.h"
 
@@ -11,6 +12,9 @@
 
 #include <cmath>
 #include <list>
+
+class IntegralModel;
+
 namespace Physics
 {
     class Engine
@@ -21,6 +25,8 @@ namespace Physics
 
             void addObject(Object* object);
             void delObject(Object* object);
+            void addIntegral(IntegralModel* object);
+            void delIntegral(IntegralModel* object);
             void cleanEngine();
             void update(float elapsedSeconds);
 
@@ -29,6 +35,7 @@ namespace Physics
             void setFunction(const ConstrueFunction* Function);
             const ConstrueFunction* getFunction() const;
             std::list<Object*> m_PhysicsObjects;
+            std::list<IntegralModel*> m_integrals;
             void resetAllObjects();
 
         private:
@@ -38,6 +45,8 @@ namespace Physics
 
             sf::Vector2f m_GravityAcceleration;
             const ConstrueFunction* m_Function;
+
+            std::list<const ConstrueFunction**> m_functionsList;
 
             //ensuite transformé ce visiteur par une map de visiteur avec pour clé le type de l'objet
     };

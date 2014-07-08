@@ -6,7 +6,7 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 :m_app(_app),
  m_axis(GraphScale),
  m_gameMode(GameMode::Classic),
- m_typeOfCamera(TypeOfCamera::Moveable),
+ m_typeOfCamera(TypeOfCamera::Static),
  m_textAreaFunction(6),
  m_level(1,_diff,GraphScale),
  m_buttonReset(FilenameButtonReset),
@@ -89,8 +89,8 @@ void Game::resize(float scaleX, float scaleY)
        m_frameCountText.scale(scaleX, scaleY);
     #endif
 
-     std::cout << m_buttonBack.getPosition().x <<" : "<< m_buttonBack.getPosition().y << std::endl;
-     std::cout << "____________________________________________" << std::endl;
+//     std::cout << m_buttonBack.getPosition().x <<" : "<< m_buttonBack.getPosition().y << std::endl;
+//     std::cout << "____________________________________________" << std::endl;
 
 
 }

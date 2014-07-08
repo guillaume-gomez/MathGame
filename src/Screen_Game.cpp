@@ -10,7 +10,7 @@ Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
 int Screen_Game::Run(sf::RenderWindow& App)
 {
     #ifdef DEBUG
-//        std::cout << std::endl << "---------- Screen_Game::Run ----------" << std::endl << std::endl;
+        std::cout << std::endl << "---------- Screen_Game::Run ----------" << std::endl << std::endl;
     #endif // DEBUG
     try
     {
@@ -34,7 +34,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
         m_game->setZoom(true);
 
 
-        std::cout << App.getSize().x << "  "<< App.getSize().y << std::endl;
+//        std::cout << App.getSize().x << "  "<< App.getSize().y << std::endl;
         m_game->resize(WindowWidth / App.getSize().x,  WindowHeight/ App.getSize().y);
 
         while(Running && gameFinish == 0)

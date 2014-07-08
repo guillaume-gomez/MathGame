@@ -41,7 +41,8 @@ namespace Physics
             float getAngle() const;
             void setAngle(float angle);
 
-            void isOnCurve(bool isIt=true);
+            bool isOnCurve() const;
+            void isOnCurve(bool isIt);
 
             void jump(bool isJumping=true);
             bool isJumping() const;
@@ -95,6 +96,7 @@ namespace Physics
     inline void Object::setAngle(float angle) { m_angle = angle; }
 
     inline void Object::isOnCurve(bool onCurve) { m_onCurve=onCurve; }
+    inline bool Object::isOnCurve() const { return m_onCurve; }
 
     inline bool Object::isJumping() const { return m_jumping; }
 
