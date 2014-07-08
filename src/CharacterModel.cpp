@@ -29,6 +29,7 @@ CharacterModel::CharacterModel(const CharacterModel& copy)
 
 void CharacterModel::setDirection(bool dir)
 {
+std::cout << "CharacterModel::orientedRight " << dir << std::endl;
   m_orientedRight = dir;
 }
 

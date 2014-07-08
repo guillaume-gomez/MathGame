@@ -66,7 +66,7 @@ ScreenOption::ScreenOption(unsigned int _button)
 
 	m_window->Add(m_box);
 
-    m_desktop.LoadThemeFromFile(FilenameTheme);
+    //m_desktop.LoadThemeFromFile(FilenameTheme);
     m_desktop.Add(m_window);
 
 

@@ -36,7 +36,7 @@ int ScreenLevelChoiceClassic::Run(sf::RenderWindow & App)
     loadLevelUnlocked();
     m_window->Show(true);
 
-    m_desktop.LoadThemeFromFile(FilenameTheme);
+//    m_desktop.LoadThemeFromFile(FilenameTheme);
     m_desktop.Add(m_window);
 
     while(Running)

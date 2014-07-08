@@ -22,7 +22,7 @@ m_isLeftEnemy(true), m_nbAttempt(1)
     //
     m_nbAttemptView.setColor(sf::Color(23,0,34,225));
     m_nbAttemptView.setString(sf::String("EnemyLife : 1"));
-    m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 200, m_app.getSize().y - 25));
+    m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 210, m_app.getSize().y - 25));
 
     //build all the template method
     ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
