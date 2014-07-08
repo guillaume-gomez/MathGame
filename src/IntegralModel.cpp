@@ -22,7 +22,7 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
  void IntegralModel::getIntegraleCurveShape(float _begin , float _end , float step)
  {
      std::list<sf::Vector2f>::iterator firstPoint = m_coords.begin();
-    //detect where the function cut the abscissa
+    //detect where the function cuts the abscissa
     int sign = (firstPoint->y >= 0)? 1 : -1;
 
     getRepresentativeCurve(_begin,_end,step);
@@ -76,7 +76,7 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
             itNext++;
         }
         // a point is added if the curve doesn't cut the abscissa at 0 with the step
-        // a second point is added to close the future shape in IntegralView
+        // a second point is added to fill the future shape in IntegralView
         if(sign != 0)
         {
            coordZero = sf::Vector2f(it->x, 0.0f);

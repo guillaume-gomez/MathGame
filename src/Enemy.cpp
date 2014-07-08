@@ -39,7 +39,12 @@ void Enemy::show()
 void Enemy::setDirection(bool _dir)
 {
   m_model.setDirection(_dir);
-  m_view.setDirection(_dir);
+  /*bad conception : we have a variable to check if the enemy should be positioned to the right in the model
+  /and the opposite in view !?!
+
+   will be corrected later
+ */
+  m_view.setDirection(!_dir);
 }
 
 void Enemy::draw(sf::RenderTarget& app)
