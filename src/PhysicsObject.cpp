@@ -45,6 +45,7 @@ void Object::setAllToNull()
 
     m_Thrust = sf::Vector2f(0.0f,0.0f);
     m_angle = 0.0f;
+    jump(false);
 }
 
 bool Object::collidable() const

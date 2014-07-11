@@ -10,7 +10,7 @@ CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, Mov
 :m_life(life), m_frictionCoefficient(0.0f), m_speed(speed), m_moveType(moveType)
 {
     #ifdef DEBUG
-//        std::cout << "CharacterModel constructor : &m_PhysicsBox : " << &m_PhysicsBox << std::endl;
+        std::cout << "CharacterModel constructor : &m_PhysicsBox : " << &m_PhysicsBox << std::endl;
     #endif // DEBUG
 	m_orientedRight = (m_PhysicsBox.getVelocity().x>0);
 	Physics::Engine::getEngine()->addObject(&m_PhysicsBox);

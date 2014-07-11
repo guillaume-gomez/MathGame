@@ -3,9 +3,9 @@
 IntegralModel::IntegralModel(std::string _function)
 :ConstrueFunction(_function), m_inPhysicsEngine(false)
 {
-    #ifdef DEBUG
-//        std::cout << "IntegralModel::IntegralModel (ctor) : " << this << " m_function : " << m_function<< std::endl;
-    #endif // DEBUG
+//    #ifdef DEBUG
+//        std::cout << "IntegralModel::IntegralModel (ctor) : " << this << std::endl;
+//    #endif // DEBUG
 }
 
 IntegralModel::IntegralModel(const IntegralModel& copy)
@@ -20,9 +20,9 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
     {
         m_nbCoordByShape.push_back(it);
     }
-    #ifdef DEBUG
-        std::cout << "IntegralModel::IntegralModel (copy ctor) : " << this << " m_function : " << m_function<< std::endl;
-    #endif // DEBUG
+//    #ifdef DEBUG
+//        std::cout << "IntegralModel::IntegralModel (copy ctor) : " << this << " m_function : " << m_function<< std::endl;
+//    #endif // DEBUG
     Physics::Engine::getEngine()->addIntegral(this);
     m_inPhysicsEngine = true;
 }

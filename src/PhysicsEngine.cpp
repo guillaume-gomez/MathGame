@@ -11,7 +11,7 @@ Engine* Engine::getEngine()
 Engine::Engine(sf::Vector2f GravityAcceleration)
 :m_GravityAcceleration(GravityAcceleration)
 {
-    m_functionsList.push_back(&m_Function);
+//    m_functionsList.push_back(&m_Function);
 }
 
 Engine::~Engine()
@@ -48,16 +48,20 @@ void Engine::addIntegral(IntegralModel* integral)
 {
     if(!integral->inPhysicsEngine())
     {
-        #ifdef DEBUG
+//        #ifdef DEBUG
 //            std::cout << "Engine::addIntegral &integral : " << &integral << " integral : " << integral << " integral->getFunction() : " << integral->getFunction() << std::endl;
-        #endif // DEBUG
+//        #endif // DEBUG
         integral->m_inPhysicsEngine=true;
         m_integrals.push_back(integral);
-        m_functionsList.push_back((const ConstrueFunction**)&integral);
-        #ifdef DEBUG
-            std::cout << "Engine::addIntegral &integral : " << &integral << " (const ConstrueFunction**)&integral : " << (const ConstrueFunction**)&integral << std::endl;
-//            std::cout << "Engine::addIntegral m_functionsList.back() : " << m_functionsList.back() << " (*m_functionsList.back())->getFunction() : " << (*m_functionsList.back())->getFunction() << std::endl;
-        #endif // DEBUG
+//        #ifdef DEBUG
+//            std::cout << "(const ConstrueFunction**)&integral : " << (const ConstrueFunction**)&integral << std::endl;
+//            std::cout << "                       *(&integral) : " << *(&integral) << std::endl;
+//        #endif // DEBUG
+//        m_functionsList.push_back((const ConstrueFunction**)&(m_integrals.back()));
+//        #ifdef DEBUG
+//            std::cout << "Engine::addIntegral &integral : " << &integral << " (const ConstrueFunction**)&integral : " << (const ConstrueFunction**)&integral << std::endl;
+//            std::cout << "Engine::addIntegral *(m_functionsList.back()) : " << *(m_functionsList.back()) << std::endl;
+//        #endif // DEBUG
     }
 }
 
@@ -66,8 +70,8 @@ void Engine::delIntegral(IntegralModel* integral)
 //    #ifdef DEBUG
 //        std::cout << "Engine::delIntegral integral : " << integral << std::endl;
 //    #endif // DEBUG
+//    m_functionsList.remove((const ConstrueFunction**)&integral);
     m_integrals.remove(integral);
-    m_functionsList.remove((const ConstrueFunction**)&integral);
     integral->m_inPhysicsEngine=false;
 }
 
@@ -90,10 +94,10 @@ void Engine::cleanEngine()
 
 void Engine::update(float elapsedSeconds)
 {
-    #ifdef DEBUG
-        std::cout << "------------------------ Update ------------------------" << std::endl;
-    #endif // DEBUG
-    static float yCurve, derivative;
+//    #ifdef DEBUG
+//        std::cout << "------------------------ Update ------------------------ m_PhysicsObjects.size() : " << m_PhysicsObjects.size() << std::endl;
+//    #endif // DEBUG
+//    static float yCurve, derivative;
     Physics::Object* object;
 
     for(std::list<Object*>::iterator itPhysicsObjects=m_PhysicsObjects.begin(); itPhysicsObjects!=m_PhysicsObjects.end(); itPhysicsObjects++)
@@ -128,25 +132,71 @@ void Engine::update(float elapsedSeconds)
             object->m_Velocity.x += object->m_Thrust.x*elapsedSeconds;
 
         object->m_angle = 0.0f;
-        #ifdef DEBUG
-            std::cout << "m_functionsList.size() : " << m_functionsList.size() << std::endl << std::endl;
-        #endif // DEBUG
-        for(auto functionPtr : m_functionsList)
-        {
-            #ifdef DEBUG
-                std::cout << "functionPtr : " << functionPtr << " *functionPtr : " << *functionPtr << std::endl;
-            #endif // DEBUG
-        }
-        for(auto integralsPtr : m_integrals)
-        {
-            #ifdef DEBUG
-                std::cout << "integralsPtr : " << integralsPtr << " *integralsPtr : " << "integralsPtr->getFunction() : " << integralsPtr->getFunction() << std::endl;
-            #endif // DEBUG
-        }
+
+//        #ifdef DEBUG
+//            std::cout << "sizeof(short int) : " << sizeof(short int) << std::endl;
+//        #endif // DEBUG
+        bool curveBelow=false;
+        float maxValue=0;
+        float derivative=0;
+        const ConstrueFunction* functionPtr = 0;
+//        std::map<const ConstrueFunction*, float> functionsValues;
+
         if(m_Function->isRepresented(object->m_Position.x))
         {
-            yCurve = m_Function->getFunctionValue(object->m_Position.x);
-            if(object->m_Position.y>yCurve)
+            float y=m_Function->getFunctionValue(object->m_Position.x);
+//            #ifdef DEBUG
+//                std::cout << object << " y : " << object->getPosition().y << " function y : " << y << std::endl;
+//            #endif
+            if(y <= object->getPosition().y)
+            {
+                functionPtr = m_Function;
+                curveBelow = true;
+                maxValue = y;
+                derivative = m_Function->getDerivative(object->m_Position.x);
+            }
+            else
+            {
+                bool fdsfsdf=false;
+            }
+        }
+//        for(std::list<const ConstrueFunction**>::const_iterator itFunctionPtr=std::next(m_functionsList.cbegin()); itFunctionPtr!=m_functionsList.cend(); itFunctionPtr++)
+  /*      #ifdef DEBUG
+            std::cout << "m_integrals.size() : " << m_integrals.size() << std::endl;
+        #endif // DEBUG
+        for(std::list<IntegralModel*>::const_iterator itFunctionPtr=m_integrals.cbegin(); itFunctionPtr!=m_integrals.cend(); itFunctionPtr++)
+        {
+            if((*itFunctionPtr)->isRepresented(object->m_Position.x))
+            {
+                float y = (*itFunctionPtr)->getFunctionValue(object->m_Position.x);
+                    #ifdef DEBUG
+                        std::cout << "object : " << &object << std::endl;
+                        std::cout << "(*itFunctionPtr)->getFunctionValue(" << object->m_Position.x << ") : " << (*itFunctionPtr)->getFunctionValue(object->m_Position.x) << std::endl;
+                        std::cout << "Y : " << y << std::endl;
+                    #endif // DEBUG
+                if(y <= object->getPosition().y && (!curveBelow || (curveBelow && y>maxValue)))
+                {
+                    functionPtr = *itFunctionPtr;
+                    curveBelow = true;
+                    maxValue=y;
+                    std::cout << "OUIOUI; object->getPosition().y : " << object->getPosition().y << std::endl;
+//                        derivative = (*itFunctionPtr)->getDerivative(object->m_Position.x);
+                }
+                #ifdef DEBUG
+                else
+                {
+                    std::cout << "NONONO; object->getPosition().y : " << object->getPosition().y << std::endl;
+                    std::cout << "";
+                }
+                #endif // DEBUG
+            }
+        }*/
+
+        if(curveBelow)
+//      if(m_Function->isRepresented(object->m_Position.x))
+        {
+            maxValue = functionPtr->getFunctionValue(object->m_Position.x);
+            if(object->m_Position.y>maxValue)
             {
 //                bool prevVelocityYPos = object->m_Velocity.y>0;
         //				elapsedSeconds = m_timer.getElapsedTime().asSeconds();
@@ -155,9 +205,9 @@ void Engine::update(float elapsedSeconds)
 
                 object->m_Position += object->m_Velocity*elapsedSeconds;
                 // si le personnage a traversé la courbe on le positionne sur la courbe
-                if(m_Function->isRepresented(object->m_Position.x) && (object->m_Position.y < m_Function->getFunctionValue(object->m_Position.x)))
+                if(functionPtr->isRepresented(object->m_Position.x) && (object->m_Position.y < functionPtr->getFunctionValue(object->m_Position.x)))
                 {
-                    object->m_Position.y=m_Function->getFunctionValue(object->m_Position.x);
+                    object->m_Position.y=functionPtr->getFunctionValue(object->m_Position.x);
                     object->isOnCurve();
                 }
                 else
@@ -167,9 +217,9 @@ void Engine::update(float elapsedSeconds)
                 }
             }
             // si le personnage est sur la courbe
-            else if(object->m_Position.y == yCurve)
+            else if(object->m_Position.y == maxValue)
             {
-                derivative=m_Function->getDerivative(object->m_Position.x);
+                derivative=functionPtr->getDerivative(object->m_Position.x);
                 object->m_Velocity.x=cos(atan2(derivative, (object->m_Thrust.x<0 ? -1 : 1)))*abs(object->m_Thrust.x);
                 if(object->m_jumping)
                 {
@@ -181,15 +231,15 @@ void Engine::update(float elapsedSeconds)
         //				object->m_Position += object->m_Velocity*m_timer.getElapsedTime().asSeconds();
                 object->m_Position += object->m_Velocity*elapsedSeconds;
                 // si apres déplacement le personnage est toujours dans une zone où la courbe est représentée
-                if(m_Function->isRepresented(object->m_Position.x))
+                if(functionPtr->isRepresented(object->m_Position.x))
                 {
-                    yCurve = m_Function->getFunctionValue(object->m_Position.x);
+                    maxValue = functionPtr->getFunctionValue(object->m_Position.x);
                     // si le personnage est en dessous de la courbe (due aux erreurs inéluctables de précision de calcul)
                     // alors correction en placant le personnage sur la bonne coordonnée y
                     // si il est au dessus, on ne fait rien et au prochain appel de cette methode le perso sera déplacé en retombant selon la gravité
-                    if(object->m_Position.y < yCurve)
+                    if(object->m_Position.y < maxValue)
                     {
-                        object->m_Position.y = yCurve;
+                        object->m_Position.y = maxValue;
                         object->isOnCurve();
                     }
                     else

@@ -46,7 +46,7 @@ namespace Physics
             sf::Vector2f m_GravityAcceleration;
             const ConstrueFunction* m_Function;
 
-            std::list<const ConstrueFunction**> m_functionsList;
+//            std::list<const ConstrueFunction**> m_functionsList;
 
             //ensuite transformé ce visiteur par une map de visiteur avec pour clé le type de l'objet
     };

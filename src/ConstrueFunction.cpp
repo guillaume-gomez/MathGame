@@ -59,9 +59,9 @@ void ConstrueFunction::setFunction(std::string _function)
 {
     m_function = _function;
     setChanged(true);
-    #ifdef DEBUG
-        std::cout << "ConstrueFunction::setFunction : " << this << " getFunction() : " << getFunction() << std::endl;
-    #endif // DEBUG
+//    #ifdef DEBUG
+//        std::cout << "ConstrueFunction::setFunction : " << this << " getFunction() : " << getFunction() << std::endl;
+//    #endif // DEBUG
 }
 
 /**
@@ -69,9 +69,9 @@ void ConstrueFunction::setFunction(std::string _function)
 **/
 float ConstrueFunction::getFunctionValue( float x) const
 {
-    #ifdef DEBUG
-        std::cout << "ConstrueFunction::getFunctionValue m_function : " << m_function << std::endl;
-    #endif // DEBUG
+//    #ifdef DEBUG
+//        std::cout << "ConstrueFunction::getFunctionValue m_function : " << m_function << std::endl;
+//    #endif // DEBUG
    exprtk::symbol_table<float> symbol_table;
    symbol_table.add_variable("x",x);
 
