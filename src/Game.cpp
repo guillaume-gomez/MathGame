@@ -16,7 +16,7 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
  m_frameCount(0),
  m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf")),
 #endif
- m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false),
+ m_gameStarted(false), m_isZoom(false), m_isSound(false), m_isBack(false),
  m_player(new Hero), m_playerDead(false)
 {
     #ifdef DEBUG
