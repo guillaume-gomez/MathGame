@@ -29,6 +29,9 @@ namespace Physics
             virtual ~Object() = 0;
             Object(const Object& original);
 
+            virtual float getWidth() const = 0;
+            virtual float getHeight() const = 0;
+
             sf::Vector2f getPosition() const;
             void setPosition(sf::Vector2f Position);
 
@@ -129,7 +132,6 @@ namespace Physics
 
     inline float Box::getWidth() const { return m_width;  }
     inline float Box::getHeight() const { return m_height;  }
-    inline void Box::setSize(float width, float height) { m_width=width/GraphScale, m_height=height/GraphScale ; }
 
     class Circle : public Object
     {
@@ -139,6 +141,9 @@ namespace Physics
             Circle(float radius = 1.0f);
             ~Circle();
             Circle(const Circle& original);
+
+            float getWidth() const;
+            float getHeight() const;
 
             float getRadius() const;
             void setRadius(float radius);
@@ -159,6 +164,9 @@ namespace Physics
             static std::list<Circle*> m_gravityCircles;
             bool m_isGravityCircle;
     };
+
+    inline float Circle::getWidth() const { return m_radius*2;  }
+    inline float Circle::getHeight() const { return m_radius*2;  }
 
     inline float Circle::getRadius() const { return m_radius;  }
     inline void Circle::setRadius(float radius) { m_radius=radius/GraphScale ; }

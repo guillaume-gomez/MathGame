@@ -133,21 +133,14 @@ void Engine::update(float elapsedSeconds)
 
         object->m_angle = 0.0f;
 
-//        #ifdef DEBUG
-//            std::cout << "sizeof(short int) : " << sizeof(short int) << std::endl;
-//        #endif // DEBUG
         bool curveBelow=false, isIntegral=false;
         float maxValue=0;
         float derivative=0;
         const ConstrueFunction* functionPtr = 0;
-//        std::map<const ConstrueFunction*, float> functionsValues;
 
         if(m_Function->isRepresented(object->m_Position.x))
         {
             float y=m_Function->getFunctionValue(object->m_Position.x);
-//            #ifdef DEBUG
-//                std::cout << object << " y : " << object->getPosition().y << " function y : " << y << std::endl;
-//            #endif
             if(y <= object->getPosition().y)
             {
                 functionPtr = m_Function;
@@ -156,20 +149,11 @@ void Engine::update(float elapsedSeconds)
                 derivative = m_Function->getDerivative(object->m_Position.x);
             }
         }
-//        for(std::list<const ConstrueFunction**>::const_iterator itFunctionPtr=std::next(m_functionsList.cbegin()); itFunctionPtr!=m_functionsList.cend(); itFunctionPtr++)
-//       #ifdef DEBUG
-//            std::cout << "m_integrals.size() : " << m_integrals.size() << std::endl;
-//        #endif // DEBUG
         for(std::list<IntegralModel*>::const_iterator itFunctionPtr=m_integrals.cbegin(); itFunctionPtr!=m_integrals.cend(); itFunctionPtr++)
         {
             if((*itFunctionPtr)->isRepresented(object->m_Position.x))
             {
                 float y = (*itFunctionPtr)->getFunctionValue(object->m_Position.x);
-//                    #ifdef DEBUG
-//                        std::cout << "object : " << &object << std::endl;
-//                        std::cout << "(*itFunctionPtr)->getFunctionValue(" << object->m_Position.x << ") : " << (*itFunctionPtr)->getFunctionValue(object->m_Position.x) << std::endl;
-//                        std::cout << "Y : " << y << std::endl;
-//                    #endif // DEBUG
                 if(y <= object->getPosition().y && (!curveBelow || (curveBelow && y>maxValue)))
                 {
                     functionPtr = *itFunctionPtr;
@@ -185,25 +169,12 @@ void Engine::update(float elapsedSeconds)
                         maxValue = 0;
                         derivative = 0;
                     }
-//                    std::cout << "OUIOUI; object->getPosition().y : " << object->getPosition().y << std::endl;
                 }
-//                #ifdef DEBUG
-//                else
-//                {
-//                    std::cout << "NONONO; object->getPosition().y : " << object->getPosition().y << std::endl;
-//                    std::cout << "";
-//                }
-//                #endif // DEBUG
             }
         }
 
         if(curveBelow)
-//      if(m_Function->isRepresented(object->m_Position.x))
         {
-//        #ifdef DEBUG
-//            std::cout << object << " : " << object->m_Position.y << std::endl;
-//        #endif // DEBUG
-//            maxValue = functionPtr->getFunctionValue(object->m_Position.x);
             // si l'objet est au dessus de la courbe (sans etre en contact)
             if(object->m_Position.y>maxValue)
             {
@@ -237,7 +208,6 @@ void Engine::update(float elapsedSeconds)
             // si le personnage est sur la courbe
             else if(object->m_Position.y == maxValue)
             {
-//                derivative=functionPtr->getDerivative(object->m_Position.x);
                 object->m_Velocity.x=cos(atan2(derivative, (object->m_Thrust.x<0 ? -1 : 1)))*abs(object->m_Thrust.x);
                 if(object->m_jumping)
                 {
@@ -246,17 +216,12 @@ void Engine::update(float elapsedSeconds)
                 else
                 {
                     object->m_Velocity.y=sin(atan2(derivative, (object->m_Thrust.x<0 ? -1 : 1)))*object->m_Thrust.x;
-//                    #ifdef DEBUG
-//                        std::cout << object << "->m_Velocity.y : " << object->m_Velocity.y << std::endl;
-//                    #endif // DEBUG
                 }
 
-        //				object->m_Position += object->m_Velocity*m_timer.getElapsedTime().asSeconds();
                 object->m_Position += object->m_Velocity*elapsedSeconds;
                 // si apres déplacement le personnage est toujours dans une zone où la courbe est représentée
                 if(functionPtr->isRepresented(object->m_Position.x))
                 {
-//                    maxValue = functionPtr->getFunctionValue(object->m_Position.x);
                     // si le personnage est en dessous de la courbe (due aux erreurs inéluctables de précision de calcul)
                     // alors correction en placant le personnage sur la bonne coordonnée y
                     // si il est au dessus, on ne fait rien et au prochain appel de cette methode le perso sera déplacé en retombant selon la gravité
@@ -267,7 +232,6 @@ void Engine::update(float elapsedSeconds)
                     if((object->m_Position.y < currentYCurve))
                     {
                         object->m_Position.y=currentYCurve;
-    //                    object->m_Position.y=maxValue;
                         object->isOnCurve();
                     }
                     else
@@ -275,13 +239,6 @@ void Engine::update(float elapsedSeconds)
                         object->isOnCurve(false);
                     }
     /***************************************************/
-//                    if(object->m_Position.y < maxValue)
-//                    {
-//                        object->m_Position.y = maxValue;
-//                        object->isOnCurve();
-//                    }
-//                    else
-//                        object->isOnCurve(false);
                 }
                 else
                     object->isOnCurve(false);
@@ -290,7 +247,6 @@ void Engine::update(float elapsedSeconds)
             // si le personnage est en dessous de la courbe
             else
             {
-        //				elapsedSeconds = m_timer.getElapsedTime().asSeconds();
                 object->m_Velocity.y += m_GravityAcceleration.y*elapsedSeconds;
                 object->m_Position += object->m_Velocity*elapsedSeconds;
                 object->isOnCurve(false);
@@ -304,23 +260,40 @@ void Engine::update(float elapsedSeconds)
             object->isOnCurve(false);
         }
 
+        bool revertMove = false;
+        for(std::list<IntegralModel*>::const_iterator itFunctionPtr=m_integrals.cbegin(); itFunctionPtr!=m_integrals.cend() && !revertMove; itFunctionPtr++)
+        {
+            if(*itFunctionPtr != functionPtr && (*itFunctionPtr)->isRepresented(object->m_Position.x))
+            {
+                float fctY = (*itFunctionPtr)->getFunctionValue(object->getPosition().x);
+                float objY = object->getPosition().y+object->getHeight();
+
+                if( (objY>=fctY && objY<=0)
+                 || (objY<=fctY && objY>=0)
+                  )
+                {
+                    revertMove = true;
+                }
+            }
+        }
+
+        if(revertMove)
+        {
+            object->m_Velocity.x *= -1.0f;
+            object->m_Position += object->getVelocity() * elapsedSeconds;
+//            if(object->getVelocity().y>0)
+//                object->m_Velocity.y=0;
+            object->m_Velocity.x=0;
+        }
+
         setGravity(oldGravityAcceleration);
     }
-            #ifdef DEBUG
-//                std::cout << "**************" << std::endl;
-            #endif // DEBUG
 }
 
 void Engine::resetAllObjects()
 {
     for(Physics::Object* object : m_PhysicsObjects)
     {
-        #ifdef DEBUG
-            // std::cout << " caca caca caca caca caca caca avant : " << object->getVelocity().x << std::endl;
-        #endif
         object->setAllToNull();
-        #ifdef DEBUG
-            // std::cout << " caca caca caca caca caca caca apres : " << object->getVelocity().x << std::endl;
-        #endif
     }
 }
