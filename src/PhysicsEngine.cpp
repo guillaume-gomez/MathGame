@@ -94,9 +94,9 @@ void Engine::cleanEngine()
 
 void Engine::update(float elapsedSeconds)
 {
-//    #ifdef DEBUG
-//        std::cout << "------------------------ Update ------------------------ m_PhysicsObjects.size() : " << m_PhysicsObjects.size() << std::endl;
-//    #endif // DEBUG
+    #ifdef DEBUG
+        std::cout << "------------------------ Update ------------------------ m_PhysicsObjects.size() : " << m_PhysicsObjects.size() << std::endl;
+    #endif // DEBUG
 //    static float yCurve, derivative;
     Physics::Object* object;
 
@@ -133,11 +133,17 @@ void Engine::update(float elapsedSeconds)
 
         object->m_angle = 0.0f;
 
+//        std::list<const ConstrueFunction*> availableFunctions;
+
         bool curveBelow=false, isIntegral=false;
         float maxValue=0;
         float derivative=0;
         const ConstrueFunction* functionPtr = 0;
 
+//        #ifdef DEBUG
+////            std::cout << "***********************************" << std::endl;
+//            std::cout << "availableFunctions.size() : " << availableFunctions.size() << std::endl;
+//        #endif // DEBUG
         if(m_Function->isRepresented(object->m_Position.x))
         {
             float y=m_Function->getFunctionValue(object->m_Position.x);
@@ -147,6 +153,7 @@ void Engine::update(float elapsedSeconds)
                 curveBelow = true;
                 maxValue = y;
                 derivative = m_Function->getDerivative(object->m_Position.x);
+//                availableFunctions.push_back(functionPtr);
             }
         }
         for(std::list<IntegralModel*>::const_iterator itFunctionPtr=m_integrals.cbegin(); itFunctionPtr!=m_integrals.cend(); itFunctionPtr++)
@@ -154,24 +161,42 @@ void Engine::update(float elapsedSeconds)
             if((*itFunctionPtr)->isRepresented(object->m_Position.x))
             {
                 float y = (*itFunctionPtr)->getFunctionValue(object->m_Position.x);
-                if(y <= object->getPosition().y && (!curveBelow || (curveBelow && y>maxValue)))
+                if(y <= object->getPosition().y)
                 {
-                    functionPtr = *itFunctionPtr;
-                    curveBelow = true;
-                    isIntegral = true;
-                    if(y>=0)
+                    if(!curveBelow || (curveBelow && (y>=maxValue || y<=0) ))
                     {
-                        maxValue = y;
-                        derivative = (*itFunctionPtr)->getDerivative(object->m_Position.x);
-                    }
-                    else
-                    {
-                        maxValue = 0;
-                        derivative = 0;
+                        functionPtr = *itFunctionPtr;
+                        curveBelow = true;
+                        isIntegral = true;
+                        if(y>=0)
+                        {
+//                            if(y!=maxValue)
+//                                availableFunctions.clear();
+//
+//                            availableFunctions.push_back(functionPtr);
+
+                            maxValue = y;
+                            derivative = (*itFunctionPtr)->getDerivative(object->m_Position.x);
+
+                        }
+                        else
+                        {
+//                            if(y!=0)
+//                                availableFunctions.clear();
+//
+//                            availableFunctions.push_back(functionPtr);
+
+                            maxValue = 0;
+                            derivative = 0;
+                        }
                     }
                 }
             }
         }
+
+//        #ifdef DEBUG
+//            std::cout << "availableFunctions.size() : " << availableFunctions.size() << std::endl;
+//        #endif // DEBUG
 
         if(curveBelow)
         {
@@ -280,9 +305,10 @@ void Engine::update(float elapsedSeconds)
         if(revertMove)
         {
             object->m_Velocity.x *= -1.0f;
+            if(object->m_Velocity.y>0.0f)
+                object->m_Velocity.y *= -1.0f;
+
             object->m_Position += object->getVelocity() * elapsedSeconds;
-//            if(object->getVelocity().y>0)
-//                object->m_Velocity.y=0;
             object->m_Velocity.x=0;
         }
 
