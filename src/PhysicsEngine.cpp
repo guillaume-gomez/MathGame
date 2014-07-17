@@ -94,9 +94,9 @@ void Engine::cleanEngine()
 
 void Engine::update(float elapsedSeconds)
 {
-    #ifdef DEBUG
-        std::cout << "------------------------ Update ------------------------ m_PhysicsObjects.size() : " << m_PhysicsObjects.size() << std::endl;
-    #endif // DEBUG
+//    #ifdef DEBUG
+//        std::cout << "------------------------ Update ------------------------ m_PhysicsObjects.size() : " << m_PhysicsObjects.size() << std::endl;
+//    #endif // DEBUG
 //    static float yCurve, derivative;
     Physics::Object* object;
 
