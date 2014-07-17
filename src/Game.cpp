@@ -6,7 +6,7 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
 :m_app(_app),
  m_axis(GraphScale),
  m_gameMode(GameMode::Classic),
- m_typeOfCamera(TypeOfCamera::Moveable),
+ m_typeOfCamera(TypeOfCamera::Static),
  m_textAreaFunction(6),
  m_level(1,_diff,GraphScale),
  m_buttonReset(FilenameButtonReset),
@@ -16,7 +16,7 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
  m_frameCount(0),
  m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf")),
 #endif
- m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false),
+ m_gameStarted(false), m_isZoom(false), m_isSound(false), m_isBack(false),
  m_player(new Hero), m_playerDead(false)
 {
     #ifdef DEBUG
@@ -89,8 +89,8 @@ void Game::resize(float scaleX, float scaleY)
        m_frameCountText.scale(scaleX, scaleY);
     #endif
 
-     std::cout << m_buttonBack.getPosition().x <<" : "<< m_buttonBack.getPosition().y << std::endl;
-     std::cout << "____________________________________________" << std::endl;
+//     std::cout << m_buttonBack.getPosition().x <<" : "<< m_buttonBack.getPosition().y << std::endl;
+//     std::cout << "____________________________________________" << std::endl;
 
 
 }

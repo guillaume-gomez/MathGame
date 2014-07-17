@@ -45,6 +45,7 @@ void Object::setAllToNull()
 
     m_Thrust = sf::Vector2f(0.0f,0.0f);
     m_angle = 0.0f;
+    jump(false);
 }
 
 bool Object::collidable() const
@@ -73,12 +74,9 @@ void Object::collidable(bool isCollidable)
 VisitBox Box::visitor;
 
 Box::Box(float width, float height)
-:Object(Object::Type_Box), m_width(width), m_height(height)
+:Object(Object::Type_Box)
 {
-    if(m_width<0.0)
-        m_width*=-1;
-    if(m_height<0.0)
-        m_height*=-1;
+    setSize(width, height);
 }
 
 Box::~Box()
@@ -115,6 +113,21 @@ bool Box::testCollision(const Box& obj) const
 bool Box::testCollision(const Circle& obj) const
 {
     return Box::visitor.visit(*this, obj);
+}
+
+void Box::setSize(float width, float height)
+{
+//    #ifdef DEBUG
+//        std::cout << "width : " << width << std::endl;
+//        std::cout << "height : " << height << std::endl;
+//    #endif // DEBUG
+    if(width<0.0)
+        width*=-1;
+    if(height<0.0)
+        height*=-1;
+
+    m_width=width/GraphScale;
+    m_height=height/GraphScale ;
 }
 
 //

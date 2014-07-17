@@ -38,6 +38,7 @@ void Hero::reset()
 {
     m_model.setCoords(sf::Vector2f(0.0f, 0.0f));
     m_model.setAngle(0.0f);
+//    m_model.getPhysicsBox().jump(false);
 }
 
 Hero::Hero(const Hero& copy)

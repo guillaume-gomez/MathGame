@@ -13,10 +13,14 @@ VisitorObjectCollidable::~VisitorObjectCollidable()
 
 bool VisitBox::visit(const Box& box1, const Box& box2)
 {
-    return !((box2.getPosition().x >= box1.getPosition().x + box1.getWidth())  // trop à droite
-        || (box2.getPosition().x + box2.getWidth() <= box1.getPosition().x)  // trop à gauche
-        || (box2.getPosition().y >= box1.getPosition().y + box2.getHeight()) // trop en bas
-        || (box2.getPosition().y + box2.getHeight() <= box1.getPosition().y)) // trop en haut
+//    #ifdef DEBUG
+//        std::cout << "box1.width : " << box1.getWidth() << " box2.width : " << box2.getWidth() << std::endl;
+//        std::cout << "box1.x : " << box1.getPosition().x << " box2.x : " << box2.getPosition().x << std::endl;
+//    #endif // DEBUG
+    return !((box2.getPosition().x >= box1.getPosition().x + box1.getWidth()/2)  // trop à droite
+        || (box2.getPosition().x + box2.getWidth()/2 <= box1.getPosition().x)  // trop à gauche
+        || (box2.getPosition().y >= box1.getPosition().y + box2.getHeight()/2) // trop en bas
+        || (box2.getPosition().y + box2.getHeight()/2 <= box1.getPosition().y)) // trop en haut
     ;
 }
 

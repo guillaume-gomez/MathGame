@@ -18,8 +18,8 @@ const std::map<TypeObject,int> EditorObject::objectValueMap =
     {TypeObject::Abstract, -1},
     {TypeObject::Point, 3},
     {TypeObject::GoalPoint, 4},
-    {TypeObject::Circle, 2},
-    {TypeObject::Enemy, 1},
+    {TypeObject::Enemy, 2},
+    {TypeObject::Circle, 1},
     {TypeObject::Integral,0},
     {TypeObject::Function,0}
 };

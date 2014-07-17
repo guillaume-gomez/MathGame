@@ -38,9 +38,10 @@ class Hero : public EditorObject
 
 inline EditorObject* Hero::loadView(const Element& elmt, float scale)
 {
-#ifdef DEBUG
-std::cerr << "nothing to do for the moment";
-#endif
+    #ifdef DEBUG
+        std::cerr << "nothing to do for the moment";
+    #endif
+    return this;
 }
 inline const CharacterModel& Hero::getModel()  { return m_model;}
 

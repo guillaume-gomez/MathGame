@@ -9,9 +9,9 @@
 CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, MoveType moveType)
 :m_life(life), m_frictionCoefficient(0.0f), m_speed(speed), m_moveType(moveType)
 {
-    #ifdef DEBUG
+//    #ifdef DEBUG
 //        std::cout << "CharacterModel constructor : &m_PhysicsBox : " << &m_PhysicsBox << std::endl;
-    #endif // DEBUG
+//    #endif // DEBUG
 	m_orientedRight = (m_PhysicsBox.getVelocity().x>0);
 	Physics::Engine::getEngine()->addObject(&m_PhysicsBox);
 }
@@ -20,9 +20,9 @@ CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, Mov
 CharacterModel::CharacterModel(const CharacterModel& copy)
 :m_life(copy.m_life), m_frictionCoefficient(copy.m_frictionCoefficient), m_speed(copy.m_speed), m_moveType(copy.m_moveType)
 {
-    #ifdef DEBUG
-//        std::cout << " copy constryctor CharacterModel" << std::endl;
-    #endif // DEBUG
+//    #ifdef DEBUG
+////        std::cout << " copy constryctor CharacterModel" << std::endl;
+//    #endif // DEBUG
   m_orientedRight = (m_PhysicsBox.getVelocity().x>0);
   Physics::Engine::getEngine()->addObject(&m_PhysicsBox);
 }
