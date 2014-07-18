@@ -51,5 +51,7 @@ const char FilenameHanged[] = "resources/design/hanged.png";
 const char FilenameDefaultChar[] = "resources/sprites/bonhommeNoir.gif";
 const char FilenameBike[] = "resources/sprites/velo.png";
 
-const char  FilenameTheme [] = "resources/outTheme.theme";
+const char FilenameTheme [] = "resources/outTheme.theme";
+
+const char FilenameSmileyTex [] = "resources/sprites/smiley.png";
 #endif //FILES_HPP

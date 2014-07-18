@@ -4,7 +4,7 @@
 #include <sstream>
 
 GravityCircle::GravityCircle(float _radius, float radiusMax, bool defOriginCenter, std::string filename)
-:EditorCircle(), m_filename(filename),m_radiusMax(radiusMax), m_texture(*TextureManager::getTextureManager()->getResource("resources/sprites/smiley.png"))
+:EditorCircle(), m_filename(filename),m_radiusMax(radiusMax), m_texture(*TextureManager::getTextureManager()->getResource(FilenameSmileyTex))
 {
 //    #ifdef DEBUG
 //        std::cout << "*****GravityCircle::GravityCircle::m_physicsCircle : " << &(getPhysicsCircle()) <<  std::endl;
