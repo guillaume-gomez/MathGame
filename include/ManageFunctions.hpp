@@ -17,11 +17,11 @@ class ManageFunctions
         void represent(float step);
         bool isChanged() const;
         void reset();
-        std::string getFunction()const; 
+        std::string getFunction()const;
         const ConstrueFunction* getModelIndex();
     private:
     	bool m_changed;
-    	int m_currentIndex;
+    	unsigned int m_currentIndex;
     	std::vector<Curves> m_vectorCurves;
 };
 

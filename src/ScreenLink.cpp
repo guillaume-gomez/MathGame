@@ -1,8 +1,10 @@
 #include "ScreenLink.hpp"
 
 ScreenLink::ScreenLink()
-:m_filename(FilenameScreenLink), m_countEasy(valEasy), m_countNormal(valNormal), m_countHard(valHard),
- m_maxEasy(1), m_maxNormal(1), m_maxHard(1), m_currentLevel(1), m_difficulty(Normal)
+:m_filename(FilenameScreenLink), m_countEasy(valEasy),
+ m_countNormal(valNormal),m_countHard(valHard),
+ m_currentLevel(1), m_difficulty(Normal),
+ m_maxEasy(1), m_maxNormal(1), m_maxHard(1)
 {
     load();
 }

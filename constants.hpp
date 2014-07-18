@@ -103,4 +103,6 @@ const float sentinelY = -10000.0f;
 
 const float offsetNbAttemptEnemy = 15.0f;
 
+const float DefaultSoundVolume = 10.0f;
+
 #endif // CONSTANTS_HPP

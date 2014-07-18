@@ -15,7 +15,7 @@ void ScreenLevelChoice::loadLevelUnlocked()
 //    std::cout <<"_____________________________" <<std::endl;
 //    std::cout << (*m_stat) << std::endl;
 //    std::cout <<"_____________________________" <<std::endl;
-    int increment = 1;
+    unsigned int increment = 1U;
     for (auto it : m_layoutEasy->GetChildren())
     {
         if(increment > m_stat->getMaxLevel(Difficulty::Easy))
@@ -80,7 +80,7 @@ void SelectLevel::selectingLevel()
 ////////////////////////////////////////////////////////////////////
 
 ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
-:m_playing(false), m_selectionLevel(0), m_changingMenu(-1)
+:m_changingMenu(-1), m_playing(false)
 {
 
     m_stat = _stat;

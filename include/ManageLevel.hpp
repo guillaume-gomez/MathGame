@@ -54,11 +54,11 @@ class ManageLevel
         const std::vector<EditorObject*> getSpriteList () const;
         void scaleNbAttempt(float scaleX, float scaleY) ;
     private:
-        bool m_changeLevel;
         Difficulty m_difficulty;
         std::string m_filenameCurrent;
         sf::Font m_font;
         unsigned int m_levelCurrent;
+        bool m_changeLevel;
         LevelModel* m_levelModel;
         LevelView* m_levelView;
         bool m_isDisplayToolTip;

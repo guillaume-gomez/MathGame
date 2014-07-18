@@ -6,18 +6,24 @@
 #include "ObjectFactoryAbstract.hpp"
 
 Editor::Editor(sf::RenderWindow& App)
-:m_app(App),m_axis( GraphScale ),m_graphView(m_graphModel,Thickness, GraphScale),m_textAreaFunction(6),
+:m_app(App),m_axis( GraphScale ),
+m_textAreaFunction(6),
+m_graphView(m_graphModel,Thickness, GraphScale),
 m_buttonReset(FilenameButtonReset),
 m_buttonSave(FilenameButtonSave),
 m_buttonBack(FilenameButtonBack),
 m_buttonCursor(FilenameButtonCursor),
 m_buttonGoalButton(FilenamePointGoalTex),
-m_buttonLeftEnemy(FilenameButtonEnemy),
-m_buttonNormalButton(FilenameNormalPointTex),
 m_buttonCircle(FilenameButtonCircleTex),
-m_creatingType(TypeObject::Point), m_isBack(false), m_isZoom(false), m_isNormalPoint(true),
-m_saving(false), m_radiusBuilder(0.0f, 0.0f),
-m_isLeftEnemy(true), m_nbAttempt(1)
+m_buttonNormalButton(FilenameNormalPointTex),
+m_buttonLeftEnemy(FilenameButtonEnemy),
+m_creatingType(TypeObject::Point),
+m_isBack(false),
+m_isNormalPoint(true),
+m_isZoom(false),
+m_saving(false),
+m_isLeftEnemy(true), m_nbAttempt(1),
+m_radiusBuilder(0.0f, 0.0f)
 {
     //
     m_nbAttemptView.setColor(sf::Color(23,0,34,225));

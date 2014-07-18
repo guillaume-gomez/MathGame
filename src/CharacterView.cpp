@@ -48,6 +48,8 @@ CharacterView::CharacterView(const CharacterModel& model, float scale)
     setTexture(TextureManager::getTextureManager()->getResource(fileName), _w, _h);
 	m_animation.SetLoopTime(1);
 	m_animation.Play();
+
+	m_sound.setVolume(DefaultSoundVolume);
 }
 
 CharacterView::~CharacterView()
@@ -61,8 +63,8 @@ CharacterView::~CharacterView()
 
 
 CharacterView::CharacterView(const CharacterView& copy)
-:m_model(new CharacterModel(copy.m_model.isAlive(), copy.m_model.getCoords(), 12)),
-m_sound(copy.m_sound),  m_left(copy.m_left), m_scale(copy.m_scale)
+:m_sound(copy.m_sound), m_model(new CharacterModel(copy.m_model.isAlive(), copy.m_model.getCoords(), 12)),
+m_left(copy.m_left), m_scale(copy.m_scale)
  //share the same texture for all the instance
  //m_ArtTexture(copy.m_ArtTexture)
 {
@@ -84,6 +86,8 @@ m_sound(copy.m_sound),  m_left(copy.m_left), m_scale(copy.m_scale)
     setTexture(TextureManager::getTextureManager()->getResource(fileName), _w, _h);
     m_animation.SetLoopTime(1);
     m_animation.Play();
+
+	m_sound.setVolume(copy.m_sound.getVolume());
 }
 
 

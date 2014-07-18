@@ -9,7 +9,9 @@ std::string ScreenOption::m_filenameChar = FilenameDefaultChar;
 
 
 ScreenOption::ScreenOption(unsigned int _button)
-: m_nbButton(_button), m_gravityType(NoSliding), m_character_array(0),
+:m_character_array(0),
+ m_gravityType(NoSliding),
+ m_nbButton(_button),
  m_quit(false)
 {
 

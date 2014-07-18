@@ -27,13 +27,13 @@ class GraphView
         void standAloneRepresent(const ConstrueFunction& function, float step);
     private:
         GraphView(const GraphView& copy);
-        sf::Color m_graphColor;
         //without only one model
         const bool m_isStandAlone;
         std::list<LineSFML2_1> m_lines;
         const ConstrueFunction* m_model;
-        float m_scale;
         float m_thickness;
+        float m_scale;
+        sf::Color m_graphColor;
 };
 
 /**

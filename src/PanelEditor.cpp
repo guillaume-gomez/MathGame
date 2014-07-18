@@ -44,7 +44,7 @@ void PanelEditor::addButton(ButtonPerso* button)
 
     if(nbButton == 0)
     {
-         float Y = (this->getLocalBounds().height - (button->getLocalBounds().height / 2)) / 2;
+//         float Y = (this->getLocalBounds().height - (button->getLocalBounds().height / 2)) / 2;
          int offsetY = int (this->getPosition().y) / 2;
          float X = this->getLocalBounds().width / 2 - button->getLocalBounds().width/ 2 + this->getPosition().x;
 

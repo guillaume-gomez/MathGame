@@ -50,18 +50,18 @@ class LevelModel
         LevelModel();
         /* the Level file is sorted by type of element.
         Points and obviously GoalPoint are at the end of the file, so the variable m_beginPoint detect the first Point to check during the game
-        the good colission.  
+        the good colission.
         */
         unsigned int m_beginPoint;
         std::vector<Element> m_coordElements;
         std::ifstream m_fileLevel;
+        unsigned int m_nbElements;
+        bool m_win;
         bool m_lose;
         int m_nbAttempt;
-        unsigned int m_nbElements;
         GameMode m_mode;
         std::vector<bool> m_pointsCheck;
         int m_saveNbAttemp;
-        bool m_win;
 };
 
 /******************************************************************************

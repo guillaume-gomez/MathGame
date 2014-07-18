@@ -31,9 +31,24 @@ class IntegralModel : public ConstrueFunction
         IntegralModel(const IntegralModel& copy);
         virtual ~IntegralModel();
         void getIntegraleCurveShape(float _begin , float _end , float step);
-        inline sf::Vector2f getCoordToShapes(unsigned int index ) const { if(m_listCoordShapes.size()) return m_listCoordShapes[index];}
-        inline unsigned int getNbPoints () const {return m_listCoordShapes.size();}
-        inline unsigned int getNbCoordByShape(unsigned int index) const { if(index < m_nbCoordByShape.size())return m_nbCoordByShape[index];}
+        inline sf::Vector2f getCoordToShapes(unsigned int index ) const
+        {
+            if(m_listCoordShapes.size())
+                return m_listCoordShapes[index];
+            else
+                return sf::Vector2f(0.0f,0.0f);
+        }
+        inline unsigned int getNbPoints () const
+        {
+            return m_listCoordShapes.size();
+        }
+        inline unsigned int getNbCoordByShape(unsigned int index) const
+        {
+            if(index < m_nbCoordByShape.size())
+                return m_nbCoordByShape[index];
+            else
+                return 0U;
+        }
 //        void showPoints();
         sf::Vector2f getBegin() const;
         sf::Vector2f getEnd() const;
@@ -54,6 +69,7 @@ inline sf::Vector2f IntegralModel::getBegin() const
     else
     {
         std::runtime_error("IntegralModel::getBegin() : the array is empty");
+        return sf::Vector2f(0.0f,0.0f);
     }
 }
 
@@ -66,6 +82,7 @@ inline sf::Vector2f IntegralModel::getEnd() const
     else
     {
         std::runtime_error("IntegralModel::getBegin() : the array is empty");
+        return sf::Vector2f(0.0f,0.0f);
     }
 }
 

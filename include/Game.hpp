@@ -52,26 +52,26 @@ class Game
     private:
         Game(const Game& orig);
         Axis m_axis;
+        TextAreaSFML2_0 m_textAreaFunction;
+        ManageLevel m_level;
+        GameMode m_gameMode;
         ButtonPerso m_buttonReset;
         ButtonAnim m_buttonSound;
         ButtonPerso m_buttonBack;
         Curves m_curves;
-        Event m_event;
-        bool m_gameStarted;
-        GameMode m_gameMode;
-        bool m_isZoom;
-        bool m_isSound;
-        bool m_isBack;
-        ManageLevel m_level;
-        sf::Clock m_timer;
     #ifdef DEBUG
         int m_frameCount;
         sf::Clock m_frameCountClock;
         sf::Text m_frameCountText;
     #endif
+        Event m_event;
+        bool m_gameStarted;
+        bool m_isZoom;
+        bool m_isSound;
+        bool m_isBack;
+        sf::Clock m_timer;
         Hero *m_player;
         Sprite m_spriteBG;
-        TextAreaSFML2_0 m_textAreaFunction;
         View m_viewPerso;
         bool m_playerDead;
 

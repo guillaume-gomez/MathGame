@@ -63,7 +63,10 @@ inline void CharacterView::setSize(int width, int height)
 
 inline bool CharacterView::getDirection() const {return m_left;}
 
-inline void CharacterView::setDirection(bool direction) {std::cout << "CharacterView::is_left"<<direction << std::endl; m_left = direction;}
+inline void CharacterView::setDirection(bool direction)
+{
+    m_left = direction;
+}
 
 inline void CharacterView::setTexture(const sf::Texture* texture, int frameWidth, int frameHeight)
 {

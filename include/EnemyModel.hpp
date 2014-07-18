@@ -19,9 +19,9 @@ class EnemyModel : public CharacterModel
         void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
         void setNbAttempt(unsigned int i);
     protected:
-        bool m_isActive;
         // nb attempt (different curves) before IA Activation
         unsigned int m_nbAttempt;
+        bool m_isActive;
 };
 
 inline void EnemyModel::setNbAttempt(unsigned int i)

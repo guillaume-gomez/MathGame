@@ -35,12 +35,6 @@ EditorObject::~EditorObject()
     //dtor
 }
 
-
-std::ostream& operator<<( std::ostream &flux, TypeObject const type )
-{
- // TODO
-}
-
 TypeObject EditorObject::getTypeByStr(const std::string str)
 {
     for (auto it : EditorObject::objectStrMap)
@@ -51,6 +45,7 @@ TypeObject EditorObject::getTypeByStr(const std::string str)
         }
     }
     std::runtime_error("EditorObject::getTypeByStr(const std::string str)  cannot find this value");
+    return TypeObject::Abstract;
 }
 
 std::string EditorObject::getTypeStr() const

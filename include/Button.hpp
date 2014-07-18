@@ -23,8 +23,8 @@ class Button :  public sf::Sprite
 
     protected:
 
-        bool m_clicked;
         std::string m_filename;
+        bool m_clicked;
         sf::Texture m_texture;
 
 };

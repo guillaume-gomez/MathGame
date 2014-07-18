@@ -1,7 +1,8 @@
 #include "ScreenCredit.hpp"
 
 ScreenCredit::ScreenCredit()
-:picture(0), alpha(0.0f), m_hangStart(false), m_won(false), m_enterText(false)
+:alpha(0.0f), m_enterText(false),
+m_hangStart(false), picture(0), m_won(false)
 {
     srand(time(NULL));
     sf::Color color (112, 146, 190);

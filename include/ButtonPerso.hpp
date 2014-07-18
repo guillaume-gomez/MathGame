@@ -24,8 +24,8 @@ class ButtonPerso :  public sf::Sprite
         void unclick();
 
     protected:
-        bool m_clicked;
         std::string m_filename;
+        bool m_clicked;
         sf::Texture m_texture;
 };
 

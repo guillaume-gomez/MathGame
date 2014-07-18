@@ -306,9 +306,12 @@ void Engine::update(float elapsedSeconds)
         {
             object->m_Velocity.x *= -1.0f;
             if(object->m_Velocity.y>0.0f)
+            {
                 object->m_Velocity.y *= -1.0f;
+                object->m_Position.y += object->getVelocity().y * elapsedSeconds;
+            }
 
-            object->m_Position += object->getVelocity() * elapsedSeconds;
+            object->m_Position.x += object->getVelocity().x * elapsedSeconds;
             object->m_Velocity.x=0;
         }
 

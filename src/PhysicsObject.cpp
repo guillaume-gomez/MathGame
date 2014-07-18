@@ -176,13 +176,13 @@ void Circle::setAsGravityCircle()
 
 bool Circle::testCollision(const Object& obj) const
 {
-
+    return false;
 }
 bool Circle::testCollision(const Box& obj) const
 {
-
+    return false;
 }
 bool Circle::testCollision(const Circle& obj) const
 {
-
+    return false;
 }

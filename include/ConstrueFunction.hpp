@@ -47,8 +47,8 @@ class ConstrueFunction
         void clearFunction();
 
     protected:
-        bool m_changed;
         std::string m_function;
+        bool m_changed;
         std::vector<IntervalOfDefinition> intervals;
 };
 

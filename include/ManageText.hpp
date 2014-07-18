@@ -41,9 +41,9 @@ class ManageText
     private:
         sf::Text m_text;
         sf::Font m_font;
+        int m_sizeFont;
         bool m_isTyping;
         bool m_jumpable;
-        int m_sizeFont;
         int m_toResize;
         sf::String m_string;
 };

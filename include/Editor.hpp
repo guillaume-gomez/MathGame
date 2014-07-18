@@ -49,6 +49,8 @@ class Editor
 
     private:
         Axis m_axis;
+        TextAreaSFML2_0 m_textAreaFunction;
+        GraphView m_graphView;
         ButtonPerso m_buttonReset;
         ButtonPerso m_buttonSave;
         ButtonPerso m_buttonBack;
@@ -63,7 +65,6 @@ class Editor
         TypeObject m_creatingType;
         sf::Event m_event;
         ConstrueFunction m_graphModel;
-        GraphView   m_graphView;
         bool m_isBack;
         bool m_isNormalPoint;
         bool m_isZoom;
@@ -71,7 +72,6 @@ class Editor
         bool m_saving;
         bool m_isLeftEnemy;
         sf::Sprite m_spriteBG;
-        TextAreaSFML2_0 m_textAreaFunction;
         ManageText m_nbAttemptView;
 
         unsigned int m_nbAttempt;
