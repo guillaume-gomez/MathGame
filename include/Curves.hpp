@@ -10,7 +10,7 @@
 #include "GraphView.hpp"
 
 
-/// for the moment, only the shape representation is possible
+/// for the moment, Curves can be represented by the multi shaping method
 class Curves : public EditorObject
 {
     public:
@@ -27,6 +27,8 @@ class Curves : public EditorObject
         void setFunction(std::string str);
         void reset();
         void represent(float step);
+        virtual void setColor (const sf::Color& graphColor);
+        void drawInterval(sf::RenderTarget& app);
 
         private:
     	virtual void setPosition(sf::Vector2f& position);
@@ -34,6 +36,7 @@ class Curves : public EditorObject
         virtual sf::FloatRect get_GlobalBounds() const ;
         virtual sf::Vector2f get_Position() const;
         virtual EditorObject* loadView(const Element& elmt, float scale);
+
 
         ConstrueFunction m_model;
         GraphView m_view;
@@ -79,6 +82,11 @@ inline std::string Curves::getFunction() const
 inline void Curves::setFunction(std::string str)
 {
     m_model.setFunction(str);
+}
+
+inline void Curves::setColor(const sf::Color& graphColor)
+{
+    m_view.setGraphColor(graphColor);
 }
 
 #endif // Curves_H

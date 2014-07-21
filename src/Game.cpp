@@ -223,7 +223,7 @@ void Game::draw()
         {
             m_frameCountClock.restart();
             m_frameCountText.setString(std::to_string(m_frameCount*4));
-            m_frameCount=0;
+            m_frameCount = 0;
         }
 //        m_frameCountText.setString(std::to_string(1000/m_frameCountClock.restart().asMilliseconds()));
 //        // std::cout << std::to_string(1000/frameCountClock.restart().asMilliseconds()) << std::endl;
@@ -335,6 +335,7 @@ void Game::move()
 void Game::selectLevel(ScreenLink& stat)
 {
     reset();
+    std::cout << "RESET" << std::endl;
     m_level.setDiff(stat.getDiff());
     try
     {
@@ -395,13 +396,24 @@ int Game::levelOperation(ScreenLink& stat)
 void Game::reset()
 {
 #ifdef DEBUG
-// // std::cout << "RESET RESET RESET" << std::endl << std::endl << std::endl;
+//  std::cout << "RESET RESET RESET" << std::endl << std::endl << std::endl;
 #endif
          m_player->reset();
+         //reset the camera
          resetWindow();
      //    Physics::Engine::getEngine()->cleanEngine();
      //    m_graphModel.setChanged(true);
      //    m_graphModel.clearFunction();
+
+        // start the level with the first function in the list
+        if(!m_functionManager.isEmpty())
+        {
+            m_functionManager.resetToZero();
+            Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
+            m_textAreaFunction.setString(m_functionManager.getFunction());
+        }
+
+
         if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
         {
             m_curves.reset();

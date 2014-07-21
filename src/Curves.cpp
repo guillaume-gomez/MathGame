@@ -44,6 +44,11 @@ void Curves::draw(sf::RenderTarget& app)
 	m_view.draw(app);
 }
 
+void Curves::drawInterval(sf::RenderTarget& app)
+{
+	m_view.drawInterval(app);
+}
+
 void Curves::represent(float step)
 {
         m_view.represent(step);

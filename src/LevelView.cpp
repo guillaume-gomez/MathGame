@@ -91,7 +91,7 @@ void LevelView::loadCoord()
                 {
                     newEnemy->setPosition(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
                     newEnemy->setNbAttempt(m_model.getAttempt(i));
-                    std::cout << "direction << " << m_model.getSens(i) << std::endl;
+//                    std::cout << "direction << " << m_model.getSens(i) << std::endl;
                     newEnemy->setDirection(m_model.getSens(i));
                     newEnemy->addToEngine();
                     m_listSprite.push_back(newEnemy);

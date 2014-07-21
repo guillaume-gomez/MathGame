@@ -1,11 +1,11 @@
 #include "GraphView.hpp"
 
 GraphView::GraphView(ConstrueFunction& model,float thickness, float scale)
-:m_isStandAlone(false), m_model(&model),m_thickness(thickness), m_scale(scale), m_graphColor(sf::Color(50,67,135))
+:m_isStandAlone(false), m_model(&model),m_thickness(thickness), m_scale(scale), m_graphColor(CurveColor)
 {}
 
 GraphView::GraphView(float thickness, float scale)
-: m_isStandAlone(true), m_model(nullptr), m_thickness(thickness), m_scale(scale), m_graphColor(sf::Color(50,67,135))
+: m_isStandAlone(true), m_model(nullptr), m_thickness(thickness), m_scale(scale), m_graphColor(CurveColor)
 {
 
 }
@@ -50,5 +50,21 @@ void GraphView::draw(sf::RenderTarget& App)
 	{
 		itl->setThickness(m_thickness);
 		App.draw(*itl);
+	}
+}
+
+
+void GraphView::drawInterval(sf::RenderTarget& App, unsigned int split)
+{
+    unsigned int increment = 0;
+    FOR_STL_ITERATOR(std::list<LineSFML2_1>, m_lines, itl)
+	{
+		itl->setThickness(m_thickness);
+		if(increment == split)
+		{
+            App.draw(*itl);
+            increment = 0;
+		}
+		increment++;
 	}
 }

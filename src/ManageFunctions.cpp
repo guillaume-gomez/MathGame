@@ -62,10 +62,43 @@ const ConstrueFunction* ManageFunctions::getModelIndex()
     return m_vectorCurves.at(m_currentIndex).getModel();
 }
 
+bool ManageFunctions::drawBefore(sf::RenderTarget& app)
+{
+    if( m_currentIndex - 1 < 0)
+    {
+        return false;
+    }
+    else
+    {
+        m_vectorCurves.at(m_currentIndex - 1).setColor(PreviousCurveColor);
+        m_vectorCurves.at(m_currentIndex - 1).drawInterval(app);
+        m_vectorCurves.at(m_currentIndex - 1).setColor(CurveColor);
+    }
+    return true;
+}
+
+bool ManageFunctions::drawAfter(sf::RenderTarget& app)
+{
+    if( m_currentIndex + 1 >= m_vectorCurves.size())
+    {
+        return false;
+    }
+    else
+    {
+        m_vectorCurves.at(m_currentIndex + 1).setColor(NextCurveColor);
+        m_vectorCurves.at(m_currentIndex + 1).drawInterval(app);
+        m_vectorCurves.at(m_currentIndex + 1).setColor(CurveColor);
+
+    }
+    return true;
+}
+
 
 void ManageFunctions::draw(sf::RenderTarget& app)
 {
+    drawBefore(app);
 	m_vectorCurves.at(m_currentIndex).draw(app);
+    drawAfter(app);
 }
 
 
@@ -81,4 +114,9 @@ void ManageFunctions::reset()
     m_changed = true;
     m_vectorCurves.clear();
     //m_graphModel.clearFunction();
+}
+
+void ManageFunctions::resetToZero()
+{
+    m_currentIndex = 0;
 }

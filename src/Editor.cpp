@@ -180,13 +180,13 @@ bool Editor::handleInput()
                 {
                        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
                        m_isLeftEnemy = true;
-                       std::cout << "click " << m_isLeftEnemy << std::endl;
+//                       std::cout << "click " << m_isLeftEnemy << std::endl;
                 }
                 if(m_event.key.code == sf::Keyboard::Right)
                 {
                        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonRightEnemy)));
                        m_isLeftEnemy = false;
-                       std::cout << "clickRight " << m_isLeftEnemy << std::endl;
+  //                     std::cout << "clickRight " << m_isLeftEnemy << std::endl;
                 }
 
                 if(m_event.key.code == sf::Keyboard::Up)
@@ -431,7 +431,8 @@ int Editor::save(ScreenLink * link)
         for(unsigned int i = 0 ; i < TotalDifficulty ;i++)
         {
             std::ostringstream oss;
-                        oss << FilenameLevelDirectory << link->getNbFiles() << "_" << fileList[i] <<".lvl" ;
+            std::cout << "Syso " << link->getNbFiles() << std::endl;
+                        oss << FilenameLevelDirectory << link->getNbFiles() + 1 << "_" << fileList[i] <<".lvl" ;
             std::ofstream file(oss.str().c_str());
             if( file.is_open())
             {
