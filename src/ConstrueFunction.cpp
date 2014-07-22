@@ -96,7 +96,6 @@ float ConstrueFunction::getDerivative(float x) const
 
 	exprtk::parser<float> parser;
 	parser.compile(m_function, expression);
-
 	return exprtk::derivative(expression, x);
 }
 

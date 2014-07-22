@@ -40,7 +40,7 @@ void Enemy::setDirection(bool _dir)
 {
   m_model.setDirection(_dir);
   /*bad conception : we have a variable to check if the enemy should be positioned to the right in the model
-  /and the opposite in view !?!
+    and the opposite in view !?!
 
    will be corrected later
  */

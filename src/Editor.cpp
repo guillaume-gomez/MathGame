@@ -180,13 +180,13 @@ bool Editor::handleInput()
                 {
                        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
                        m_isLeftEnemy = true;
-                       std::cout << "click " << m_isLeftEnemy << std::endl;
+//                       std::cout << "click " << m_isLeftEnemy << std::endl;
                 }
                 if(m_event.key.code == sf::Keyboard::Right)
                 {
                        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonRightEnemy)));
                        m_isLeftEnemy = false;
-                       std::cout << "clickRight " << m_isLeftEnemy << std::endl;
+  //                     std::cout << "clickRight " << m_isLeftEnemy << std::endl;
                 }
 
                 if(m_event.key.code == sf::Keyboard::Up)

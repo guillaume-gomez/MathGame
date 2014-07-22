@@ -28,7 +28,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
         m_fileLevel >> m_nbAttempt;
         m_saveNbAttemp = m_nbAttempt;
 
-        if(m_mode != Classic)
+        if(m_mode == NoChance)
         {
             m_nbAttempt = m_saveNbAttemp = 1;
         }
@@ -165,11 +165,11 @@ void LevelModel::IsFinishing ( const CharacterModel& charactermodel ,float _scal
 
     for(unsigned int i = 0 ; i < getNbPoints()-1 ; i++)
     {
-        //test the colissions and if the colission already done between the point and the chracter
+        //check the colissions and if the colission had already done between the point and the chracter
         if(!m_pointsCheck[i] && position_and_Size.contains( m_coordElements[i].getCoord() ) )
         {
             #ifdef DEBUG
-            // std::cout << "index " << i << std::endl;
+             //std::cout << "Colliding index " << i << std::endl;
             #endif
             m_pointsCheck[i] = true;
             playableSound = true;
@@ -212,7 +212,12 @@ void LevelModel::reset()
 
     for(unsigned int i = 0 ; i < m_pointsCheck.size() ; i++)
     {
-        m_pointsCheck[i] = false;
+        if( m_coordElements.at(i).getType() == TypeObject::Point ||
+            m_coordElements.at(i).getType() == TypeObject::GoalPoint
+        )
+        {
+            m_pointsCheck[i] = false;
+        }
     }
     m_nbAttempt = m_saveNbAttemp;
 
