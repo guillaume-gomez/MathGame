@@ -406,6 +406,7 @@ void Game::reset()
         {
             m_curves.reset();
             m_gameStarted = false;
+            m_textAreaFunction.setString("");
         }
         Physics::Engine::getEngine()->resetAllObjects();
 }
