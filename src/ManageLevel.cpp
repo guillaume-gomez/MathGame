@@ -46,20 +46,20 @@ ManageLevel::ManageLevel(unsigned int _level, Difficulty _diff, float _scale)
 
 ManageLevel::~ManageLevel()
 {
-    if(m_levelView !=0 )
+    if(m_levelView != nullptr)
         delete m_levelView;
 
-    if(m_levelModel != 0)
+    if(m_levelModel != nullptr)
         delete m_levelModel;
 }
 
 
 void ManageLevel::loadFile(int numLevel, GameMode mode)
 {
-    if(m_levelView !=0 )
+    if(m_levelView != nullptr)
         delete m_levelView;
 
-    if(m_levelModel != 0)
+    if(m_levelModel != nullptr)
         delete m_levelModel;
 
     std::string directory = FilenameLevelDirectory;
@@ -74,8 +74,8 @@ void ManageLevel::loadFile(int numLevel, GameMode mode)
     std::ifstream ifile(directory);
     if(ifile.fail())
     {
-        m_levelView=0;
-        m_levelModel=0;
+        m_levelView = nullptr;
+        m_levelModel= nullptr;
         throw std::ios_base::failure("unable to open level");
     }
 
@@ -113,7 +113,6 @@ int  ManageLevel::changeLevel (ScreenLink * link)
         if(m_levelModel->isWin())
         {
             //load an other level
-
             if(getLevel() + 1 > link->getnbNormal())
             {
                 return - 1 ;

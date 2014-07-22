@@ -143,6 +143,9 @@ inline void TextAreaSFML2_0::setString(std::string str)
 {
 	m_string = str;
 	m_text.setString(m_string);
+	//the +1 is according to the following method "moveCaretBackward"
+	m_caretPosition = m_string.getSize() + 1;
+	moveCaretBackward();
 }
 
 //inline const sf::Text& TextAreaSFML2_0::Gettext() const

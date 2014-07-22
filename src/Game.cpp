@@ -214,6 +214,8 @@ void Game::draw()
     m_buttonSound.draw(m_app);
     m_buttonBack.draw(m_app);
 
+
+    m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
     m_app.draw(m_textAreaFunction);
     //m_textFunction.draw(m_app);
 
@@ -335,12 +337,10 @@ void Game::move()
 void Game::selectLevel(ScreenLink& stat)
 {
     reset();
-    std::cout << "RESET" << std::endl;
     m_level.setDiff(stat.getDiff());
     try
     {
         m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
-
         if(getGameMode() == GameMode::Dynamic)
         {
             m_gameStarted = true;
@@ -381,6 +381,7 @@ int Game::levelOperation(ScreenLink& stat)
 //          #endif // DEBUG
         reset();
         changing = m_level.changeLevel(&stat);
+        m_level.fillLevelFunctions(m_functionManager);
         m_playerDead = false;
       }
 
@@ -418,6 +419,7 @@ void Game::reset()
         {
             m_curves.reset();
             m_gameStarted = false;
+            m_textAreaFunction.setString("");
         }
         Physics::Engine::getEngine()->resetAllObjects();
 }

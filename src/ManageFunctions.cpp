@@ -29,11 +29,15 @@ void ManageFunctions::handle_input(sf::Event& event)
             break;
 
         case sf::Keyboard::M:
-            m_currentIndex--;
+
             m_changed = true;
-            if( m_currentIndex < 0)
+            if( m_currentIndex == 0)
             {
             	m_currentIndex = m_vectorCurves.size() - 1;
+            }
+            else
+            {
+                m_currentIndex--;
             }
             break;
 
@@ -111,9 +115,10 @@ void ManageFunctions::addFunction(std::string function)
 
 void ManageFunctions::reset()
 {
+std::cout << "clearManageFunctions" << std::endl;
     m_changed = true;
     m_vectorCurves.clear();
-    //m_graphModel.clearFunction();
+//    m_graphModel.clearFunction();
 }
 
 void ManageFunctions::resetToZero()
