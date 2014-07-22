@@ -214,6 +214,8 @@ void Game::draw()
     m_buttonSound.draw(m_app);
     m_buttonBack.draw(m_app);
 
+
+    m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
     m_app.draw(m_textAreaFunction);
     //m_textFunction.draw(m_app);
 
