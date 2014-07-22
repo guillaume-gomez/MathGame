@@ -117,6 +117,7 @@ int  ManageLevel::changeLevel (ScreenLink * link)
                 return - 1 ;
             }
             link->setMaxLevel( link->getDiff() , link->getCurrentLevel() + 1 );
+            link->setCurrentLevel( link->getCurrentLevel() +1 );
             setLevel(getLevel() + 1);
             loadFile(getLevel(), m_levelModel->getMode());
             m_changeLevel = false;
