@@ -15,6 +15,7 @@ using namespace sf;
 #include "Screen_Editor.hpp"
 #include "ScreenFinish.hpp"
 #include "ScreenCredit.hpp"
+#include "ScreenHowTo.hpp"
 
 #include "Game.hpp"
 
@@ -45,13 +46,15 @@ int main()
     screens.push_back(&screenCredit);
     ScreenFinish screenFinish;
     screens.push_back(&screenFinish);
+    ScreenHowTo screenHowTo;
+    screens.push_back(&screenHowTo);
 
 //    Physics::Engine::getEngine()->cleanEngine();
 
     while( screen >= 0)
     {
        screen = screens[ screen ]->Run(App);
-       // // std::cout << screen << std::endl;
+       // std::cout << screen << "   " << screens.size()<< std::endl;
     }
 
     stat->save();

@@ -3,7 +3,6 @@
 
 #include <SFGUI/SFGUI.hpp>
 
-#include "../files.hpp"
 #include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "ScreenLink.hpp"
@@ -22,6 +21,7 @@ class Screen_MainMenu : public Screen
         void creditButtonClick();
         void editorButtonClick();
         void optionButtonClick();
+        void howToButtonClick();
         void resize(float scaleX, float scaleY,sf::RenderWindow& App);
     protected:
     private:
@@ -35,6 +35,7 @@ class Screen_MainMenu : public Screen
         sfg::Button::Ptr m_play_button;
         sfg::Button::Ptr m_play2_button;
         sfg::Button::Ptr m_option_button;
+        sfg::Button::Ptr m_howTo_button;
         sfg::SFGUI m_sfgui;
         sfg::Window::Ptr m_window;
 
