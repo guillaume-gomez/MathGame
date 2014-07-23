@@ -71,11 +71,14 @@ class TextAreaSFML2_0 : public sf::Drawable
 
 		void setPosition(float x, float y);
 		void setPosition(const sf::Vector2f &position);
+        sf::Vector2f getPosition() const;
 
 		void setCharacterSize(unsigned int size);
 
 		void blinkCaret(sf::Int32 millisecondsElapsedTime = 500);
 		void scale(float scaleX, float scaleY);
+
+        virtual void draw(sf::RenderTarget& target) const;
 
 	protected:
 	private:

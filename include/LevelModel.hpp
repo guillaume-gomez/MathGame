@@ -39,6 +39,7 @@ class LevelModel
         float getEnd(unsigned int i) const;
         float getBegin(unsigned int i) const;
         std::string getFunction(unsigned int i) const;
+        std::string getMessage(unsigned int i) const;
         void decrementAttempt();
         void reset();
         int getSaveAttempt()const;
@@ -136,6 +137,15 @@ inline std::string LevelModel::getFunction(unsigned int i) const
     if (i < m_coordElements.size())
     {
         return m_coordElements[ i ].getFunction();
+    }
+    return std::string();
+}
+
+inline std::string LevelModel::getMessage(unsigned int i) const
+{
+    if (i < m_coordElements.size())
+    {
+        return m_coordElements[ i ].getMessage();
     }
     return std::string();
 }

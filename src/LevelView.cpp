@@ -29,6 +29,7 @@ LevelView::LevelView(const LevelModel& model, float _scale)
     ObjectFactoryAbstract::_register(TypeObject::Enemy,new Enemy());
     ObjectFactoryAbstract::_register(TypeObject::Integral,new Integral());
     ObjectFactoryAbstract::_register(TypeObject::Function,new Curves());
+    ObjectFactoryAbstract::_register(TypeObject::Info,new InfoDisplayer());
 
     //pré loading
 //    float widthTex  = (float) m_texGoal.getSize().x / 2;
@@ -134,6 +135,17 @@ void LevelView::loadCoord()
 //                #ifdef DEBUG
 //                    std::cout << "void LevelView::loadCoord() case (TypeObject::Function): 8===============>" << std::endl;
 //                #endif // DEBUG
+            }
+
+            case (TypeObject::Info):
+            {
+                InfoDisplayer* info =  dynamic_cast<InfoDisplayer*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+                if(info != nullptr)
+                {
+                    info->setMessage(m_model.getMessage(i));
+                    info->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
+                    m_listSprite.push_back(info);
+                }
             }
 
             default:

@@ -10,6 +10,7 @@ struct Element
         bool sens;
         unsigned int nb_attempt;
         std::string function;
+        std::string message;
         float begin;
         float end;
 
@@ -23,6 +24,7 @@ struct Element
         inline void setEnd(float _end){ end = _end;}
         inline void setBegin(float _begin){ begin = _begin;}
         inline void setFunction(std::string f){ function = f;}
+        inline void setMessage(std::string m){message = m;}
         Element& setType(std::string v);
         inline bool getSens() const { return sens;}
         inline unsigned int getAttempt() const { return nb_attempt;}
@@ -32,6 +34,7 @@ struct Element
         inline std::string getFunction() const { return function;}
         inline float getBegin() const { return begin;}
         inline float getEnd() const {return end;}
+        inline std::string getMessage()const {return message;}
 };
 
 #endif // Element_H

@@ -16,7 +16,7 @@ enum GameMode {Classic , NoChance, Dynamic};
 enum class TypeOfCamera {Static, Moveable};
 enum class TypeObject
 {
-    Abstract, Circle, Point, GoalPoint, Enemy, Hero, Integral, Function
+    Abstract, Circle, Point, GoalPoint, Enemy, Hero, Integral, Function, Info
 };
 
 const char AbstractStr[]  = "Abstract";
@@ -27,6 +27,7 @@ const char EnemyStr[]  = "Enemy";
 const char HeroStr[] = "Hero";
 const char IntegralStr[] = "Integral";
 const char FunctionStr[] = "Function";
+const char InfoStr[] = "Info";
 
 const int Blur = 120;
 const int Clear = 220;

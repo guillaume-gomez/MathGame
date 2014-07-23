@@ -123,6 +123,20 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                  //because it is not a point
                 m_pointsCheck[i] = true;
             }
+            else if (type == InfoStr)
+            {
+                newElmt.setType(TypeObject::Info);
+                sf::Vector2f temp;
+                m_fileLevel >> temp.x;
+                m_fileLevel >> temp.y;
+                newElmt.setCoord(temp);
+
+                std::string content;
+                m_fileLevel >> content;
+                newElmt.setMessage(content);
+                 //because it is not a point
+                m_pointsCheck[i] = true;
+            }
 
             m_coordElements.push_back(newElmt);
         }
