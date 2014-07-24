@@ -8,7 +8,8 @@ InfoDisplayer::InfoDisplayer()
     this->m_type = TypeObject::Info;
     m_area.setCharacterSize(12);
     m_area.blinkCaret(0);
-    m_area.setAlphaColor(80);
+    m_area.setAlphaColor(125);
+    m_area.setBackgroundTexture(FilenamePanelInfoTex);
 }
 
 InfoDisplayer::~InfoDisplayer()

@@ -33,6 +33,7 @@ inline void InfoDisplayer::setMessage(std::string message)
 {
     m_message = message;
     m_area.setString(m_message);
+    m_area.scaleBG();
 }
 
 

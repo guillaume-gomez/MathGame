@@ -13,6 +13,7 @@ const char FilenameNormalPointTex[] = "resources/Point.png";
 const char FilenamePointGoalTex[] = "resources/PointGoal.png";
 const char FilenameToolTipTex[] = "resources/design/tooltip.png";
 const char FilenameSoundBuffer[] = "resources/sound/ting.ogg";
+const char FilenamePanelInfoTex [] = "resources/design/panelInfo.png";
 
 
 const char FilenameButtonReset[] = "resources/design/buttonReset.png";

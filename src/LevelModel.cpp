@@ -131,9 +131,16 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 m_fileLevel >> temp.y;
                 newElmt.setCoord(temp);
 
+                //very very dirty.....but it works :)
                 std::string content;
-                m_fileLevel >> content;
+                m_fileLevel.clear();
+                m_fileLevel.ignore(INTMAX_MAX,'\n');
+                getline(m_fileLevel, content, '#');
+                m_fileLevel.clear();
+                m_fileLevel.ignore(INTMAX_MAX,'\n');
+
                 newElmt.setMessage(content);
+
                  //because it is not a point
                 m_pointsCheck[i] = true;
             }
