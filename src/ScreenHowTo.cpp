@@ -120,7 +120,11 @@ void ScreenHowTo::loadInstruction()
     std::cout << m_instructions.at(m_currentInstruction) << std::endl;
     m_image->SetImage(image);
 
-    m_label->SetText(m_instructions.at(m_currentInstruction));
+    std::string temp = m_instructions.at(m_currentInstruction);
+    std::basic_string<sf::Uint32> utf32;
+    sf::Utf8::toUtf32(temp.begin(), temp.end(), std::back_inserter(utf32));
+
+    m_label->SetText(utf32);
 }
 
 int ScreenHowTo::Run( sf::RenderWindow &App)
