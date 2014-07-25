@@ -117,6 +117,7 @@ void ScreenHowTo::loadInstruction()
 {
     sf::Image image;
     image.loadFromFile(m_filenameImages.at(m_currentInstruction));
+    //image = Resize(image, true, sf::Vector2u(300,300));
     std::cout << "+++++++++++++++++++++++++++" << std::endl;
     std::cout << m_filenameImages.at(m_currentInstruction) << std::endl;
     std::cout << m_instructions.at(m_currentInstruction) << std::endl;
@@ -182,6 +183,62 @@ int ScreenHowTo::Run( sf::RenderWindow &App)
 	}
 return (SCREEN_EXIT);
 }
+
+
+sf::Image ScreenHowTo::Resize( sf::Image CurrentImage, bool m_KeepAspect, const sf::Vector2u& customSize)
+{
+// If no size is given (0,0) , use original image...
+    if( !customSize.x || !customSize.y )
+    {
+    return CurrentImage;
+    }
+    // Let the flood begin
+    float originalX = static_cast<float>( CurrentImage.getSize().x );
+    float originalY = static_cast<float>( CurrentImage.getSize().y );
+    float desiredX = static_cast<float>( customSize.x );
+    float desiredY = static_cast<float>( customSize.y );
+    // Compute the scale we will apply to image
+    float scaleX = desiredX / originalX;
+    float scaleY = desiredY / originalY;
+    // Get texture of the original image
+    sf::Texture tempTexture;
+    tempTexture.loadFromImage( CurrentImage );
+    // Sprite allows transformations to be made to it, so let's assign our texture to it
+    // (warn: sprite doesn't own the texture, keep it alive till we're done)
+    sf::Sprite tempSprite;
+    tempSprite.setTexture( tempTexture, true );
+    if( m_KeepAspect )
+    {
+    // Use same scale for both sides of the sprite
+    float lowerScale = std::min( scaleX, scaleY );
+    tempSprite.scale( lowerScale, lowerScale );
+    // Since the image will not be stretched out because we want to keep the aspect of the
+    // image, there will be an empty space to the right/down of the resized image. I think
+    // it's better if the empty place is distributed around the resized image on all sides,
+    // so we move the sprite to the center of the rectangle we set by size we want.
+    //
+    float offsetX = ( desiredX - ( originalX * ( lowerScale ) ) ) / 2;
+    float offsetY = ( desiredY - ( originalY * ( lowerScale ) ) ) / 2;
+    tempSprite.move( offsetX, offsetY );
+    }
+    else
+    {
+    tempSprite.scale( scaleX, scaleY );
+    }
+    // Transformations on Sprite are set, so we can pre-render the sprite on
+    // a new texture with a transparent background
+    sf::RenderTexture tempRenderTexture;
+    tempRenderTexture.create( customSize.x, customSize.y );
+    tempRenderTexture.setSmooth( true );
+    tempRenderTexture.clear( sf::Color( 255,255,255,0 ) );
+    tempRenderTexture.draw( tempSprite );
+    tempRenderTexture.display();
+    // Now when we have the new texture with our resized image ready
+    // we can set it as a new image to the underlying base Image
+    // class, and we are done.
+    return  tempRenderTexture.getTexture().copyToImage();
+}
+
 
 ScreenHowTo::~ScreenHowTo()
 {

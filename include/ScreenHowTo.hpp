@@ -20,6 +20,7 @@ class ScreenHowTo : public Screen
         void nextClick();
 
         void loadFileInstruction();
+        sf::Image Resize( sf::Image CurrentImage, bool keep, const sf::Vector2u& customSize);
 
     private:
         bool m_quit;
