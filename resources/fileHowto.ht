@@ -1,27 +1,38 @@
-13
+11
 resources/howTo/1.png#
-Voici la situation initiale de chaque début de niveau#
+Voici la situation initiale de chaque début de niveau
+Le but du jeu sera de recuperer tout les points.
+Attention le point rouge devra être ramassé en dernier#
 resources/howTo/2.png#
-En mode Hard il vous faudra trouver#
+Sur l'image ci dessus, le personnage est sur une courbe.
+Il peut se deplacer sur celui ci.
+La courbe en pointillé sera la courbe suivante en appuyant
+sur "P"#
 resources/howTo/3.png#
-information à propos de l'image 3#
+Dans ce cas la, on peut activer la courbe rouge suivante en
+pressant "P".
+Ou choisir la courbe verte en pressant "M"#
 resources/howTo/4.png#
-information à propos de l'image 4#
+En mode Hard, vous n'aurez pas de courbe predefini, vous devrez
+la tapper vous même#
 resources/howTo/5.png#
-information à propos de l'image 5#
+Chaque niveau sera terminé lorsque le point rouge sera ramassé#
 resources/howTo/6.png#
-information à propos de l'image 6#
+Des enemies viendront comprometre vos plans. 
+Des informations viendront vous aidez à les eviter.
+- Le chiffre au dessus de leurs tete
+- La direction#
 resources/howTo/7.png#
-information à propos de l'image 7#
+Une fois que le chiffre aura atteint 0, l'enemie s'activera
+pour tenter de vous barrer la route.#
 resources/howTo/8.png#
-information à propos de l'image 8#
+Les bulles de gravité changeront votre comportement dans le
+niveau.#
 resources/howTo/9.png#
-information à propos de l'image 9#
+Les enemies seront aussi touchés par l'effet des bulles de gravité.#
 resources/howTo/10.png#
-information à propos de l'image 10#
-resources/howTo/11.png#
-information à propos de l'image 11#
-resources/howTo/12.png#
-information à propos de l'image 12#
-resources/howTo/13.png#
-information à propos de l'image 13#
+Cette element vous permettra de toucher des points parraissant inaccesibles#
+resources/howTo/10.png#
+Une derniere chose! Les intégrales seront disposées dans certains niveaux.
+Faites attention! Ils pourraient vous aider autant que vous ennuyer#
+
