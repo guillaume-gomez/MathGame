@@ -20,11 +20,7 @@ ScreenHowTo::ScreenHowTo()
     m_previous = sfg::Button::Create("Previous");
 
     m_image = sfg::Image::Create();
-    m_image->SetRequisition(sf::Vector2f(300.0f,300.0f));
-
-    sf::Image image;
-    image.loadFromFile(std::string(FilenameButtonOption));
-    m_image->SetImage(image);
+    m_image->SetRequisition(sf::Vector2f(400.0f,300.0f));
 
     m_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
     m_boxImages = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL);
@@ -39,7 +35,6 @@ ScreenHowTo::ScreenHowTo()
 
     m_label = sfg::Label::Create("Nothing to say For the moment");
     m_label->SetId("TextHowTo");
-    //m_label->SetLineWrap(true);
     m_boxLabel->Pack(m_label);
 
 
@@ -48,6 +43,8 @@ ScreenHowTo::ScreenHowTo()
 
    m_window->Add(m_box);
    m_desktop.Add(m_window);
+
+   loadInstruction();
 
 }
 
@@ -117,7 +114,7 @@ void ScreenHowTo::loadInstruction()
 {
     sf::Image image;
     image.loadFromFile(m_filenameImages.at(m_currentInstruction));
-    //image = Resize(image, true, sf::Vector2u(300,300));
+    image = Resize(image, true, sf::Vector2u(400,300));
     std::cout << "+++++++++++++++++++++++++++" << std::endl;
     std::cout << m_filenameImages.at(m_currentInstruction) << std::endl;
     std::cout << m_instructions.at(m_currentInstruction) << std::endl;
