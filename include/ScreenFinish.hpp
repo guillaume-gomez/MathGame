@@ -3,7 +3,6 @@
 
 #include "Screen.hpp"
 #include "SFML/Graphics.hpp"
-#include "../files.hpp"
 
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
@@ -13,7 +12,7 @@ class ScreenFinish : public Screen
         ScreenFinish();
         virtual ~ScreenFinish();
         int Run(sf::RenderWindow & App);
-        
+
     protected:
     private:
     	sf::Sprite m_bg;

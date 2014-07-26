@@ -3,6 +3,8 @@
 
 #include <SFGUI/SFGUI.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+
+#include "../files.hpp"
 #include "Screens.hpp"
 
 class Screen
@@ -14,6 +16,7 @@ class Screen
 
     protected:
         sfg::Desktop m_desktop;
+        static bool isloadTheme;
 };
 
 #endif // SCREEN_H

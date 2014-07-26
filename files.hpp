@@ -54,4 +54,6 @@ const char FilenameBike[] = "resources/sprites/velo.png";
 const char FilenameTheme [] = "resources/outTheme.theme";
 
 const char FilenameSmileyTex [] = "resources/sprites/smiley.png";
+
+const char FilenameInfoHowTo [] = "resources/fileHowto.ht";
 #endif //FILES_HPP
