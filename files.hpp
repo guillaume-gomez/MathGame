@@ -41,8 +41,8 @@ const char FilenameButtonSave[] = "resources/design/buttonSave.png";
 const char FilenameButtonCursor[] = "resources/design/buttonCursor.png";
 const char FilenameButtonPanel[] = "resources/design/buttonPanel.png";
 const char FilenameButtonEnemy[] = "resources/design/enemy.png";
-const char FilenameButtonRightEnemy[] = "resources/sprites/TEMP.png";
-const char FilenameButtonLeftEnemy[] = "resources/sprites/TEMP2.png";
+const char FilenameButtonRightEnemy[] = "resources/sprites/leftEn.png";
+const char FilenameButtonLeftEnemy[] = "resources/sprites/rightEn.png";
 
 
 const char FilenameBGFinish[] = "resources/design/bg_finish.png";

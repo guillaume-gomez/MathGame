@@ -38,6 +38,9 @@ class TextAreaSFML2_0 : public sf::Drawable
 
 		const sf::FloatRect getLocalBounds() const;
 		const sf::FloatRect getGlobalBounds() const;
+
+		void setPaddingTop(unsigned int value);
+		void setPaddingBottom(unsigned int value);
 		sf::String getString();
 
 
@@ -186,5 +189,15 @@ inline void TextAreaSFML2_0::scaleBG()
 //{
 //	return m_text;
 //}
+
+inline void TextAreaSFML2_0::setPaddingTop(unsigned int value)
+{
+    m_paddingTop = value;
+}
+
+inline void TextAreaSFML2_0::setPaddingBottom(unsigned int value)
+{
+    m_paddingBottom = value;
+}
 
 #endif // TEXTAREASFML2_0_H

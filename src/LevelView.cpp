@@ -23,13 +23,6 @@ LevelView::LevelView()
 LevelView::LevelView(const LevelModel& model, float _scale)
 :m_model(model), m_scale(_scale)
 {
-    ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
-    ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
-    ObjectFactoryAbstract::_register(TypeObject::GoalPoint,new Point(sizePoint, true));
-    ObjectFactoryAbstract::_register(TypeObject::Enemy,new Enemy());
-    ObjectFactoryAbstract::_register(TypeObject::Integral,new Integral());
-    ObjectFactoryAbstract::_register(TypeObject::Function,new Curves());
-    ObjectFactoryAbstract::_register(TypeObject::Info,new InfoDisplayer());
 
     //pré loading
 //    float widthTex  = (float) m_texGoal.getSize().x / 2;

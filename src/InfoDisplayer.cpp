@@ -9,6 +9,8 @@ InfoDisplayer::InfoDisplayer()
     m_area.setCharacterSize(12);
     m_area.blinkCaret(0);
     m_area.setAlphaColor(125);
+    m_area.setPaddingBottom(20);
+    m_area.setPaddingTop(20);
     m_area.setBackgroundTexture(FilenamePanelInfoTex);
 }
 
@@ -23,7 +25,7 @@ InfoDisplayer::InfoDisplayer(const InfoDisplayer& copy)
  m_message(copy.m_message),
  m_area(copy.m_area)
 {
-
+    this->m_type = TypeObject::Info;
 }
 
 void InfoDisplayer::draw(sf::RenderTarget& app)
@@ -62,7 +64,7 @@ void InfoDisplayer::setPosition(float x, float y)
     std::stringstream flux;
     flux << this->getTypeStr() << std::endl;
     flux << this->get_Position().x / scale <<" " << - this->get_Position().y / scale << std::endl;
-    flux << this->getMessage() << std::endl;
+    flux << this->getMessage() << "#"<<std::endl;
     return flux.str();
  }
 
