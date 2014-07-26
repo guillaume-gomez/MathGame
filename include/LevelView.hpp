@@ -18,6 +18,7 @@
 #include "LevelModel.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "GravityCircle.hpp"
+#include "InfoDisplayer.hpp"
 #include "ManageFunctions.hpp"
 #include "Point.hpp"
 

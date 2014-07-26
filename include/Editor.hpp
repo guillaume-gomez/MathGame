@@ -12,6 +12,7 @@
 #include "Enemy.hpp"
 #include "GraphView.hpp"
 #include "GravityCircle.hpp"
+#include "InfoDisplayer.hpp"
 #include "ManageText.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
 #include "PanelEditor.hpp"
@@ -60,6 +61,7 @@ class Editor
         ButtonPerso m_buttonNormalButton;
         ButtonPerso m_buttonLeftEnemy;
         ButtonPerso m_buttonPanel;
+        ButtonPerso m_buttonInfo;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
         TypeObject m_creatingType;
