@@ -52,7 +52,9 @@ class ManageLevel
         void handle_inputEnnemies(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
         void fillLevelFunctions(ManageFunctions& func);
         const std::vector<EditorObject*> getSpriteList () const;
-        void scaleNbAttempt(float scaleX, float scaleY) ;
+        void scaleNbAttempt(float scaleX, float scaleY);
+        void receiveView(sf::View& view);
+
     private:
         Difficulty m_difficulty;
         std::string m_filenameCurrent;
@@ -125,6 +127,11 @@ inline void ManageLevel::setDiff(Difficulty _diff)
 const inline std::vector<EditorObject*> ManageLevel::getSpriteList () const
 {
     return m_levelView->getSpriteList();
+}
+
+inline void ManageLevel::receiveView(sf::View& view)
+{
+    m_levelView->setView(view);
 }
 
 /*********************************************************/

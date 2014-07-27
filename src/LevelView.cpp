@@ -21,7 +21,7 @@ LevelView::LevelView()
 }
 
 LevelView::LevelView(const LevelModel& model, float _scale)
-:m_model(model), m_scale(_scale)
+:m_model(model), m_scale(_scale), m_view(sf::View())
 {
 
     //pré loading
@@ -159,18 +159,22 @@ void LevelView::draw(sf::RenderTarget& app)
 {
     for(unsigned int i = 0 ; i < m_listSprite.size(); i++)
     {
-        if(m_model.getType(i) == TypeObject::Point || m_model.getType(i) == TypeObject::GoalPoint)
+        if( m_listSprite.at(i)->get_Position().x >= m_view.getCenter().x - m_view.getSize().x
+        &&  m_listSprite.at(i)->get_Position().x <= m_view.getCenter().x + m_view.getSize().x  )
         {
-            if(!m_model.getCheckValue(i))
+            if(m_model.getType(i) == TypeObject::Point || m_model.getType(i) == TypeObject::GoalPoint)
             {
-               m_listSprite[i]->draw(app);
+                if(!m_model.getCheckValue(i))
+                {
+                   m_listSprite[i]->draw(app);
+                }
             }
-        }
-        //other element can't be deleted, so they haven't got a check value parameter. then function still in this list
-        //<!>(bad conception)<!>
-        else if (m_model.getType(i) != TypeObject::Function)
-        {
-             m_listSprite[i]->draw(app);
+            //other element can't be deleted, so they haven't got a check value parameter. then function still in this list
+            //<!>(bad conception)<!>
+            else if (m_model.getType(i) != TypeObject::Function)
+            {
+                 m_listSprite[i]->draw(app);
+            }
         }
     }
 }
