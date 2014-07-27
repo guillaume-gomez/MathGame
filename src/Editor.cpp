@@ -166,9 +166,26 @@ bool Editor::handleInput()
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
                 {
+                    sf::Vector2f center = m_viewPerso.getCenter();
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
                     {
                         popPoint();
+                    }
+                    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+                    {
+                        m_viewPerso.setCenter(center.x, center.y - 10);
+                    }
+                    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+                    {
+                         m_viewPerso.setCenter(center.x, center.y + 10);
+                    }
+                    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+                    {
+                         m_viewPerso.setCenter(center.x - 10, center.y);
+                    }
+                    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+                    {
+                         m_viewPerso.setCenter(center.x + 10, center.y);
                     }
                 }
 
@@ -249,6 +266,7 @@ bool Editor::handleInput()
 void Editor::show()
 {
 	m_textAreaFunction.blinkCaret();
+	cameraMoved();
 }
 
 void Editor::draw()
@@ -553,6 +571,43 @@ void Editor::popPoint()
 
 }
 
+
+void Editor::cameraMoved()
+{
+        float centerX = m_viewPerso.getCenter().x,
+              centerY = m_viewPerso.getCenter().y;
+
+        //Si on dépasse à gauche
+        if(centerX - (m_viewPerso.getSize().x/2) < -(WidthWorld/2))
+        {
+           centerX = -(WidthWorld/2) + (m_viewPerso.getSize().x/2);
+           //std::cout << "on depasse à gauche "<< centerX  - m_viewPerso.getSize().x << std::endl;
+        }
+
+        //Si on dépasse en haut
+        if(centerY - (m_viewPerso.getSize().y/2) < -(HeightWorld/2))
+        {
+           centerY = -(HeightWorld/2) + (m_viewPerso.getSize().y/2);
+           //std::cout << "on depasse à haut "<<  centerY - m_viewPerso.getSize().y <<std::endl;
+        }
+
+        //Si on dépasse à droite
+        if(centerX + (m_viewPerso.getSize().x /2) > (WidthWorld/2))
+        {
+            centerX = (WidthWorld/2) - (m_viewPerso.getSize().x/2);
+            //std::cout << "on depasse à droite "<< centerX + m_viewPerso.getSize().x<<std::endl;
+        }
+
+        //si on dépasse en bas
+        if(centerY + (m_viewPerso.getSize().y/2) > (HeightWorld/2))
+        {
+           centerY = (HeightWorld/2) - (m_viewPerso.getSize().y/2);
+            //std::cout << "on depasse à bas "<< centerY + m_viewPerso.getSize().y<<std::endl;
+        }
+
+
+        m_viewPerso.setCenter(centerX, centerY);
+}
 
 
 Editor::~Editor()
