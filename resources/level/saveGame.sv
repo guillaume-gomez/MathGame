@@ -5,7 +5,7 @@ countNormal
 countHard
 6
 maxEasy
-3
+2
 maxNormal
 2
 maxHard
