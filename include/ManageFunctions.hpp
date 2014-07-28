@@ -19,6 +19,7 @@ class ManageFunctions
         void reset();
         std::string getFunction()const;
         const ConstrueFunction* getModelIndex();
+        void setViews(const sf::View view);
     private:
     	bool m_changed;
     	unsigned int m_currentIndex;

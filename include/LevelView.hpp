@@ -32,6 +32,8 @@ class LevelView
         std::vector<EditorObject*> getSpriteList () const;
         void loadCoord();
         void reset();
+
+        void setView(const sf::View& view);
     private:
         LevelView();
         std::vector<EditorObject*> m_listSprite;
@@ -43,6 +45,7 @@ class LevelView
         static bool TexturesLoaded;
         static bool loadTex(const char* _filenameNormalText = FilenameNormalPointTex, const char* _filenameGoalText = FilenamePointGoalTex);
 
+        sf::View m_view;
 };
 
 /****************************************************
@@ -50,6 +53,11 @@ class LevelView
 ******************************************************/
 
 inline std::vector<EditorObject*> LevelView::getSpriteList () const { return m_listSprite;};
+
+inline void LevelView::setView(const sf::View& view)
+{
+    m_view = view;
+}
 
 /****************************************************
 **

@@ -25,6 +25,8 @@ class GraphView
         void draw(sf::RenderTarget& App );
         void setGraphColor(const sf::Color& graphColor);
         void standAloneRepresent(const ConstrueFunction& function, float step);
+        void receiveView(const sf::View view);
+
     private:
         GraphView(const GraphView& copy);
         //without only one model
@@ -34,6 +36,7 @@ class GraphView
         float m_thickness;
         float m_scale;
         sf::Color m_graphColor;
+        sf::View m_viewport;
 };
 
 /**
@@ -43,6 +46,11 @@ class GraphView
 inline void GraphView::setGraphColor(const sf::Color& graphColor)
 {
     m_graphColor = graphColor;
+}
+
+inline void GraphView::receiveView(const sf::View view)
+{
+    m_viewport = view;
 }
 
 /**
