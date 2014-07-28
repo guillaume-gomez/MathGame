@@ -7,6 +7,7 @@ using namespace sf;
 #include "constants.hpp"
 #include "files.hpp"
 
+#include "ObjectFactoryAbstract.hpp"
 #include "Screen_MainMenu.hpp"
 #include "ScreenLevelChoiceClassic.hpp"
 #include "ScreenLevelChoiceNoChance.hpp"
@@ -15,11 +16,21 @@ using namespace sf;
 #include "Screen_Editor.hpp"
 #include "ScreenFinish.hpp"
 #include "ScreenCredit.hpp"
+#include "ScreenHowTo.hpp"
 
 #include "Game.hpp"
 
 int main()
 {
+
+    ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
+    ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
+    ObjectFactoryAbstract::_register(TypeObject::GoalPoint,new Point(sizePoint, true));
+    ObjectFactoryAbstract::_register(TypeObject::Enemy,new Enemy());
+    ObjectFactoryAbstract::_register(TypeObject::Integral,new Integral());
+    ObjectFactoryAbstract::_register(TypeObject::Function,new Curves());
+    ObjectFactoryAbstract::_register(TypeObject::Info,new InfoDisplayer());
+
     ContextSettings contextPerso(0, 0, 2);
     RenderWindow App(VideoMode(WindowWidth, WindowHeight),"I Hate Maths",Style::Close | Style::Titlebar, contextPerso);
 
@@ -45,13 +56,15 @@ int main()
     screens.push_back(&screenCredit);
     ScreenFinish screenFinish;
     screens.push_back(&screenFinish);
+    ScreenHowTo screenHowTo;
+    screens.push_back(&screenHowTo);
 
 //    Physics::Engine::getEngine()->cleanEngine();
 
     while( screen >= 0)
     {
        screen = screens[ screen ]->Run(App);
-       // // std::cout << screen << std::endl;
+       // std::cout << screen << "   " << screens.size()<< std::endl;
     }
 
     stat->save();

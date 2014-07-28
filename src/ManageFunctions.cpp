@@ -1,7 +1,7 @@
 #include "ManageFunctions.hpp"
 
 ManageFunctions::ManageFunctions()
-:m_changed(false), m_currentIndex(0)
+:m_changed(false), m_currentIndex(0), m_view(sf::View())
 {
     //ctor
 }
@@ -26,6 +26,7 @@ void ManageFunctions::handle_input(sf::Event& event)
             {
             	m_currentIndex = 0;
             }
+            colorize();
             break;
 
         case sf::Keyboard::M:
@@ -39,6 +40,7 @@ void ManageFunctions::handle_input(sf::Event& event)
             {
                 m_currentIndex--;
             }
+            colorize();
             break;
 
         default:
@@ -60,10 +62,28 @@ void ManageFunctions::represent(float step)
 
 const ConstrueFunction* ManageFunctions::getModelIndex()
 {
-#ifdef DEBUG
-    // std::cout << m_currentIndex << " INDEX " << std::endl;
-#endif
     return m_vectorCurves.at(m_currentIndex).getModel();
+}
+
+void ManageFunctions::colorize()
+{
+     showBefore();
+     m_vectorCurves.at(m_currentIndex).setColor(CurveColor);
+     showAfter();
+}
+
+bool ManageFunctions::showBefore()
+{
+    if( m_currentIndex - 1 < 0)
+    {
+        return false;
+    }
+    else
+    {
+        //m_vectorCurves.at(m_currentIndex - 1).receiveView(m_view);
+        m_vectorCurves.at(m_currentIndex - 1).setColor(PreviousCurveColor);
+    }
+    return true;
 }
 
 bool ManageFunctions::drawBefore(sf::RenderTarget& app)
@@ -74,25 +94,36 @@ bool ManageFunctions::drawBefore(sf::RenderTarget& app)
     }
     else
     {
-        m_vectorCurves.at(m_currentIndex - 1).setColor(PreviousCurveColor);
+        //m_vectorCurves.at(m_currentIndex - 1).receiveView(m_view);
         m_vectorCurves.at(m_currentIndex - 1).drawInterval(app);
-        m_vectorCurves.at(m_currentIndex - 1).setColor(CurveColor);
+    }
+    return true;
+}
+
+bool ManageFunctions::showAfter()
+{
+    if( (m_currentIndex + 1) >= m_vectorCurves.size())
+    {
+        return false;
+    }
+    else
+    {
+        //m_vectorCurves.at(m_currentIndex + 1).receiveView(m_view);
+        m_vectorCurves.at(m_currentIndex + 1).setColor(NextCurveColor);
     }
     return true;
 }
 
 bool ManageFunctions::drawAfter(sf::RenderTarget& app)
 {
-    if( m_currentIndex + 1 >= m_vectorCurves.size())
+    if( (m_currentIndex + 1) >= m_vectorCurves.size())
     {
         return false;
     }
     else
     {
-        m_vectorCurves.at(m_currentIndex + 1).setColor(NextCurveColor);
+        //m_vectorCurves.at(m_currentIndex + 1).receiveView(m_view);
         m_vectorCurves.at(m_currentIndex + 1).drawInterval(app);
-        m_vectorCurves.at(m_currentIndex + 1).setColor(CurveColor);
-
     }
     return true;
 }
@@ -101,10 +132,15 @@ bool ManageFunctions::drawAfter(sf::RenderTarget& app)
 void ManageFunctions::draw(sf::RenderTarget& app)
 {
     drawBefore(app);
+    m_vectorCurves.at(m_currentIndex).receiveView(m_view);
 	m_vectorCurves.at(m_currentIndex).draw(app);
     drawAfter(app);
 }
 
+void ManageFunctions::setViews(const sf::View view)
+{
+    m_view = view;
+}
 
 void ManageFunctions::addFunction(std::string function)
 {
@@ -113,9 +149,10 @@ void ManageFunctions::addFunction(std::string function)
 
 }
 
+
 void ManageFunctions::reset()
 {
-std::cout << "clearManageFunctions" << std::endl;
+//std::cout << "clearManageFunctions" << std::endl;
     m_changed = true;
     m_vectorCurves.clear();
 //    m_graphModel.clearFunction();
@@ -124,4 +161,5 @@ std::cout << "clearManageFunctions" << std::endl;
 void ManageFunctions::resetToZero()
 {
     m_currentIndex = 0;
+    colorize();
 }

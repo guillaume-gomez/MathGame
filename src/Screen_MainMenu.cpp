@@ -15,12 +15,15 @@ Screen_MainMenu::Screen_MainMenu()
     m_credit_button = sfg::Button::Create("Credit");
     m_editor_button = sfg::Button::Create("Editor");
     m_option_button = sfg::Button::Create("Option");
+    m_howTo_button = sfg::Button::Create("How To Play");
+
 
     m_play_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::playButtonClick, this));
     m_play2_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::play2ButtonClick, this));
     m_credit_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::creditButtonClick, this));
     m_option_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::optionButtonClick, this));
     m_editor_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::editorButtonClick, this));
+    m_howTo_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::howToButtonClick, this));
 }
 
 
@@ -49,6 +52,11 @@ void Screen_MainMenu::optionButtonClick()
      m_changingMenu = OPTION;
 }
 
+void Screen_MainMenu::howToButtonClick()
+{
+    m_changingMenu = HOWTO;
+}
+
 void Screen_MainMenu::resize(float x, float y, sf::RenderWindow& App)
 {
   // sf::View viewPerso = App.getView();
@@ -74,8 +82,11 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
     box->Pack( m_play_button );
     box->Pack( m_play2_button );
     box->Pack( m_credit_button );
-    box->Pack( m_editor_button );
+    #ifdef DEBUG
+        box->Pack( m_editor_button );
+    #endif
     box->Pack( m_option_button );
+    box->Pack( m_howTo_button );
 
     m_window = sfg::Window::Create();
 	m_window->SetTitle( "Main Menu" );
@@ -85,9 +96,6 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
     m_changingMenu = SCREEN_EXIT;
 
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
-
-
-    m_desktop.LoadThemeFromFile(FilenameTheme);
     m_desktop.Add(m_window);
 
 	while(Running)

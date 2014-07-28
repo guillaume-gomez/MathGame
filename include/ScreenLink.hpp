@@ -30,6 +30,7 @@ class ScreenLink
         unsigned int getnbHard() const ;
         void setParamLevel( Difficulty _diff, unsigned int level, GameMode mode);
         unsigned int getCurrentLevel()const;
+        void setCurrentLevel(unsigned int level);
         Difficulty getDiff()const;
         unsigned int getNbFiles()const;
         GameMode getMode()const;
@@ -73,6 +74,11 @@ inline void ScreenLink::setParamLevel(Difficulty _diff, unsigned int level, Game
 inline unsigned int ScreenLink::getCurrentLevel() const
 {
     return m_currentLevel;
+}
+
+inline void ScreenLink::setCurrentLevel(unsigned int level)
+{
+    m_currentLevel = level;
 }
 
 inline Difficulty ScreenLink::getDiff() const

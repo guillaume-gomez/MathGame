@@ -237,6 +237,11 @@ void Game::resetWindow()
 {
     m_viewPerso.setSize(Vector2f(m_app.getSize()));
     m_viewPerso.setCenter(0, 0);
+    m_level.receiveView(m_viewPerso);
+    m_axis.receiveView(m_viewPerso);
+    //m_functionManager.setViews(m_viewPerso);
+    m_curves.receiveView(m_viewPerso);
+
 }
 
 void Game::cameraMoved()
@@ -316,6 +321,11 @@ void Game::move()
        //if the mode is activated
         cameraMoved();
 
+        m_level.receiveView(m_viewPerso);
+        m_axis.receiveView(m_viewPerso);
+        m_functionManager.setViews(m_viewPerso);
+        m_curves.receiveView(m_viewPerso);
+
     }
 
     if(getGameMode() == GameMode::Dynamic)
@@ -346,9 +356,9 @@ void Game::selectLevel(ScreenLink& stat)
             m_gameStarted = true;
             m_timer.restart();
             m_level.fillLevelFunctions(m_functionManager);
+            m_functionManager.colorize();
             Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
             m_functionManager.represent(Step);
-
             m_textAreaFunction.setString(m_functionManager.getFunction());
         }
     }
@@ -360,6 +370,7 @@ void Game::selectLevel(ScreenLink& stat)
 //        #endif // DEBUG
         throw;
     }
+    std::cout <<"GAME::selectLevel" << std::endl;
 }
 
 int Game::levelOperation(ScreenLink& stat)
@@ -381,7 +392,12 @@ int Game::levelOperation(ScreenLink& stat)
 //          #endif // DEBUG
         reset();
         changing = m_level.changeLevel(&stat);
-        m_level.fillLevelFunctions(m_functionManager);
+
+        if(getGameMode() == GameMode::Dynamic)
+        {
+            m_level.fillLevelFunctions(m_functionManager);
+            m_functionManager.colorize();
+        }
         m_playerDead = false;
       }
 
@@ -392,6 +408,9 @@ int Game::levelOperation(ScreenLink& stat)
       }
 
       return changing;
+      #ifdef DEBUG
+      std::cout << "GAME::LevelOperation" << std::endl;
+      #endif DEBUG
 }
 
 void Game::reset()
@@ -440,8 +459,13 @@ void Game::manageSound()
 
 void Game::setCenterCamera()
 {
-   m_viewPerso = m_app.getView();
-   m_viewPerso.setCenter(0, 0);
+    m_viewPerso = m_app.getView();
+    m_viewPerso.setCenter(0, 0);
+    m_level.receiveView(m_viewPerso);
+    m_axis.receiveView(m_viewPerso);
+    //m_functionManager.setViews(m_viewPerso);
+    m_curves.receiveView(m_viewPerso);
+
 }
 
 void Game::loadConfigFile()

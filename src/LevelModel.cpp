@@ -122,6 +122,27 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                  //because it is not a point
                 m_pointsCheck[i] = true;
             }
+            else if (type == InfoStr)
+            {
+                newElmt.setType(TypeObject::Info);
+                sf::Vector2f temp;
+                m_fileLevel >> temp.x;
+                m_fileLevel >> temp.y;
+                newElmt.setCoord(temp);
+
+                //very very dirty.....but it works :)
+                std::string content;
+                m_fileLevel.clear();
+                m_fileLevel.ignore(INTMAX_MAX,'\n');
+                getline(m_fileLevel, content, '#');
+                m_fileLevel.clear();
+                m_fileLevel.ignore(INTMAX_MAX,'\n');
+
+                newElmt.setMessage(content);
+
+                 //because it is not a point
+                m_pointsCheck[i] = true;
+            }
 
             m_coordElements.push_back(newElmt);
         }
@@ -136,6 +157,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
     }
 
     m_fileLevel.close();
+    std::cout << "LevelMOdel fin de chargement de niveau" << std::endl;
 }
 
 std::ostream& operator<<( std::ostream &flux, const LevelModel& level )

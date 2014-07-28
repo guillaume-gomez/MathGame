@@ -17,7 +17,7 @@ enum GameMode {Classic , NoChance, Dynamic};
 enum class TypeOfCamera {Static, Moveable};
 enum class TypeObject
 {
-    Abstract, Circle, Point, GoalPoint, Enemy, Hero, Integral, Function
+    Abstract, Circle, Point, GoalPoint, Enemy, Hero, Integral, Function, Info
 };
 
 const char AbstractStr[]  = "Abstract";
@@ -28,6 +28,7 @@ const char EnemyStr[]  = "Enemy";
 const char HeroStr[] = "Hero";
 const char IntegralStr[] = "Integral";
 const char FunctionStr[] = "Function";
+const char InfoStr[] = "Info";
 
 const int Blur = 120;
 const int Clear = 220;
@@ -40,7 +41,7 @@ const float ZoomMax = 360.0f;
 
 const float Thickness = 4.0f;
 
-const float MaxSizeGraph = 25.0f;
+const float MaxSizeGraph = 50.0f;
 const float Step = 0.2f;
 
 const int WidthSpritePlayer = 24;

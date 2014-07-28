@@ -20,7 +20,7 @@ Curves::Curves(const Curves& copy)
 {
     if(copy.m_model.m_coords.front().x != 0.0f && copy.m_model.m_coords.back().x != 0.1f)
     {
-        build(-GraphScale,GraphScale, Step);
+        build();
     }
 }
 

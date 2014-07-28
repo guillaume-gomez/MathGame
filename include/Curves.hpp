@@ -30,6 +30,8 @@ class Curves : public EditorObject
         virtual void setColor (const sf::Color& graphColor);
         void drawInterval(sf::RenderTarget& app);
 
+        void receiveView(const sf::View view);
+
         private:
     	virtual void setPosition(sf::Vector2f& position);
         virtual void setPosition(float x, float y);
@@ -82,6 +84,11 @@ inline std::string Curves::getFunction() const
 inline void Curves::setFunction(std::string str)
 {
     m_model.setFunction(str);
+}
+
+inline void Curves::receiveView(const sf::View view)
+{
+    m_view.receiveView(view);
 }
 
 inline void Curves::setColor(const sf::Color& graphColor)

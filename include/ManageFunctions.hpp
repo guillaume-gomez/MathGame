@@ -22,11 +22,17 @@ class ManageFunctions
         const ConstrueFunction* getModelIndex();
         bool drawBefore(sf::RenderTarget& app);
         bool drawAfter(sf::RenderTarget& app);
+        bool showAfter();
+        bool showBefore();
         bool isEmpty() const;
+        void colorize();
+
+        void setViews(const sf::View view);
     private:
     	bool m_changed;
         int m_currentIndex;
     	std::vector<Curves> m_vectorCurves;
+    	sf::View m_view;
 };
 
 

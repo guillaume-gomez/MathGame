@@ -18,6 +18,7 @@ m_buttonCircle(FilenameButtonCircleTex),
 m_buttonNormalButton(FilenameNormalPointTex),
 m_buttonLeftEnemy(FilenameButtonEnemy),
 m_creatingType(TypeObject::Point),
+m_buttonInfo(FilenamePanelInfoTex),
 m_isBack(false),
 m_isNormalPoint(true),
 m_isZoom(false),
@@ -29,13 +30,6 @@ m_radiusBuilder(0.0f, 0.0f)
     m_nbAttemptView.setColor(sf::Color(23,0,34,225));
     m_nbAttemptView.setString(sf::String("EnemyLife : 1"));
     m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 210, m_app.getSize().y - 25));
-
-    //build all the template method
-    ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
-    ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
-    ObjectFactoryAbstract::_register(TypeObject::GoalPoint,new Point(sizePoint, true));
-    ObjectFactoryAbstract::_register(TypeObject::Enemy,new Enemy());
-
 
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
 	text->setRepeated(true);
@@ -62,6 +56,7 @@ m_radiusBuilder(0.0f, 0.0f)
     m_panel.addButton(&m_buttonNormalButton);
     m_panel.addButton(&m_buttonGoalButton);
     m_panel.addButton(&m_buttonCircle);
+    m_panel.addButton(&m_buttonInfo);
 }
 
 void Editor::zoom()
@@ -89,6 +84,7 @@ void Editor::resize(float scaleX, float scaleY)
     m_buttonNormalButton.scale(scaleX, scaleY);
     m_buttonCircle.scale(scaleX, scaleY);
     m_textAreaFunction.scale(scaleX, scaleY);
+    m_buttonInfo.scale(scaleX, scaleY);
 }
 
 bool Editor::handleInput()
@@ -170,9 +166,26 @@ bool Editor::handleInput()
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
                 {
+                    sf::Vector2f center = m_viewPerso.getCenter();
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
                     {
                         popPoint();
+                    }
+                    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+                    {
+                        m_viewPerso.setCenter(center.x, center.y - 10);
+                    }
+                    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+                    {
+                         m_viewPerso.setCenter(center.x, center.y + 10);
+                    }
+                    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+                    {
+                         m_viewPerso.setCenter(center.x - 10, center.y);
+                    }
+                    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+                    {
+                         m_viewPerso.setCenter(center.x + 10, center.y);
                     }
                 }
 
@@ -180,13 +193,13 @@ bool Editor::handleInput()
                 {
                        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
                        m_isLeftEnemy = true;
-//                       std::cout << "click " << m_isLeftEnemy << std::endl;
+                        //std::cout << "clickLeft " << m_isLeftEnemy << std::endl;
                 }
                 if(m_event.key.code == sf::Keyboard::Right)
                 {
                        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonRightEnemy)));
                        m_isLeftEnemy = false;
-  //                     std::cout << "clickRight " << m_isLeftEnemy << std::endl;
+                       //std::cout << "clickRight " << m_isLeftEnemy << std::endl;
                 }
 
                 if(m_event.key.code == sf::Keyboard::Up)
@@ -238,6 +251,12 @@ bool Editor::handleInput()
         {
             m_buttonCursor.setColor(sf::Color(255, 255, 255, Blur));
             m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
+            m_isLeftEnemy = true;
+        }
+        if(m_buttonInfo.isClicked())
+        {
+            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenamePanelInfoTex)));
+            m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
         }
     }
     return true ;
@@ -247,6 +266,7 @@ bool Editor::handleInput()
 void Editor::show()
 {
 	m_textAreaFunction.blinkCaret();
+	cameraMoved();
 }
 
 void Editor::draw()
@@ -346,6 +366,12 @@ void Editor::move()
         m_buttonLeftEnemy.unclick();
     }
 
+    if(m_buttonInfo.isClicked())
+    {
+        m_creatingType = TypeObject::Info;
+        m_buttonInfo.unclick();
+    }
+
     if(m_graphModel.getChanged())
     {
         m_graphView.represent(Step);
@@ -386,7 +412,7 @@ int Editor::save(ScreenLink * link)
     }
 
     int nbGoalPoint = 0;
-    //if there is one red points
+    //if there is just one red point
     //for(std::vector<EditorCircle*>::iterator it = m_spriteList.begin(); it != m_spriteList.end() ; it++)
     for(auto it : m_spriteList)
     {
@@ -431,7 +457,6 @@ int Editor::save(ScreenLink * link)
         for(unsigned int i = 0 ; i < TotalDifficulty ;i++)
         {
             std::ostringstream oss;
-            std::cout << "Syso " << link->getNbFiles() << std::endl;
                         oss << FilenameLevelDirectory << link->getNbFiles() + 1 << "_" << fileList[i] <<".lvl" ;
             std::ofstream file(oss.str().c_str());
             if( file.is_open())
@@ -501,12 +526,20 @@ void Editor::addObject(int x , int y)
         else if (m_creatingType == TypeObject::Enemy)
         {
             Enemy* newEnemy = dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(TypeObject::Enemy));
-            newEnemy->setPosition(coord.x / GraphScale, - coord.y / GraphScale);
+            newEnemy->setPosition(coord.x / GraphScale, -coord.y / GraphScale);
             newEnemy->setDirection(m_isLeftEnemy);
             newEnemy->setNbAttempt(m_nbAttempt);
             newEnemy->show();
-            std::cout << "know your enemy " << m_isLeftEnemy << std::endl;
+
             m_spriteList.push_back(newEnemy);
+        }
+        else if (m_creatingType == TypeObject::Info)
+        {
+            InfoDisplayer* newInfo = dynamic_cast<InfoDisplayer*>(ObjectFactoryAbstract::create(TypeObject::Info));
+            newInfo->setPosition(coord.x - m_buttonCursor.getLocalBounds().width / 2,
+                                 coord.y - m_buttonCursor.getLocalBounds().height / 2);
+            newInfo->setMessage("Message à rajouter par  la suite");
+            m_spriteList.push_back(newInfo);
         }
     }
 }
@@ -538,6 +571,43 @@ void Editor::popPoint()
 
 }
 
+
+void Editor::cameraMoved()
+{
+        float centerX = m_viewPerso.getCenter().x,
+              centerY = m_viewPerso.getCenter().y;
+
+        //Si on dépasse à gauche
+        if(centerX - (m_viewPerso.getSize().x/2) < -(WidthWorld/2))
+        {
+           centerX = -(WidthWorld/2) + (m_viewPerso.getSize().x/2);
+           //std::cout << "on depasse à gauche "<< centerX  - m_viewPerso.getSize().x << std::endl;
+        }
+
+        //Si on dépasse en haut
+        if(centerY - (m_viewPerso.getSize().y/2) < -(HeightWorld/2))
+        {
+           centerY = -(HeightWorld/2) + (m_viewPerso.getSize().y/2);
+           //std::cout << "on depasse à haut "<<  centerY - m_viewPerso.getSize().y <<std::endl;
+        }
+
+        //Si on dépasse à droite
+        if(centerX + (m_viewPerso.getSize().x /2) > (WidthWorld/2))
+        {
+            centerX = (WidthWorld/2) - (m_viewPerso.getSize().x/2);
+            //std::cout << "on depasse à droite "<< centerX + m_viewPerso.getSize().x<<std::endl;
+        }
+
+        //si on dépasse en bas
+        if(centerY + (m_viewPerso.getSize().y/2) > (HeightWorld/2))
+        {
+           centerY = (HeightWorld/2) - (m_viewPerso.getSize().y/2);
+            //std::cout << "on depasse à bas "<< centerY + m_viewPerso.getSize().y<<std::endl;
+        }
+
+
+        m_viewPerso.setCenter(centerX, centerY);
+}
 
 
 Editor::~Editor()

@@ -1,11 +1,13 @@
 #include "GraphView.hpp"
 
 GraphView::GraphView(ConstrueFunction& model,float thickness, float scale)
-:m_isStandAlone(false), m_model(&model),m_thickness(thickness), m_scale(scale), m_graphColor(CurveColor)
+:m_isStandAlone(false), m_model(&model),m_thickness(thickness), m_scale(scale), m_graphColor(sf::Color(50,67,135)),
+ m_viewport(sf::View())
 {}
 
 GraphView::GraphView(float thickness, float scale)
-: m_isStandAlone(true), m_model(nullptr), m_thickness(thickness), m_scale(scale), m_graphColor(CurveColor)
+: m_isStandAlone(true), m_model(nullptr), m_thickness(thickness), m_scale(scale), m_graphColor(sf::Color(50,67,135)),
+ m_viewport(sf::View())
 {
 
 }
@@ -38,6 +40,7 @@ void GraphView::standAloneRepresent(const ConstrueFunction& model, float step)
 		{
 			m_lines.push_back(LineSFML2_1(sf::Vector2f(it->x, -it->y) * m_scale, sf::Vector2f(itNext->x, -itNext->y) * m_scale));
 			m_lines.rbegin()->setFillColor(m_graphColor);
+			m_lines.rbegin()->setThickness(m_thickness);
 		}
 		it++;
 		itNext++;
@@ -48,8 +51,11 @@ void GraphView::draw(sf::RenderTarget& App)
 {
 	FOR_STL_ITERATOR(std::list<LineSFML2_1>, m_lines, itl)
 	{
-		itl->setThickness(m_thickness);
-		App.draw(*itl);
+         if( itl->getPosition().x >= m_viewport.getCenter().x - m_viewport.getSize().x/2
+         &&  itl->getPosition().x <= m_viewport.getCenter().x + m_viewport.getSize().x/2 )
+         {
+            App.draw(*itl);
+         }
 	}
 }
 
@@ -59,12 +65,12 @@ void GraphView::drawInterval(sf::RenderTarget& App, unsigned int split)
     unsigned int increment = 0;
     FOR_STL_ITERATOR(std::list<LineSFML2_1>, m_lines, itl)
 	{
-		itl->setThickness(m_thickness);
-		if(increment == split)
-		{
+        if(increment == split)
+        {
             App.draw(*itl);
             increment = 0;
-		}
-		increment++;
+
+        }
+        increment++;
 	}
 }

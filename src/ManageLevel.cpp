@@ -79,13 +79,14 @@ void ManageLevel::loadFile(int numLevel, GameMode mode)
         throw std::ios_base::failure("unable to open level");
     }
 
-//    #ifdef DEBUG
-//        std::cout << "ManageLevel::loadFile - directory : " << directory << std::endl;
-//        std::cout << "ManageLevel::loadFile - m_filenameCurrent : " << m_filenameCurrent << std::endl;
-//    #endif // DEBUG
+    #ifdef DEBUG
+        std::cout << "ManageLevel::loadFile - directory : " << directory << std::endl;
+        std::cout << "ManageLevel::loadFile - m_filenameCurrent : " << m_filenameCurrent << std::endl;
+    #endif // DEBUG
 
     m_levelModel = new LevelModel(directory, mode );
     m_levelView = new LevelView(*m_levelModel, m_scale);
+    std::cout << "MANAGELEVEL" << std::endl;
 }
 
 void ManageLevel::IsNextLevel()
@@ -118,6 +119,7 @@ int  ManageLevel::changeLevel (ScreenLink * link)
                 return - 1 ;
             }
             link->setMaxLevel( link->getDiff() , link->getCurrentLevel() + 1 );
+            link->setCurrentLevel( link->getCurrentLevel() +1 );
             setLevel(getLevel() + 1);
             loadFile(getLevel(), m_levelModel->getMode());
             m_changeLevel = false;

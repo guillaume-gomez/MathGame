@@ -26,9 +26,9 @@ TextAreaSFML2_0::TextAreaSFML2_0(unsigned int padding, const sf::Color& textColo
 		m_text.setColor(textColor);
 
 		checkForMaxHeightCharacter();
-
-		m_background.setTexture(backgroundTexture, true);
-		m_background.setScale(1, (m_maxHeigtCharacter*m_lines+m_paddingTop+m_paddingBottom)/m_background.getLocalBounds().height);
+		m_background.setTexture(*TextureManager::getTextureManager()->getResource(FilenameTextAreaTex), true);
+		//m_background.setScale(1, (m_maxHeigtCharacter*m_lines+m_paddingTop+m_paddingBottom)/m_background.getLocalBounds().height);
+        scaleBG();
 
 		m_text.setPosition(m_background.getPosition().x-m_minXCharacter+m_paddingLeft,m_background.getPosition().y+m_maxHeigtCharacter/4+m_paddingTop);
 		m_caret.setPosition(m_text.findCharacterPos(m_caretPosition).x, m_text.findCharacterPos(m_caretPosition).y-m_maxHeigtCharacter/4);
@@ -165,7 +165,8 @@ void TextAreaSFML2_0::insertCharacter(std::size_t position, sf::Uint32 utf32Char
 			moveCaretForward();
 	}
 	addArtificalsEndl();
-	m_background.setScale(1, (m_maxHeigtCharacter*m_lines+m_paddingTop+m_paddingBottom)/m_background.getLocalBounds().height);
+	//m_background.setScale(1, (m_maxHeigtCharacter*m_lines+m_paddingTop+m_paddingBottom)/m_background.getLocalBounds().height);
+    scaleBG();
 }
 
 void TextAreaSFML2_0::insertCharacter(sf::Uint32 utf32Char)
@@ -186,7 +187,8 @@ void TextAreaSFML2_0::erase(std::size_t position)
 	}
 	addArtificalsEndl();
 
-	m_background.setScale(1, (m_maxHeigtCharacter*m_lines+m_paddingTop+m_paddingBottom)/m_background.getLocalBounds().height);
+	//m_background.setScale(1, (m_maxHeigtCharacter*m_lines+m_paddingTop+m_paddingBottom)/m_background.getLocalBounds().height);
+    scaleBG();
 }
 
 void TextAreaSFML2_0::erase()
@@ -214,13 +216,19 @@ void TextAreaSFML2_0::setPosition(const sf::Vector2f &position)
 	setPosition(position.x, position.y);
 }
 
+sf::Vector2f TextAreaSFML2_0::getPosition() const
+{
+    return m_background.getPosition();
+}
+
 void TextAreaSFML2_0::setCharacterSize(unsigned int size)
 {
 	m_text.setCharacterSize(size);
 
 	checkForMaxHeightCharacter();
 
-	m_background.setScale(1, (m_maxHeigtCharacter*m_lines+m_paddingTop+m_paddingBottom)/m_background.getLocalBounds().height);
+	//m_background.setScale(1, (m_maxHeigtCharacter*m_lines+m_paddingTop+m_paddingBottom)/m_background.getLocalBounds().height);
+    scaleBG();
 
 	m_text.setPosition(m_background.getPosition().x-m_minXCharacter+m_paddingLeft,m_background.getPosition().y+m_maxHeigtCharacter/4+m_paddingTop);
 	m_caret.setPosition(m_text.findCharacterPos(m_caretPosition).x, m_text.findCharacterPos(m_caretPosition).y-m_maxHeigtCharacter/4);
@@ -319,4 +327,14 @@ void TextAreaSFML2_0::draw(sf::RenderTarget& target, sf::RenderStates states) co
 	target.draw(m_background);
 	target.draw(m_text);
 	target.draw(m_caret);
+}
+
+
+void TextAreaSFML2_0::draw(sf::RenderTarget& target) const
+{
+	target.draw(m_background);
+	target.draw(m_text);
+	//this method is used by InfoDisplayer
+	// make this method better if any other class uses the method
+	//target.draw(m_caret);
 }

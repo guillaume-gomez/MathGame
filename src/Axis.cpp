@@ -16,7 +16,7 @@
 * @brief : Constructor of the class
 **/
 Axis::Axis(float _graduation)
-:m_originyAxis(0.0f), m_originxAxis(0.0f), m_scale(1.0f), m_graduation(_graduation)
+:m_originyAxis(0.0f), m_originxAxis(0.0f), m_scale(1.0f), m_graduation(_graduation), m_view(sf::View())
 {
     sf::Color color(18, 25, 112, 75);
     float heightAxis = 4.0f;
@@ -146,12 +146,21 @@ void Axis::draw(sf::RenderWindow& App)
 
     FOR_STL_ITERATOR(std::vector<sf::RectangleShape>, m_listXGrad, it)
     {
-        App.draw(*it);
+        if( it->getPosition().x >= m_view.getCenter().x - m_view.getSize().x
+        &&  it->getPosition().x <= m_view.getCenter().x + m_view.getSize().x)
+        {
+            App.draw(*it);
+        }
     }
 
+    //
      FOR_STL_ITERATOR(std::vector<sf::RectangleShape>, m_listYGrad, it)
     {
-        App.draw(*it);
+         if( it->getPosition().y >= m_view.getCenter().y - m_view.getSize().y/2
+         &&  it->getPosition().y <= m_view.getCenter().y + m_view.getSize().y/2 )
+        {
+            App.draw(*it);
+        }
     }
    App.draw(m_shapexAxis);
    App.draw(m_shapeyAxis);

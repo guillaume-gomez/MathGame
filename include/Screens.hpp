@@ -15,8 +15,8 @@ enum {
   OPTION,
   CREDIT,
   ENDING,
+  HOWTO,
   CHARACTER_CHOICE,
-
 };
 
 

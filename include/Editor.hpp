@@ -12,6 +12,7 @@
 #include "Enemy.hpp"
 #include "GraphView.hpp"
 #include "GravityCircle.hpp"
+#include "InfoDisplayer.hpp"
 #include "ManageText.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
 #include "PanelEditor.hpp"
@@ -45,6 +46,7 @@ class Editor
         void popPoint();
         void deleteGravityCircle(int x, int y);
         void deletePoint(int x , int y);
+        void cameraMoved();
         ~Editor();
 
     private:
@@ -60,6 +62,7 @@ class Editor
         ButtonPerso m_buttonNormalButton;
         ButtonPerso m_buttonLeftEnemy;
         ButtonPerso m_buttonPanel;
+        ButtonPerso m_buttonInfo;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
         TypeObject m_creatingType;
