@@ -1,11 +1,13 @@
 #include "GraphView.hpp"
 
 GraphView::GraphView(ConstrueFunction& model,float thickness, float scale)
-:m_isStandAlone(false), m_model(&model),m_thickness(thickness), m_scale(scale), m_graphColor(sf::Color(50,67,135))
+:m_isStandAlone(false), m_model(&model),m_thickness(thickness), m_scale(scale), m_graphColor(sf::Color(50,67,135)),
+ m_viewport(sf::View())
 {}
 
 GraphView::GraphView(float thickness, float scale)
-: m_isStandAlone(true), m_model(nullptr), m_thickness(thickness), m_scale(scale), m_graphColor(sf::Color(50,67,135))
+: m_isStandAlone(true), m_model(nullptr), m_thickness(thickness), m_scale(scale), m_graphColor(sf::Color(50,67,135)),
+ m_viewport(sf::View())
 {
 
 }
@@ -48,7 +50,11 @@ void GraphView::draw(sf::RenderTarget& App)
 {
 	FOR_STL_ITERATOR(std::list<LineSFML2_1>, m_lines, itl)
 	{
-		itl->setThickness(m_thickness);
-		App.draw(*itl);
+         if( itl->getPosition().x >= m_viewport.getCenter().x - m_viewport.getSize().x
+         &&  itl->getPosition().x <= m_viewport.getCenter().x + m_viewport.getSize().x )
+         {
+            itl->setThickness(m_thickness);
+            App.draw(*itl);
+         }
 	}
 }

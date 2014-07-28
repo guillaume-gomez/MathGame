@@ -27,6 +27,7 @@ class Curves : public EditorObject
         void setFunction(std::string str);
         void reset();
         void represent(float step);
+        void receiveView(const sf::View view);
 
         private:
     	virtual void setPosition(sf::Vector2f& position);
@@ -79,6 +80,11 @@ inline std::string Curves::getFunction() const
 inline void Curves::setFunction(std::string str)
 {
     m_model.setFunction(str);
+}
+
+inline void Curves::receiveView(const sf::View view)
+{
+    m_view.receiveView(view);
 }
 
 #endif // Curves_H

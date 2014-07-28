@@ -40,7 +40,7 @@ const float ZoomMax = 360.0f;
 
 const float Thickness = 4.0f;
 
-const float MaxSizeGraph = 25.0f;
+const float MaxSizeGraph = 50.0f;
 const float Step = 0.2f;
 
 const int WidthSpritePlayer = 24;

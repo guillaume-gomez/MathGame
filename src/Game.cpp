@@ -238,6 +238,9 @@ void Game::resetWindow()
     m_viewPerso.setSize(Vector2f(m_app.getSize()));
     m_viewPerso.setCenter(0, 0);
     m_level.receiveView(m_viewPerso);
+    m_axis.receiveView(m_viewPerso);
+    m_functionManager.setViews(m_viewPerso);
+    m_curves.receiveView(m_viewPerso);
 
 }
 
@@ -319,6 +322,9 @@ void Game::move()
         cameraMoved();
 
         m_level.receiveView(m_viewPerso);
+        m_axis.receiveView(m_viewPerso);
+        m_functionManager.setViews(m_viewPerso);
+        m_curves.receiveView(m_viewPerso);
 
     }
 
@@ -433,9 +439,12 @@ void Game::manageSound()
 
 void Game::setCenterCamera()
 {
-   m_viewPerso = m_app.getView();
-   m_viewPerso.setCenter(0, 0);
+    m_viewPerso = m_app.getView();
+    m_viewPerso.setCenter(0, 0);
     m_level.receiveView(m_viewPerso);
+    m_axis.receiveView(m_viewPerso);
+    m_functionManager.setViews(m_viewPerso);
+    m_curves.receiveView(m_viewPerso);
 
 }
 

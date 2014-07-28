@@ -13,6 +13,7 @@ class Axis
         float getGraducation();
 
         void draw(sf::RenderWindow& App);
+        void receiveView(const sf::View view);
 
     private:
         int m_originyAxis;
@@ -25,7 +26,14 @@ class Axis
         sf::RectangleShape m_shapexAxis;
         sf::RectangleShape m_shapeyAxis;
 
+        sf::View m_view;
+
 
 };
 
+
+inline void Axis::receiveView(const sf::View view)
+{
+    m_view = view;
+}
 #endif // AXIS_HPP

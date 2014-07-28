@@ -72,6 +72,13 @@ void ManageFunctions::draw(sf::RenderTarget& app)
 	m_vectorCurves.at(m_currentIndex).draw(app);
 }
 
+void ManageFunctions::setViews(const sf::View view)
+{
+    for(auto it : m_vectorCurves)
+    {
+        it.receiveView(view);
+    }
+}
 
 void ManageFunctions::addFunction(std::string function)
 {

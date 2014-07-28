@@ -33,7 +33,7 @@ class LevelView
         void loadCoord();
         void reset();
 
-        void setView(sf::View& view);
+        void setView(const sf::View& view);
     private:
         LevelView();
         std::vector<EditorObject*> m_listSprite;
@@ -54,7 +54,7 @@ class LevelView
 
 inline std::vector<EditorObject*> LevelView::getSpriteList () const { return m_listSprite;};
 
-inline void LevelView::setView(sf::View& view)
+inline void LevelView::setView(const sf::View& view)
 {
     m_view = view;
 }

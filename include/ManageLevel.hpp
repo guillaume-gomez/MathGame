@@ -53,7 +53,7 @@ class ManageLevel
         void fillLevelFunctions(ManageFunctions& func);
         const std::vector<EditorObject*> getSpriteList () const;
         void scaleNbAttempt(float scaleX, float scaleY);
-        void receiveView(sf::View& view);
+        void receiveView(const sf::View& view);
 
     private:
         Difficulty m_difficulty;
@@ -129,7 +129,7 @@ const inline std::vector<EditorObject*> ManageLevel::getSpriteList () const
     return m_levelView->getSpriteList();
 }
 
-inline void ManageLevel::receiveView(sf::View& view)
+inline void ManageLevel::receiveView(const sf::View& view)
 {
     m_levelView->setView(view);
 }
