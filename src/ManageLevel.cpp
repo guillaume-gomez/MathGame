@@ -80,13 +80,12 @@ void ManageLevel::loadFile(int numLevel, GameMode mode)
     }
 
     #ifdef DEBUG
-        std::cout << "ManageLevel::loadFile - directory : " << directory << std::endl;
-        std::cout << "ManageLevel::loadFile - m_filenameCurrent : " << m_filenameCurrent << std::endl;
+        //std::cout << "ManageLevel::loadFile - directory : " << directory << std::endl;
+        //std::cout << "ManageLevel::loadFile - m_filenameCurrent : " << m_filenameCurrent << std::endl;
     #endif // DEBUG
 
     m_levelModel = new LevelModel(directory, mode );
     m_levelView = new LevelView(*m_levelModel, m_scale);
-    std::cout << "MANAGELEVEL" << std::endl;
 }
 
 void ManageLevel::IsNextLevel()

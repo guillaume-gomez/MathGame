@@ -370,7 +370,6 @@ void Game::selectLevel(ScreenLink& stat)
 //        #endif // DEBUG
         throw;
     }
-    std::cout <<"GAME::selectLevel" << std::endl;
 }
 
 int Game::levelOperation(ScreenLink& stat)
@@ -408,9 +407,6 @@ int Game::levelOperation(ScreenLink& stat)
       }
 
       return changing;
-      #ifdef DEBUG
-      std::cout << "GAME::LevelOperation" << std::endl;
-      #endif DEBUG
 }
 
 void Game::reset()

@@ -29,8 +29,6 @@ LevelView::LevelView(const LevelModel& model, float _scale)
 //    float heightTex = (float) m_texGoal.getSize().y / 2;
 
     loadCoord();
-    std::cout << "LevelView fin de chargement de niveau" << std::endl;
-
 }
 
 
