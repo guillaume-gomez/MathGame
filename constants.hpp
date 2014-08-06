@@ -108,7 +108,7 @@ const float offsetNbAttemptEnemy = 15.0f;
 const float DefaultSoundVolume = 10.0f;
 
 const sf::Color CurveColor(50,67,135);
-const sf::Color PreviousCurveColor(0,255,0,75);
+const sf::Color PreviousCurveColor(0,150,0,75);
 const sf::Color NextCurveColor(255,0,0,75);
 
 #endif // CONSTANTS_HPP
