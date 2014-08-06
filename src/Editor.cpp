@@ -44,6 +44,7 @@ m_radiusBuilder(0.0f, 0.0f)
 
     setCenterCamera();
 
+
 	m_textAreaFunction.setCharacterSize(20);
     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
 
@@ -187,6 +188,7 @@ bool Editor::handleInput()
                     {
                          m_viewPerso.setCenter(center.x + 10, center.y);
                     }
+                    m_axis.receiveView(m_viewPerso);
                 }
 
                 if(m_event.key.code == sf::Keyboard::Left)
@@ -391,6 +393,7 @@ void Editor::setCenterCamera()
 {
    m_viewPerso = m_app.getView();
    m_viewPerso.setCenter(0,0);
+   m_axis.receiveView(m_viewPerso);
 }
 
 
@@ -537,7 +540,7 @@ void Editor::addObject(int x , int y)
             InfoDisplayer* newInfo = dynamic_cast<InfoDisplayer*>(ObjectFactoryAbstract::create(TypeObject::Info));
             newInfo->setPosition(coord.x - m_buttonCursor.getLocalBounds().width / 2,
                                  coord.y - m_buttonCursor.getLocalBounds().height / 2);
-            newInfo->setMessage("Message à rajouter par  la suite");
+            newInfo->setMessage("Message temporaire");
             m_spriteList.push_back(newInfo);
         }
     }
