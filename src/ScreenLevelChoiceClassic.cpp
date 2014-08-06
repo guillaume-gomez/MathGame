@@ -5,7 +5,7 @@ ScreenLevelChoiceClassic::ScreenLevelChoiceClassic(ScreenLink* _stat)
 {
     for(unsigned int i=0; i < m_selectionLevel.size(); i++)
     {
-        m_selectionLevel.at(i)->setGameMode(Classic);
+        m_selectionLevel.at(i)->setGameMode(Dynamic);
     }
 }
 

@@ -24,7 +24,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
 
         bool Running = true;
          //temp
-        m_game->setGameMode(GameMode::Classic);
+        m_game->setGameMode(m_stat->getMode());
         //
         m_game->loadConfigFile();
         m_game->selectLevel(*m_stat);

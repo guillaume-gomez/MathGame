@@ -9,7 +9,7 @@
 
 #include "ConstrueFunction.hpp"
 #include "../libs/LineSFML2_1.hpp"
-
+#include "../constants.hpp"
 
 #define FOR_STL_ITERATOR(container_type, name, iteratorName) for(container_type::iterator iteratorName=name.begin(); iteratorName!=name.end(); iteratorName++)
 
@@ -23,6 +23,7 @@ class GraphView
         void represent(float step);
 
         void draw(sf::RenderTarget& App );
+        void drawInterval(sf::RenderTarget& App, unsigned int split = 2);
         void setGraphColor(const sf::Color& graphColor);
         void standAloneRepresent(const ConstrueFunction& function, float step);
         void receiveView(const sf::View view);
@@ -46,15 +47,17 @@ class GraphView
 inline void GraphView::setGraphColor(const sf::Color& graphColor)
 {
     m_graphColor = graphColor;
+    if(!m_lines.empty())
+    {
+        FOR_STL_ITERATOR(std::list<LineSFML2_1>, m_lines, itl)
+        {
+            itl->setFillColor(m_graphColor);
+        }
+    }
 }
 
 inline void GraphView::receiveView(const sf::View view)
 {
     m_viewport = view;
 }
-
-/**
-*  accessors
-**/
-
 #endif // GRAPHVIEW_H

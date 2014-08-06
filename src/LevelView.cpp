@@ -29,7 +29,6 @@ LevelView::LevelView(const LevelModel& model, float _scale)
 //    float heightTex = (float) m_texGoal.getSize().y / 2;
 
     loadCoord();
-
 }
 
 
@@ -95,13 +94,7 @@ void LevelView::loadCoord()
 
             case (TypeObject::Integral):
             {
-//                #ifdef DEBUG
-//                    std::cout << "void LevelView::loadCoord() case (TypeObject::Integral):" << std::endl;
-//                #endif // DEBUG
                 Integral* integral =  dynamic_cast<Integral*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-//                #ifdef DEBUG
-//                    std::cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" << std::endl;
-//                #endif // DEBUG
                 if(integral != nullptr)
                 {
                     integral->setFunction(m_model.getFunction(i));
@@ -114,9 +107,6 @@ void LevelView::loadCoord()
             case (TypeObject::Function):
             {
 
-//                #ifdef DEBUG
-//                    std::cout << "void LevelView::loadCoord() case (TypeObject::Function):" << EditorObject::getTypeStr(m_model.getType(i)) << std::endl;
-//                #endif // DEBUG
                 Curves* curves =  dynamic_cast<Curves*>(ObjectFactoryAbstract::create(m_model.getType(i)));
                 if(curves != nullptr)
                 {
@@ -124,10 +114,6 @@ void LevelView::loadCoord()
                     m_listSprite.push_back(curves);
                     m_listFunctionLevel.push_back(m_model.getFunction(i));
                 }
-
-//                #ifdef DEBUG
-//                    std::cout << "void LevelView::loadCoord() case (TypeObject::Function): 8===============>" << std::endl;
-//                #endif // DEBUG
             }
 
             case (TypeObject::Info):
@@ -140,7 +126,6 @@ void LevelView::loadCoord()
                     m_listSprite.push_back(info);
                 }
             }
-
             default:
             break;
 

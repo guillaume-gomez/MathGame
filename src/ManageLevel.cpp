@@ -67,6 +67,7 @@ void ManageLevel::loadFile(int numLevel, GameMode mode)
     setLevel( numLevel);
     std::ostringstream oss;
     oss << numLevel << "_" << convertEnum(m_difficulty) << ".lvl";
+    std::cout << "fileLoad " << oss.str() << std::endl;
     directory += oss.str();
     m_filenameCurrent = oss.str();
 
@@ -78,10 +79,10 @@ void ManageLevel::loadFile(int numLevel, GameMode mode)
         throw std::ios_base::failure("unable to open level");
     }
 
-//    #ifdef DEBUG
-//        std::cout << "ManageLevel::loadFile - directory : " << directory << std::endl;
-//        std::cout << "ManageLevel::loadFile - m_filenameCurrent : " << m_filenameCurrent << std::endl;
-//    #endif // DEBUG
+    #ifdef DEBUG
+        //std::cout << "ManageLevel::loadFile - directory : " << directory << std::endl;
+        //std::cout << "ManageLevel::loadFile - m_filenameCurrent : " << m_filenameCurrent << std::endl;
+    #endif // DEBUG
 
     m_levelModel = new LevelModel(directory, mode );
     m_levelView = new LevelView(*m_levelModel, m_scale);

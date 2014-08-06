@@ -20,7 +20,7 @@ Curves::Curves(const Curves& copy)
 {
     if(copy.m_model.m_coords.front().x != 0.0f && copy.m_model.m_coords.back().x != 0.1f)
     {
-        build(-GraphScale,GraphScale, Step);
+        build();
     }
 }
 
@@ -42,6 +42,11 @@ std::string Curves::save(float scale) const
 void Curves::draw(sf::RenderTarget& app)
 {
 	m_view.draw(app);
+}
+
+void Curves::drawInterval(sf::RenderTarget& app)
+{
+	m_view.drawInterval(app);
 }
 
 void Curves::represent(float step)

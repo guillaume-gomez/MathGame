@@ -225,7 +225,7 @@ void Game::draw()
         {
             m_frameCountClock.restart();
             m_frameCountText.setString(std::to_string(m_frameCount*4));
-            m_frameCount=0;
+            m_frameCount = 0;
         }
 //        m_frameCountText.setString(std::to_string(1000/m_frameCountClock.restart().asMilliseconds()));
 //        // std::cout << std::to_string(1000/frameCountClock.restart().asMilliseconds()) << std::endl;
@@ -237,9 +237,10 @@ void Game::resetWindow()
 {
     m_viewPerso.setSize(Vector2f(m_app.getSize()));
     m_viewPerso.setCenter(0, 0);
+
     m_level.receiveView(m_viewPerso);
     m_axis.receiveView(m_viewPerso);
-    m_functionManager.setViews(m_viewPerso);
+    //m_functionManager.setViews(m_viewPerso);
     m_curves.receiveView(m_viewPerso);
 
 }
@@ -351,15 +352,14 @@ void Game::selectLevel(ScreenLink& stat)
     try
     {
         m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
-
         if(getGameMode() == GameMode::Dynamic)
         {
             m_gameStarted = true;
             m_timer.restart();
             m_level.fillLevelFunctions(m_functionManager);
+            m_functionManager.colorize();
             Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
             m_functionManager.represent(Step);
-
             m_textAreaFunction.setString(m_functionManager.getFunction());
         }
     }
@@ -392,6 +392,12 @@ int Game::levelOperation(ScreenLink& stat)
 //          #endif // DEBUG
         reset();
         changing = m_level.changeLevel(&stat);
+
+        if(getGameMode() == GameMode::Dynamic)
+        {
+            m_level.fillLevelFunctions(m_functionManager);
+            m_functionManager.colorize();
+        }
         m_playerDead = false;
       }
 
@@ -407,13 +413,24 @@ int Game::levelOperation(ScreenLink& stat)
 void Game::reset()
 {
 #ifdef DEBUG
-// // std::cout << "RESET RESET RESET" << std::endl << std::endl << std::endl;
+//  std::cout << "RESET RESET RESET" << std::endl << std::endl << std::endl;
 #endif
          m_player->reset();
+         //reset the camera
          resetWindow();
      //    Physics::Engine::getEngine()->cleanEngine();
      //    m_graphModel.setChanged(true);
      //    m_graphModel.clearFunction();
+
+        // start the level with the first function in the list
+        if(!m_functionManager.isEmpty())
+        {
+            m_functionManager.resetToZero();
+            Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
+            m_textAreaFunction.setString(m_functionManager.getFunction());
+        }
+
+
         if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
         {
             m_curves.reset();
@@ -439,13 +456,13 @@ void Game::manageSound()
 
 void Game::setCenterCamera()
 {
+
     m_viewPerso = m_app.getView();
     m_viewPerso.setCenter(0, 0);
     m_level.receiveView(m_viewPerso);
     m_axis.receiveView(m_viewPerso);
-    m_functionManager.setViews(m_viewPerso);
+    //m_functionManager.setViews(m_viewPerso);
     m_curves.receiveView(m_viewPerso);
-
 }
 
 void Game::loadConfigFile()

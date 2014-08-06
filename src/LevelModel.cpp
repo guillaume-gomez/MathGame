@@ -28,9 +28,15 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
         m_fileLevel >> m_nbAttempt;
         m_saveNbAttemp = m_nbAttempt;
 
-        if(m_mode == NoChance)
+        if(m_mode == GameMode::NoChance)
         {
             m_nbAttempt = m_saveNbAttemp = 1;
+        }
+
+        if(m_mode == GameMode::Classic)
+        {
+            if(m_nbAttempt > 2)m_nbAttempt--;
+            m_saveNbAttemp = m_nbAttempt;
         }
 
 
@@ -119,7 +125,6 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
 //                #endif // DEBUG
                 newElmt.setType(TypeObject::Function);
                 newElmt.setFunction(function);
-
                  //because it is not a point
                 m_pointsCheck[i] = true;
             }

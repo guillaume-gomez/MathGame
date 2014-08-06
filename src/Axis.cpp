@@ -156,8 +156,8 @@ void Axis::draw(sf::RenderWindow& App)
     //
      FOR_STL_ITERATOR(std::vector<sf::RectangleShape>, m_listYGrad, it)
     {
-         if( it->getPosition().y >= m_view.getCenter().y - m_view.getSize().y
-         &&  it->getPosition().y <= m_view.getCenter().y + m_view.getSize().y )
+         if( it->getPosition().y >= m_view.getCenter().y - m_view.getSize().y/2
+         &&  it->getPosition().y <= m_view.getCenter().y + m_view.getSize().y/2 )
         {
             App.draw(*it);
         }

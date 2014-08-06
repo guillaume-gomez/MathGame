@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="ProjetMath" />
+		<Option title="Trunk" />
 		<Option pch_mode="2" />
 		<Option default_target="Debug" />
 		<Option compiler="gcc" />
@@ -76,6 +76,7 @@
 		<Unit filename="include/GraphView.hpp" />
 		<Unit filename="include/GravityCircle.hpp" />
 		<Unit filename="include/Hero.hpp" />
+		<Unit filename="include/InfoDisplayer.hpp" />
 		<Unit filename="include/Integral.hpp" />
 		<Unit filename="include/IntegralModel.hpp" />
 		<Unit filename="include/IntegralView.hpp" />
@@ -92,6 +93,7 @@
 		<Unit filename="include/Screen.hpp" />
 		<Unit filename="include/ScreenCredit.hpp" />
 		<Unit filename="include/ScreenFinish.hpp" />
+		<Unit filename="include/ScreenHowTo.hpp" />
 		<Unit filename="include/ScreenLevelChoice.hpp" />
 		<Unit filename="include/ScreenLevelChoiceClassic.hpp" />
 		<Unit filename="include/ScreenLevelChoiceNoChance.hpp" />
@@ -142,6 +144,7 @@
 		<Unit filename="src/GraphView.cpp" />
 		<Unit filename="src/GravityCircle.cpp" />
 		<Unit filename="src/Hero.cpp" />
+		<Unit filename="src/InfoDisplayer.cpp" />
 		<Unit filename="src/Integral.cpp" />
 		<Unit filename="src/IntegralModel.cpp" />
 		<Unit filename="src/IntegralView.cpp" />
@@ -158,6 +161,7 @@
 		<Unit filename="src/Screen.cpp" />
 		<Unit filename="src/ScreenCredit.cpp" />
 		<Unit filename="src/ScreenFinish.cpp" />
+		<Unit filename="src/ScreenHowTo.cpp" />
 		<Unit filename="src/ScreenLevelChoice.cpp" />
 		<Unit filename="src/ScreenLevelChoiceClassic.cpp" />
 		<Unit filename="src/ScreenLevelChoiceNoChance.cpp" />
