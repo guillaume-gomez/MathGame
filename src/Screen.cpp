@@ -7,9 +7,9 @@ Screen::Screen()
 {
     if(!isloadTheme)
     {
-        std::cout << "load " << std::endl;
+//        std::cout << "load " << std::endl;
         m_desktop.LoadThemeFromFile(FilenameTheme);
-        std::cout << "end" << std::endl;
+//        std::cout << "end" << std::endl;
         isloadTheme = true;
     }
 }

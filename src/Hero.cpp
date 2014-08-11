@@ -2,7 +2,7 @@
 #include <sstream>
 
 Hero::Hero()
-: m_model(true, sf::Vector2f(0.0f, 0.0f), 12),
+: m_model(true, sf::Vector2f(0.0f, 0.0f), CharSpeed),
   m_view(m_model,GraphScale)
 {
     #ifdef DEBUG

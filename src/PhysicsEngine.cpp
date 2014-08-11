@@ -129,7 +129,7 @@ void Engine::update(float elapsedSeconds)
         if( (!object->isOnCurve() && std::abs(object->m_Velocity.x) < std::abs(object->m_Thrust.x))
          || ((object->m_Thrust.x<0 && object->m_Velocity.x>0) || (object->m_Thrust.x>0 && object->m_Velocity.x<0))
           )
-            object->m_Velocity.x += object->m_Thrust.x*elapsedSeconds;
+            object->m_Velocity.x += object->m_Thrust.x*elapsedSeconds*2;
 
         object->m_angle = 0.0f;
 

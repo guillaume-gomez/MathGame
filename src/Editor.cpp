@@ -189,6 +189,7 @@ bool Editor::handleInput()
                          m_viewPerso.setCenter(center.x + 10, center.y);
                     }
                     m_axis.receiveView(m_viewPerso);
+                    m_graphView.receiveView(m_viewPerso);
                 }
 
                 if(m_event.key.code == sf::Keyboard::Left)
@@ -394,6 +395,7 @@ void Editor::setCenterCamera()
    m_viewPerso = m_app.getView();
    m_viewPerso.setCenter(0,0);
    m_axis.receiveView(m_viewPerso);
+   m_graphView.receiveView(m_viewPerso);
 }
 
 

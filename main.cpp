@@ -22,7 +22,6 @@ using namespace sf;
 
 int main()
 {
-
     ObjectFactoryAbstract::_register(TypeObject::Circle,new GravityCircle());
     ObjectFactoryAbstract::_register(TypeObject::Point,new Point(sizePoint));
     ObjectFactoryAbstract::_register(TypeObject::GoalPoint,new Point(sizePoint, true));
@@ -32,8 +31,8 @@ int main()
     ObjectFactoryAbstract::_register(TypeObject::Info,new InfoDisplayer());
 
     ContextSettings contextPerso(0, 0, 2);
-    RenderWindow App(VideoMode(WindowWidth, WindowHeight),"I Hate Maths",Style::Close | Style::Titlebar, contextPerso);
-
+    RenderWindow App(VideoMode(WindowWidth, WindowHeight),"I Hate Maths",Style::Default, contextPerso);
+//    App.setFramerateLimit(120);
     std::vector<Screen*> screens;
     int screen = 0 ;
 
