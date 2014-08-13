@@ -31,8 +31,9 @@ int main()
     ObjectFactoryAbstract::_register(TypeObject::Info,new InfoDisplayer());
 
     ContextSettings contextPerso(0, 0, 2);
-    RenderWindow App(VideoMode(WindowWidth, WindowHeight),"I Hate Maths",Style::Default, contextPerso);
-//    App.setFramerateLimit(120);
+
+    RenderWindow App(VideoMode(WindowWidth, WindowHeight),"I Hate Maths",sf::Style::Default, contextPerso);
+
     std::vector<Screen*> screens;
     int screen = 0 ;
 

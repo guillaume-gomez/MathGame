@@ -207,6 +207,7 @@ void TextAreaSFML2_0::eraseNext()
 void TextAreaSFML2_0::setPosition(float x, float y)
 {
 	m_background.setPosition(x, y);
+	//std::cout <<"PositionBackground "<< m_background.getPosition().x << "  " << m_background.getPosition().y << std::endl;
 	m_text.setPosition(m_background.getPosition().x-m_minXCharacter+m_paddingLeft,m_background.getPosition().y+m_maxHeigtCharacter/4+m_paddingTop);
 	m_caret.setPosition(m_text.findCharacterPos(m_caretPosition).x, m_text.findCharacterPos(m_caretPosition).y-m_maxHeigtCharacter/4);
 }
@@ -318,6 +319,7 @@ void TextAreaSFML2_0::checkForMaxHeightCharacter()
 void TextAreaSFML2_0::scale(float scaleX, float scaleY)
 {
     m_background.scale(scaleX,scaleY);
+    std::cout <<"scaleBackground "<< m_background.getScale().x << "  " << m_background.getScale().y << std::endl;
     m_text.scale(scaleX, scaleY);
     m_caret.scale(scaleX, scaleY);
 }

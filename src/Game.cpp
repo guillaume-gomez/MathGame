@@ -357,6 +357,7 @@ void Game::selectLevel(ScreenLink& stat)
             m_gameStarted = true;
             m_timer.restart();
             m_level.fillLevelFunctions(m_functionManager);
+            m_level.decrementAttempt();
             m_functionManager.colorize();
             Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
             m_functionManager.represent(Step);
