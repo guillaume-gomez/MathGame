@@ -150,10 +150,10 @@ ScreenCredit::~ScreenCredit()
 
 void ScreenCredit::hanged()
 {
-    std::string finish1("L O O S E R ");
-    std::string finish2("L o o s e r ");
+    std::string finish1("L O S E R S");
+    std::string finish2("L o s e r s");
 
-    if((m_word == finish1 || m_word == finish2) && m_enterText)
+    if((finish1.compare(m_word.toAnsiString()) || finish2.compare(m_word.toAnsiString())) && m_enterText)
     {
         m_word = "YOU WON :)";
         m_won = true;
