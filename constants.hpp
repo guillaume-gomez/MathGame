@@ -92,7 +92,7 @@ const unsigned int JumpSpeed = 15;
 const char Sliding[] = "Sliding";
 const char NoSliding[] = "NoSliding";
 
-const float CharSpeed = 20.0f;
+const float CharSpeed = 15.0f;
 const float DefautCharFriction = 0.1;
 const unsigned int DefaultCharWidth = 24;
 const unsigned int DefaultCharHeight = 34;

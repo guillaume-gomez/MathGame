@@ -1,23 +1,36 @@
-8
-3
-Circle
-60
--4.95 -6.05
-Enemy
-1
-0
-15.45 8.8
-Enemy
-1
-1
--16.2 10.35
+16
+9
+Info
+-3.05 8.3
+Message temporaire#
+Info
+26.65 7.4
+Message temporaire#
+Function
+sin(x)
+Function
+-5
+Function
+-9
 Point
--4.95 -1.9
+1.7 0.95
 Point
--3.05 -0.849999
+4.9 -0.749999
 Point
-5.05 1.15
+10.85 -0.699999
 Point
-12 2.1
+14.5 1.05
+Point
+23.45 -0.699999
+Point
+1.75 -3.6
+Point
+5.45 -3.55
+Point
+10.4 -3.4
+Point
+24.35 -3.1
+Point
+27.8 -3.15
 GoalPoint
--5.1 -0.05
+-4.7 -6.9

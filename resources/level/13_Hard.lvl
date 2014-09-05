@@ -1,0 +1,81 @@
+31
+13
+Info
+-47.9 -9.95
+Message temporaire#
+Info
+35.95 -12.05
+Message temporaire#
+Info
+-16 11.95
+Message temporaire#
+Function
+abs(x)
+Function
+0
+Function
+cos(x)+2
+Function
+-22
+Function
+x-50
+Circle
+34
+-24.6361 6.07337
+Circle
+49
+-30.991 10.8993
+Enemy
+5
+1
+23.3441 2.454
+Enemy
+1
+0
+20.525 1.92841
+Enemy
+0
+1
+-23.8197 9.28669
+Enemy
+1
+1
+-33.1865 15.116
+Enemy
+3
+0
+43.183 -7.31066
+Enemy
+2
+1
+-42.1216 -6.6895
+Point
+-6.04927 1.9642
+Point
+1.99583 2.00843
+Point
+5.03301 5.04562
+Point
+8.01573 8.03497
+Point
+10.9741 4.97387
+Point
+14.0113 1.98452
+Point
+-19.8812 -21.0716
+Point
+-36.1746 -9.0562
+Point
+-35.9834 -4.08698
+Point
+-33.0456 12.9538
+Point
+-27.1207 8.12796
+Point
+-22.1037 3.92323
+Point
+-13.0253 1.91642
+Point
+16.0374 -0.000413132
+GoalPoint
+40.0294 -7.11953
