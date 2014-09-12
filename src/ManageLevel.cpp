@@ -261,7 +261,7 @@ void ManageLevel::displayNbAttempt()
 {
      std::string nbAttemp ;
      std::ostringstream oss;
-     oss <<"Nb attempts : " << m_levelModel->getNbAttempt() <<" / " << m_levelModel->getSaveAttempt() ;
+     oss <<"Curves used : " << m_levelModel->getNbAttempt() <<" / " << m_levelModel->getSaveAttempt() ;
      nbAttemp += oss.str();
 
      m_nbAttemp.setString(nbAttemp);
