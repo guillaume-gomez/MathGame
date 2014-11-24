@@ -319,7 +319,7 @@ void TextAreaSFML2_0::checkForMaxHeightCharacter()
 void TextAreaSFML2_0::scale(float scaleX, float scaleY)
 {
     m_background.scale(scaleX,scaleY);
-    std::cout <<"scaleBackground "<< m_background.getScale().x << "  " << m_background.getScale().y << std::endl;
+//    std::cout <<"scaleBackground "<< m_background.getScale().x << "  " << m_background.getScale().y << std::endl;
     m_text.scale(scaleX, scaleY);
     m_caret.scale(scaleX, scaleY);
 }
