@@ -1,4 +1,8 @@
+OPTIONS  = -std=c++11
+
 INCLUDES = -Iinclude
 
 all :
-	g++ $(INCLUDES) -o bin/test main.cpp src/*
+	g++ $(OPTIONS) $(INCLUDES) -o bin/test main.cpp src/*
+
+
