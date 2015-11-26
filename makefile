@@ -1,4 +1,4 @@
-OPTIONS  = -std=c++11
+OPTIONS = -std=c++11
 
 INCLUDES = -Iinclude
 
@@ -14,7 +14,8 @@ cd $(1); \
 rm -r build; \
 mkdir build; \
 cd build; \
-cmake ..
+cmake ..; \
+make $(2)
 endef
 
 define cleanExtLib =
@@ -27,28 +28,28 @@ fi
 endef
 
 
-main :
+main:
 	g++ $(OPTIONS) $(INCLUDES) -o bin/test main.cpp src/*
 
 
 
-sfgui :
-	$(call buildExtLib, $(SFGUI_DIR))
+sfgui:
+	$(call buildExtLib, $(SFGUI_DIR), sfgui)
 
-sfml :
-	$(call buildExtLib, $(SFML_DIR))
-
-
-
-extLibs : sfml sfgui
+sfml:
+	$(call buildExtLib, $(SFML_DIR), all)
 
 
 
-all : extLibs main
+extLibs: sfml sfgui
 
 
 
-clean :
+all: extLibs main
+
+
+
+clean:
 	$(call cleanExtLib, $(SFML_DIR))
 	$(call cleanExtLib, $(SFGUI_DIR))
 
