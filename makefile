@@ -18,8 +18,12 @@ cmake ..
 endef
 
 define cleanExtLib =
-cd $(1); \
-rm -r build
+@if [ -d $(1)/build ]; \
+then \
+	echo rm $(1)/build ;\
+	cd $(1); \
+	rm -r build; \
+fi
 endef
 
 
