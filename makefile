@@ -4,6 +4,8 @@ INCLUDES = -Iinclude
 
 SFGUI_DIR = extlibs/SFGUI-0.3.0
 
+SFML_DIR = extlibs/SFML
+
 SFML_DEPENDENCIES = freetype2 libjpeg-turbo libx11 libxrandr libxcb xcb-util \
 					xcb-util-image mesa flac libogg libvorbis openal
 
@@ -20,7 +22,12 @@ sfgui :
 	cmake ../
 
 sfml :
-	sudo pacman -S $(SFML_DEPENDENCIES)
+	#sudo pacman -S $(SFML_DEPENDENCIES)
+	cd $(SFML_DIR)*; \
+	rm -r build; \
+	mkdir build; \
+	cd build; \
+	cmake ../
 
 all : sfgui main
 
