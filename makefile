@@ -17,6 +17,11 @@ cd build; \
 cmake ..
 endef
 
+define cleanExtLib =
+cd $(1); \
+rm -r build
+endef
+
 
 main :
 	g++ $(OPTIONS) $(INCLUDES) -o bin/test main.cpp src/*
@@ -37,7 +42,10 @@ extLibs : sfml sfgui
 
 all : extLibs main
 
-clean :
 
+
+clean :
+	$(call cleanExtLib, $(SFML_DIR))
+	$(call cleanExtLib, $(SFGUI_DIR))
 
 
