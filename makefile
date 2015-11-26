@@ -4,6 +4,8 @@ SFGUI_DIR = extlibs/SFGUI-0.3.0
 
 SFML_DIR = extlibs/SFML
 
+THOR_DIR = extlibs/Thor
+
 INCLUDES = -Iinclude -I$(SFGUI_DIR)/include
 
 SFML_DEPENDENCIES = freetype2 libjpeg-turbo libx11 libxrandr libxcb xcb-util \
@@ -39,9 +41,11 @@ sfgui:
 sfml:
 	$(call buildExtLib, $(SFML_DIR), all)
 
+thor:
+	$(call buildExtLib, $(THOR_DIR), thor)
 
 
-extLibs: sfml sfgui
+extLibs: sfml sfgui thor
 
 
 
@@ -52,5 +56,6 @@ all: extLibs main
 clean:
 	$(call cleanExtLib, $(SFML_DIR))
 	$(call cleanExtLib, $(SFGUI_DIR))
+	$(call cleanExtLib, $(THOR_DIR))
 
 
