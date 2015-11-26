@@ -1,10 +1,10 @@
 OPTIONS = -std=c++11
 
-INCLUDES = -Iinclude
-
 SFGUI_DIR = extlibs/SFGUI-0.3.0
 
 SFML_DIR = extlibs/SFML
+
+INCLUDES = -Iinclude -I$(SFGUI_DIR)/include
 
 SFML_DEPENDENCIES = freetype2 libjpeg-turbo libx11 libxrandr libxcb xcb-util \
 					xcb-util-image mesa flac libogg libvorbis openal
