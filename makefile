@@ -6,7 +6,7 @@ SFML_DIR = extlibs/SFML
 
 THOR_DIR = extlibs/Thor
 
-INCLUDES = -Iinclude -I$(SFGUI_DIR)/include
+INCLUDES = -Iinclude -I$(SFGUI_DIR)/include -I$(THOR_DIR)/include -I$(THOR_DIR)/extlibs/aurora/include
 
 SFML_DEPENDENCIES = freetype2 libjpeg-turbo libx11 libxrandr libxcb xcb-util \
 					xcb-util-image mesa flac libogg libvorbis openal
