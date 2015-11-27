@@ -9,10 +9,13 @@
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
 #include <SFGUI/Box.hpp>
+#include <SFGUI/Button.hpp>
 #include <SFGUI/Image.hpp>
 #include <SFGUI/Label.hpp>
 #include <SFGUI/Window.hpp>
 #include <SFGUI/SFGUI.hpp>
+
+#include <SFML/Graphics/Sprite.hpp>
 
 class ScreenHowTo : public Screen
 {
