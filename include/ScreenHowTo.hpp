@@ -8,6 +8,12 @@
 #include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
+#include <SFGUI/Box.hpp>
+#include <SFGUI/Image.hpp>
+#include <SFGUI/Label.hpp>
+#include <SFGUI/Window.hpp>
+#include <SFGUI/SFGUI.hpp>
+
 class ScreenHowTo : public Screen
 {
     public:

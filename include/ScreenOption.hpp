@@ -10,6 +10,9 @@
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "Screen.hpp"
 
+#include <SFGUI/Box.hpp>
+#include <SFGUI/Window.hpp>
+#include <SFGUI/Frame.hpp>
 #include <SFGUI/SFGUI.hpp>
 
 

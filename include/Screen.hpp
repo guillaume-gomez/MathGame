@@ -1,7 +1,7 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-#include <SFGUI/SFGUI.hpp>
+#include <SFGUI/Desktop.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include "../files.hpp"

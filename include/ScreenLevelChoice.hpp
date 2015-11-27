@@ -4,6 +4,9 @@
 #include <sstream>
 #include <vector>
 
+#include <SFGUI/Box.hpp>
+#include <SFGUI/Frame.hpp>
+#include <SFGUI/Window.hpp>
 #include <SFGUI/SFGUI.hpp>
 
 #include "../files.hpp"

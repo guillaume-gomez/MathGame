@@ -1,6 +1,8 @@
 #ifndef SCREEN_MAINMENU_H
 #define SCREEN_MAINMENU_H
 
+#include <SFGUI/Button.hpp>
+#include <SFGUI/Window.hpp>
 #include <SFGUI/SFGUI.hpp>
 
 #include "../constants.hpp"
