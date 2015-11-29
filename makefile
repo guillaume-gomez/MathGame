@@ -6,7 +6,10 @@ SFML_DIR = extlibs/SFML
 
 THOR_DIR = extlibs/Thor
 
-INCLUDES = -I../include -I../$(SFGUI_DIR)/include -I../$(THOR_DIR)/include -I../$(THOR_DIR)/extlibs/aurora/include
+INCLUDES_DIR = include \
+				$(SFGUI_DIR)/include \
+				$(THOR_DIR)/include \
+				$(THOR_DIR)/extlibs/aurora/include
 
 SFML_DEPENDENCIES = freetype2 libjpeg-turbo libx11 libxrandr libxcb xcb-util \
 					xcb-util-image mesa flac libogg libvorbis openal
@@ -31,11 +34,18 @@ endef
 
 
 main:
-	rm -r o; \
+	@rm -r o; \
 	mkdir o; \
 	cd o; \
-	g++ $(OPTIONS) $(INCLUDES) -c ../main.cpp ../src/*
-
+	\
+	\
+	for includeDir in $(INCLUDES_DIR); \
+	do \
+		INCLUDES="$$INCLUDES -I../$$includeDir"; \
+	done; \
+	\
+	\
+	g++ $(OPTIONS) $$INCLUDES -c ../src/* ../main.cpp
 
 
 sfgui:

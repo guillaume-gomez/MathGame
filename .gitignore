@@ -1,2 +1,2 @@
 extlibs/*/build
-*
+*.o
