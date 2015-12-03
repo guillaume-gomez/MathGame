@@ -1,3 +1,4 @@
 extlibs/*/build
 *.o
 *.sublime-workspace
+helloMakeExample/helloMake

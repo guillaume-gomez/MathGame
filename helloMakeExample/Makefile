@@ -2,6 +2,8 @@ TARGET = helloMake
 
 OBJDIR = o
 
+OPTIONS = -I../include
+
 # all : main.cpp
 # 	g++ -o $(TARGET) main.cpp src/*
 
@@ -17,13 +19,13 @@ OBJDIR = o
 
 
 $(TARGET): Objects
-	g++ -o $(TARGET) o/*
+	@g++ -o $(TARGET) o/*
 
 .PHONY: Objects
 Objects: main src
 
 .PHONY: src
-src: o/Ord.o
+src: o/Ord.o o/Count.o
 
 
 .PHONY: main
@@ -37,15 +39,15 @@ clean:
 
 .ONESHELL: o/%.o
 o/%.o: %.cpp
-	mkdir o
+	@mkdir o
 	cd o
-	g++ -c ../$<
+	g++ $(OPTIONS) -c ../$<
 
 
 
 .ONESHELL: o/src/%.o
 o/%.o: src/%.cpp
-	mkdir o
+	@mkdir o
 	cd o
-	g++ -c ../$<
+	g++ $(OPTIONS) -c ../$<
 

@@ -1,4 +1,4 @@
-# include "../include/Ord.hpp"
+# include "Ord.hpp"
 
 void Ord::writeList()
 {
