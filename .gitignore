@@ -1,2 +1,3 @@
 extlibs/*/build
 *.o
+*.sublime-workspace
