@@ -4,7 +4,7 @@
 		{
 			"path": "../",
 			"folder_exclude_patterns": ["sublimeProject"],
-			"file_exclude_patterns": ["edit"]
+			"file_exclude_patterns": ["edit", ".gitignore"]
 		}
 	]
 }
