@@ -3,8 +3,8 @@
 	[
 		{
 			"path": "../",
-			"folder_exclude_patterns": ["sublimeProject", ""],
-			"file_exclude_patterns": [""]
+			"folder_exclude_patterns": ["sublimeProject"],
+			"file_exclude_patterns": []
 		}
 	]
 }
