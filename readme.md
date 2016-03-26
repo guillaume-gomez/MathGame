@@ -8,9 +8,9 @@ Idée
 -------------
 Le but de ce jeu était de faire un jeu de plate-forme en utilisant les courbes mathématiques comme élément central du jeu.
 
-![In-game img]( resReadme/in-game1.png?raw=true )
-![In-game img]( resReadme/in-game2.png?raw=true )
-![In-game img]( resReadme/in-game3.png?raw=true )
+![In-game img]( resReadme/in-game1.png?raw=true =250x)
+![In-game img]( resReadme/in-game2.png?raw=true =250x)
+![In-game img]( resReadme/in-game3.png?raw=true =250x)
 
 Comment jouer
 ------------------- 
@@ -63,7 +63,7 @@ lancer ensuite la commande `sudo make install` dans le dossier de sortie de conf
 ### Via code::blocks
 il suffit de lancer le projet :
 
-![Linker codeblocks option]( resReadme/linker_cb.png?raw=true)
+![Linker codeblocks option]( resReadme/linker_cb.png?raw=true =250x)
 
 - allez dans le dossier _build options_, et ajoutez les fichiers des librairies externes
 - libsfml-audio.so, 
@@ -79,7 +79,7 @@ il suffit de lancer le projet :
 Sur windows, il faudra ajouter la référence ici 
 
 
-![Include codeblocks option]( resReadme/include_cb.png?raw=true)
+![Include codeblocks option]( resReadme/include_cb.png?raw=true =250x)
 
 
 ### Via un makefile
