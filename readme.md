@@ -15,7 +15,7 @@ Le but de ce jeu était de faire un jeu de plate-forme en utilisant les courbes 
 
 
 Comment jouer
-------------------- 
+-------------------
 ## touches
 * se deplacer : *Fléches directionnelles*
 * passer à la courbes suivantes: *P*
@@ -26,7 +26,7 @@ Modes de jeu
 Il existe deux mode de jeu:
 
 - le premier est la version du jeu normale
-- le second est le mode _hard_ (le nombre de changement de courbes est plus réduit) 
+- le second est le mode _hard_ (le nombre de changement de courbes est plus réduit)
 
 Installation
 -------------
@@ -53,7 +53,7 @@ Si il ne trouve pas la SFML, n'oublier de définir la variable `SFML_INCLUDE_DIR
 
 lancer ensuite la commande `sudo make install` dans le dossier de sortie de configuration.
 
-Plus de précisions: 
+Plus de précisions:
 [tutorial officiel de l'installation de Thor](http://www.bromeon.ch/libraries/thor/tutorials/v2.0/installation.html)
 
 ### SFGUI
@@ -67,7 +67,7 @@ Prendre les sources dans le repository (dans le dossier _extlibs_) et configurer
 > `CMAKE_MODULE_PATH=pathToSourceSFML/cmake/Modules`
 
 lancer ensuite la commande `sudo make install` dans le dossier de sortie de configuration.
- 
+
 [Site officiel de la librairie](http://sfgui.sfml-dev.de/)
 
 ## Compiler Math Game
@@ -78,17 +78,17 @@ il suffit de lancer le projet :
 
 
 - allez dans le dossier _build options_, et ajoutez les fichiers des librairies externes
-- libsfml-audio.so, 
-- libsfml-graphics.so, 
-- libsfml-system.so, 
-- libsfml-window.so, 
-- libsfml-network.so, 
-- libsfgui.so, 
+- libsfml-audio.so,
+- libsfml-graphics.so,
+- libsfml-system.so,
+- libsfml-window.so,
+- libsfml-network.so,
+- libsfgui.so,
 - libthor.so
 
 - Sous windows les extensions sont des `.a`
 - Sur linux pas besoin d'inclure les headers qui lors de l'installation dans le dossier `usr/local/include` et/ou `usr/lib/include`
-Sur windows, il faudra ajouter la référence ici 
+Sur windows, il faudra ajouter la référence ici
 
 
 <img src="resReadme/include_cb.png" alt="Include codeblocks option" width:"80%" />
