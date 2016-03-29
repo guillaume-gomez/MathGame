@@ -30,7 +30,7 @@ Il existe deux mode de jeu:
 
 Installation
 -------------
-**L'installation n'a été testé que sur Linux pour le moment.**
+**L'installation n'a été testée que sur Ubuntu 14.04 LTS pour le moment.**
 
 * MathGame contient des librairies externes que vous devrez compiler par vous même pour faire fonctionner le jeu*
 
@@ -41,6 +41,26 @@ Installation
 	unzip extlibs_sources.zip
 	cd SFML-2.1
 
+	avant d'aller plus loin il est nécessaire d'installer les dependances nécessaires à la compilation de SFML :
+
+	- pthread		( libpthread-workqueue-dev )
+	- opengl		( libgl1-mesa-dev )
+	- xlib			( libx11-dev )
+	- xrandr		( libxrandr-dev )
+	- freetype	( libfreetype6-dev )
+	- glew			( libglew-dev )
+	- jpeg			( libjpeg8-dev )
+	- sndfile		( libsndfile1-dev )
+	- openal		( libopenal-dev )
+
+	** sudo apt-get update && sudo apt-get install libpthread-workqueue-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew-dev libjpeg8-dev libsndfile1-dev libopenal-dev **
+
+	on va maintenant compiler SFML :
+
+	mkdir build && cd build
+	cmake ..
+	sudo make install
+
 ## Thor
 > Les sources sont contenu dans le dossier _extlib_
 
@@ -50,8 +70,7 @@ Si il ne trouve pas la SFML, n'oublier de définir la variable `SFML_INCLUDE_DIR
 	cd Thor
 	mkdir build && cd build
 	cmake ..
-
-lancer ensuite la commande `sudo make install` dans le dossier de sortie de configuration.
+	sudo make install
 
 Plus de précisions:
 [tutorial officiel de l'installation de Thor](http://www.bromeon.ch/libraries/thor/tutorials/v2.0/installation.html)
@@ -61,12 +80,8 @@ Prendre les sources dans le repository (dans le dossier _extlibs_) et configurer
 
 	cd MathGame/extlibs/SFGUI
 	mkdir build && cd build
-
-> Définir deux variables
-> `SFML_ROOT=pathToSourcesSFML"`
-> `CMAKE_MODULE_PATH=pathToSourceSFML/cmake/Modules`
-
-lancer ensuite la commande `sudo make install` dans le dossier de sortie de configuration.
+	cmake -D CMAKE_MODULE_PATH=/usr/local/share/SFML/cmake/Modules/ ..
+	sudo make install
 
 [Site officiel de la librairie](http://sfgui.sfml-dev.de/)
 
@@ -77,12 +92,11 @@ il suffit de lancer le projet :
 <img src="resReadme/linker_cb.png" alt="Linker codeblocks option" width:"80%" />
 
 
-- allez dans le dossier _build options_, et ajoutez les fichiers des librairies externes
+- allez dans _build options_ ( clic droit projet -> Build options... ), et ajoutez les fichiers des librairies externes
 - libsfml-audio.so,
 - libsfml-graphics.so,
 - libsfml-system.so,
 - libsfml-window.so,
-- libsfml-network.so,
 - libsfgui.so,
 - libthor.so
 
