@@ -35,15 +35,21 @@ Installation
 * MathGame contient des librairies externes que vous devrez compiler par vous même pour faire fonctionner le jeu*
 
 ## SFML
-> la version necessaire est _SFML2.1_ disponible[ ici](http://www.sfml-dev.org/download/sfml/2.1/index-fr.php) 
+> Les sources sont contenu dans le dossier _extlib_
 
-Même si vous choisissez la librarie deja compilée pour votre OS, téléchargez les sources pour la suite de l'installation :coffee
+	cd MathGame/extlibs
+	unzip extlibs_sources.zip
+	cd SFML-2.1
 
 ## Thor
 > Les sources sont contenu dans le dossier _extlib_
 
 Prendre les sources et configurer la compilation avec *cmake*
-** Si il ne trouve pas la SFML, n'oublier de définir la variable `SFML_INCLUDE_DIR=PathToSFML/include`
+Si il ne trouve pas la SFML, n'oublier de définir la variable `SFML_INCLUDE_DIR=PathToSFML/include`
+
+	cd Thor
+	mkdir build && cd build
+	cmake ..
 
 lancer ensuite la commande `sudo make install` dans le dossier de sortie de configuration.
 
@@ -52,6 +58,9 @@ Plus de précisions:
 
 ### SFGUI
 Prendre les sources dans le repository (dans le dossier _extlibs_) et configurer la compilation avec *cmake*
+
+	cd MathGame/extlibs/SFGUI
+	mkdir build && cd build
 
 > Définir deux variables
 > `SFML_ROOT=pathToSourcesSFML"`
