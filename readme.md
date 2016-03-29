@@ -85,7 +85,7 @@ Prendre les sources dans le repository (dans le dossier _extlibs_) et configurer
 
 [Site officiel de la librairie](http://sfgui.sfml-dev.de/)
 
-** Après l'installation de ces libs => `sudo ldconfig` **
+**Après l'installation de ces libs => `sudo ldconfig`**
 
 ## Compiler Math Game
 ### Via code::blocks
