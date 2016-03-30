@@ -37,9 +37,12 @@ Installation
 ## SFML
 > Les sources sont contenu dans le dossier _extlib_
 
->`cd MathGame/extlibs`
-`unzip extlibs_sources.zip`
-`cd SFML-2.1`
+
+```
+cd MathGame/extlibs
+unzip extlibs_sources.zip
+cd SFML-2.1
+```
 
 avant d'aller plus loin il est nécessaire d'installer les dependances nécessaires à la compilation de SFML :
 
@@ -53,13 +56,15 @@ avant d'aller plus loin il est nécessaire d'installer les dependances nécessai
   - sndfile   ( libsndfile1-dev )
   - openal    ( libopenal-dev )
 
-  sudo apt-get update && sudo apt-get install libpthread-workqueue-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew-dev libjpeg8-dev libsndfile1-dev libopenal-dev
+  `sudo apt-get update && sudo apt-get install libpthread-workqueue-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew-dev libjpeg8-dev libsndfile1-dev libopenal-dev`
 
 on va maintenant compiler SFML :
 
-> mkdir build && cd build
+````
+mkdir build && cd build
 cmake ..
 sudo make install
+```
 
 ## Thor
 > Les sources sont contenu dans le dossier _extlib_
@@ -67,10 +72,12 @@ sudo make install
 Prendre les sources et configurer la compilation avec *cmake*
 Si il ne trouve pas la SFML, n'oublier de définir la variable `SFML_INCLUDE_DIR=PathToSFML/include`
 
- > `cd Thor`
-  `mkdir build && cd build`
-  `cmake ..`
-  `sudo make install`
+```
+cd Thor
+mkdir build && cd build
+cmake ..
+sudo make install
+```
 
 Plus de précisions:
 [tutorial officiel de l'installation de Thor](http://www.bromeon.ch/libraries/thor/tutorials/v2.0/installation.html)
@@ -78,10 +85,12 @@ Plus de précisions:
 ### SFGUI
 Prendre les sources dans le repository (dans le dossier _extlibs_) et configurer la compilation avec *cmake*
 
- > `cd MathGame/extlibs/SFGUI`
-  `mkdir build && cd build`
-  `cmake -D CMAKE_MODULE_PATH=/usr/local/share/SFML/cmake/Modules/ ..`
-  `sudo make install`
+ ```
+cd MathGame/extlibs/SFGUI
+mkdir build && cd build
+cmake -D CMAKE_MODULE_PATH=/usr/local/share/SFML/cmake/Modules/ ..
+sudo make install
+```
 
 [Site officiel de la librairie](http://sfgui.sfml-dev.de/)
 
