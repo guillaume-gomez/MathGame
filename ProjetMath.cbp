@@ -51,6 +51,8 @@
 			<Add library="/usr/local/lib/libsfgui.so" />
 			<Add library="/usr/local/lib/libthor.so" />
 			<Add directory="libs" />
+			<Add directory="/usr/include/SFML" />
+			<Add directory="/usr/include/THOR" />
 		</Linker>
 		<Unit filename="constants.hpp" />
 		<Unit filename="files.hpp" />
