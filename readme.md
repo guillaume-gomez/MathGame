@@ -121,7 +121,7 @@ You just have to run the project (i.e. open "ProjetMath.cbp" )
 <img src="resReadme/include_cb.png" alt="Include codeblocks option" width="80%" />
 
 ### Using a makefile
-> this will come later :)
+`make all`
 
 License
 ------------
