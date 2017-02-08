@@ -125,6 +125,6 @@ You just have to run the project (i.e. open "ProjetMath.cbp" )
 
 License
 ------------
-LGPL
+GPL
 
 
