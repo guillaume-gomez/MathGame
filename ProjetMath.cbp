@@ -3,6 +3,7 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="Trunk" />
+		<Option makefile="makefile" />
 		<Option pch_mode="2" />
 		<Option default_target="Debug" />
 		<Option compiler="gcc" />
@@ -110,7 +111,6 @@
 		<Unit filename="libs/AbstractPanel.hpp" />
 		<Unit filename="libs/AbstractWidget.hpp" />
 		<Unit filename="libs/AbstractWidgetEvent.hpp" />
-		<Unit filename="libs/Button.hpp" />
 		<Unit filename="libs/Cursor.hpp" />
 		<Unit filename="libs/LineSFML2_1.cpp" />
 		<Unit filename="libs/LineSFML2_1.hpp" />
