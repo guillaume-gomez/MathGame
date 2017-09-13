@@ -97,7 +97,7 @@ sudo make install
 [Official library site](http://sfgui.sfml-dev.de/)
 
 **After these installations => `sudo ldconfig`**
-This will tell your system to creates the necessary links and cache to the most recent shared libraries found
+This will tell your system to create the necessary links and cache to the most recent shared libraries found
 
 ## Compile Math Game
 ### Through code::blocks
