@@ -60,7 +60,7 @@ Before you go any further you have to install dependencies needed to compile SFM
 
 Now it's time to compile SFML ! :
 
-````
+```
 mkdir build && cd build
 cmake ..
 sudo make install
@@ -100,6 +100,10 @@ sudo make install
 This will tell your system to create the necessary links and cache to the most recent shared libraries found
 
 ## Compile Math Game
+
+### Using a makefile
+`make all`
+
 ### Through code::blocks
 You just have to run the project (i.e. open "ProjetMath.cbp" )
 
@@ -120,8 +124,6 @@ You just have to run the project (i.e. open "ProjetMath.cbp" )
 
 <img src="resReadme/include_cb.png" alt="Include codeblocks option" width="80%" />
 
-### Using a makefile
-`make all`
 
 License
 ------------
