@@ -56,7 +56,7 @@ Before you go any further you have to install dependencies needed to compile SFM
   - sndfile   ( libsndfile1-dev )
   - openal    ( libopenal-dev )
 
-  `sudo apt-get update && sudo apt-get install libpthread-workqueue-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew-dev libjpeg8-dev libsndfile1-dev libopenal-dev`
+  `sudo apt update && sudo apt install libpthread-workqueue-dev libgl1-mesa-dev libx11-dev libxrandr-dev libfreetype6-dev libglew-dev libjpeg8-dev libsndfile1-dev libopenal-dev`
 
 Now it's time to compile SFML ! :
 
