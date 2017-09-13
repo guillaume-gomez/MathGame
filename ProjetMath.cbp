@@ -30,6 +30,10 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+				<ExtraCommands>
+					<Add after="cp -R  resources bin/Release/resources" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<VirtualTargets>
