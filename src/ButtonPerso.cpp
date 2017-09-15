@@ -25,6 +25,9 @@ ButtonPerso::ButtonPerso(const char* _filename)
 :m_filename(_filename), m_clicked(false)
 {
     sf::Texture * texture = nullptr;
+    #ifdef DEBUG
+         std::cout << "ButtonPerso : " << _filename << std::endl;
+    #endif //DEBUG
     texture = TextureManager::getTextureManager()->getResource(std::string(m_filename));
     if(texture)
     {

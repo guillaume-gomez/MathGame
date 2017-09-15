@@ -51,7 +51,7 @@ class ManageFunctions
 
     private:
     	bool m_changed;
-        int m_currentIndex;
+        std::vector<Curves>::size_type m_currentIndex;
     	std::vector<Curves> m_vectorCurves;
     	sf::View m_view;
 };
