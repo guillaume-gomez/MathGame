@@ -55,6 +55,7 @@ before_debug:
 	test -d $(OBJDIR_DEBUG)/libs || mkdir -p $(OBJDIR_DEBUG)/libs
 
 after_debug: 
+	cp -R  resources bin/Debug/resources
 
 debug: before_debug out_debug after_debug
 
