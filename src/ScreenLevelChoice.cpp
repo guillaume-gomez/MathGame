@@ -24,6 +24,9 @@
 SelectLevel::SelectLevel( ScreenLink* _stat, unsigned int level, Difficulty difficulty)
 :m_stat(_stat), m_difficulty(difficulty), m_level(level), m_modeSelectLevel(Classic), m_isClicked(false)
 {
+    #ifdef DEBUG
+    std::cout << "SelectLevel::SelectLevel( ScreenLink* _stat, level "<< level <<", Difficulty "<< difficulty <<")" << std::endl;
+    #endif // DEBUG
 }
 
 SelectLevel::~SelectLevel()
@@ -132,6 +135,10 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
 
     sf::Font font;
     font.loadFromFile(FilenameFont);
+
+    #ifdef DEBUG
+    std::cout << "_stat->getnbEasy() : " << _stat->getnbEasy() << std::endl;
+    #endif // DEBUG
 
     for(unsigned int i = 0 ; i < _stat->getnbEasy() ; i++)
     {
