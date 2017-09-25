@@ -24,7 +24,7 @@
 
 
 Point::Point(float radius,bool goalPoint, float scale)
-:EditorCircle(), m_goalPoint(goalPoint)
+    :EditorCircle(), m_goalPoint(goalPoint)
 {
     if(m_goalPoint)
     {
@@ -44,7 +44,7 @@ Point::Point(float radius,bool goalPoint, float scale)
 }
 
 Point::Point(const Point& original)
-:EditorCircle(original), m_goalPoint(original.m_goalPoint)
+    :EditorCircle(original), m_goalPoint(original.m_goalPoint)
 {
     if(m_goalPoint)
     {
@@ -75,18 +75,18 @@ Point::Point()
 
 std::string Point::save(float scale) const
 {
-  std::stringstream flux;
-  flux << this->getTypeStr() << std::endl;
-  flux << EditorCircle::save(scale);
-  return flux.str();
+    std::stringstream flux;
+    flux << this->getTypeStr() << std::endl;
+    flux << EditorCircle::save(scale);
+    return flux.str();
 }
 
- EditorObject* Point::loadView(const Element& elmt, float scale)
- {
+EditorObject* Point::loadView(const Element& elmt, float scale)
+{
     Point * NewPoint =  new Point(sizePoint);
-        NewPoint->setPosition(elmt.getCoord().x * scale/*- widthTex*/ , - elmt.getCoord().y * scale/* - heightTex*/);
-        return NewPoint;
- }
+    NewPoint->setPosition(elmt.getCoord().x * scale/*- widthTex*/ , - elmt.getCoord().y * scale/* - heightTex*/);
+    return NewPoint;
+}
 
 Point::~Point()
 {

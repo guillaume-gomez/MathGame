@@ -23,7 +23,7 @@
 #define ScreenLink_H
 
 #ifdef DEBUG
-	#include <iostream>
+#include <iostream>
 #endif
 #include <fstream>
 
@@ -37,37 +37,37 @@ const int valHard = 1;
 
 class ScreenLink
 {
-    public:
-        ScreenLink();
-        virtual ~ScreenLink();
-        void countNbFiles();
-        void load();
-        void save();
-        friend std::ostream& operator<<( std::ostream &flux, const ScreenLink&  stat );
-        void setMaxLevel(Difficulty type , unsigned int val );
-        unsigned int getMaxLevel(Difficulty type)const;
-        unsigned int getnbEasy() const ;
-        unsigned int getnbNormal() const ;
-        unsigned int getnbHard() const ;
-        void setParamLevel( Difficulty _diff, unsigned int level, GameMode mode);
-        unsigned int getCurrentLevel()const;
-        void setCurrentLevel(unsigned int level);
-        Difficulty getDiff()const;
-        unsigned int getNbFiles()const;
-        GameMode getMode()const;
-         void setnbFiles( unsigned int _nb);
+public:
+    ScreenLink();
+    virtual ~ScreenLink();
+    void countNbFiles();
+    void load();
+    void save();
+    friend std::ostream& operator<<( std::ostream &flux, const ScreenLink&  stat );
+    void setMaxLevel(Difficulty type , unsigned int val );
+    unsigned int getMaxLevel(Difficulty type)const;
+    unsigned int getnbEasy() const ;
+    unsigned int getnbNormal() const ;
+    unsigned int getnbHard() const ;
+    void setParamLevel( Difficulty _diff, unsigned int level, GameMode mode);
+    unsigned int getCurrentLevel()const;
+    void setCurrentLevel(unsigned int level);
+    Difficulty getDiff()const;
+    unsigned int getNbFiles()const;
+    GameMode getMode()const;
+    void setnbFiles( unsigned int _nb);
 
-    private:
-        std::string m_filename;
-        unsigned int m_countEasy;
-        unsigned int m_countNormal;
-        unsigned int m_countHard;
-        unsigned int m_currentLevel;
-        Difficulty m_difficulty;
-        unsigned int m_maxEasy;
-        unsigned int m_maxNormal;
-        unsigned int m_maxHard;
-        GameMode m_modeChoose;
+private:
+    std::string m_filename;
+    unsigned int m_countEasy;
+    unsigned int m_countNormal;
+    unsigned int m_countHard;
+    unsigned int m_currentLevel;
+    Difficulty m_difficulty;
+    unsigned int m_maxEasy;
+    unsigned int m_maxNormal;
+    unsigned int m_maxHard;
+    GameMode m_modeChoose;
 };
 
 inline unsigned int ScreenLink::getnbEasy() const
@@ -82,7 +82,7 @@ inline unsigned int ScreenLink::getnbNormal() const
 
 inline unsigned int ScreenLink::getnbHard() const
 {
-   return m_countHard;
+    return m_countHard;
 }
 
 inline void ScreenLink::setParamLevel(Difficulty _diff, unsigned int level, GameMode mode)
@@ -119,5 +119,8 @@ inline void ScreenLink::setnbFiles(unsigned int _nb)
     m_countEasy = m_countNormal = m_countHard = _nb;
 }
 
-inline GameMode ScreenLink::getMode() const{return m_modeChoose;};
+inline GameMode ScreenLink::getMode() const
+{
+    return m_modeChoose;
+};
 #endif // ScreenLink_H

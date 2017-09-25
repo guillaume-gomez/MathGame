@@ -28,12 +28,12 @@
 
 class FactoryObjectCircle : public ObjectFactoryAbstract
 {
-    public:
-        FactoryObjectCircle();
-        virtual ~FactoryObjectCircle();
-        virtual EditorObject* setTypeObject (std::string type);
-    protected:
-    private:
+public:
+    FactoryObjectCircle();
+    virtual ~FactoryObjectCircle();
+    virtual EditorObject* setTypeObject (std::string type);
+protected:
+private:
 };
 #endif // FactoryObjectCircle_HPP
 

@@ -29,16 +29,16 @@
 
 class EnemyView : public CharacterView
 {
-    public:
+public:
     EnemyView(const EnemyModel& model, float scale = 1.0f);
     virtual ~EnemyView();
     virtual void draw( sf::RenderTarget& target);
     void show();
     void setStringAttempt( std::string str);
-    protected:
-         ManageText m_nbAttempt;
-    private:
-    	EnemyView(const EnemyView& copy);
+protected:
+    ManageText m_nbAttempt;
+private:
+    EnemyView(const EnemyView& copy);
 };
 
 #endif // ENEMYVIEW_H

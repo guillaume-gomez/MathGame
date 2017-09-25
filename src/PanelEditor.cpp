@@ -22,19 +22,19 @@
 #include "PanelEditor.hpp"
 
 PanelEditor::PanelEditor()
-:m_isAnimLeft(false), m_isAnimRight(false),m_visible(true)
+    :m_isAnimLeft(false), m_isAnimRight(false),m_visible(true)
 {
-	sf::Texture * texture = 0;
+    sf::Texture * texture = 0;
     texture = TextureManager::getTextureManager()->getResource(std::string(FilenameButtonPanel));
 
     if(texture)
     {
         this->setTexture(*texture);
     }
-  /*  else
-    {
-        // std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << FilenameButtonPanel << std::endl;
-    }*/
+    /*  else
+      {
+          // std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << FilenameButtonPanel << std::endl;
+      }*/
 
 }
 
@@ -43,8 +43,8 @@ PanelEditor::~PanelEditor()
     for (unsigned int i = 0; i < m_vectButton.size(); i++)
     {
         // TODO µµµµµµµ
-    	//ButtonPerso * temp = m_vectButton.pop_back();
-    	//delete temp;
+        //ButtonPerso * temp = m_vectButton.pop_back();
+        //delete temp;
     }
 }
 
@@ -52,9 +52,9 @@ PanelEditor::~PanelEditor()
 void PanelEditor::draw(sf::RenderTarget& app)
 {
     app.draw(*this);
-	for (unsigned int i = 0; i < m_vectButton.size(); i++)
+    for (unsigned int i = 0; i < m_vectButton.size(); i++)
     {
-    	m_vectButton.at(i)->draw(app);
+        m_vectButton.at(i)->draw(app);
     }
 }
 
@@ -66,11 +66,11 @@ void PanelEditor::addButton(ButtonPerso* button)
     if(nbButton == 0)
     {
 //         float Y = (this->getLocalBounds().height - (button->getLocalBounds().height / 2)) / 2;
-         int offsetY = int (this->getPosition().y) / 2;
-         float X = this->getLocalBounds().width / 2 - button->getLocalBounds().width/ 2 + this->getPosition().x;
+        int offsetY = int (this->getPosition().y) / 2;
+        float X = this->getLocalBounds().width / 2 - button->getLocalBounds().width/ 2 + this->getPosition().x;
 
-         button->setPosition(X, offsetY);
-         m_vectButton.push_back(button);
+        button->setPosition(X, offsetY);
+        m_vectButton.push_back(button);
     }
     else
     {
@@ -90,22 +90,22 @@ void PanelEditor::addButton(ButtonPerso* button)
 
 ButtonPerso* PanelEditor::popButton()
 {
-	//return m_vectButton.pop_back();
-	//TODO
-	return 0;
+    //return m_vectButton.pop_back();
+    //TODO
+    return 0;
 }
 
 
 ButtonPerso* PanelEditor::deleteButton(unsigned int i)
 {
-	// TODO
-	return 0;
+    // TODO
+    return 0;
 }
 
 ButtonPerso* PanelEditor::deleteButton(ButtonPerso* button)
 {
-	// TODO
-	return 0;
+    // TODO
+    return 0;
 }
 
 void PanelEditor::manage(int coordMouseX, sf::RenderTarget& target)
@@ -127,23 +127,23 @@ void PanelEditor::manage(int coordMouseX, sf::RenderTarget& target)
 
 void PanelEditor::handle_input(sf::Event& event, sf::RenderTarget& target)
 {
-	switch(event.type)
-	{
-		case sf::Event::MouseMoved:
-		{
-			int x = event.mouseMove.x /*- m_buttonCursor.getLocalBounds().width / 2*/;
-			this->manage(x, target);
-		}
-		break;
+    switch(event.type)
+    {
+    case sf::Event::MouseMoved:
+    {
+        int x = event.mouseMove.x /*- m_buttonCursor.getLocalBounds().width / 2*/;
+        this->manage(x, target);
+    }
+    break;
 
-        default:
-		break;
-	}
+    default:
+        break;
+    }
 
-	for (unsigned int i = 0; i < m_vectButton.size(); i++)
-	{
-		m_vectButton.at(i)->handle_input(event, target);
-	}
+    for (unsigned int i = 0; i < m_vectButton.size(); i++)
+    {
+        m_vectButton.at(i)->handle_input(event, target);
+    }
 }
 
 void PanelEditor::movePanel(sf::RenderTarget& target)
@@ -153,11 +153,11 @@ void PanelEditor::movePanel(sf::RenderTarget& target)
     {
         if(m_timerPanel.getElapsedTime().asMilliseconds() > TimePanel)
         {
-          	this->setPosition(this->getPosition().x - offset, this->getPosition().y);
+            this->setPosition(this->getPosition().x - offset, this->getPosition().y);
             for (unsigned int i = 0; i < m_vectButton.size(); i++)
             {
-            	sf::Vector2f coord = m_vectButton.at(i)->getPosition();
-            	m_vectButton.at(i)->setPosition(coord.x - offset, coord.y);
+                sf::Vector2f coord = m_vectButton.at(i)->getPosition();
+                m_vectButton.at(i)->setPosition(coord.x - offset, coord.y);
             }
             m_timerPanel.restart();
         }
@@ -170,8 +170,8 @@ void PanelEditor::movePanel(sf::RenderTarget& target)
             this->setPosition(this->getPosition().x + offset, this->getPosition().y);
             for (unsigned int i = 0; i < m_vectButton.size(); i++)
             {
-            	sf::Vector2f coord = m_vectButton.at(i)->getPosition();
-            	m_vectButton.at(i)->setPosition(coord.x + offset, coord.y);
+                sf::Vector2f coord = m_vectButton.at(i)->getPosition();
+                m_vectButton.at(i)->setPosition(coord.x + offset, coord.y);
             }
             m_timerPanel.restart();
         }

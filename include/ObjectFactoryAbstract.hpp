@@ -31,14 +31,14 @@
 
 class ObjectFactoryAbstract
 {
-    public:
-    	static std::map<TypeObject, EditorObject*> m_map;
-        ObjectFactoryAbstract();
-        virtual ~ObjectFactoryAbstract();
-        static void _register(TypeObject key, EditorObject* obj);
-        static EditorObject* create(const TypeObject& key);
-    protected:
-    private:
+public:
+    static std::map<TypeObject, EditorObject*> m_map;
+    ObjectFactoryAbstract();
+    virtual ~ObjectFactoryAbstract();
+    static void _register(TypeObject key, EditorObject* obj);
+    static EditorObject* create(const TypeObject& key);
+protected:
+private:
 };
 
 #endif // OBJECTFACTORYABSTRACT_HPP

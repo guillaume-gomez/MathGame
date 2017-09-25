@@ -26,13 +26,13 @@
 
 class ScreenLevelChoiceClassic : public ScreenLevelChoice
 {
-    public:
-        ScreenLevelChoiceClassic(ScreenLink* stat);
-        virtual ~ScreenLevelChoiceClassic();
-        int Run(sf::RenderWindow & App);
+public:
+    ScreenLevelChoiceClassic(ScreenLink* stat);
+    virtual ~ScreenLevelChoiceClassic();
+    int Run(sf::RenderWindow & App);
 
-    protected:
-    private:
+protected:
+private:
 
 };
 

@@ -30,25 +30,25 @@ std::string ScreenOption::m_filenameChar = FilenameDefaultChar;
 
 
 ScreenOption::ScreenOption(unsigned int _button)
-:m_character_array(0),
- m_gravityType(NoSliding),
- m_nbButton(_button),
- m_quit(false)
+    :m_character_array(0),
+     m_gravityType(NoSliding),
+     m_nbButton(_button),
+     m_quit(false)
 {
 
-   m_window = sfg::Window::Create();
-   m_window->SetTitle( "Option" );
+    m_window = sfg::Window::Create();
+    m_window->SetTitle( "Option" );
 
-   m_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 10.0f);
-   m_boxClose = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
-   m_layoutPhysics = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
-   m_layoutCharacter = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
+    m_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, 10.0f);
+    m_boxClose = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+    m_layoutPhysics = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
+    m_layoutCharacter = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
 
-   m_framePhysics = sfg::Frame::Create("Gravity Type");
-   m_frameCharacter = sfg::Frame::Create("Select a character");
+    m_framePhysics = sfg::Frame::Create("Gravity Type");
+    m_frameCharacter = sfg::Frame::Create("Select a character");
 
-   m_background.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBackGroundMenu)));
-   m_background.setColor(sf::Color(backgroundColor,backgroundColor,backgroundColor));
+    m_background.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBackGroundMenu)));
+    m_background.setColor(sf::Color(backgroundColor,backgroundColor,backgroundColor));
 
     for ( unsigned int i = 0 ; i < m_nbButton ; i++)
     {
@@ -87,7 +87,7 @@ ScreenOption::ScreenOption(unsigned int _button)
     m_box->Pack(saveButton);
     m_box->Pack(quitButton);
 
-	m_window->Add(m_box);
+    m_window->Add(m_box);
 
     //m_desktop.LoadThemeFromFile(FilenameTheme);
     m_desktop.Add(m_window);
@@ -113,7 +113,7 @@ void ScreenOption::quit()
 void ScreenOption::save()
 {
     std::string filename ;
-	unsigned int width = 0;
+    unsigned int width = 0;
     unsigned int height = 0;
     float friction;
     std::ofstream configFile(FilenameConfigFile);
@@ -145,18 +145,18 @@ void ScreenOption::save()
 
 int ScreenOption::Run( sf::RenderWindow& App)
 {
-	bool Running = true;
+    bool Running = true;
 
     App.resetGLStates();
 
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
     m_window->Show(true);
-	while(Running)
-	{
-		sf::Event event;
-		//Verifing events
-		while(App.pollEvent(event))
-		{
+    while(Running)
+    {
+        sf::Event event;
+        //Verifing events
+        while(App.pollEvent(event))
+        {
             m_window->HandleEvent( event );
 
             if(event.type == sf::Event::Closed)
@@ -169,8 +169,8 @@ int ScreenOption::Run( sf::RenderWindow& App)
             {
                 if( event.key.code == sf::Keyboard::Escape)
                 {
-                     m_window->Show(false);
-                     return MENU;
+                    m_window->Show(false);
+                    return MENU;
                 }
             }
 
@@ -185,14 +185,14 @@ int ScreenOption::Run( sf::RenderWindow& App)
 
         m_desktop.Update( 0.f );
 
-		App.clear();
-		App.draw(m_background);
-		m_sfgui.Display( App );
-		App.draw(currentChoice);
-		App.display();
+        App.clear();
+        App.draw(m_background);
+        m_sfgui.Display( App );
+        App.draw(currentChoice);
+        App.display();
         currentChoice.Update();
-	}
-return (SCREEN_EXIT);
+    }
+    return (SCREEN_EXIT);
 }
 
 
@@ -200,7 +200,7 @@ ScreenOption::~ScreenOption()
 {}
 
 ChoiceCharacter::ChoiceCharacter(unsigned int type)
-:m_type(type)
+    :m_type(type)
 {
 //    std::cout << "Constructor " << m_type<<std::endl;
 }
@@ -212,17 +212,17 @@ void ChoiceCharacter::defineCharacter()
 {
     switch(m_type)
     {
-        case 1:
-            ScreenOption::m_filenameChar = FilenameDefaultChar;
+    case 1:
+        ScreenOption::m_filenameChar = FilenameDefaultChar;
 
         break;
-        case 2:
-            ScreenOption::m_filenameChar = FilenameBike;
+    case 2:
+        ScreenOption::m_filenameChar = FilenameBike;
 
         break;
-        default:
+    default:
         //degeux mais je ne comprends pas le probleme
-            ScreenOption::m_filenameChar = FilenameDefaultChar;
+        ScreenOption::m_filenameChar = FilenameDefaultChar;
         break;
     }
 }

@@ -23,7 +23,7 @@
 #include <vector>
 
 #ifdef DEBUG
-	#include <iostream>
+#include <iostream>
 #endif // DEBUG
 
 #include "Axis.hpp"
@@ -37,7 +37,7 @@
 * @brief : Constructor of the class
 **/
 Axis::Axis(float _graduation)
-:m_originyAxis(0.0f), m_originxAxis(0.0f), m_scale(1.0f), m_graduation(_graduation), m_view(sf::View())
+    :m_originyAxis(0.0f), m_originxAxis(0.0f), m_scale(1.0f), m_graduation(_graduation), m_view(sf::View())
 {
     sf::Color color(18, 25, 112, 75);
     float heightAxis = 4.0f;
@@ -54,19 +54,19 @@ Axis::Axis(float _graduation)
     for (int i = 0 ; i < nbGraduation / 2 ; i++)
     {
         sf::RectangleShape temp(sf::Vector2f(widthGrad, heightGrad));
-                           temp.setPosition(_x - widthGrad / 2.0f, _y);
-                           temp.setFillColor(color);
-         m_listXGrad.push_back(temp);
-         _x +=  m_graduation;
+        temp.setPosition(_x - widthGrad / 2.0f, _y);
+        temp.setFillColor(color);
+        m_listXGrad.push_back(temp);
+        _x +=  m_graduation;
     }
 
     for (int i = 0 ; i < nbGraduation / 2 ; i++)
     {
         sf::RectangleShape temp(sf::Vector2f(widthGrad, heightGrad));
-                           temp.setPosition(_x - widthGrad / 2.0f, _y);
-                           temp.setFillColor(color);
-         m_listXGrad.push_back(temp);
-         _x +=  m_graduation;
+        temp.setPosition(_x - widthGrad / 2.0f, _y);
+        temp.setFillColor(color);
+        m_listXGrad.push_back(temp);
+        _x +=  m_graduation;
     }
     //
     ///////////////////////////////////////////////////////////
@@ -74,24 +74,24 @@ Axis::Axis(float _graduation)
 
     ////////////////////////////////////////////////////////////
     // YAxis Graduation
-     _y = -1000.0f;
-     _x = 0.0f - heightGrad / 2.0f ;
+    _y = -1000.0f;
+    _x = 0.0f - heightGrad / 2.0f ;
     for (int i = 0 ; i < nbGraduation / 2  ; i++)
     {
         sf::RectangleShape temp(sf::Vector2f(heightGrad, widthGrad));
-                           temp.setPosition(_x, _y - widthGrad / 2.0f);
-                           temp.setFillColor(color);
-         m_listYGrad.push_back(temp);
-         _y +=  m_graduation;
+        temp.setPosition(_x, _y - widthGrad / 2.0f);
+        temp.setFillColor(color);
+        m_listYGrad.push_back(temp);
+        _y +=  m_graduation;
     }
     _y += m_graduation;
     for (int i = 0 ; i < nbGraduation / 2  ; i++)
     {
         sf::RectangleShape temp(sf::Vector2f(heightGrad, widthGrad));
-                           temp.setPosition(_x, _y - widthGrad / 2.0f);
-                           temp.setFillColor(color);
-         m_listYGrad.push_back(temp);
-         _y +=  m_graduation;
+        temp.setPosition(_x, _y - widthGrad / 2.0f);
+        temp.setFillColor(color);
+        m_listYGrad.push_back(temp);
+        _y +=  m_graduation;
     }
     //
     ////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ Axis::~Axis()
 **/
 int Axis::getxAxis()
 {
-     return m_originxAxis;
+    return m_originxAxis;
 }
 
 /**
@@ -156,7 +156,7 @@ void Axis::setGraduation(float _graduation)
 
 float Axis::getGraducation()
 {
-   return m_graduation;
+    return m_graduation;
 }
 
 /**
@@ -168,21 +168,21 @@ void Axis::draw(sf::RenderWindow& App)
     FOR_STL_ITERATOR(std::vector<sf::RectangleShape>, m_listXGrad, it)
     {
         if( it->getPosition().x >= m_view.getCenter().x - m_view.getSize().x
-        &&  it->getPosition().x <= m_view.getCenter().x + m_view.getSize().x)
+                &&  it->getPosition().x <= m_view.getCenter().x + m_view.getSize().x)
         {
             App.draw(*it);
         }
     }
 
     //
-     FOR_STL_ITERATOR(std::vector<sf::RectangleShape>, m_listYGrad, it)
+    FOR_STL_ITERATOR(std::vector<sf::RectangleShape>, m_listYGrad, it)
     {
-         if( it->getPosition().y >= m_view.getCenter().y - m_view.getSize().y/2
-         &&  it->getPosition().y <= m_view.getCenter().y + m_view.getSize().y/2 )
+        if( it->getPosition().y >= m_view.getCenter().y - m_view.getSize().y/2
+                &&  it->getPosition().y <= m_view.getCenter().y + m_view.getSize().y/2 )
         {
             App.draw(*it);
         }
     }
-   App.draw(m_shapexAxis);
-   App.draw(m_shapeyAxis);
+    App.draw(m_shapexAxis);
+    App.draw(m_shapeyAxis);
 }

@@ -26,7 +26,7 @@
 
 ///an element does not contain always a radius (example, an ennemy)
 Element::Element()
-: radius(-1.0f)
+    : radius(-1.0f)
 {
 
 }
@@ -36,7 +36,7 @@ LevelModel::LevelModel()
 }
 
 LevelModel::LevelModel(std::string _filename , GameMode mode )
-:m_beginPoint(0), m_nbElements(0), m_win(false), m_lose(false), m_nbAttempt(0), m_mode(mode)
+    :m_beginPoint(0), m_nbElements(0), m_win(false), m_lose(false), m_nbAttempt(0), m_mode(mode)
 {
     m_fileLevel.open(_filename.c_str());
     if(m_fileLevel.is_open())
@@ -116,7 +116,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 m_fileLevel >> temp.y;
                 newElmt.setCoord(temp);
 
-                 //because it is not a point
+                //because it is not a point
                 m_pointsCheck[i] = true;
             }
             else if(type == IntegralStr)
@@ -132,7 +132,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 newElmt.setBegin(min);
                 newElmt.setEnd(max);
 
-                 //because it is not a point
+                //because it is not a point
                 m_pointsCheck[i] = true;
 
             }
@@ -146,7 +146,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
 //                #endif // DEBUG
                 newElmt.setType(TypeObject::Function);
                 newElmt.setFunction(function);
-                 //because it is not a point
+                //because it is not a point
                 m_pointsCheck[i] = true;
             }
             else if (type == InfoStr)
@@ -167,7 +167,7 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
 
                 newElmt.setMessage(content);
 
-                 //because it is not a point
+                //because it is not a point
                 m_pointsCheck[i] = true;
             }
 
@@ -176,9 +176,9 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
     }
     else
     {
-        #ifdef DEBUG
-            std::cerr << "Error file :'" << _filename.c_str() << "' cannot exist" << std::endl;
-        #endif
+#ifdef DEBUG
+        std::cerr << "Error file :'" << _filename.c_str() << "' cannot exist" << std::endl;
+#endif
         std::runtime_error("Cannot load the file level\n");
         m_fileLevel.close();
     }
@@ -188,12 +188,12 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
 
 std::ostream& operator<<( std::ostream &flux, const LevelModel& level )
 {
-     flux << level.m_nbElements << std::endl;
-     for(unsigned int i = 0 ; i < level.m_nbElements ; i++)
-     {
-         flux << "Elements  ("<< i <<") "<< ": x = " << level.m_coordElements[i].getCoord().x << " y = " << level.m_coordElements[i].getCoord().y << std::endl;
-     }
-     return flux;
+    flux << level.m_nbElements << std::endl;
+    for(unsigned int i = 0 ; i < level.m_nbElements ; i++)
+    {
+        flux << "Elements  ("<< i <<") "<< ": x = " << level.m_coordElements[i].getCoord().x << " y = " << level.m_coordElements[i].getCoord().y << std::endl;
+    }
+    return flux;
 }
 
 
@@ -205,19 +205,19 @@ void LevelModel::IsFinishing ( const CharacterModel& charactermodel ,float _scal
     playableSound = false;
     sf::FloatRect position_and_Size = charactermodel.getRect();
 
-                  position_and_Size.width /= _scale;
-                  position_and_Size.height /= _scale;
+    position_and_Size.width /= _scale;
+    position_and_Size.height /= _scale;
 
-                  position_and_Size.left -= position_and_Size.width / 2;
+    position_and_Size.left -= position_and_Size.width / 2;
 
     for(unsigned int i = 0 ; i < getNbPoints()-1 ; i++)
     {
         //check the colissions and if the colission had already done between the point and the chracter
         if(!m_pointsCheck[i] && position_and_Size.contains( m_coordElements[i].getCoord() ) )
         {
-            #ifdef DEBUG
-             //std::cout << "Colliding index " << i << std::endl;
-            #endif
+#ifdef DEBUG
+            //std::cout << "Colliding index " << i << std::endl;
+#endif
             m_pointsCheck[i] = true;
             playableSound = true;
         }
@@ -226,17 +226,17 @@ void LevelModel::IsFinishing ( const CharacterModel& charactermodel ,float _scal
     //to avoid the sound
     if(position_and_Size.contains( m_coordElements[ getNbPoints() - 1 ].getCoord() ) )
     {
-             m_pointsCheck[ getNbPoints() - 1 ] = true;
-             playableSound = false;
+        m_pointsCheck[ getNbPoints() - 1 ] = true;
+        playableSound = false;
     }
 
     m_win = true;
     for(unsigned int i = 0 ; i < getNbPoints() ; i++)
     {
-       if(m_pointsCheck[i] == false)
-       {
-           m_win = false;
-       }
+        if(m_pointsCheck[i] == false)
+        {
+            m_win = false;
+        }
     }
     if(!m_win && m_pointsCheck[ getNbPoints() - 1])
     {
@@ -260,8 +260,8 @@ void LevelModel::reset()
     for(unsigned int i = 0 ; i < m_pointsCheck.size() ; i++)
     {
         if( m_coordElements.at(i).getType() == TypeObject::Point ||
-            m_coordElements.at(i).getType() == TypeObject::GoalPoint
-        )
+                m_coordElements.at(i).getType() == TypeObject::GoalPoint
+          )
         {
             m_pointsCheck[i] = false;
         }

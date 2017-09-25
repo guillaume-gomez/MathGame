@@ -30,14 +30,14 @@
 
 class Screen
 {
-    public:
-        Screen();
-        virtual ~Screen();
-        virtual int Run ( sf::RenderWindow &App) = 0;
+public:
+    Screen();
+    virtual ~Screen();
+    virtual int Run ( sf::RenderWindow &App) = 0;
 
-    protected:
-        sfg::Desktop m_desktop;
-        static bool isloadTheme;
+protected:
+    sfg::Desktop m_desktop;
+    static bool isloadTheme;
 };
 
 #endif // SCREEN_H

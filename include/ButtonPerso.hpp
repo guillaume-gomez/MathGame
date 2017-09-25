@@ -23,7 +23,7 @@
 #define BUTTONPERSO_H
 
 #ifdef DEBUG
-	 #include <iostream>
+#include <iostream>
 #endif //DEBUG
 #include <string>
 
@@ -35,26 +35,29 @@
 
 class ButtonPerso :  public sf::Sprite
 {
-    public:
-        ButtonPerso(const char* _filename = "");
-        virtual ~ButtonPerso();
-        void handle_input(sf::Event& event, sf::RenderTarget& target);
-        void setAlpha (int _alpha);
-        void draw(sf::RenderTarget& app);
-        bool isClicked() const;
-        void unclick();
+public:
+    ButtonPerso(const char* _filename = "");
+    virtual ~ButtonPerso();
+    void handle_input(sf::Event& event, sf::RenderTarget& target);
+    void setAlpha (int _alpha);
+    void draw(sf::RenderTarget& app);
+    bool isClicked() const;
+    void unclick();
 
-    protected:
-        std::string m_filename;
-        bool m_clicked;
-        sf::Texture m_texture;
+protected:
+    std::string m_filename;
+    bool m_clicked;
+    sf::Texture m_texture;
 };
 
 /**
 *
 **/
 
-inline bool ButtonPerso::isClicked() const {return m_clicked;};
+inline bool ButtonPerso::isClicked() const
+{
+    return m_clicked;
+};
 
 inline void ButtonPerso::setAlpha (int _alpha)
 {

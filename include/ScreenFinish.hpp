@@ -29,15 +29,15 @@
 
 class ScreenFinish : public Screen
 {
-    public:
-        ScreenFinish();
-        virtual ~ScreenFinish();
-        int Run(sf::RenderWindow & App);
+public:
+    ScreenFinish();
+    virtual ~ScreenFinish();
+    int Run(sf::RenderWindow & App);
 
-    protected:
-    private:
-    	sf::Sprite m_bg;
-        sf::Clock m_clock;
+protected:
+private:
+    sf::Sprite m_bg;
+    sf::Clock m_clock;
 
 };
 

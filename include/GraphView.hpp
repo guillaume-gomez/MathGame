@@ -37,28 +37,28 @@
 
 class GraphView
 {
-    public:
-        GraphView( ConstrueFunction& model, float thickness = 1.0f, float scale = 1.0f);
-        GraphView(float thickness = 1.0f, float scale = 1.0F);
-        virtual ~GraphView();
-        void represent(float step);
+public:
+    GraphView( ConstrueFunction& model, float thickness = 1.0f, float scale = 1.0f);
+    GraphView(float thickness = 1.0f, float scale = 1.0F);
+    virtual ~GraphView();
+    void represent(float step);
 
-        void draw(sf::RenderTarget& App );
-        void drawInterval(sf::RenderTarget& App, unsigned int split = 2);
-        void setGraphColor(const sf::Color& graphColor);
-        void standAloneRepresent(const ConstrueFunction& function, float step);
-        void receiveView(const sf::View view);
+    void draw(sf::RenderTarget& App );
+    void drawInterval(sf::RenderTarget& App, unsigned int split = 2);
+    void setGraphColor(const sf::Color& graphColor);
+    void standAloneRepresent(const ConstrueFunction& function, float step);
+    void receiveView(const sf::View view);
 
-    private:
-        GraphView(const GraphView& copy);
-        //without only one model
-        const bool m_isStandAlone;
-        std::list<LineSFML2_1> m_lines;
-        const ConstrueFunction* m_model;
-        float m_thickness;
-        float m_scale;
-        sf::Color m_graphColor;
-        sf::View m_viewport;
+private:
+    GraphView(const GraphView& copy);
+    //without only one model
+    const bool m_isStandAlone;
+    std::list<LineSFML2_1> m_lines;
+    const ConstrueFunction* m_model;
+    float m_thickness;
+    float m_scale;
+    sf::Color m_graphColor;
+    sf::View m_viewport;
 };
 
 /**

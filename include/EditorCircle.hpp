@@ -38,29 +38,29 @@
 
 class EditorCircle : public sf::CircleShape , public EditorObject
 {
-    public:
-        EditorCircle();
-        EditorCircle(const EditorCircle& original);
-        virtual ~EditorCircle();
-        virtual float distance(sf::Vector2f pointOne, sf::Vector2f pointTwo);
-        virtual bool isCollide(sf::Vector2f point);
-        virtual bool isCollide(const sf::FloatRect& rect);
-        virtual void draw(sf::RenderTarget& app);
-        virtual EditorObject* clone() const = 0;
+public:
+    EditorCircle();
+    EditorCircle(const EditorCircle& original);
+    virtual ~EditorCircle();
+    virtual float distance(sf::Vector2f pointOne, sf::Vector2f pointTwo);
+    virtual bool isCollide(sf::Vector2f point);
+    virtual bool isCollide(const sf::FloatRect& rect);
+    virtual void draw(sf::RenderTarget& app);
+    virtual EditorObject* clone() const = 0;
 //    	virtual void setPosition(float x, float y);
 //        virtual void setPosition(sf::Vector2f& pos);
-    	virtual void setPosition(float x, float y);
-    	virtual void setPosition(sf::Vector2f& pos);
-    	virtual sf::Vector2f get_Position() const ;
-    	virtual sf::FloatRect get_GlobalBounds() const;
-        virtual std::string save(float scale = GraphScale) const;
-        virtual EditorObject* loadView(const Element& elmt, float scale) = 0;
+    virtual void setPosition(float x, float y);
+    virtual void setPosition(sf::Vector2f& pos);
+    virtual sf::Vector2f get_Position() const ;
+    virtual sf::FloatRect get_GlobalBounds() const;
+    virtual std::string save(float scale = GraphScale) const;
+    virtual EditorObject* loadView(const Element& elmt, float scale) = 0;
 
-        void setRadius(float radius);
-        const Physics::Circle& getPhysicsCircle() const;
+    void setRadius(float radius);
+    const Physics::Circle& getPhysicsCircle() const;
 
-    protected:
-        Physics::Circle m_physicsCircle;
+protected:
+    Physics::Circle m_physicsCircle;
 
 };
 

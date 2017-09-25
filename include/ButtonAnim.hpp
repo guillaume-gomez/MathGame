@@ -23,7 +23,7 @@
 #define BUTTONANIM_H
 
 #ifdef DEBUG
-	#include <iostream>
+#include <iostream>
 #endif // DEBUG
 
 #include "AniSprite.hpp"
@@ -32,17 +32,17 @@
 
 class ButtonAnim : public ButtonPerso
 {
-    public:
-        ButtonAnim(const char* _filename = "", int _widthFrame=0, int _heigtFrame=0);
-        virtual ~ButtonAnim();
-        void switchTile();
-        void handle_input(sf::Event& event, sf::RenderTarget& target);
-        void Launch();
+public:
+    ButtonAnim(const char* _filename = "", int _widthFrame=0, int _heigtFrame=0);
+    virtual ~ButtonAnim();
+    void switchTile();
+    void handle_input(sf::Event& event, sf::RenderTarget& target);
+    void Launch();
 
-    private:
-        //to launch animation for instance;
-        bool m_changing;
-        AniSprite m_spriteList;
-        sf::Texture m_texture;
+private:
+    //to launch animation for instance;
+    bool m_changing;
+    AniSprite m_spriteList;
+    sf::Texture m_texture;
 };
 #endif // BUTTONANIM_H

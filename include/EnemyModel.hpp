@@ -29,20 +29,20 @@
 
 class EnemyModel : public CharacterModel
 {
-    public:
-        EnemyModel(bool life = true , sf::Vector2f coord = sf::Vector2f(0.0f, 0.0f), float speed = 6.0f, MoveType moveType = NoSliding, unsigned int _nb = 4);
-        EnemyModel(const EnemyModel& copy);
-        virtual ~EnemyModel();
-        void decrementAttempt();
-        unsigned int getNbAttempt() const;
-        std::string getNbAttemptStr() const;
-        bool isActive()const;
-        void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
-        void setNbAttempt(unsigned int i);
-    protected:
-        // nb attempt (different curves) before IA Activation
-        unsigned int m_nbAttempt;
-        bool m_isActive;
+public:
+    EnemyModel(bool life = true , sf::Vector2f coord = sf::Vector2f(0.0f, 0.0f), float speed = 6.0f, MoveType moveType = NoSliding, unsigned int _nb = 4);
+    EnemyModel(const EnemyModel& copy);
+    virtual ~EnemyModel();
+    void decrementAttempt();
+    unsigned int getNbAttempt() const;
+    std::string getNbAttemptStr() const;
+    bool isActive()const;
+    void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
+    void setNbAttempt(unsigned int i);
+protected:
+    // nb attempt (different curves) before IA Activation
+    unsigned int m_nbAttempt;
+    bool m_isActive;
 };
 
 inline void EnemyModel::setNbAttempt(unsigned int i)

@@ -23,10 +23,10 @@
 
 sf::Texture* TextureManager::getResource(const std::string& fileName, const sf::IntRect &area)
 {
-	if(m_subrectTextures.find(fileName)==m_subrectTextures.end() || m_subrectTextures[fileName].find(area)==m_subrectTextures[fileName].end())
-		loadFromFile(fileName, area);
+    if(m_subrectTextures.find(fileName)==m_subrectTextures.end() || m_subrectTextures[fileName].find(area)==m_subrectTextures[fileName].end())
+        loadFromFile(fileName, area);
 
-	if(m_subrectTextures.find(fileName)!=m_subrectTextures.end())
+    if(m_subrectTextures.find(fileName)!=m_subrectTextures.end())
         if(m_subrectTextures[fileName].find(area)!=m_subrectTextures[fileName].end())
             return m_subrectTextures[fileName][area];
 
@@ -49,9 +49,9 @@ void TextureManager::loadFromFile(const std::string& fileName)
     else
     {
         delete tmpText;
-        #ifdef DEBUG
-            // // std::cout << "CANT LOAD : " << fileName << std::endl;
-        #endif
+#ifdef DEBUG
+        // // std::cout << "CANT LOAD : " << fileName << std::endl;
+#endif
     }
 }
 
@@ -87,9 +87,9 @@ void FontManager::loadFromFile(const std::string& fileName)
     else
     {
         delete tmpFont;
-        #ifdef DEBUG
-            // // std::cout << "CANT LOAD : " << fileName << std::endl;
-        #endif
+#ifdef DEBUG
+        // // std::cout << "CANT LOAD : " << fileName << std::endl;
+#endif
     }
 }
 

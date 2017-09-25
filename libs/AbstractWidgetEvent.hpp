@@ -24,9 +24,9 @@
 
 class AbstractWidgetEvent
 {
-	public:
-		virtual ~AbstractWidgetEvent(){}
-		virtual bool Execute() = 0;
+public:
+    virtual ~AbstractWidgetEvent() {}
+    virtual bool Execute() = 0;
 };
 
 

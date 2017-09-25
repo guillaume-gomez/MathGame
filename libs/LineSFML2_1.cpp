@@ -22,7 +22,7 @@
 #include "LineSFML2_1.hpp"
 
 LineSFML2_1::LineSFML2_1(const sf::Vector2f& startCoords, const sf::Vector2f& endCoords)
-:m_startCoords(startCoords), m_endCoords(endCoords)
+    :m_startCoords(startCoords), m_endCoords(endCoords)
 {
     compute();
     setThickness(1);
@@ -51,9 +51,9 @@ LineSFML2_1& LineSFML2_1::operator=(const LineSFML2_1& other)
 void LineSFML2_1::compute()
 {
     m_length = sqrt(pow(m_endCoords.x-m_startCoords.x,2)+pow(m_endCoords.y-m_startCoords.y,2));
-    #ifdef DEBUG
+#ifdef DEBUG
 //        // // std::cout << "m_length : " << m_length << std::endl;
-    #endif // DEBUG
+#endif // DEBUG
     setSize(sf::Vector2f(getLength(),getThickness()));
     setPosition(getStartCoords());
     setRotation(atan2(m_endCoords.y-m_startCoords.y, m_endCoords.x-m_startCoords.x)*180/M_PI);

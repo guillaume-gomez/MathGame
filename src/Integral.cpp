@@ -22,12 +22,12 @@
 #include "Integral.hpp"
 
 Integral::Integral(std::string function, float _begin, float _end, float step)
-:m_model(function),//function),
- m_view(m_model, GraphScale)//, m_type(TypeObject::Integral)
+    :m_model(function),//function),
+     m_view(m_model, GraphScale)//, m_type(TypeObject::Integral)
 {
     if(_begin != 0.0f && _end != 0.1f)
     {
-    	build(_begin,_end, step);
+        build(_begin,_end, step);
     }
 }
 
@@ -37,7 +37,7 @@ Integral::~Integral()
 }
 
 Integral::Integral(const Integral& copy)
-: m_model(copy.m_model), m_view(m_model,GraphScale)//, m_type(TypeObject::Integral)
+    : m_model(copy.m_model), m_view(m_model,GraphScale)//, m_type(TypeObject::Integral)
 {
 
 }
@@ -48,13 +48,13 @@ EditorObject* Integral::clone() const
 //    #ifdef DEBUG
 //        std::cout << "EditorObject* Integral::clone() const" << std::endl;
 //    #endif // DEBUG
-	return new Integral(*this);
+    return new Integral(*this);
 }
 
 
 std::string Integral::save(float scale) const
 {
-	std::stringstream flux;
+    std::stringstream flux;
     flux << this->getTypeStr() << std::endl;
     flux << m_model.getFunction() << std::endl;
     flux << m_model.getBegin().x << std::endl;
@@ -64,11 +64,11 @@ std::string Integral::save(float scale) const
 
 void Integral::draw(sf::RenderTarget& app)
 {
-	m_view.drawShape(app);
+    m_view.drawShape(app);
 }
 
 void Integral::build(int _begin , int _end, float step)
 {
-	m_model.getIntegraleCurveShape(_begin, _end, Step);
-	m_view.representShape();
+    m_model.getIntegraleCurveShape(_begin, _end, Step);
+    m_view.representShape();
 }
