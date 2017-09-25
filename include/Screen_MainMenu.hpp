@@ -56,9 +56,9 @@ private:
     sfg::Button::Ptr m_credit_button;
     sfg::Button::Ptr m_editor_button;
 
-#ifdef ASSITED_MODE_ACTIVATED
+#ifdef ASSISTED_MODE_ACTIVATED
     sfg::Button::Ptr m_play_button;
-#endif // ASSITED_MODE_ACTIVATED
+#endif // ASSISTED_MODE_ACTIVATED
 
     sfg::Button::Ptr m_play2_button;
     sfg::Button::Ptr m_option_button;
