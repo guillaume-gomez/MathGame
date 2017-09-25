@@ -31,7 +31,9 @@ Screen_MainMenu::Screen_MainMenu()
 
     //m_background.setPosition(WindowWidth/2 - m_background.getGlobalBounds().width/2, WindowHeight/2 - m_background.getGlobalBounds().height/2);
 
-//    m_play_button = sfg::Button::Create("Normal");
+    #ifdef ASSITED_MODE_ACTIVATED
+    m_play_button = sfg::Button::Create("Normal");
+    #endif
     m_play2_button = sfg::Button::Create("Play");
     m_credit_button = sfg::Button::Create("Credit");
     m_editor_button = sfg::Button::Create("Editor");
@@ -39,7 +41,10 @@ Screen_MainMenu::Screen_MainMenu()
     m_howTo_button = sfg::Button::Create("How To Play");
 
 
-//    m_play_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::playButtonClick, this));
+    #ifdef ASSITED_MODE_ACTIVATED
+    m_play_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::playButtonClick, this));
+    #endif // ASSITED_MODE_ACTIVATED
+
     m_play2_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::play2ButtonClick, this));
     m_credit_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::creditButtonClick, this));
     m_option_button->GetSignal(sfg::Widget::OnLeftClick).Connect(std::bind(&Screen_MainMenu::optionButtonClick, this));
@@ -100,7 +105,10 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 
     sfg::Box::Ptr box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL, 45.f );
 
-//    box->Pack( m_play_button );
+    #ifdef ASSITED_MODE_ACTIVATED
+    box->Pack( m_play_button );
+    #endif // ASSITED_MODE_ACTIVATED
+
     box->Pack( m_play2_button );
     box->Pack( m_credit_button );
     #ifdef DEBUG

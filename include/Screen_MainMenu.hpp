@@ -30,6 +30,8 @@
 #include "Screen.hpp"
 
 
+//#define ASSISTED_MODE_ACTIVATED
+
 class Screen_MainMenu : public Screen
 {
     public:
@@ -53,7 +55,11 @@ class Screen_MainMenu : public Screen
         int m_changingMenu;
         sfg::Button::Ptr m_credit_button;
         sfg::Button::Ptr m_editor_button;
-//        sfg::Button::Ptr m_play_button;
+
+        #ifdef ASSITED_MODE_ACTIVATED
+        sfg::Button::Ptr m_play_button;
+        #endif // ASSITED_MODE_ACTIVATED
+
         sfg::Button::Ptr m_play2_button;
         sfg::Button::Ptr m_option_button;
         sfg::Button::Ptr m_howTo_button;
