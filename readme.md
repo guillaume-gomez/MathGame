@@ -8,6 +8,8 @@ Idea
 -------------
 The goal was to make a platform game using Maths curves as the main gameplay element.
 
+![gif](resReadme/IHateMath.gif)
+
 <img src="resReadme/in-game1.png" alt="In-game img" width="75%" />
 <img src="resReadme/in-game2.png" alt="In-game img" width="75%" />
 <img src="resReadme/in-game3.png" alt="In-game img" width="75%" />
