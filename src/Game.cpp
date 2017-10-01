@@ -359,8 +359,6 @@ void Game::move()
             m_textAreaFunction.setString(m_functionManager.getFunction());
             m_level.decrementAttempt();
             m_timer.restart();
-
-
         }
     }
 

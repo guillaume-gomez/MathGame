@@ -75,7 +75,7 @@ const int WidthIcon = 46;
 const int HeightIcon = 43;
 
 const float PositionNBAttempX = 0.74f;
-const float PositionNBAttempY = 0.90f;
+const float PositionNBAttempY = 0.925f;
 
 const float PositionButtonResetX = 0.80f;
 const float PositionButtonResetY = 0.02f;
@@ -102,7 +102,7 @@ const float sizePoint = 0.15f;
 const int backgroundColor = 230;
 const int gridGameColor = 235;
 
-const int Font  = 16;
+const int Font  = 15;
 
 const float TimePanel = 10.0f;
 
