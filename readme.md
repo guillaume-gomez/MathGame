@@ -104,7 +104,10 @@ This will tell your system to create the necessary links and cache to the most r
 ## Compile Math Game
 
 ### Using a makefile
-`make all`
+```
+make all
+./bin/Release/IHateMaths
+```
 
 ### Through code::blocks
 You just have to run the project (i.e. open "ProjetMath.cbp" )
