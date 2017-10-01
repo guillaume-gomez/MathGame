@@ -27,7 +27,7 @@
 #include "LevelView.hpp"
 #include "LevelModel.hpp"
 #ifdef DEBUG
-	 #include <iostream>
+#include <iostream>
 #endif //DEBUG
 #include <fstream>
 #include <sstream>
@@ -41,57 +41,57 @@
 
 class ManageLevel
 {
-    public:
-        float m_scale;
+public:
+    float m_scale;
 
-        ManageLevel(unsigned int _level = 1 , Difficulty _diff = Normal, float m_scale = 1.0f);
-        void loadFile (int numLevel, GameMode mode);
-        void loadLevel ();
-        virtual ~ManageLevel();
-        void setLevel(int _level);
-        unsigned int getLevel() const;
-        void IsNextLevel();
-        int changeLevel (ScreenLink * link);
-        void reset();
-        void drawPoints(sf::RenderTarget& app);
-        void drawUI(sf::RenderTarget& app);
-        std::string convertEnum (Difficulty _diff);
-        void displaying(sf::Event& event, sf::RenderTarget& target, sf::View& myView);
-        void levelFinished (const CharacterModel& charModel, bool& soundPlayable);
-        void setToolTipPos (sf::Vector2f _temp);
-        sf::Vector2f getToolTipPos ()const;
-        void setToolTipScale (sf::Vector2f _scale);
-        sf::Vector2f getToolTipScale ()const;
-        void decrementAttempt();
-        bool getChangeLevel()const ;
-        void displayNbAttempt();
-        void setnbAttempTextPosition(sf::Vector2f _pos);
-        void setnbAttempTextScale(sf::Vector2f _pos);
-        void setDiff(Difficulty _diff);
-        void showEnemies();
-        void resetEnemies();
-        void handle_inputEnnemies(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
-        void fillLevelFunctions(ManageFunctions& func);
-        const std::vector<EditorObject*> getSpriteList () const;
-        void scaleNbAttempt(float scaleX, float scaleY);
-        void receiveView(const sf::View& view);
+    ManageLevel(unsigned int _level = 1 , Difficulty _diff = Normal, float m_scale = 1.0f);
+    void loadFile (int numLevel, GameMode mode);
+    void loadLevel ();
+    virtual ~ManageLevel();
+    void setLevel(int _level);
+    unsigned int getLevel() const;
+    void IsNextLevel();
+    int changeLevel (ScreenLink * link);
+    void reset();
+    void drawPoints(sf::RenderTarget& app);
+    void drawUI(sf::RenderTarget& app);
+    std::string convertEnum (Difficulty _diff);
+    void displaying(sf::Event& event, sf::RenderTarget& target, sf::View& myView);
+    void levelFinished (const CharacterModel& charModel, bool& soundPlayable);
+    void setToolTipPos (sf::Vector2f _temp);
+    sf::Vector2f getToolTipPos ()const;
+    void setToolTipScale (sf::Vector2f _scale);
+    sf::Vector2f getToolTipScale ()const;
+    void decrementAttempt();
+    bool getChangeLevel()const ;
+    void displayNbAttempt();
+    void setnbAttempTextPosition(sf::Vector2f _pos);
+    void setnbAttempTextScale(sf::Vector2f _pos);
+    void setDiff(Difficulty _diff);
+    void showEnemies();
+    void resetEnemies();
+    void handle_inputEnnemies(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
+    void fillLevelFunctions(ManageFunctions& func);
+    const std::vector<EditorObject*> getSpriteList () const;
+    void scaleNbAttempt(float scaleX, float scaleY);
+    void receiveView(const sf::View& view);
 
-    private:
-        Difficulty m_difficulty;
-        std::string m_filenameCurrent;
-        sf::Font m_font;
-        unsigned int m_levelCurrent;
-        bool m_changeLevel;
-        LevelModel* m_levelModel;
-        LevelView* m_levelView;
-        bool m_isDisplayToolTip;
-        sf::Text m_nbAttemp;
-        sf::String m_string;
-        sf::Text m_text;
-        sf::Sprite m_tooltip;
-        static sf::Texture toolTipTex;
-        static bool toolTipTexLoaded;
-        static bool loadToolTipTex(const char* filenametoolTipTex = FilenameToolTipTex);
+private:
+    Difficulty m_difficulty;
+    std::string m_filenameCurrent;
+    sf::Font m_font;
+    unsigned int m_levelCurrent;
+    bool m_changeLevel;
+    LevelModel* m_levelModel;
+    LevelView* m_levelView;
+    bool m_isDisplayToolTip;
+    sf::Text m_nbAttemp;
+    sf::String m_string;
+    sf::Text m_text;
+    sf::Sprite m_tooltip;
+    static sf::Texture toolTipTex;
+    static bool toolTipTexLoaded;
+    static bool loadToolTipTex(const char* filenametoolTipTex = FilenameToolTipTex);
 };
 
 /*********************************************************/
@@ -128,7 +128,10 @@ inline sf::Vector2f ManageLevel::getToolTipScale() const
     return m_tooltip.getScale();
 }
 
-inline bool ManageLevel::getChangeLevel() const {return m_changeLevel;};
+inline bool ManageLevel::getChangeLevel() const
+{
+    return m_changeLevel;
+};
 
 inline void ManageLevel::setnbAttempTextPosition(sf::Vector2f _pos)
 {

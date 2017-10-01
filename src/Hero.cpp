@@ -23,12 +23,12 @@
 #include <sstream>
 
 Hero::Hero()
-: m_model(true, sf::Vector2f(0.0f, 0.0f), CharSpeed),
-  m_view(m_model,GraphScale)
+    : m_model(true, sf::Vector2f(0.0f, 0.0f), CharSpeed),
+      m_view(m_model,GraphScale)
 {
-    #ifdef DEBUG
+#ifdef DEBUG
 //        std::cout << "Hero constructor" << std::endl;
-    #endif // DEBUG
+#endif // DEBUG
     this->m_type = TypeObject::Hero;
 
     m_model.setSize(m_view.getRectLocal().width, m_view.getRectLocal().height);
@@ -47,12 +47,12 @@ void Hero::handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaF
 
 void Hero::show()
 {
-     m_view.show();
+    m_view.show();
 }
 
 void Hero::draw(sf::RenderTarget& app)
 {
-     m_view.draw(app);
+    m_view.draw(app);
 }
 
 void Hero::reset()
@@ -63,7 +63,7 @@ void Hero::reset()
 }
 
 Hero::Hero(const Hero& copy)
-:m_model(copy.m_model), m_view(m_model, GraphScale)
+    :m_model(copy.m_model), m_view(m_model, GraphScale)
 {
     m_model.setSize(m_view.getRectLocal().width, m_view.getRectLocal().height);
     m_type = TypeObject::Hero;
@@ -71,7 +71,7 @@ Hero::Hero(const Hero& copy)
 
 EditorObject* Hero::clone() const
 {
-	return new Hero(*this);
+    return new Hero(*this);
 }
 
 std::string Hero::save(float scale) const

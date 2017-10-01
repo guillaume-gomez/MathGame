@@ -22,7 +22,7 @@
 #include "Screen_Game.hpp"
 
 Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
-:m_game(new Game(_app)), m_stat(_stat)
+    :m_game(new Game(_app)), m_stat(_stat)
 {
     //to change the camera sets in m_game
     recenterCamera();
@@ -44,7 +44,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
         }
 
         bool Running = true;
-         //temp
+        //temp
         m_game->setGameMode(m_stat->getMode());
         //
         m_game->loadConfigFile();
@@ -64,7 +64,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
             {
                 alpha++;
             }*/
-           Running =  m_game->handleInput();
+            Running =  m_game->handleInput();
 
             if(m_game->isBacked())
             {
@@ -89,10 +89,10 @@ int Screen_Game::Run(sf::RenderWindow& App)
     }
     catch(std::ios_base::failure& failure)
     {
-        #ifdef DEBUG
+#ifdef DEBUG
 //            std::cout << "Screen_Game Run" << std::endl;
-            std::cerr << failure.what() << std::endl;
-        #endif // DEBUG
+        std::cerr << failure.what() << std::endl;
+#endif // DEBUG
         delete m_game;
         m_game=0;
     }
@@ -106,12 +106,12 @@ int Screen_Game::Run(sf::RenderWindow& App)
 
 void Screen_Game::recenterCamera()
 {
- #ifdef DEBUG
-  //// std::cout << "caca" << std::endl;
- #endif
+#ifdef DEBUG
+    //// std::cout << "caca" << std::endl;
+#endif
     sf::View   viewPerso = m_game->m_app.getView();
-   viewPerso.reset(sf::FloatRect(0,0,WindowWidth, WindowHeight));
-	m_game->m_app.setView(viewPerso);
+    viewPerso.reset(sf::FloatRect(0,0,WindowWidth, WindowHeight));
+    m_game->m_app.setView(viewPerso);
 }
 
 

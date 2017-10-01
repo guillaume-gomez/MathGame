@@ -23,7 +23,7 @@
 #define LEVELVIEW_H
 
 #ifdef DEBUG
-	 #include <iostream>
+#include <iostream>
 #endif //DEBUG
 #include <string>
 #include <vector>
@@ -46,34 +46,37 @@
 
 class LevelView
 {
-    public:
-        LevelView(const LevelModel& model,  float _scale);
-        virtual ~LevelView();
-        void draw( sf::RenderTarget& target );
-        std::vector<EditorObject*> getSpriteList () const;
-        void loadCoord();
-        void reset();
+public:
+    LevelView(const LevelModel& model,  float _scale);
+    virtual ~LevelView();
+    void draw( sf::RenderTarget& target );
+    std::vector<EditorObject*> getSpriteList () const;
+    void loadCoord();
+    void reset();
 
-        void setView(const sf::View& view);
-    private:
-        LevelView();
-        std::vector<EditorObject*> m_listSprite;
-        std::vector<std::string> m_listFunctionLevel;
-        const LevelModel& m_model;
-        static sf::Texture m_texNormal;
-        static sf::Texture m_texGoal;
-        float m_scale;
-        static bool TexturesLoaded;
-        static bool loadTex(const char* _filenameNormalText = FilenameNormalPointTex, const char* _filenameGoalText = FilenamePointGoalTex);
+    void setView(const sf::View& view);
+private:
+    LevelView();
+    std::vector<EditorObject*> m_listSprite;
+    std::vector<std::string> m_listFunctionLevel;
+    const LevelModel& m_model;
+    static sf::Texture m_texNormal;
+    static sf::Texture m_texGoal;
+    float m_scale;
+    static bool TexturesLoaded;
+    static bool loadTex(const char* _filenameNormalText = FilenameNormalPointTex, const char* _filenameGoalText = FilenamePointGoalTex);
 
-        sf::View m_view;
+    sf::View m_view;
 };
 
 /****************************************************
 **
 ******************************************************/
 
-inline std::vector<EditorObject*> LevelView::getSpriteList () const { return m_listSprite;};
+inline std::vector<EditorObject*> LevelView::getSpriteList () const
+{
+    return m_listSprite;
+};
 
 inline void LevelView::setView(const sf::View& view)
 {

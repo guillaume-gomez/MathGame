@@ -30,7 +30,7 @@ Engine* Engine::getEngine()
 }
 
 Engine::Engine(sf::Vector2f GravityAcceleration)
-:m_GravityAcceleration(GravityAcceleration)
+    :m_GravityAcceleration(GravityAcceleration)
 {
 //    m_functionsList.push_back(&m_Function);
 }
@@ -47,9 +47,9 @@ void Engine::addObject(Object* object)
 {
     if(!object->m_inEngine)
     {
-        #ifdef DEBUG
+#ifdef DEBUG
 //            std::cout << "Engine::addObject object : " << object << std::endl;
-        #endif // DEBUG
+#endif // DEBUG
         m_PhysicsObjects.push_back(object);
         object->m_inEngine = true;
     }
@@ -148,7 +148,7 @@ void Engine::update(float elapsedSeconds)
 
         // permet le deplacement (au ralenti) d'un objet si il est en l'air
         if( (!object->isOnCurve() && std::abs(object->m_Velocity.x) < std::abs(object->m_Thrust.x))
-         || ((object->m_Thrust.x<0 && object->m_Velocity.x>0) || (object->m_Thrust.x>0 && object->m_Velocity.x<0))
+                || ((object->m_Thrust.x<0 && object->m_Velocity.x>0) || (object->m_Thrust.x>0 && object->m_Velocity.x<0))
           )
             object->m_Velocity.x += object->m_Thrust.x*elapsedSeconds*2;
 
@@ -236,7 +236,7 @@ void Engine::update(float elapsedSeconds)
                     if((object->m_Position.y < currentYCurve))
                     {
                         object->m_Position.y=currentYCurve;
-    //                    object->m_Position.y=maxValue;
+                        //                    object->m_Position.y=maxValue;
                         object->isOnCurve();
                     }
                     else
@@ -271,7 +271,7 @@ void Engine::update(float elapsedSeconds)
                     // si le personnage est en dessous de la courbe (due aux erreurs inéluctables de précision de calcul)
                     // alors correction en placant le personnage sur la bonne coordonnée y
                     // si il est au dessus, on ne fait rien et au prochain appel de cette methode le perso sera déplacé en retombant selon la gravité
-    /*************************************************/
+                    /*************************************************/
                     float currentYCurve = functionPtr->getFunctionValue(object->m_Position.x);
                     if(isIntegral && currentYCurve<0)
                         currentYCurve=0;
@@ -284,7 +284,7 @@ void Engine::update(float elapsedSeconds)
                     {
                         object->isOnCurve(false);
                     }
-    /***************************************************/
+                    /***************************************************/
                 }
                 else
                     object->isOnCurve(false);
@@ -315,7 +315,7 @@ void Engine::update(float elapsedSeconds)
                 float objY = object->getPosition().y+object->getHeight();
 
                 if( (objY>=fctY && objY<=0)
-                 || (objY<=fctY && objY>=0)
+                        || (objY<=fctY && objY>=0)
                   )
                 {
                     revertMove = true;

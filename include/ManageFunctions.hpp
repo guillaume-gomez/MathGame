@@ -29,31 +29,31 @@
 
 class ManageFunctions
 {
-    public:
-        ManageFunctions();
-        virtual ~ManageFunctions();
-        void handle_input(sf::Event& event);
-        void draw(sf::RenderTarget& app);
-        void addFunction(std::string function);
-        void represent(float step);
-        bool isChanged() const;
-        void reset();
-        void resetToZero();
-        std::string getFunction()const;
-        const ConstrueFunction* getModelIndex();
-        void setViews(const sf::View view);
-        bool drawBefore(sf::RenderTarget& app);
-        bool drawAfter(sf::RenderTarget& app);
-        bool showAfter();
-        bool showBefore();
-        bool isEmpty() const;
-        void colorize();
+public:
+    ManageFunctions();
+    virtual ~ManageFunctions();
+    void handle_input(sf::Event& event);
+    void draw(sf::RenderTarget& app);
+    void addFunction(std::string function);
+    void represent(float step);
+    bool isChanged() const;
+    void reset();
+    void resetToZero();
+    std::string getFunction()const;
+    const ConstrueFunction* getModelIndex();
+    void setViews(const sf::View view);
+    bool drawBefore(sf::RenderTarget& app);
+    bool drawAfter(sf::RenderTarget& app);
+    bool showAfter();
+    bool showBefore();
+    bool isEmpty() const;
+    void colorize();
 
-    private:
-    	bool m_changed;
-        int m_currentIndex;
-    	std::vector<Curves> m_vectorCurves;
-    	sf::View m_view;
+private:
+    bool m_changed;
+    std::vector<Curves>::size_type m_currentIndex;
+    std::vector<Curves> m_vectorCurves;
+    sf::View m_view;
 };
 
 

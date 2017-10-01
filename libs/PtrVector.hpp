@@ -28,26 +28,44 @@
 template<typename V>
 class PtrVector
 {
-		std::vector<V *> m_vector;
+    std::vector<V *> m_vector;
 
-	public:
-		typedef typename std::vector<V *>::iterator iterator;
-		typedef typename std::vector<V *>::const_iterator const_iterator;
+public:
+    typedef typename std::vector<V *>::iterator iterator;
+    typedef typename std::vector<V *>::const_iterator const_iterator;
 
-		PtrVector(){}
+    PtrVector() {}
 
-		~PtrVector()
-		{
-			for(iterator it = m_vector.begin(); it != m_vector.end(); ++it)
-				delete *it;
-		}
+    ~PtrVector()
+    {
+        for(iterator it = m_vector.begin(); it != m_vector.end(); ++it)
+            delete *it;
+    }
 
-		void push_back(V * value)	{ m_vector.push_back(value); }
-		V & operator [](size_t id)	{ return *m_vector[id]; }
-		size_t size()				{ return m_vector.size(); }
-		bool empty()				{ return m_vector.empty(); }
-		 iterator begin()	{ return m_vector.begin(); }
-		 iterator end()		{ return m_vector.end(); }
+    void push_back(V * value)
+    {
+        m_vector.push_back(value);
+    }
+    V & operator [](size_t id)
+    {
+        return *m_vector[id];
+    }
+    size_t size()
+    {
+        return m_vector.size();
+    }
+    bool empty()
+    {
+        return m_vector.empty();
+    }
+    iterator begin()
+    {
+        return m_vector.begin();
+    }
+    iterator end()
+    {
+        return m_vector.end();
+    }
 };
 
 

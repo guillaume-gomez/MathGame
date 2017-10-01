@@ -24,7 +24,7 @@
 bool Screen::isloadTheme = false;
 
 Screen::Screen()
-: m_desktop()
+    : m_desktop()
 {
     if(!isloadTheme)
     {

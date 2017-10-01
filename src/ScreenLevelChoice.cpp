@@ -22,8 +22,11 @@
 #include "ScreenLevelChoice.hpp"
 
 SelectLevel::SelectLevel( ScreenLink* _stat, unsigned int level, Difficulty difficulty)
-:m_stat(_stat), m_difficulty(difficulty), m_level(level), m_modeSelectLevel(Classic), m_isClicked(false)
+    :m_stat(_stat), m_difficulty(difficulty), m_level(level), m_modeSelectLevel(Classic), m_isClicked(false)
 {
+#ifdef DEBUG
+    std::cout << "SelectLevel::SelectLevel( ScreenLink* _stat, level "<< level <<", Difficulty "<< difficulty <<")" << std::endl;
+#endif // DEBUG
 }
 
 SelectLevel::~SelectLevel()
@@ -101,37 +104,41 @@ void SelectLevel::selectingLevel()
 ////////////////////////////////////////////////////////////////////
 
 ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
-:m_changingMenu(-1), m_playing(false)
+    :m_changingMenu(-1), m_playing(false)
 {
 
     m_stat = _stat;
 //   m_backgroundTex.loadFromFile(FilenameBackGroundMenu);
 //   m_background.setTexture(m_backgroundTex);
-   m_background.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBackGroundMenu)));
-   m_background.setColor(sf::Color(backgroundColor,backgroundColor,backgroundColor));
+    m_background.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBackGroundMenu)));
+    m_background.setColor(sf::Color(backgroundColor,backgroundColor,backgroundColor));
 
-   m_easyTex.loadFromFile(FilenameEasyButton);
-   m_normalTex.loadFromFile(FilenameNormalButton);
-   m_hardTex.loadFromFile(FilenameHardButton);
+    m_easyTex.loadFromFile(FilenameEasyButton);
+    m_normalTex.loadFromFile(FilenameNormalButton);
+    m_hardTex.loadFromFile(FilenameHardButton);
 
-   m_easyBar.setTexture(m_easyTex);
-   m_normalBar.setTexture(m_normalTex);
-   m_hardBar.setTexture(m_hardTex);
+    m_easyBar.setTexture(m_easyTex);
+    m_normalBar.setTexture(m_normalTex);
+    m_hardBar.setTexture(m_hardTex);
 
-   m_window = sfg::Window::Create();
-   m_window->SetTitle("Select a Level");
+    m_window = sfg::Window::Create();
+    m_window->SetTitle("Select a Level");
 
-   m_scrolled_window_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
-   m_layoutEasy = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
-   m_layoutNormal = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
-   m_layoutHard = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
+    m_scrolled_window_box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
+    m_layoutEasy = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
+    m_layoutNormal = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
+    m_layoutHard = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL);
 
-   m_frameEasy = sfg::Frame::Create("Easy");
-   m_frameNormal = sfg::Frame::Create("Normal");
-   m_frameHard = sfg::Frame::Create("Hard");
+    m_frameEasy = sfg::Frame::Create("Easy");
+    m_frameNormal = sfg::Frame::Create("Normal");
+    m_frameHard = sfg::Frame::Create("Hard");
 
     sf::Font font;
     font.loadFromFile(FilenameFont);
+
+#ifdef DEBUG
+    std::cout << "_stat->getnbEasy() : " << _stat->getnbEasy() << std::endl;
+#endif // DEBUG
 
     for(unsigned int i = 0 ; i < _stat->getnbEasy() ; i++)
     {
@@ -179,14 +186,14 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
     m_scrolled_window_box->Pack(m_frameNormal);
     m_scrolled_window_box->Pack(m_frameHard);
     m_window->Add(m_scrolled_window_box);
-     m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
+    m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
 }
 
 
 ScreenLevelChoice::~ScreenLevelChoice()
 {
     // // std::cout << "ScreenLevelCHoice's destrcutor" << std::endl;
-    for( unsigned int i = 0 ; i < m_selectionLevel.size();i++)
+    for( unsigned int i = 0 ; i < m_selectionLevel.size(); i++)
     {
         m_selectionLevel.pop_back();
     }

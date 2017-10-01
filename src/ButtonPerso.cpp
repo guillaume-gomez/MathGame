@@ -22,9 +22,12 @@
 #include "ButtonPerso.hpp"
 
 ButtonPerso::ButtonPerso(const char* _filename)
-:m_filename(_filename), m_clicked(false)
+    :m_filename(_filename), m_clicked(false)
 {
     sf::Texture * texture = nullptr;
+#ifdef DEBUG
+    std::cout << "ButtonPerso : " << _filename << std::endl;
+#endif //DEBUG
     texture = TextureManager::getTextureManager()->getResource(std::string(m_filename));
     if(texture)
     {
@@ -40,9 +43,9 @@ void ButtonPerso::handle_input(sf::Event& event,sf::RenderTarget& target)
 {
     if(event.type == sf::Event::MouseButtonPressed)
     {
-            int x = event.mouseButton.x;
-            int y = event.mouseButton.y;
-            sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)));
+        int x = event.mouseButton.x;
+        int y = event.mouseButton.y;
+        sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)));
 
         if(getGlobalBounds().contains(coord.x, coord.y))
         {

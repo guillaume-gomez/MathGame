@@ -29,12 +29,12 @@
 
 class FactoryObjectPoint : public ObjectFactoryAbstract
 {
-    public:
-        FactoryObjectPoint();
-        virtual ~FactoryObjectPoint();
-        virtual EditorObject* setTypeObject (std::string type);
-    protected:
-    private:
+public:
+    FactoryObjectPoint();
+    virtual ~FactoryObjectPoint();
+    virtual EditorObject* setTypeObject (std::string type);
+protected:
+private:
 };
 #endif // FACTORYOBJECTPOINT_HPP
 

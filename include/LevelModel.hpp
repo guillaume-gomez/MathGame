@@ -23,7 +23,7 @@
 #define LEVELMODEL_H
 
 #ifdef DEBUG
-	 #include <iostream>
+#include <iostream>
 #endif //DEBUG
 #include <fstream>
 #include <ostream>
@@ -40,60 +40,69 @@
 //note : la last points read in a file is the goal to reach
 class LevelModel
 {
-    public:
-        LevelModel(std::string _filename = "", GameMode mode = Classic );
-        virtual ~LevelModel();
-        bool isWin() const;
-        bool IsLose() const;
-        sf::Vector2f getGoalCoord()const;
-        unsigned int getNbPoints() const;
-        float getRadius(unsigned int i) const;
-        TypeObject getType(unsigned int i) const;
-        sf::Vector2f getCoordPoints(unsigned int i) const ;
-        void IsFinishing (const CharacterModel& charactermodel, float _scale , bool& playableSound);
-        bool getSens(unsigned int i) const;
-        unsigned int getAttempt(unsigned int i) const;
-        bool getCheckValue(unsigned int i)const;
-        void IsLosing();
-        friend std::ostream& operator<<(std::ostream &flux, const LevelModel& level);
-        unsigned int getNbAttempt()const;
-        float getEnd(unsigned int i) const;
-        float getBegin(unsigned int i) const;
-        std::string getFunction(unsigned int i) const;
-        std::string getMessage(unsigned int i) const;
-        void decrementAttempt();
-        void reset();
-        int getSaveAttempt()const;
-        void setMode(GameMode _mode);
-        GameMode getMode() const;
-        std::vector<std::string> getVectorFunctions();
+public:
+    LevelModel(std::string _filename = "", GameMode mode = Classic );
+    virtual ~LevelModel();
+    bool isWin() const;
+    bool IsLose() const;
+    sf::Vector2f getGoalCoord()const;
+    unsigned int getNbPoints() const;
+    float getRadius(unsigned int i) const;
+    TypeObject getType(unsigned int i) const;
+    sf::Vector2f getCoordPoints(unsigned int i) const ;
+    void IsFinishing (const CharacterModel& charactermodel, float _scale , bool& playableSound);
+    bool getSens(unsigned int i) const;
+    unsigned int getAttempt(unsigned int i) const;
+    bool getCheckValue(unsigned int i)const;
+    void IsLosing();
+    friend std::ostream& operator<<(std::ostream &flux, const LevelModel& level);
+    unsigned int getNbAttempt()const;
+    float getEnd(unsigned int i) const;
+    float getBegin(unsigned int i) const;
+    std::string getFunction(unsigned int i) const;
+    std::string getMessage(unsigned int i) const;
+    void decrementAttempt();
+    void reset();
+    int getSaveAttempt()const;
+    void setMode(GameMode _mode);
+    GameMode getMode() const;
+    std::vector<std::string> getVectorFunctions();
 
-    private:
-        LevelModel();
-        /* the Level file is sorted by type of element.
-        Points and obviously GoalPoint are at the end of the file, so the variable m_beginPoint detect the first Point to check during the game
-        the good colission.
-        */
-        unsigned int m_beginPoint;
-        std::vector<Element> m_coordElements;
-        std::ifstream m_fileLevel;
-        unsigned int m_nbElements;
-        bool m_win;
-        bool m_lose;
-        int m_nbAttempt;
-        GameMode m_mode;
-        std::vector<bool> m_pointsCheck;
-        int m_saveNbAttemp;
+private:
+    LevelModel();
+    /* the Level file is sorted by type of element.
+    Points and obviously GoalPoint are at the end of the file, so the variable m_beginPoint detect the first Point to check during the game
+    the good colission.
+    */
+    unsigned int m_beginPoint;
+    std::vector<Element> m_coordElements;
+    std::ifstream m_fileLevel;
+    unsigned int m_nbElements;
+    bool m_win;
+    bool m_lose;
+    int m_nbAttempt;
+    GameMode m_mode;
+    std::vector<bool> m_pointsCheck;
+    int m_saveNbAttemp;
 };
 
 /******************************************************************************
 *                     Accessors
 *******************************************************************************/
-inline bool LevelModel::isWin() const {return m_win;};
+inline bool LevelModel::isWin() const
+{
+    return m_win;
+};
 
-inline bool LevelModel::IsLose() const {return m_lose;};
+inline bool LevelModel::IsLose() const
+{
+    return m_lose;
+};
 
-inline unsigned int LevelModel::getNbPoints() const {return m_nbElements;};
+inline unsigned int LevelModel::getNbPoints() const
+{
+    return m_nbElements;
+};
 
 
 inline sf::Vector2f LevelModel::getCoordPoints(unsigned int i) const
@@ -194,20 +203,35 @@ inline bool LevelModel::getCheckValue(unsigned int i)const
 {
     if (i < m_pointsCheck.size())
     {
-            return m_pointsCheck[i];
+        return m_pointsCheck[i];
     }
     return false;
 }
 
-inline unsigned int LevelModel::getNbAttempt() const {return m_nbAttempt;};
+inline unsigned int LevelModel::getNbAttempt() const
+{
+    return m_nbAttempt;
+};
 
-inline void LevelModel::decrementAttempt() {m_nbAttempt--;};
+inline void LevelModel::decrementAttempt()
+{
+    m_nbAttempt--;
+};
 
-inline int LevelModel::getSaveAttempt() const {return m_saveNbAttemp;};
+inline int LevelModel::getSaveAttempt() const
+{
+    return m_saveNbAttemp;
+};
 
-inline void LevelModel::setMode(GameMode _mode) {m_mode = _mode;};
+inline void LevelModel::setMode(GameMode _mode)
+{
+    m_mode = _mode;
+};
 
-inline GameMode LevelModel::getMode() const {return  m_mode;};
+inline GameMode LevelModel::getMode() const
+{
+    return  m_mode;
+};
 
 /******************************************************************************
 *                     Accessors

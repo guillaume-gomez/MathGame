@@ -17,6 +17,10 @@
 					<Add option="-g" />
 					<Add option="-DDEBUG" />
 				</Compiler>
+				<ExtraCommands>
+					<Add after="cp -R  resources bin/Debug/resources" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/IHateMaths" prefix_auto="1" extension_auto="1" />
@@ -30,6 +34,10 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+				<ExtraCommands>
+					<Add after="cp -R  resources bin/Release/resources" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<VirtualTargets>

@@ -25,28 +25,43 @@
 template <class T>
 class ScopedPtr
 {
-		T*   m_ptr;
+    T*   m_ptr;
 
-		ScopedPtr(const ScopedPtr &);
-		ScopedPtr & operator=(const ScopedPtr &);
-	public:
-		ScopedPtr() : m_ptr(0) {}
-		ScopedPtr(T* ptr) : m_ptr(ptr) {}
+    ScopedPtr(const ScopedPtr &);
+    ScopedPtr & operator=(const ScopedPtr &);
+public:
+    ScopedPtr() : m_ptr(0) {}
+    ScopedPtr(T* ptr) : m_ptr(ptr) {}
 
-		~ScopedPtr() { delete m_ptr; }
+    ~ScopedPtr()
+    {
+        delete m_ptr;
+    }
 
-		T & operator * () { return *m_ptr; }
-		T * operator ->() { return m_ptr; }
-		operator T*() const { return m_ptr; }
+    T & operator * ()
+    {
+        return *m_ptr;
+    }
+    T * operator ->()
+    {
+        return m_ptr;
+    }
+    operator T*() const
+    {
+        return m_ptr;
+    }
 
-		void reset(T * ptr)
-		{
-			if(m_ptr != 0)
-				delete m_ptr;
-			m_ptr = ptr;
-		}
+    void reset(T * ptr)
+    {
+        if(m_ptr != 0)
+            delete m_ptr;
+        m_ptr = ptr;
+    }
 
-		T * get() const { return m_ptr; }
+    T * get() const
+    {
+        return m_ptr;
+    }
 };
 
 

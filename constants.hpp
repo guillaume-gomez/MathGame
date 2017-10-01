@@ -35,7 +35,10 @@ const unsigned int TotalDifficulty = 3 ;
 
 enum Difficulty {Easy , Normal , Hard};
 enum GameMode {Classic , NoChance, Dynamic};
-enum class TypeOfCamera {Static, Moveable};
+enum class TypeOfCamera
+{
+    Static, Moveable
+};
 enum class TypeObject
 {
     Abstract, Circle, Point, GoalPoint, Enemy, Hero, Integral, Function, Info

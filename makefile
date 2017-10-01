@@ -40,9 +40,9 @@ OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
 OUT_RELEASE = bin/Release/IHateMaths
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/src/ButtonAnim.o $(OBJDIR_DEBUG)/src/Game.o $(OBJDIR_DEBUG)/src/FactoryObjectPoint.o $(OBJDIR_DEBUG)/src/FactoryObjectCircle.o $(OBJDIR_DEBUG)/src/EnemyView.o $(OBJDIR_DEBUG)/src/EnemyModel.o $(OBJDIR_DEBUG)/src/Enemy.o $(OBJDIR_DEBUG)/src/EditorObject.o $(OBJDIR_DEBUG)/src/EditorCircle.o $(OBJDIR_DEBUG)/src/Editor.o $(OBJDIR_DEBUG)/src/Curves.o $(OBJDIR_DEBUG)/src/ConstrueFunction.o $(OBJDIR_DEBUG)/src/CharacterView.o $(OBJDIR_DEBUG)/src/CharacterModel.o $(OBJDIR_DEBUG)/src/ButtonPerso.o $(OBJDIR_DEBUG)/src/GraphView.o $(OBJDIR_DEBUG)/src/Button.o $(OBJDIR_DEBUG)/src/Axis.o $(OBJDIR_DEBUG)/src/AniSprite.o $(OBJDIR_DEBUG)/main.o $(OBJDIR_DEBUG)/libs/TextAreaSFML2_0.o $(OBJDIR_DEBUG)/libs/ResourcesManagerSFML2_1.o $(OBJDIR_DEBUG)/src/PhysicsObject.o $(OBJDIR_DEBUG)/src/VisitorObjectCollidable.o $(OBJDIR_DEBUG)/src/Screen_MainMenu.o $(OBJDIR_DEBUG)/src/Screen_Game.o $(OBJDIR_DEBUG)/src/Screen_Editor.o $(OBJDIR_DEBUG)/src/ScreenOption.o $(OBJDIR_DEBUG)/src/ScreenLink.o $(OBJDIR_DEBUG)/src/ScreenLevelChoiceNoChance.o $(OBJDIR_DEBUG)/src/ScreenLevelChoiceClassic.o $(OBJDIR_DEBUG)/src/ScreenLevelChoice.o $(OBJDIR_DEBUG)/src/ScreenHowTo.o $(OBJDIR_DEBUG)/src/ScreenFinish.o $(OBJDIR_DEBUG)/src/ScreenCredit.o $(OBJDIR_DEBUG)/src/Screen.o $(OBJDIR_DEBUG)/src/Point.o $(OBJDIR_DEBUG)/src/PhysicsEngine.o $(OBJDIR_DEBUG)/src/PanelEditor.o $(OBJDIR_DEBUG)/src/ObjectFactoryAbstract.o $(OBJDIR_DEBUG)/src/ManageText.o $(OBJDIR_DEBUG)/src/ManageLevel.o $(OBJDIR_DEBUG)/src/ManageFunctions.o $(OBJDIR_DEBUG)/src/LevelView.o $(OBJDIR_DEBUG)/src/LevelModel.o $(OBJDIR_DEBUG)/src/IntegralView.o $(OBJDIR_DEBUG)/src/IntegralModel.o $(OBJDIR_DEBUG)/src/Integral.o $(OBJDIR_DEBUG)/src/InfoDisplayer.o $(OBJDIR_DEBUG)/src/Hero.o $(OBJDIR_DEBUG)/src/GravityCircle.o $(OBJDIR_DEBUG)/libs/LineSFML2_1.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)/src/ButtonPerso.o $(OBJDIR_DEBUG)/src/GraphView.o $(OBJDIR_DEBUG)/src/Game.o $(OBJDIR_DEBUG)/src/FactoryObjectPoint.o $(OBJDIR_DEBUG)/src/FactoryObjectCircle.o $(OBJDIR_DEBUG)/src/EnemyView.o $(OBJDIR_DEBUG)/src/EnemyModel.o $(OBJDIR_DEBUG)/src/Enemy.o $(OBJDIR_DEBUG)/src/EditorObject.o $(OBJDIR_DEBUG)/src/EditorCircle.o $(OBJDIR_DEBUG)/src/Editor.o $(OBJDIR_DEBUG)/src/Curves.o $(OBJDIR_DEBUG)/src/ConstrueFunction.o $(OBJDIR_DEBUG)/src/CharacterView.o $(OBJDIR_DEBUG)/src/CharacterModel.o $(OBJDIR_DEBUG)/src/GravityCircle.o $(OBJDIR_DEBUG)/src/ButtonAnim.o $(OBJDIR_DEBUG)/src/Button.o $(OBJDIR_DEBUG)/src/Axis.o $(OBJDIR_DEBUG)/src/AniSprite.o $(OBJDIR_DEBUG)/main.o $(OBJDIR_DEBUG)/libs/TextAreaSFML2_0.o $(OBJDIR_DEBUG)/libs/ResourcesManagerSFML2_1.o $(OBJDIR_DEBUG)/src/PhysicsObject.o $(OBJDIR_DEBUG)/src/VisitorObjectCollidable.o $(OBJDIR_DEBUG)/src/Screen_MainMenu.o $(OBJDIR_DEBUG)/src/Screen_Game.o $(OBJDIR_DEBUG)/src/Screen_Editor.o $(OBJDIR_DEBUG)/src/ScreenOption.o $(OBJDIR_DEBUG)/src/ScreenLink.o $(OBJDIR_DEBUG)/src/ScreenLevelChoiceNoChance.o $(OBJDIR_DEBUG)/src/ScreenLevelChoiceClassic.o $(OBJDIR_DEBUG)/src/ScreenLevelChoice.o $(OBJDIR_DEBUG)/src/ScreenHowTo.o $(OBJDIR_DEBUG)/src/ScreenFinish.o $(OBJDIR_DEBUG)/src/ScreenCredit.o $(OBJDIR_DEBUG)/src/Screen.o $(OBJDIR_DEBUG)/src/Point.o $(OBJDIR_DEBUG)/src/PhysicsEngine.o $(OBJDIR_DEBUG)/src/PanelEditor.o $(OBJDIR_DEBUG)/src/ObjectFactoryAbstract.o $(OBJDIR_DEBUG)/src/ManageText.o $(OBJDIR_DEBUG)/src/ManageLevel.o $(OBJDIR_DEBUG)/src/ManageFunctions.o $(OBJDIR_DEBUG)/src/LevelView.o $(OBJDIR_DEBUG)/src/LevelModel.o $(OBJDIR_DEBUG)/src/IntegralView.o $(OBJDIR_DEBUG)/src/IntegralModel.o $(OBJDIR_DEBUG)/src/Integral.o $(OBJDIR_DEBUG)/src/InfoDisplayer.o $(OBJDIR_DEBUG)/src/Hero.o $(OBJDIR_DEBUG)/libs/LineSFML2_1.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/src/ButtonAnim.o $(OBJDIR_RELEASE)/src/Game.o $(OBJDIR_RELEASE)/src/FactoryObjectPoint.o $(OBJDIR_RELEASE)/src/FactoryObjectCircle.o $(OBJDIR_RELEASE)/src/EnemyView.o $(OBJDIR_RELEASE)/src/EnemyModel.o $(OBJDIR_RELEASE)/src/Enemy.o $(OBJDIR_RELEASE)/src/EditorObject.o $(OBJDIR_RELEASE)/src/EditorCircle.o $(OBJDIR_RELEASE)/src/Editor.o $(OBJDIR_RELEASE)/src/Curves.o $(OBJDIR_RELEASE)/src/ConstrueFunction.o $(OBJDIR_RELEASE)/src/CharacterView.o $(OBJDIR_RELEASE)/src/CharacterModel.o $(OBJDIR_RELEASE)/src/ButtonPerso.o $(OBJDIR_RELEASE)/src/GraphView.o $(OBJDIR_RELEASE)/src/Button.o $(OBJDIR_RELEASE)/src/Axis.o $(OBJDIR_RELEASE)/src/AniSprite.o $(OBJDIR_RELEASE)/main.o $(OBJDIR_RELEASE)/libs/TextAreaSFML2_0.o $(OBJDIR_RELEASE)/libs/ResourcesManagerSFML2_1.o $(OBJDIR_RELEASE)/src/PhysicsObject.o $(OBJDIR_RELEASE)/src/VisitorObjectCollidable.o $(OBJDIR_RELEASE)/src/Screen_MainMenu.o $(OBJDIR_RELEASE)/src/Screen_Game.o $(OBJDIR_RELEASE)/src/Screen_Editor.o $(OBJDIR_RELEASE)/src/ScreenOption.o $(OBJDIR_RELEASE)/src/ScreenLink.o $(OBJDIR_RELEASE)/src/ScreenLevelChoiceNoChance.o $(OBJDIR_RELEASE)/src/ScreenLevelChoiceClassic.o $(OBJDIR_RELEASE)/src/ScreenLevelChoice.o $(OBJDIR_RELEASE)/src/ScreenHowTo.o $(OBJDIR_RELEASE)/src/ScreenFinish.o $(OBJDIR_RELEASE)/src/ScreenCredit.o $(OBJDIR_RELEASE)/src/Screen.o $(OBJDIR_RELEASE)/src/Point.o $(OBJDIR_RELEASE)/src/PhysicsEngine.o $(OBJDIR_RELEASE)/src/PanelEditor.o $(OBJDIR_RELEASE)/src/ObjectFactoryAbstract.o $(OBJDIR_RELEASE)/src/ManageText.o $(OBJDIR_RELEASE)/src/ManageLevel.o $(OBJDIR_RELEASE)/src/ManageFunctions.o $(OBJDIR_RELEASE)/src/LevelView.o $(OBJDIR_RELEASE)/src/LevelModel.o $(OBJDIR_RELEASE)/src/IntegralView.o $(OBJDIR_RELEASE)/src/IntegralModel.o $(OBJDIR_RELEASE)/src/Integral.o $(OBJDIR_RELEASE)/src/InfoDisplayer.o $(OBJDIR_RELEASE)/src/Hero.o $(OBJDIR_RELEASE)/src/GravityCircle.o $(OBJDIR_RELEASE)/libs/LineSFML2_1.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/src/ButtonPerso.o $(OBJDIR_RELEASE)/src/GraphView.o $(OBJDIR_RELEASE)/src/Game.o $(OBJDIR_RELEASE)/src/FactoryObjectPoint.o $(OBJDIR_RELEASE)/src/FactoryObjectCircle.o $(OBJDIR_RELEASE)/src/EnemyView.o $(OBJDIR_RELEASE)/src/EnemyModel.o $(OBJDIR_RELEASE)/src/Enemy.o $(OBJDIR_RELEASE)/src/EditorObject.o $(OBJDIR_RELEASE)/src/EditorCircle.o $(OBJDIR_RELEASE)/src/Editor.o $(OBJDIR_RELEASE)/src/Curves.o $(OBJDIR_RELEASE)/src/ConstrueFunction.o $(OBJDIR_RELEASE)/src/CharacterView.o $(OBJDIR_RELEASE)/src/CharacterModel.o $(OBJDIR_RELEASE)/src/GravityCircle.o $(OBJDIR_RELEASE)/src/ButtonAnim.o $(OBJDIR_RELEASE)/src/Button.o $(OBJDIR_RELEASE)/src/Axis.o $(OBJDIR_RELEASE)/src/AniSprite.o $(OBJDIR_RELEASE)/main.o $(OBJDIR_RELEASE)/libs/TextAreaSFML2_0.o $(OBJDIR_RELEASE)/libs/ResourcesManagerSFML2_1.o $(OBJDIR_RELEASE)/src/PhysicsObject.o $(OBJDIR_RELEASE)/src/VisitorObjectCollidable.o $(OBJDIR_RELEASE)/src/Screen_MainMenu.o $(OBJDIR_RELEASE)/src/Screen_Game.o $(OBJDIR_RELEASE)/src/Screen_Editor.o $(OBJDIR_RELEASE)/src/ScreenOption.o $(OBJDIR_RELEASE)/src/ScreenLink.o $(OBJDIR_RELEASE)/src/ScreenLevelChoiceNoChance.o $(OBJDIR_RELEASE)/src/ScreenLevelChoiceClassic.o $(OBJDIR_RELEASE)/src/ScreenLevelChoice.o $(OBJDIR_RELEASE)/src/ScreenHowTo.o $(OBJDIR_RELEASE)/src/ScreenFinish.o $(OBJDIR_RELEASE)/src/ScreenCredit.o $(OBJDIR_RELEASE)/src/Screen.o $(OBJDIR_RELEASE)/src/Point.o $(OBJDIR_RELEASE)/src/PhysicsEngine.o $(OBJDIR_RELEASE)/src/PanelEditor.o $(OBJDIR_RELEASE)/src/ObjectFactoryAbstract.o $(OBJDIR_RELEASE)/src/ManageText.o $(OBJDIR_RELEASE)/src/ManageLevel.o $(OBJDIR_RELEASE)/src/ManageFunctions.o $(OBJDIR_RELEASE)/src/LevelView.o $(OBJDIR_RELEASE)/src/LevelModel.o $(OBJDIR_RELEASE)/src/IntegralView.o $(OBJDIR_RELEASE)/src/IntegralModel.o $(OBJDIR_RELEASE)/src/Integral.o $(OBJDIR_RELEASE)/src/InfoDisplayer.o $(OBJDIR_RELEASE)/src/Hero.o $(OBJDIR_RELEASE)/libs/LineSFML2_1.o
 
 all: debug release
 
@@ -55,14 +55,18 @@ before_debug:
 	test -d $(OBJDIR_DEBUG)/libs || mkdir -p $(OBJDIR_DEBUG)/libs
 
 after_debug: 
+	cp -R  resources bin/Debug/resources
 
 debug: before_debug out_debug after_debug
 
 out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) $(LIB_DEBUG)
 
-$(OBJDIR_DEBUG)/src/ButtonAnim.o: src/ButtonAnim.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/ButtonAnim.cpp -o $(OBJDIR_DEBUG)/src/ButtonAnim.o
+$(OBJDIR_DEBUG)/src/ButtonPerso.o: src/ButtonPerso.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/ButtonPerso.cpp -o $(OBJDIR_DEBUG)/src/ButtonPerso.o
+
+$(OBJDIR_DEBUG)/src/GraphView.o: src/GraphView.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/GraphView.cpp -o $(OBJDIR_DEBUG)/src/GraphView.o
 
 $(OBJDIR_DEBUG)/src/Game.o: src/Game.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Game.cpp -o $(OBJDIR_DEBUG)/src/Game.o
@@ -103,11 +107,11 @@ $(OBJDIR_DEBUG)/src/CharacterView.o: src/CharacterView.cpp
 $(OBJDIR_DEBUG)/src/CharacterModel.o: src/CharacterModel.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/CharacterModel.cpp -o $(OBJDIR_DEBUG)/src/CharacterModel.o
 
-$(OBJDIR_DEBUG)/src/ButtonPerso.o: src/ButtonPerso.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/ButtonPerso.cpp -o $(OBJDIR_DEBUG)/src/ButtonPerso.o
+$(OBJDIR_DEBUG)/src/GravityCircle.o: src/GravityCircle.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/GravityCircle.cpp -o $(OBJDIR_DEBUG)/src/GravityCircle.o
 
-$(OBJDIR_DEBUG)/src/GraphView.o: src/GraphView.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/GraphView.cpp -o $(OBJDIR_DEBUG)/src/GraphView.o
+$(OBJDIR_DEBUG)/src/ButtonAnim.o: src/ButtonAnim.cpp
+	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/ButtonAnim.cpp -o $(OBJDIR_DEBUG)/src/ButtonAnim.o
 
 $(OBJDIR_DEBUG)/src/Button.o: src/Button.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Button.cpp -o $(OBJDIR_DEBUG)/src/Button.o
@@ -211,9 +215,6 @@ $(OBJDIR_DEBUG)/src/InfoDisplayer.o: src/InfoDisplayer.cpp
 $(OBJDIR_DEBUG)/src/Hero.o: src/Hero.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/Hero.cpp -o $(OBJDIR_DEBUG)/src/Hero.o
 
-$(OBJDIR_DEBUG)/src/GravityCircle.o: src/GravityCircle.cpp
-	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/GravityCircle.cpp -o $(OBJDIR_DEBUG)/src/GravityCircle.o
-
 $(OBJDIR_DEBUG)/libs/LineSFML2_1.o: libs/LineSFML2_1.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c libs/LineSFML2_1.cpp -o $(OBJDIR_DEBUG)/libs/LineSFML2_1.o
 
@@ -231,14 +232,18 @@ before_release:
 	test -d $(OBJDIR_RELEASE)/libs || mkdir -p $(OBJDIR_RELEASE)/libs
 
 after_release: 
+	cp -R  resources bin/Release/resources
 
 release: before_release out_release after_release
 
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
 
-$(OBJDIR_RELEASE)/src/ButtonAnim.o: src/ButtonAnim.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/ButtonAnim.cpp -o $(OBJDIR_RELEASE)/src/ButtonAnim.o
+$(OBJDIR_RELEASE)/src/ButtonPerso.o: src/ButtonPerso.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/ButtonPerso.cpp -o $(OBJDIR_RELEASE)/src/ButtonPerso.o
+
+$(OBJDIR_RELEASE)/src/GraphView.o: src/GraphView.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/GraphView.cpp -o $(OBJDIR_RELEASE)/src/GraphView.o
 
 $(OBJDIR_RELEASE)/src/Game.o: src/Game.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Game.cpp -o $(OBJDIR_RELEASE)/src/Game.o
@@ -279,11 +284,11 @@ $(OBJDIR_RELEASE)/src/CharacterView.o: src/CharacterView.cpp
 $(OBJDIR_RELEASE)/src/CharacterModel.o: src/CharacterModel.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/CharacterModel.cpp -o $(OBJDIR_RELEASE)/src/CharacterModel.o
 
-$(OBJDIR_RELEASE)/src/ButtonPerso.o: src/ButtonPerso.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/ButtonPerso.cpp -o $(OBJDIR_RELEASE)/src/ButtonPerso.o
+$(OBJDIR_RELEASE)/src/GravityCircle.o: src/GravityCircle.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/GravityCircle.cpp -o $(OBJDIR_RELEASE)/src/GravityCircle.o
 
-$(OBJDIR_RELEASE)/src/GraphView.o: src/GraphView.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/GraphView.cpp -o $(OBJDIR_RELEASE)/src/GraphView.o
+$(OBJDIR_RELEASE)/src/ButtonAnim.o: src/ButtonAnim.cpp
+	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/ButtonAnim.cpp -o $(OBJDIR_RELEASE)/src/ButtonAnim.o
 
 $(OBJDIR_RELEASE)/src/Button.o: src/Button.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Button.cpp -o $(OBJDIR_RELEASE)/src/Button.o
@@ -386,9 +391,6 @@ $(OBJDIR_RELEASE)/src/InfoDisplayer.o: src/InfoDisplayer.cpp
 
 $(OBJDIR_RELEASE)/src/Hero.o: src/Hero.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/Hero.cpp -o $(OBJDIR_RELEASE)/src/Hero.o
-
-$(OBJDIR_RELEASE)/src/GravityCircle.o: src/GravityCircle.cpp
-	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/GravityCircle.cpp -o $(OBJDIR_RELEASE)/src/GravityCircle.o
 
 $(OBJDIR_RELEASE)/libs/LineSFML2_1.o: libs/LineSFML2_1.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c libs/LineSFML2_1.cpp -o $(OBJDIR_RELEASE)/libs/LineSFML2_1.o

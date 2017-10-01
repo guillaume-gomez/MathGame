@@ -23,7 +23,7 @@
 #include <sstream>
 
 EditorCircle::EditorCircle()
-:EditorObject()
+    :EditorObject()
 {
     this->m_type = TypeObject::Abstract;
 //    #ifdef DEBUG
@@ -34,7 +34,7 @@ EditorCircle::EditorCircle()
 }
 
 EditorCircle::EditorCircle(const EditorCircle& original)
-:EditorObject(original)
+    :EditorObject(original)
 {
     this->m_type = TypeObject::Abstract;
 //    Physics::Engine::getEngine()->addObject(&m_physicsCircle);
@@ -108,9 +108,9 @@ bool EditorCircle::isCollide(const sf::FloatRect& rect)
 
 std::string EditorCircle::save(float scale) const
 {
-  std::stringstream flux;
-  flux << this->getPosition().x / scale <<" " << - this->getPosition().y / scale << std::endl;
-  return flux.str();
+    std::stringstream flux;
+    flux << this->getPosition().x / scale <<" " << - this->getPosition().y / scale << std::endl;
+    return flux.str();
 }
 
 void EditorCircle::draw(sf::RenderTarget& app)

@@ -22,7 +22,7 @@
 #include "IntegralModel.hpp"
 
 IntegralModel::IntegralModel(std::string _function)
-:ConstrueFunction(_function), m_inPhysicsEngine(false)
+    :ConstrueFunction(_function), m_inPhysicsEngine(false)
 {
 //    #ifdef DEBUG
 //        std::cout << "IntegralModel::IntegralModel (ctor) : " << this << std::endl;
@@ -30,7 +30,7 @@ IntegralModel::IntegralModel(std::string _function)
 }
 
 IntegralModel::IntegralModel(const IntegralModel& copy)
-:ConstrueFunction(copy.getFunction()), m_inPhysicsEngine(false)
+    :ConstrueFunction(copy.getFunction()), m_inPhysicsEngine(false)
 {
     for(auto it : copy.m_listCoordShapes)
     {
@@ -48,9 +48,9 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
     m_inPhysicsEngine = true;
 }
 
- void IntegralModel::getIntegraleCurveShape(float _begin , float _end , float step)
- {
-     std::list<sf::Vector2f>::iterator firstPoint = m_coords.begin();
+void IntegralModel::getIntegraleCurveShape(float _begin , float _end , float step)
+{
+    std::list<sf::Vector2f>::iterator firstPoint = m_coords.begin();
     //detect where the function cuts the abscissa
     int sign = (firstPoint->y >= 0)? 1 : -1;
 
@@ -63,7 +63,7 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
     bool addList = false;
     std::list<sf::Vector2f>::iterator it = m_coords.begin();
     std::list<sf::Vector2f>::iterator itNext = m_coords.begin();
-                                      itNext++;
+    itNext++;
 
     sf::Vector2f coordZero;
     while(it != m_coords.end())
@@ -108,15 +108,15 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
         // a second point is added to fill the future shape in IntegralView
         if(sign != 0)
         {
-           coordZero = sf::Vector2f(it->x, 0.0f);
-           m_listCoordShapes.push_back(coordZero);
-           nbCoord++;
-           sign = 0;
+            coordZero = sf::Vector2f(it->x, 0.0f);
+            m_listCoordShapes.push_back(coordZero);
+            nbCoord++;
+            sign = 0;
         }
         //to detect the end of a shape
         m_nbCoordByShape.push_back(nbCoord);
     }
- }
+}
 
 //
 //void IntegralModel::showPoints()
@@ -132,14 +132,14 @@ IntegralModel::IntegralModel(const IntegralModel& copy)
 ////    #endif
 //}
 
- IntegralModel::~IntegralModel()
- {
+IntegralModel::~IntegralModel()
+{
     if(m_inPhysicsEngine)
     {
         Physics::Engine::getEngine()->delIntegral(this);
         m_inPhysicsEngine = false;
     }
- }
+}
 
 /*
  void IntegralModelOld::getIntegraleCurve(float _begin , float _end , float step)

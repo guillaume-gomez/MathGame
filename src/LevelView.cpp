@@ -37,12 +37,12 @@ bool LevelView::loadTex(const char* _filenameNormalText, const char* _filenameGo
 }
 
 LevelView::LevelView()
-:m_model(std::string())
+    :m_model(std::string())
 {
 }
 
 LevelView::LevelView(const LevelModel& model, float _scale)
-:m_model(model), m_scale(_scale), m_view(sf::View())
+    :m_model(model), m_scale(_scale), m_view(sf::View())
 {
 
     //pré loading
@@ -57,9 +57,9 @@ LevelView::~LevelView()
 {
     for (auto it : m_listSprite)
     {
-        #ifdef DEBUG
-            // std::cout << "Suppression de type " << EditorObject::getTypeStr(it->getType()) << std::endl;
-        #endif
+#ifdef DEBUG
+        // std::cout << "Suppression de type " << EditorObject::getTypeStr(it->getType()) << std::endl;
+#endif
         delete it;
     }
 }
@@ -76,78 +76,78 @@ void LevelView::loadCoord()
     {
         switch(m_model.getType(i))
         {
-            case (TypeObject::Circle):
+        case (TypeObject::Circle):
+        {
+            GravityCircle * NewCircle =  dynamic_cast<GravityCircle*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+            if(NewCircle != nullptr)
             {
-                GravityCircle * NewCircle =  dynamic_cast<GravityCircle*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-                if(NewCircle != nullptr)
-                {
-                    NewCircle->setRadius(m_model.getRadius(i));
-                    NewCircle->setOrigin(m_model.getRadius(i), m_model.getRadius(i));
-                    NewCircle->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
-                    m_listSprite.push_back(NewCircle);
-                }
+                NewCircle->setRadius(m_model.getRadius(i));
+                NewCircle->setOrigin(m_model.getRadius(i), m_model.getRadius(i));
+                NewCircle->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
+                m_listSprite.push_back(NewCircle);
             }
-            break;
-            case (TypeObject::Point):
+        }
+        break;
+        case (TypeObject::Point):
+        {
+            Point * NewPoint =  dynamic_cast<Point*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+            if(NewPoint != nullptr)
             {
-                Point * NewPoint =  dynamic_cast<Point*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-                if(NewPoint != nullptr)
-                {
-                    NewPoint->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
-                    m_listSprite.push_back(NewPoint);
-                }
+                NewPoint->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
+                m_listSprite.push_back(NewPoint);
             }
-            break;
-            case (TypeObject::Enemy):
+        }
+        break;
+        case (TypeObject::Enemy):
+        {
+            Enemy* newEnemy =  dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+            if(newEnemy != nullptr)
             {
-                Enemy* newEnemy =  dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-                if(newEnemy != nullptr)
-                {
-                    newEnemy->setPosition(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
-                    newEnemy->setNbAttempt(m_model.getAttempt(i));
+                newEnemy->setPosition(m_model.getCoordPoints(i).x /*- widthTex*/ ,  m_model.getCoordPoints(i).y /* - heightTex*/);
+                newEnemy->setNbAttempt(m_model.getAttempt(i));
 //                    std::cout << "direction << " << m_model.getSens(i) << std::endl;
-                    newEnemy->setDirection(m_model.getSens(i));
-                    newEnemy->addToEngine();
-                    m_listSprite.push_back(newEnemy);
-                }
+                newEnemy->setDirection(m_model.getSens(i));
+                newEnemy->addToEngine();
+                m_listSprite.push_back(newEnemy);
             }
-            break;
+        }
+        break;
 
-            case (TypeObject::Integral):
+        case (TypeObject::Integral):
+        {
+            Integral* integral =  dynamic_cast<Integral*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+            if(integral != nullptr)
             {
-                Integral* integral =  dynamic_cast<Integral*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-                if(integral != nullptr)
-                {
-                    integral->setFunction(m_model.getFunction(i));
-                    integral->build(m_model.getBegin(i), m_model.getEnd(i));
-                    m_listSprite.push_back(integral);
-                }
+                integral->setFunction(m_model.getFunction(i));
+                integral->build(m_model.getBegin(i), m_model.getEnd(i));
+                m_listSprite.push_back(integral);
             }
-            break;
+        }
+        break;
 
-            case (TypeObject::Function):
+        case (TypeObject::Function):
+        {
+
+            Curves* curves =  dynamic_cast<Curves*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+            if(curves != nullptr)
             {
-
-                Curves* curves =  dynamic_cast<Curves*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-                if(curves != nullptr)
-                {
-                    curves->setFunction(m_model.getFunction(i));
-                    m_listSprite.push_back(curves);
-                    m_listFunctionLevel.push_back(m_model.getFunction(i));
-                }
+                curves->setFunction(m_model.getFunction(i));
+                m_listSprite.push_back(curves);
+                m_listFunctionLevel.push_back(m_model.getFunction(i));
             }
+        }
 
-            case (TypeObject::Info):
+        case (TypeObject::Info):
+        {
+            InfoDisplayer* info =  dynamic_cast<InfoDisplayer*>(ObjectFactoryAbstract::create(m_model.getType(i)));
+            if(info != nullptr)
             {
-                InfoDisplayer* info =  dynamic_cast<InfoDisplayer*>(ObjectFactoryAbstract::create(m_model.getType(i)));
-                if(info != nullptr)
-                {
-                    info->setMessage(m_model.getMessage(i));
-                    info->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
-                    m_listSprite.push_back(info);
-                }
+                info->setMessage(m_model.getMessage(i));
+                info->setPosition(m_model.getCoordPoints(i).x * m_scale/*- widthTex*/ , - m_model.getCoordPoints(i).y * m_scale/* - heightTex*/);
+                m_listSprite.push_back(info);
             }
-            default:
+        }
+        default:
             break;
 
         }
@@ -166,20 +166,20 @@ void LevelView::draw(sf::RenderTarget& app)
     for(unsigned int i = 0 ; i < m_listSprite.size(); i++)
     {
         if( m_listSprite.at(i)->get_Position().x >= m_view.getCenter().x - m_view.getSize().x
-        &&  m_listSprite.at(i)->get_Position().x <= m_view.getCenter().x + m_view.getSize().x  )
+                &&  m_listSprite.at(i)->get_Position().x <= m_view.getCenter().x + m_view.getSize().x  )
         {
             if(m_model.getType(i) == TypeObject::Point || m_model.getType(i) == TypeObject::GoalPoint)
             {
                 if(!m_model.getCheckValue(i))
                 {
-                   m_listSprite[i]->draw(app);
+                    m_listSprite[i]->draw(app);
                 }
             }
             //other element can't be deleted, so they haven't got a check value parameter. then function still in this list
             //<!>(bad conception)<!>
             else if (m_model.getType(i) != TypeObject::Function)
             {
-                 m_listSprite[i]->draw(app);
+                m_listSprite[i]->draw(app);
             }
         }
     }

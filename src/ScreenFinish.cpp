@@ -26,7 +26,7 @@ ScreenFinish::ScreenFinish()
 //    m_texture.loadFromFile(FilenameBGFinish);
 //    m_bg.setTexture(m_texture);
 
-   m_bg.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBGFinish)));
+    m_bg.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBGFinish)));
 }
 
 ScreenFinish::~ScreenFinish()
@@ -34,14 +34,14 @@ ScreenFinish::~ScreenFinish()
     //dtor
 }
 
- int ScreenFinish::Run(sf::RenderWindow & App)
- {
+int ScreenFinish::Run(sf::RenderWindow & App)
+{
     bool Running = true;
     m_clock.restart();
     while(Running)
     {
-         m_bg.setPosition(App.getSize().x/2 - m_bg.getGlobalBounds().width/2, App.getSize().y/2 - m_bg.getGlobalBounds().height/2);
-         sf::Event event;
+        m_bg.setPosition(App.getSize().x/2 - m_bg.getGlobalBounds().width/2, App.getSize().y/2 - m_bg.getGlobalBounds().height/2);
+        sf::Event event;
         //Verifing events
         while(App.pollEvent(event))
         {
@@ -53,10 +53,10 @@ ScreenFinish::~ScreenFinish()
 
             if(event.type == sf::Event::KeyPressed)
             {
-               if(event.key.code == sf::Keyboard::Escape)
-               {
-                   return MENU;
-               }
+                if(event.key.code == sf::Keyboard::Escape)
+                {
+                    return MENU;
+                }
             }
 
         }
@@ -66,11 +66,11 @@ ScreenFinish::~ScreenFinish()
             return MENU;
         }
 
-    App.clear();
-    App.draw(m_bg);
-    App.display();
+        App.clear();
+        App.draw(m_bg);
+        App.display();
 
     }
 
     return (SCREEN_EXIT);
- }
+}

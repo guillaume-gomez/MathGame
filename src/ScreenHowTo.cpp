@@ -24,9 +24,9 @@
 #include <cstdint>
 
 ScreenHowTo::ScreenHowTo()
-: m_quit(false),
-  m_nbInstruction(10),
-  m_currentInstruction(0)
+    : m_quit(false),
+      m_nbInstruction(10),
+      m_currentInstruction(0)
 {
 
     loadFileInstruction();
@@ -62,10 +62,10 @@ ScreenHowTo::ScreenHowTo()
     m_box->Pack(m_boxImages);
     m_box->Pack(m_boxLabel);
 
-   m_window->Add(m_box);
-   m_desktop.Add(m_window);
+    m_window->Add(m_box);
+    m_desktop.Add(m_window);
 
-   loadInstruction();
+    loadInstruction();
 
 }
 
@@ -97,9 +97,9 @@ void ScreenHowTo::loadFileInstruction()
     }
     else
     {
-        #ifdef DEBUG
-            std::cerr << "Error file :'" <<FilenameInfoHowTo<< "' cannot exist" << std::endl;
-        #endif
+#ifdef DEBUG
+        std::cerr << "Error file :'" <<FilenameInfoHowTo<< "' cannot exist" << std::endl;
+#endif
         std::runtime_error("Cannot load the file\n");
         file.close();
     }
@@ -136,9 +136,9 @@ void ScreenHowTo::loadInstruction()
     sf::Image image;
     image.loadFromFile(m_filenameImages.at(m_currentInstruction));
     image = Resize(image, true, sf::Vector2u(400,300));
-  //  std::cout << "+++++++++++++++++++++++++++" << std::endl;
-  //  std::cout << m_filenameImages.at(m_currentInstruction) << std::endl;
-  //  std::cout << m_instructions.at(m_currentInstruction) << std::endl;
+    //  std::cout << "+++++++++++++++++++++++++++" << std::endl;
+    //  std::cout << m_filenameImages.at(m_currentInstruction) << std::endl;
+    //  std::cout << m_instructions.at(m_currentInstruction) << std::endl;
     m_image->SetImage(image);
 
     std::string temp = m_instructions.at(m_currentInstruction);
@@ -156,12 +156,12 @@ int ScreenHowTo::Run( sf::RenderWindow &App)
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
     m_window->Show(true);
 
-	while(Running)
-	{
-		sf::Event event;
-		//Verifing events
-		while(App.pollEvent(event))
-		{
+    while(Running)
+    {
+        sf::Event event;
+        //Verifing events
+        while(App.pollEvent(event))
+        {
             m_window->HandleEvent( event );
 
             if(event.type == sf::Event::Closed)
@@ -174,8 +174,8 @@ int ScreenHowTo::Run( sf::RenderWindow &App)
             {
                 if( event.key.code == sf::Keyboard::Escape)
                 {
-                     m_window->Show(false);
-                     return MENU;
+                    m_window->Show(false);
+                    return MENU;
                 }
                 else if(event.key.code == sf::Keyboard::Left)
                 {
@@ -198,12 +198,12 @@ int ScreenHowTo::Run( sf::RenderWindow &App)
 
         m_desktop.Update( 0.f );
 
-		App.clear();
+        App.clear();
         App.draw(m_background);
-		m_sfgui.Display( App );
-		App.display();
-	}
-return (SCREEN_EXIT);
+        m_sfgui.Display( App );
+        App.display();
+    }
+    return (SCREEN_EXIT);
 }
 
 
@@ -212,7 +212,7 @@ sf::Image ScreenHowTo::Resize( sf::Image CurrentImage, bool m_KeepAspect, const 
 // If no size is given (0,0) , use original image...
     if( !customSize.x || !customSize.y )
     {
-    return CurrentImage;
+        return CurrentImage;
     }
     // Let the flood begin
     float originalX = static_cast<float>( CurrentImage.getSize().x );
@@ -231,21 +231,21 @@ sf::Image ScreenHowTo::Resize( sf::Image CurrentImage, bool m_KeepAspect, const 
     tempSprite.setTexture( tempTexture, true );
     if( m_KeepAspect )
     {
-    // Use same scale for both sides of the sprite
-    float lowerScale = std::min( scaleX, scaleY );
-    tempSprite.scale( lowerScale, lowerScale );
-    // Since the image will not be stretched out because we want to keep the aspect of the
-    // image, there will be an empty space to the right/down of the resized image. I think
-    // it's better if the empty place is distributed around the resized image on all sides,
-    // so we move the sprite to the center of the rectangle we set by size we want.
-    //
-    float offsetX = ( desiredX - ( originalX * ( lowerScale ) ) ) / 2;
-    float offsetY = ( desiredY - ( originalY * ( lowerScale ) ) ) / 2;
-    tempSprite.move( offsetX, offsetY );
+        // Use same scale for both sides of the sprite
+        float lowerScale = std::min( scaleX, scaleY );
+        tempSprite.scale( lowerScale, lowerScale );
+        // Since the image will not be stretched out because we want to keep the aspect of the
+        // image, there will be an empty space to the right/down of the resized image. I think
+        // it's better if the empty place is distributed around the resized image on all sides,
+        // so we move the sprite to the center of the rectangle we set by size we want.
+        //
+        float offsetX = ( desiredX - ( originalX * ( lowerScale ) ) ) / 2;
+        float offsetY = ( desiredY - ( originalY * ( lowerScale ) ) ) / 2;
+        tempSprite.move( offsetX, offsetY );
     }
     else
     {
-    tempSprite.scale( scaleX, scaleY );
+        tempSprite.scale( scaleX, scaleY );
     }
     // Transformations on Sprite are set, so we can pre-render the sprite on
     // a new texture with a transparent background

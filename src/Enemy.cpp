@@ -22,22 +22,22 @@
 #include "Enemy.hpp"
 
 Enemy::Enemy()
-: m_model(true, sf::Vector2f(0.0f, 0.0f), 12),
-  m_view(m_model,GraphScale)
+    : m_model(true, sf::Vector2f(0.0f, 0.0f), 12),
+      m_view(m_model,GraphScale)
 {
-     m_model.setSize(m_view.getRectLocal().width, m_view.getRectLocal().height);
-     m_type = TypeObject::Enemy;
+    m_model.setSize(m_view.getRectLocal().width, m_view.getRectLocal().height);
+    m_type = TypeObject::Enemy;
 
     m_model.setAngle(0.0f);
 }
 
 Enemy::Enemy(const Enemy& copy)
-:m_model(copy.m_model), m_view(m_model, GraphScale)
+    :m_model(copy.m_model), m_view(m_model, GraphScale)
 {
     m_model.setSize(m_view.getRectLocal().width, m_view.getRectLocal().height);
     m_type = TypeObject::Enemy;
 
-     m_model.setAngle(0.0f);
+    m_model.setAngle(0.0f);
 
 }
 
@@ -53,19 +53,19 @@ void Enemy::handle_input(const sf::Event& event, const TextAreaSFML2_0& textArea
 
 void Enemy::show()
 {
-     m_view.setStringAttempt(m_model.getNbAttemptStr());
-     m_view.show();
+    m_view.setStringAttempt(m_model.getNbAttemptStr());
+    m_view.show();
 }
 
 void Enemy::setDirection(bool _dir)
 {
-  m_model.setDirection(_dir);
-  /*bad conception : we have a variable to check if the enemy should be positioned to the right in the model
-    and the opposite in view !?!
+    m_model.setDirection(_dir);
+    /*bad conception : we have a variable to check if the enemy should be positioned to the right in the model
+      and the opposite in view !?!
 
-   will be corrected later
- */
-  m_view.setDirection(!_dir);
+     will be corrected later
+    */
+    m_view.setDirection(!_dir);
 }
 
 void Enemy::draw(sf::RenderTarget& app)
@@ -77,7 +77,7 @@ void Enemy::reset()
 {
 #ifdef DEBUG
 
- //// std::cout << " caca caca caca caca caca caca" << std::endl;
+//// std::cout << " caca caca caca caca caca caca" << std::endl;
 #endif
     // std::cout << m_model.getPhysicsBox().getVelocity().x << std::endl;
     m_model.setCoords(sf::Vector2f(0.0f, 0.0f));
@@ -86,7 +86,7 @@ void Enemy::reset()
 
 EditorObject* Enemy::clone() const
 {
-	return new Enemy(*this);
+    return new Enemy(*this);
 }
 
 EditorObject* Enemy::loadView(const Element& elmt, float scale)

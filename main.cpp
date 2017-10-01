@@ -84,8 +84,8 @@ int main()
 
     while( screen >= 0)
     {
-       screen = screens[ screen ]->Run(App);
-       // std::cout << screen << "   " << screens.size()<< std::endl;
+        screen = screens[ screen ]->Run(App);
+        // std::cout << screen << "   " << screens.size()<< std::endl;
     }
 
     stat->save();

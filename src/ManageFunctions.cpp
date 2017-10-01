@@ -22,7 +22,7 @@
 #include "ManageFunctions.hpp"
 
 ManageFunctions::ManageFunctions()
-:m_changed(false), m_currentIndex(0), m_view(sf::View())
+    :m_changed(false), m_currentIndex(0), m_view(sf::View())
 {
     //ctor
 }
@@ -35,7 +35,7 @@ ManageFunctions::~ManageFunctions()
 
 void ManageFunctions::handle_input(sf::Event& event)
 {
-	if(event.type == sf::Event::KeyPressed)
+    if(event.type == sf::Event::KeyPressed)
     {
         switch(event.key.code)
         {
@@ -45,7 +45,7 @@ void ManageFunctions::handle_input(sf::Event& event)
             m_changed = true;
             if (m_currentIndex >= m_vectorCurves.size())
             {
-            	m_currentIndex = 0;
+                m_currentIndex = 0;
             }
             colorize();
             break;
@@ -55,7 +55,7 @@ void ManageFunctions::handle_input(sf::Event& event)
             m_changed = true;
             if( m_currentIndex == 0)
             {
-            	m_currentIndex = m_vectorCurves.size() - 1;
+                m_currentIndex = m_vectorCurves.size() - 1;
             }
             else
             {
@@ -75,9 +75,9 @@ void ManageFunctions::represent(float step)
 {
     if(m_changed)
     {
-       //// std::cout << "Represent " << m_currentIndex << std::endl;
-	   m_vectorCurves.at(m_currentIndex).represent(step);
-	   m_changed = false;
+        //// std::cout << "Represent " << m_currentIndex << std::endl;
+        m_vectorCurves.at(m_currentIndex).represent(step);
+        m_changed = false;
     }
 }
 
@@ -88,9 +88,9 @@ const ConstrueFunction* ManageFunctions::getModelIndex()
 
 void ManageFunctions::colorize()
 {
-     showBefore();
-     m_vectorCurves.at(m_currentIndex).setColor(CurveColor);
-     showAfter();
+    showBefore();
+    m_vectorCurves.at(m_currentIndex).setColor(CurveColor);
+    showAfter();
 }
 
 bool ManageFunctions::showBefore()
@@ -154,7 +154,7 @@ void ManageFunctions::draw(sf::RenderTarget& app)
 {
     drawBefore(app);
     m_vectorCurves.at(m_currentIndex).receiveView(m_view);
-	m_vectorCurves.at(m_currentIndex).draw(app);
+    m_vectorCurves.at(m_currentIndex).draw(app);
     drawAfter(app);
 }
 

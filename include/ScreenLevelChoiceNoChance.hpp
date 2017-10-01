@@ -27,12 +27,12 @@
 
 class ScreenLevelChoiceNoChance : public ScreenLevelChoice
 {
-    public:
-        ScreenLevelChoiceNoChance(ScreenLink* stat);
-        virtual ~ScreenLevelChoiceNoChance();
-         int Run(sf::RenderWindow & App);
-    protected:
-    private:
+public:
+    ScreenLevelChoiceNoChance(ScreenLink* stat);
+    virtual ~ScreenLevelChoiceNoChance();
+    int Run(sf::RenderWindow & App);
+protected:
+private:
 };
 
 #endif // SCREENLEVELCHOICENOCHANCE_H

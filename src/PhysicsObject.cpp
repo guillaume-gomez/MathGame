@@ -29,7 +29,7 @@ Object::Object()
 {}
 
 Object::Object(Type type)
-:m_type(type), m_Position(sf::Vector2f(0.0f,0.0f)), m_Velocity(sf::Vector2f(0.0f,0.0f)), m_inEngine(false), m_onCurve(false), m_jumping(false), m_isCollidable(false)
+    :m_type(type), m_Position(sf::Vector2f(0.0f,0.0f)), m_Velocity(sf::Vector2f(0.0f,0.0f)), m_inEngine(false), m_onCurve(false), m_jumping(false), m_isCollidable(false)
 {}
 
 Object::~Object()
@@ -45,8 +45,8 @@ Object::~Object()
 }
 
 Object::Object(const Object& original)
-:m_type(original.m_type), m_Position(original.m_Position), m_Velocity(original.m_Velocity), m_Thrust(original.m_Thrust)
-,m_angle(original.m_angle), m_inEngine(original.m_inEngine), m_onCurve(original.m_onCurve), m_jumping(original.m_jumping)
+    :m_type(original.m_type), m_Position(original.m_Position), m_Velocity(original.m_Velocity), m_Thrust(original.m_Thrust)
+    ,m_angle(original.m_angle), m_inEngine(original.m_inEngine), m_onCurve(original.m_onCurve), m_jumping(original.m_jumping)
 {
 //    #ifdef DEBUG
 //        // std::cout << "constructeur de copie Object::Object" << std::endl;
@@ -56,7 +56,7 @@ Object::Object(const Object& original)
 void Object::jump(bool isJumping)
 {
 //    if(m_onCurve)
-        m_jumping=isJumping;
+    m_jumping=isJumping;
 }
 
 void Object::setAllToNull()
@@ -95,7 +95,7 @@ void Object::collidable(bool isCollidable)
 VisitBox Box::visitor;
 
 Box::Box(float width, float height)
-:Object(Object::Type_Box)
+    :Object(Object::Type_Box)
 {
     setSize(width, height);
 }
@@ -105,7 +105,7 @@ Box::~Box()
 }
 
 Box::Box(const Box& original)
-:Object(original), m_width(original.m_width), m_height(original.m_height)
+    :Object(original), m_width(original.m_width), m_height(original.m_height)
 {
 //    #ifdef DEBUG
 //        // std::cout << "constructeur de copie Box::Box" << std::endl;
@@ -119,11 +119,11 @@ Box::Box(const Box& original)
 
 bool Box::testCollision(const Object& obj) const
 {
-   // bool truc = visitor.visit(*this, obj);
+    // bool truc = visitor.visit(*this, obj);
 //   switch()
-   const Box* box = dynamic_cast<const Box*>(&obj);
-   return testCollision(*box);
-   // std::cout << "Box::testCollision with PhysicObject" << truc << std::endl;
+    const Box* box = dynamic_cast<const Box*>(&obj);
+    return testCollision(*box);
+    // std::cout << "Box::testCollision with PhysicObject" << truc << std::endl;
 }
 
 bool Box::testCollision(const Box& obj) const
@@ -166,7 +166,7 @@ std::list<Circle*> Circle::m_gravityCircles;
 //VisitCircle Circle::visitor;
 
 Circle::Circle(float radius)
-:Object(Object::Type_Circle), m_radius(radius), m_isGravityCircle(false)
+    :Object(Object::Type_Circle), m_radius(radius), m_isGravityCircle(false)
 {
     if(m_radius<0.0)
         m_radius*=-1;
@@ -181,7 +181,7 @@ Circle::~Circle()
 }
 
 Circle::Circle(const Circle& original)
-:Object(original), m_radius(original.m_radius), m_isGravityCircle(original.m_isGravityCircle)
+    :Object(original), m_radius(original.m_radius), m_isGravityCircle(original.m_isGravityCircle)
 {
 
 }

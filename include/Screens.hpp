@@ -26,18 +26,19 @@
 //#include "Screen.hpp"
 
 
-enum {
-  SCREEN_EXIT = -1,
-  MENU,
-  LEVEL_CHOICE_ONE,
-  LEVEL_CHOICE_TWO,
-  GAME,
-  EDITOR,
-  OPTION,
-  CREDIT,
-  ENDING,
-  HOWTO,
-  CHARACTER_CHOICE,
+enum
+{
+    SCREEN_EXIT = -1,
+    MENU,
+    LEVEL_CHOICE_ONE,
+    LEVEL_CHOICE_TWO,
+    GAME,
+    EDITOR,
+    OPTION,
+    CREDIT,
+    ENDING,
+    HOWTO,
+    CHARACTER_CHOICE,
 };
 
 
