@@ -27,7 +27,7 @@ ScreenFinish::ScreenFinish()
 
     m_font.loadFromFile(FilenameFont);
 
-    sf::Color color (112, 146, 190);
+    sf::Color color (31, 41, 46);
 
     m_stringList.push_back(sf::String("A video Game made by : Adrien Jarretier and Guillaume Gomez."));
     m_stringList.push_back(sf::String("I hope you enjoyed play this game as much we enjoy to develop it !"));
@@ -40,8 +40,8 @@ ScreenFinish::ScreenFinish()
                  newText.setString(m_stringList[index]);
                  newText.setColor(color);
                  newText.setCharacterSize(19);
-                 unsigned int x = 20;
-                 unsigned int y = WindowHeight / 2 - 100 + (50 * index);
+                 unsigned int x = 40;
+                 unsigned int y = WindowHeight / 2 - 80 + (60 * index);
 
            newText.setPosition((float)x, (float)y);
            m_textList.push_back(newText);
