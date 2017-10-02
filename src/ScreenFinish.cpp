@@ -23,10 +23,30 @@
 
 ScreenFinish::ScreenFinish()
 {
-//    m_texture.loadFromFile(FilenameBGFinish);
-//    m_bg.setTexture(m_texture);
+    m_bg.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBGFinish)));
 
-   m_bg.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBGFinish)));
+    m_font.loadFromFile(FilenameFont);
+
+    sf::Color color (112, 146, 190);
+
+    m_stringList.push_back(sf::String("A video Game made by : Adrien Jarretier and Guillaume Gomez."));
+    m_stringList.push_back(sf::String("I hope you enjoyed play this game as much we enjoy to develop it !"));
+    m_stringList.push_back(sf::String("And thank you for have played this game fellow gamer :)"));
+
+    for(auto index = 0 ; index < m_stringList.size(); ++index)
+    {
+        sf::Text newText;
+                 newText.setFont(m_font);
+                 newText.setString(m_stringList[index]);
+                 newText.setColor(color);
+                 newText.setCharacterSize(19);
+                 unsigned int x = 20;
+                 unsigned int y = WindowHeight / 2 - 100 + (50 * index);
+
+           newText.setPosition((float)x, (float)y);
+           m_textList.push_back(newText);
+    }
+
 }
 
 ScreenFinish::~ScreenFinish()
@@ -68,6 +88,9 @@ ScreenFinish::~ScreenFinish()
 
     App.clear();
     App.draw(m_bg);
+    for(auto index = 0 ; index < m_stringList.size(); ++index) {
+        App.draw(m_textList[index]);
+    }
     App.display();
 
     }
