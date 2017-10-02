@@ -23,8 +23,6 @@
 
 ScreenFinish::ScreenFinish()
 {
-    m_bg.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameBGFinish)));
-
     m_font.loadFromFile(FilenameFont);
 
     sf::Color color (31, 41, 46);
@@ -60,7 +58,6 @@ ScreenFinish::~ScreenFinish()
     m_clock.restart();
     while(Running)
     {
-         m_bg.setPosition(App.getSize().x/2 - m_bg.getGlobalBounds().width/2, App.getSize().y/2 - m_bg.getGlobalBounds().height/2);
          sf::Event event;
         //Verifing events
         while(App.pollEvent(event))
@@ -86,8 +83,7 @@ ScreenFinish::~ScreenFinish()
             return MENU;
         }
 
-    App.clear();
-    App.draw(m_bg);
+    App.clear(sf::Color(207,216,220));
     for(auto index = 0 ; index < m_stringList.size(); ++index) {
         App.draw(m_textList[index]);
     }
