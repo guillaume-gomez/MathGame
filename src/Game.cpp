@@ -109,11 +109,6 @@ void Game::resize(float scaleX, float scaleY)
     #ifdef DEBUG
        m_frameCountText.scale(scaleX, scaleY);
     #endif
-
-//     std::cout << m_buttonBack.getPosition().x <<" : "<< m_buttonBack.getPosition().y << std::endl;
-//     std::cout << "____________________________________________" << std::endl;
-
-
 }
 
 bool  Game::handleInput()
@@ -277,28 +272,24 @@ void Game::cameraMoved()
         if(centerX - (m_viewPerso.getSize().x/2) < -(WidthWorld/2))
         {
            centerX = -(WidthWorld/2) + (m_viewPerso.getSize().x/2);
-           //std::cout << "on depasse à gauche "<< centerX  - m_viewPerso.getSize().x << std::endl;
         }
 
         //Si on dépasse en haut
         if(centerY - (m_viewPerso.getSize().y/2) < -(HeightWorld/2))
         {
            centerY = -(HeightWorld/2) + (m_viewPerso.getSize().y/2);
-           //std::cout << "on depasse à haut "<<  centerY - m_viewPerso.getSize().y <<std::endl;
         }
 
         //Si on dépasse à droite
         if(centerX + (m_viewPerso.getSize().x /2) > (WidthWorld/2))
         {
             centerX = (WidthWorld/2) - (m_viewPerso.getSize().x/2);
-            //std::cout << "on depasse à droite "<< centerX + m_viewPerso.getSize().x<<std::endl;
         }
 
         //si on dépasse en bas
         if(centerY + (m_viewPerso.getSize().y/2) > (HeightWorld/2))
         {
            centerY = (HeightWorld/2) - (m_viewPerso.getSize().y/2);
-            //std::cout << "on depasse à bas "<< centerY + m_viewPerso.getSize().y<<std::endl;
         }
 
 
@@ -359,8 +350,6 @@ void Game::move()
             m_textAreaFunction.setString(m_functionManager.getFunction());
             m_level.decrementAttempt();
             m_timer.restart();
-
-
         }
     }
 
@@ -388,7 +377,6 @@ void Game::selectLevel(ScreenLink& stat)
     catch(std::ios_base::failure& failure)
     {
 //        #ifdef DEBUG
-//            std::cout << "fdsfsdfdsfdsfsdfsdfdsfsdfdsdfdsdf" << std::endl;
 //            std::cout << failure.what() << std::endl;
 //        #endif // DEBUG
         throw;
@@ -396,6 +384,7 @@ void Game::selectLevel(ScreenLink& stat)
 }
 
 int Game::levelOperation(ScreenLink& stat)
+
 {
     int changing = 0;
     bool soundPlayable = false;
@@ -419,6 +408,7 @@ int Game::levelOperation(ScreenLink& stat)
         {
             m_level.fillLevelFunctions(m_functionManager);
             m_functionManager.colorize();
+            m_timer.restart();
         }
         m_playerDead = false;
       }
