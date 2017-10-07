@@ -1,0 +1,12 @@
+countEasy
+13
+countNormal
+13
+countHard
+13
+maxEasy
+1
+maxNormal
+1
+maxHard
+1
