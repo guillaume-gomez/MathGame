@@ -70,8 +70,6 @@ int Screen_Game::Run(sf::RenderWindow& App)
             {
                 recenterCamera();
                 Physics::Engine::getEngine()->cleanEngine();
-                delete m_game;
-                m_game = 0;
                 return MENU;
             }
             gameFinish = m_game->levelOperation(*m_stat);
