@@ -63,6 +63,9 @@ ManageLevel::ManageLevel(unsigned int _level, Difficulty _diff, float _scale)
     m_text.setStyle(sf::Text::Bold);
     m_text.setCharacterSize(12);
 
+    std::ifstream i("resources/level/test.json");
+    i >> m_levels;
+
 }
 
 ManageLevel::~ManageLevel()
