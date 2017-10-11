@@ -44,9 +44,6 @@ ManageLevel::ManageLevel(unsigned int _level, Difficulty _diff, float _scale)
     m_levelModel = new LevelModel(directory);
     m_levelView = new LevelView(*m_levelModel, m_scale);
 
-//    	#ifdef DEBUG
-//			std::cout << "ManageLevel::ManageLevel()" << std::endl;
-//    	#endif // DEBUG
     m_tooltip.setTexture(toolTipTex);
 
     if(!m_font.loadFromFile(FilenameFont))
@@ -63,9 +60,8 @@ ManageLevel::ManageLevel(unsigned int _level, Difficulty _diff, float _scale)
     m_text.setStyle(sf::Text::Bold);
     m_text.setCharacterSize(12);
 
-    std::ifstream i("resources/level/test.json");
+    std::ifstream i(FilenameJsonLevels);
     i >> m_levels;
-
 }
 
 ManageLevel::~ManageLevel()
@@ -88,9 +84,9 @@ void ManageLevel::loadFile(int numLevel, GameMode mode)
 
     std::string directory = FilenameLevelDirectory;
 
-    setLevel( numLevel);
+    setLevel(numLevel);
     std::ostringstream oss;
-    oss << numLevel << "_" << convertEnum(m_difficulty) << ".lvl";
+    oss << m_levels["levels"][numLevel - 1]["path"] << "_" << convertEnum(m_difficulty) << ".lvl";
     std::cout << "fileLoad " << oss.str() << std::endl;
     directory += oss.str();
     m_filenameCurrent = oss.str();
@@ -130,16 +126,16 @@ void ManageLevel::levelFinished (const CharacterModel& charModel, bool & soundpl
     }
 }
 
-int  ManageLevel::changeLevel (ScreenLink * link)
+int  ManageLevel::changeLevel(ScreenLink * link)
 {
     if(m_changeLevel)
     {
         if(m_levelModel->isWin())
         {
             //load an other level
-            if(getLevel() + 1 > link->getnbNormal())
+            if(getLevel() + 1 > link->getNbFiles())
             {
-                return - 1 ;
+                return -1;
             }
             link->setMaxLevel( link->getDiff() , link->getCurrentLevel() + 1 );
             link->setCurrentLevel( link->getCurrentLevel() +1 );
@@ -328,7 +324,7 @@ void ManageLevel::drawUI( sf::RenderTarget& app)
     }
  }
 
-std::string ManageLevel::convertEnum ( Difficulty _diff)
+std::string ManageLevel::convertEnum(Difficulty _diff)
 {
     std::string val;
 
