@@ -21,31 +21,21 @@
 
 #include "ScreenLink.hpp"
 
-ScreenLink::ScreenLink()
-:m_filename(FilenameScreenLink), m_countEasy(valEasy),
- m_countNormal(valNormal),m_countHard(valHard),
+ScreenLink::ScreenLink():
  m_currentLevel(1), m_difficulty(Normal),
- m_maxEasy(1), m_maxNormal(1), m_maxHard(1)
+ m_maxEasy(1), m_maxNormal(1), m_maxHard(1), m_nbFile(4)
 {
     load();
 }
 
 void ScreenLink::load()
 {
-    std::ifstream file(m_filename.c_str());
+    std::ifstream file(FilenameScreenLink);
 
     if(file.is_open())
     {
         //nbeasy
         std::string dump;
-        file >> dump;
-        file >> m_countEasy;
-        //nbnormal
-        file >> dump;
-        file >> m_countNormal;
-        //nbhard
-        file >> dump;
-        file >> m_countHard;
         //currentEasy
         file >> dump;
         file >> m_maxEasy;
@@ -63,23 +53,18 @@ void ScreenLink::load()
 
     file.close();
 
+    std::ifstream i(FilenameJsonLevels);
+    json data;
+    i >> data;
+    m_nbFile = data["levels"].size();
 }
 
 void ScreenLink::save()
 {
-    std::ofstream  file(m_filename.c_str());
+    std::ofstream  file(FilenameScreenLink);
 
     if(file.is_open())
     {
-        file << "countEasy\n";
-        //nbeasy
-        file << m_countEasy << std::endl;
-        file << "countNormal\n";
-        //nbnormal
-        file << m_countNormal << std::endl;
-        file << "countHard\n";
-        //nbhard
-        file << m_countHard << std::endl;
         file << "maxEasy\n";
         //currentEasy
         file << m_maxEasy << std::endl;
@@ -100,15 +85,12 @@ void ScreenLink::save()
 
 std::ostream& operator<<( std::ostream &flux, const ScreenLink&  stat )
 {
-        flux << "countEasy : " << stat.m_countEasy << std::endl;
-        flux << "countNormal: " << stat.m_countNormal << std::endl;
-        flux << "countHard: " <<stat.m_countHard << std::endl;
-        flux << "maxEasy: " << stat.m_maxEasy << std::endl;
-        flux << "maxNormal: "<< stat.m_maxNormal << std::endl;
-        flux << "maxHard: " << stat.m_maxHard << std::endl;
-        flux << "CurrentLevel: " << stat.m_currentLevel << " difficulty: " << stat.m_difficulty;
+    flux << "maxEasy: " << stat.m_maxEasy << std::endl;
+    flux << "maxNormal: "<< stat.m_maxNormal << std::endl;
+    flux << "maxHard: " << stat.m_maxHard << std::endl;
+    flux << "CurrentLevel: " << stat.m_currentLevel << " difficulty: " << stat.m_difficulty;
 
-        return flux;
+    return flux;
 }
 
 void ScreenLink::countNbFiles()
