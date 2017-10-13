@@ -127,13 +127,13 @@ void ScreenLink::setMaxLevel(Difficulty type , unsigned int val)
     switch(type)
     {
    case Easy:
-       m_maxEasy = val;
+       m_maxEasy = m_maxEasy < val ? val : m_maxEasy;
     break;
    case Normal:
-       m_maxNormal = val;
+       m_maxNormal = m_maxNormal < val ? val : m_maxNormal;
     break;
    case Hard:
-       m_maxHard = val;
+       m_maxHard = m_maxHard < val ? val : m_maxHard;
     break;
     default:
     	#ifdef DEBUG
