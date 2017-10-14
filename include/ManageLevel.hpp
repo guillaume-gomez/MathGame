@@ -51,7 +51,7 @@ class ManageLevel
         void setLevel(int _level);
         unsigned int getLevel() const;
         void IsNextLevel();
-        int changeLevel (ScreenLink * link);
+        int changeLevel(ScreenLink * link);
         void reset();
         void drawPoints(sf::RenderTarget& app);
         void drawUI(sf::RenderTarget& app);
