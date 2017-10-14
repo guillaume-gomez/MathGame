@@ -111,83 +111,78 @@ void Game::resize(float scaleX, float scaleY)
     #endif
 }
 
-bool  Game::handleInput()
+bool Game::handleInput()
 {
-  int oldWidth = m_app.getSize().x;
-  int oldHeight = m_app.getSize().y;
-
+    int oldWidth = m_app.getSize().x;
+    int oldHeight = m_app.getSize().y;
     while(m_app.pollEvent(m_event))
+    {
+        switch(m_event.type)
+        {
+        case Event::Closed:
+            m_app.close();
+            return false;
+            break;
+
+        case sf::Event::Resized:
+            resize((float)oldWidth/m_event.size.width, (float)oldHeight/m_event.size.height);
+            break;
+
+         case Event::MouseWheelMoved:
+            zoom();
+            m_isZoom = true;
+            break;
+
+        case Event::KeyPressed:
+            if(m_event.key.code == Keyboard::F8)
             {
-                switch(m_event.type)
-                {
-                case Event::Closed:
-                    m_app.close();
-                    return false;
-                    break;
-
-                case sf::Event::Resized:
-                    resize((float)oldWidth/m_event.size.width, (float)oldHeight/m_event.size.height);
-                    break;
-
-                 case Event::MouseWheelMoved:
-                    zoom();
-                    m_isZoom = true;
-                    break;
-
-                case Event::KeyPressed:
-                    if(m_event.key.code == Keyboard::F8)
-                    {
-                       resetWindow();
-                    }
-                    if(m_event.key.code == sf::Keyboard::Return)
-                    {
-                        if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
-                        {
-                            if(!m_gameStarted)
-                            {
-                               m_timer.restart();
-                               m_gameStarted = true;
-                            }
-
-                            m_curves.setFunction(m_textAreaFunction.getString());
-                            m_curves.build(-MaxSizeGraph, MaxSizeGraph, Step);
-
-                            Physics::Engine::getEngine()->setFunction(m_curves.getModel());
-                            m_level.decrementAttempt();
-                        }
-
-                    }
-                    if(m_event.key.code == sf::Keyboard::Escape)
-                    {
-                        m_isBack = true;
-                    }
-                    break;
-                default:
-                    break;
-                }
-
-                if(getGameMode() == GameMode::Dynamic)
-                {
-                    m_functionManager.handle_input(m_event);
-                }
-//                m_functionManager.isCollide(m_player1Model.getRectScaled(GraphScale));
-
-            //    m_textFunction.handle_input(m_event, m_graphView);
-                m_textAreaFunction.handleInput(m_event, m_app);
-
-                m_level.displaying(m_event, m_app, m_viewPerso);
-                m_level.handle_inputEnnemies(m_event, m_textAreaFunction);
-
-              //  m_textAreaFunction.resize();
-
-                if(m_gameStarted)
-                {
-                    m_player->handle_input(m_event, m_textAreaFunction);
-                }
-                m_buttonReset.handle_input(m_event, m_app);
-                m_buttonSound.handle_input(m_event, m_app);
-                m_buttonBack.handle_input(m_event, m_app);
+               resetWindow();
             }
+            if(m_event.key.code == sf::Keyboard::Return)
+            {
+                if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
+                {
+                    if(!m_gameStarted)
+                    {
+                       m_timer.restart();
+                       m_gameStarted = true;
+                    }
+
+                    m_curves.setFunction(m_textAreaFunction.getString());
+                    m_curves.build(-MaxSizeGraph, MaxSizeGraph, Step);
+
+                    Physics::Engine::getEngine()->setFunction(m_curves.getModel());
+                    m_level.decrementAttempt();
+                }
+
+            }
+            if(m_event.key.code == sf::Keyboard::Escape)
+            {
+                m_isBack = true;
+            }
+            break;
+        default:
+            break;
+        }
+
+        if(getGameMode() == GameMode::Dynamic)
+        {
+            m_functionManager.handle_input(m_event);
+        }
+
+        m_textAreaFunction.handleInput(m_event, m_app);
+
+        m_level.displaying(m_event, m_app, m_viewPerso);
+        m_level.handle_inputEnnemies(m_event, m_textAreaFunction);
+
+        if(m_gameStarted)
+        {
+            m_player->handle_input(m_event, m_textAreaFunction);
+        }
+        m_buttonReset.handle_input(m_event, m_app);
+        m_buttonSound.handle_input(m_event, m_app);
+        m_buttonBack.handle_input(m_event, m_app);
+    }
     return true ;
 }
 
@@ -237,14 +232,12 @@ void Game::draw()
 
     #ifdef DEBUG
         m_frameCount++;
-        if(m_frameCountClock.getElapsedTime().asMilliseconds()>250)
+        if(m_frameCountClock.getElapsedTime().asMilliseconds() > 250)
         {
             m_frameCountClock.restart();
             m_frameCountText.setString(std::to_string(m_frameCount*4));
             m_frameCount = 0;
         }
-//        m_frameCountText.setString(std::to_string(1000/m_frameCountClock.restart().asMilliseconds()));
-//        // std::cout << std::to_string(1000/frameCountClock.restart().asMilliseconds()) << std::endl;
         m_app.draw(m_frameCountText);
     #endif
 }

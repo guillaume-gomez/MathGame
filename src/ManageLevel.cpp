@@ -44,9 +44,6 @@ ManageLevel::ManageLevel(unsigned int _level, Difficulty _diff, float _scale)
     m_levelModel = new LevelModel(directory);
     m_levelView = new LevelView(*m_levelModel, m_scale);
 
-//    	#ifdef DEBUG
-//			std::cout << "ManageLevel::ManageLevel()" << std::endl;
-//    	#endif // DEBUG
     m_tooltip.setTexture(toolTipTex);
 
     if(!m_font.loadFromFile(FilenameFont))
@@ -117,7 +114,7 @@ void ManageLevel::IsNextLevel()
     }
 }
 
-void ManageLevel::levelFinished (const CharacterModel& charModel, bool & soundplayable)
+void ManageLevel::levelFinished(const CharacterModel& charModel, bool & soundplayable)
 {
     m_levelModel->IsLosing();
     m_levelModel->IsFinishing(charModel,m_scale, soundplayable);
@@ -127,7 +124,7 @@ void ManageLevel::levelFinished (const CharacterModel& charModel, bool & soundpl
     }
 }
 
-int  ManageLevel::changeLevel (ScreenLink * link)
+int  ManageLevel::changeLevel(ScreenLink * link)
 {
     if(m_changeLevel)
     {
@@ -325,7 +322,7 @@ void ManageLevel::drawUI( sf::RenderTarget& app)
     }
  }
 
-std::string ManageLevel::convertEnum ( Difficulty _diff)
+std::string ManageLevel::convertEnum( Difficulty _diff)
 {
     std::string val;
 
