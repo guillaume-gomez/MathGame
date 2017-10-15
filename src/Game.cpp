@@ -348,22 +348,22 @@ void Game::move()
 
 }
 
-void Game::selectLevel(ScreenLink& stat)
+int Game::selectLevel(ScreenLink& stat)
 {
-    m_level.setDiff(stat.getDiff());
+    int changing = 0;
     try
     {
-        m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
+        changing = m_level.changeLevel(&stat);
         if(getGameMode() == GameMode::Dynamic)
         {
             m_gameStarted = true;
-            m_timer.restart();
             m_level.fillLevelFunctions(m_functionManager);
             m_level.decrementAttempt();
             m_functionManager.colorize();
             Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
             m_functionManager.represent(Step);
             m_textAreaFunction.setString(m_functionManager.getFunction());
+            m_timer.restart();
         }
     }
     catch(std::ios_base::failure& failure)
@@ -374,6 +374,7 @@ void Game::selectLevel(ScreenLink& stat)
         throw;
     }
     reset();
+    return changing;
 }
 
 int Game::levelOperation(ScreenLink& stat)
@@ -391,17 +392,7 @@ int Game::levelOperation(ScreenLink& stat)
 
       if(m_buttonReset.isClicked() || m_level.getChangeLevel () || m_playerDead)
       {
-//          #ifdef DEBUG
-//            std::cout << "m_buttonReset.isClicked() || m_level.getChangeLevel ()" << std::endl;
-//          #endif // DEBUG
-        changing = m_level.changeLevel(&stat);
-        reset();
-        if(getGameMode() == GameMode::Dynamic)
-        {
-            m_level.fillLevelFunctions(m_functionManager);
-            m_functionManager.colorize();
-            m_timer.restart();
-        }
+        changing = selectLevel(stat);
         m_playerDead = false;
       }
 
