@@ -124,7 +124,7 @@ void ManageLevel::levelFinished(const CharacterModel& charModel, bool & soundpla
     }
 }
 
-int  ManageLevel::changeLevel(ScreenLink * link)
+int ManageLevel::changeLevel(ScreenLink * link)
 {
     if(m_changeLevel)
     {
