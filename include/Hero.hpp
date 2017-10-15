@@ -38,7 +38,7 @@ class Hero : public EditorObject
         virtual void handle_input(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
         virtual void show();
         virtual void draw(sf::RenderTarget& app);
-        virtual void reset();
+        virtual void reset(sf::Vector2f initialPosition);
         void setMoveType(CharacterModel::MoveType moveType);
         void setFrictionCoefficient(float frictionCoefficient);
         void setTexture(const sf::Texture* texture, int frameWidth, int frameHeight);

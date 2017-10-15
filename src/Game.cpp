@@ -350,7 +350,6 @@ void Game::move()
 
 void Game::selectLevel(ScreenLink& stat)
 {
-    reset();
     m_level.setDiff(stat.getDiff());
     try
     {
@@ -374,6 +373,7 @@ void Game::selectLevel(ScreenLink& stat)
 //        #endif // DEBUG
         throw;
     }
+    reset();
 }
 
 int Game::levelOperation(ScreenLink& stat)
@@ -394,9 +394,8 @@ int Game::levelOperation(ScreenLink& stat)
 //          #ifdef DEBUG
 //            std::cout << "m_buttonReset.isClicked() || m_level.getChangeLevel ()" << std::endl;
 //          #endif // DEBUG
-        reset();
         changing = m_level.changeLevel(&stat);
-
+        reset();
         if(getGameMode() == GameMode::Dynamic)
         {
             m_level.fillLevelFunctions(m_functionManager);
@@ -417,32 +416,25 @@ int Game::levelOperation(ScreenLink& stat)
 
 void Game::reset()
 {
-#ifdef DEBUG
-//  std::cout << "RESET RESET RESET" << std::endl << std::endl << std::endl;
-#endif
-         m_player->reset();
-         //reset the camera
-         resetWindow();
-     //    Physics::Engine::getEngine()->cleanEngine();
-     //    m_graphModel.setChanged(true);
-     //    m_graphModel.clearFunction();
+    resetWindow();
 
-        // start the level with the first function in the list
-        if(!m_functionManager.isEmpty())
-        {
-            m_functionManager.resetToZero();
-            Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
-            m_textAreaFunction.setString(m_functionManager.getFunction());
-        }
+    // start the level with the first function in the list
+    if(!m_functionManager.isEmpty())
+    {
+        m_functionManager.resetToZero();
+        Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
+        m_textAreaFunction.setString(m_functionManager.getFunction());
+    }
 
-
-        if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
-        {
-            m_curves.reset();
-            m_gameStarted = false;
-            m_textAreaFunction.setString("");
-        }
-        Physics::Engine::getEngine()->resetAllObjects();
+    if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
+    {
+        m_curves.reset();
+        m_gameStarted = false;
+        m_textAreaFunction.setString("");
+    }
+    Physics::Engine::getEngine()->resetAllObjects();
+    std::cout << "je me reset " << m_level.getInitialPosition().x << " " << m_level.getInitialPosition().y << std::endl;
+    m_player->reset(m_level.getInitialPosition());
 }
 
 Game::~Game()

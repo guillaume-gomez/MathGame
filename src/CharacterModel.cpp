@@ -34,6 +34,7 @@ CharacterModel::CharacterModel(bool life  , sf::Vector2f coord, float speed, Mov
 //        std::cout << "CharacterModel constructor : &m_PhysicsBox : " << &m_PhysicsBox << std::endl;
 //    #endif // DEBUG
 	m_orientedRight = (m_PhysicsBox.getVelocity().x>0);
+  m_PhysicsBox.setPosition(sf::Vector2f(10.0, 8.0));
 	Physics::Engine::getEngine()->addObject(&m_PhysicsBox);
 }
 
