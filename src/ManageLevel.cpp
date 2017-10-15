@@ -116,7 +116,7 @@ void ManageLevel::IsNextLevel()
     }
 }
 
-void ManageLevel::levelFinished (const CharacterModel& charModel, bool & soundplayable)
+void ManageLevel::levelFinished(const CharacterModel& charModel, bool & soundplayable)
 {
     m_levelModel->IsLosing();
     m_levelModel->IsFinishing(charModel,m_scale, soundplayable);

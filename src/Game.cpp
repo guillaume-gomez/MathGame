@@ -111,11 +111,10 @@ void Game::resize(float scaleX, float scaleY)
     #endif
 }
 
-bool  Game::handleInput()
+bool Game::handleInput()
 {
-  int oldWidth = m_app.getSize().x;
-  int oldHeight = m_app.getSize().y;
-
+    int oldWidth = m_app.getSize().x;
+    int oldHeight = m_app.getSize().y;
     while(m_app.pollEvent(m_event))
     {
         switch(m_event.type)
@@ -170,6 +169,7 @@ bool  Game::handleInput()
         {
             m_functionManager.handle_input(m_event);
         }
+
         m_textAreaFunction.handleInput(m_event, m_app);
 
         m_level.displaying(m_event, m_app, m_viewPerso);
@@ -232,7 +232,7 @@ void Game::draw()
 
     #ifdef DEBUG
         m_frameCount++;
-        if(m_frameCountClock.getElapsedTime().asMilliseconds()>250)
+        if(m_frameCountClock.getElapsedTime().asMilliseconds() > 250)
         {
             m_frameCountClock.restart();
             m_frameCountText.setString(std::to_string(m_frameCount*4));
@@ -348,23 +348,22 @@ void Game::move()
 
 }
 
-void Game::selectLevel(ScreenLink& stat)
+int Game::selectLevel(ScreenLink& stat)
 {
-    reset();
-    m_level.setDiff(stat.getDiff());
+    int changing = 0;
     try
     {
-        m_level.loadFile(stat.getCurrentLevel(), stat.getMode());
+        changing = m_level.changeLevel(&stat);
         if(getGameMode() == GameMode::Dynamic)
         {
             m_gameStarted = true;
-            m_timer.restart();
             m_level.fillLevelFunctions(m_functionManager);
             m_level.decrementAttempt();
             m_functionManager.colorize();
             Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
             m_functionManager.represent(Step);
             m_textAreaFunction.setString(m_functionManager.getFunction());
+            m_timer.restart();
         }
     }
     catch(std::ios_base::failure& failure)
@@ -374,6 +373,8 @@ void Game::selectLevel(ScreenLink& stat)
 //        #endif // DEBUG
         throw;
     }
+    reset();
+    return changing;
 }
 
 int Game::levelOperation(ScreenLink& stat)
@@ -391,15 +392,7 @@ int Game::levelOperation(ScreenLink& stat)
 
       if(m_buttonReset.isClicked() || m_level.getChangeLevel () || m_playerDead)
       {
-        reset();
-        changing = m_level.changeLevel(&stat);
-
-        if(getGameMode() == GameMode::Dynamic)
-        {
-            m_level.fillLevelFunctions(m_functionManager);
-            m_functionManager.colorize();
-            m_timer.restart();
-        }
+        changing = selectLevel(stat);
         m_playerDead = false;
       }
 

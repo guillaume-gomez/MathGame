@@ -54,7 +54,7 @@ class ScreenLink
         Difficulty getDiff()const;
         unsigned int getNbFiles()const;
         GameMode getMode()const;
-         void setnbFiles( unsigned int _nb);
+        void setnbFiles( unsigned int _nb);
 
     private:
         unsigned int m_currentLevel;

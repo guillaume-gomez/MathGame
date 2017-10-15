@@ -56,7 +56,7 @@ class Game
         void zoom();
         void resetWindow();
         int levelOperation(ScreenLink& stat);
-        void selectLevel(ScreenLink& stat);
+        int selectLevel(ScreenLink& stat);
         void show();
         void reset();
         void resize(float scaleX, float scaleY);
