@@ -102,8 +102,8 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
 
     box->Pack( m_play_button );
     box->Pack( m_play2_button );
-    box->Pack( m_credit_button );
     #ifdef DEBUG
+        box->Pack( m_credit_button );
         box->Pack( m_editor_button );
     #endif
     box->Pack( m_option_button );
