@@ -199,15 +199,15 @@ bool Editor::handleInput()
                     }
                     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
                     {
-                         m_viewPerso.setCenter(center.x, center.y + 10);
+                        m_viewPerso.setCenter(center.x, center.y + 10);
                     }
                     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
                     {
-                         m_viewPerso.setCenter(center.x - 10, center.y);
+                        m_viewPerso.setCenter(center.x - 10, center.y);
                     }
                     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
                     {
-                         m_viewPerso.setCenter(center.x + 10, center.y);
+                        m_viewPerso.setCenter(center.x + 10, center.y);
                     }
                     m_axis.receiveView(m_viewPerso);
                     m_graphView.receiveView(m_viewPerso);
@@ -215,7 +215,7 @@ bool Editor::handleInput()
                 else if(m_event.key.code == sf::Keyboard::Up)
                 {
                     m_nbAttempt++;
-                    if( m_nbAttempt > MaxAttempt) {
+                    if(m_nbAttempt > MaxAttempt) {
                         m_nbAttempt = MaxAttempt;
                     }
                     std::ostringstream oss;
