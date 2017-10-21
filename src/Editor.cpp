@@ -235,13 +235,19 @@ bool Editor::handleInput()
                 }
                 else if(m_event.key.code == sf::Keyboard::Left)
                 {
+                    if(m_creatingType == TypeObject::Enemy)
+                    {
                        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
                        m_isLeftEnemy = true;
+                    }
                 }
                 else if(m_event.key.code == sf::Keyboard::Right)
                 {
+                    if(m_creatingType == TypeObject::Enemy)
+                    {
                        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonRightEnemy)));
                        m_isLeftEnemy = false;
+                    }
                 }
             break;
             default:
