@@ -212,20 +212,7 @@ bool Editor::handleInput()
                     m_axis.receiveView(m_viewPerso);
                     m_graphView.receiveView(m_viewPerso);
                 }
-
-                if(m_event.key.code == sf::Keyboard::Left)
-                {
-                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
-                       m_isLeftEnemy = true;
-                }
-                if(m_event.key.code == sf::Keyboard::Right)
-                {
-                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonRightEnemy)));
-                       m_isLeftEnemy = false;
-                       //std::cout << "clickRight " << m_isLeftEnemy << std::endl;
-                }
-
-                if(m_event.key.code == sf::Keyboard::Up)
+                else if(m_event.key.code == sf::Keyboard::Up)
                 {
                     m_nbAttempt++;
                     if( m_nbAttempt > MaxAttempt) {
@@ -235,8 +222,7 @@ bool Editor::handleInput()
                     oss <<"EnemyLife : " << m_nbAttempt;
                     m_nbAttemptView.setString(sf::String(oss.str()));
                 }
-
-                if(m_event.key.code == sf::Keyboard::Down)
+                else if(m_event.key.code == sf::Keyboard::Down)
                 {
                     m_nbAttempt--;
                     if(m_nbAttempt < 1)
@@ -246,6 +232,16 @@ bool Editor::handleInput()
                     std::ostringstream oss;
                     oss <<"EnemyLife : "<< m_nbAttempt;
                     m_nbAttemptView.setString(sf::String(oss.str()));
+                }
+                else if(m_event.key.code == sf::Keyboard::Left)
+                {
+                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
+                       m_isLeftEnemy = true;
+                }
+                else if(m_event.key.code == sf::Keyboard::Right)
+                {
+                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonRightEnemy)));
+                       m_isLeftEnemy = false;
                 }
             break;
             default:
