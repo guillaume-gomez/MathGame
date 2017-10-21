@@ -565,7 +565,7 @@ void Editor::addObject(int x , int y)
             InfoDisplayer* newInfo = dynamic_cast<InfoDisplayer*>(ObjectFactoryAbstract::create(TypeObject::Info));
             newInfo->setPosition(coord.x - m_buttonCursor.getLocalBounds().width / 2,
                                  coord.y - m_buttonCursor.getLocalBounds().height / 2);
-            newInfo->setMessage("Message temporaire");
+            newInfo->setMessage("Lorem Ipsum");
             m_spriteList.push_back(newInfo);
         }
     }
