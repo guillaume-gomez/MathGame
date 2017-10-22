@@ -342,10 +342,6 @@ void Editor::deletePoint(int x , int y)
     }
 }
 
-void Editor::deleteGravityCircle(int x, int y)
-{
-}
-
 void Editor::move()
 {
     m_panel.movePanel(m_app);
@@ -484,7 +480,7 @@ int Editor::save(ScreenLink * link)
         for(unsigned int i = 0 ; i < TotalDifficulty ;i++)
         {
             std::ostringstream oss;
-                        oss << FilenameLevelDirectory << link->getNbFiles() + 1 << "_" << fileList[i] <<".lvl" ;
+            oss << FilenameLevelDirectory << link->getNbFiles() + 1 << "_" << fileList[i] <<".lvl" ;
             std::ofstream file(oss.str().c_str());
             if( file.is_open())
             {
