@@ -553,7 +553,9 @@ void Editor::addObject(int x , int y)
         else if (m_creatingType == TypeObject::Enemy)
         {
             Enemy* newEnemy = dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(TypeObject::Enemy));
-            newEnemy->setPosition(coord.x / GraphScale, -coord.y / GraphScale);
+            float x = coord.x - m_buttonCursor.getLocalBounds().width / 2;
+            float y =  - coord.y - m_buttonCursor.getLocalBounds().height / 2;
+            newEnemy->setPosition(x / GraphScale, y / GraphScale);
             newEnemy->setDirection(m_isLeftEnemy);
             newEnemy->setNbAttempt(m_nbAttempt);
             newEnemy->show();
