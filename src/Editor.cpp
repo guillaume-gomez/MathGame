@@ -281,6 +281,7 @@ bool Editor::handleInput()
         if(m_buttonInfo.isClicked())
         {
             m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenamePanelInfoTex)), true);
+            m_buttonCursor.setScale(1, 0.34);
             m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
         }
     }
@@ -440,7 +441,6 @@ int Editor::save(ScreenLink * link)
 
     int nbGoalPoint = 0;
     //if there is just one red point
-    //for(std::vector<EditorCircle*>::iterator it = m_spriteList.begin(); it != m_spriteList.end() ; it++)
     for(auto it : m_spriteList)
     {
         if(it->getType() == TypeObject::GoalPoint)
@@ -553,7 +553,7 @@ void Editor::addObject(int x , int y)
         else if (m_creatingType == TypeObject::Enemy)
         {
             Enemy* newEnemy = dynamic_cast<Enemy*>(ObjectFactoryAbstract::create(TypeObject::Enemy));
-            float x = coord.x - m_buttonCursor.getLocalBounds().width / 2;
+            float x = coord.x;
             float y =  - coord.y - m_buttonCursor.getLocalBounds().height / 2;
             newEnemy->setPosition(x / GraphScale, y / GraphScale);
             newEnemy->setDirection(m_isLeftEnemy);
