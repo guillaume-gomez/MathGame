@@ -24,7 +24,7 @@
 Screen_Editor::Screen_Editor(sf::RenderWindow& App, ScreenLink* link)
 :m_editor(App), m_link(link)
 {
-     recenterCamera();
+    recenterCamera();
 }
 
 Screen_Editor::~Screen_Editor()
