@@ -33,9 +33,6 @@ SelectLevel::~SelectLevel()
 
 void ScreenLevelChoice::loadLevelUnlocked()
 {
-//    std::cout <<"_____________________________" <<std::endl;
-//    std::cout << (*m_stat) << std::endl;
-//    std::cout <<"_____________________________" <<std::endl;
     unsigned int increment = 1U;
     for (auto it : m_layoutEasy->GetChildren())
     {
@@ -133,7 +130,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
     sf::Font font;
     font.loadFromFile(FilenameFont);
 
-    for(unsigned int i = 0 ; i < _stat->getnbEasy() ; i++)
+    for(unsigned int i = 0 ; i < _stat->getNbFiles() ; i++)
     {
         std::string directory = FilenameLevelDirectory;
         std::ostringstream oss;
@@ -146,7 +143,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
         m_layoutEasy->Pack(button);
     }
 
-    for(unsigned int i = 0 ; i < _stat->getnbNormal() ; i++)
+    for(unsigned int i = 0 ; i < _stat->getNbFiles() ; i++)
     {
         std::string directory = FilenameLevelDirectory;
         std::ostringstream oss;
@@ -154,12 +151,12 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
         SelectLevel* temp = new SelectLevel(_stat, i + 1, Normal);
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
-        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy())));
+        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getNbFiles())));
         button->SetId("NormalButton" + oss.str());
         m_layoutNormal->Pack(button);
     }
 
-    for(unsigned int i = 0 ; i < _stat->getnbHard() ; i++)
+    for(unsigned int i = 0 ; i < _stat->getNbFiles() ; i++)
     {
         std::string directory = FilenameLevelDirectory;
         std::ostringstream oss;
@@ -167,7 +164,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
         SelectLevel* temp = new SelectLevel(_stat, i + 1, Hard);
         m_selectionLevel.push_back(temp);
         sfg::Button::Ptr button = sfg::Button::Create(oss.str());
-        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getnbEasy() + _stat->getnbNormal())) );
+        button->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind(&SelectLevel::selectingLevel, m_selectionLevel.at(i + _stat->getNbFiles())) );
         button->SetId("HardButton" + oss.str());
         m_layoutHard->Pack(button);
     }

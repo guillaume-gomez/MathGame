@@ -25,6 +25,7 @@
 const char FilenameConfigFile[] = "resources/config.ini";
 
 const char FilenameScreenLink [] = "resources/level/saveGame.sv";
+const char FilenameJsonLevels [] = "resources/level/levels.json";
 
 const char FilenameFont[] = "resources/fonts/alamain1.ttf";
 const char FilenameCharacterTex[] = "resources/sprites/robot.png";

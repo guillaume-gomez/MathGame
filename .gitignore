@@ -1,4 +1,5 @@
 bin/*
 obj/*
+resources/level/savegame.sv
 ProjetMath.layout
 ProjetMath.depend

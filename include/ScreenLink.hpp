@@ -26,6 +26,8 @@
 	#include <iostream>
 #endif
 #include <fstream>
+#include "json.hpp"
+using json = nlohmann::json;
 
 #include "../files.hpp"
 #include "../constants.hpp"
@@ -45,45 +47,24 @@ class ScreenLink
         void save();
         friend std::ostream& operator<<( std::ostream &flux, const ScreenLink&  stat );
         void setMaxLevel(Difficulty type , unsigned int val );
-        unsigned int getMaxLevel(Difficulty type)const;
-        unsigned int getnbEasy() const ;
-        unsigned int getnbNormal() const ;
-        unsigned int getnbHard() const ;
+        unsigned int getMaxLevel(Difficulty type) const;
+        void setCurrentLevel(unsigned int level);
         void setParamLevel( Difficulty _diff, unsigned int level, GameMode mode);
         unsigned int getCurrentLevel()const;
-        void setCurrentLevel(unsigned int level);
         Difficulty getDiff()const;
         unsigned int getNbFiles()const;
         GameMode getMode()const;
         void setnbFiles( unsigned int _nb);
 
     private:
-        std::string m_filename;
-        unsigned int m_countEasy;
-        unsigned int m_countNormal;
-        unsigned int m_countHard;
         unsigned int m_currentLevel;
         Difficulty m_difficulty;
         unsigned int m_maxEasy;
         unsigned int m_maxNormal;
         unsigned int m_maxHard;
+        unsigned int m_nbFile;
         GameMode m_modeChoose;
 };
-
-inline unsigned int ScreenLink::getnbEasy() const
-{
-    return m_countEasy;
-}
-
-inline unsigned int ScreenLink::getnbNormal() const
-{
-    return m_countNormal;
-}
-
-inline unsigned int ScreenLink::getnbHard() const
-{
-   return m_countHard;
-}
 
 inline void ScreenLink::setParamLevel(Difficulty _diff, unsigned int level, GameMode mode)
 {
@@ -107,16 +88,13 @@ inline Difficulty ScreenLink::getDiff() const
     return m_difficulty;
 }
 
-inline unsigned int ScreenLink::getNbFiles() const
-{
-    //it could be m_countEasy or m_countHard
-    //bad architecture :(
-    return m_countNormal;
+inline void ScreenLink::setnbFiles(unsigned int nbFile) {
+    m_nbFile = nbFile;
 }
 
-inline void ScreenLink::setnbFiles(unsigned int _nb)
+inline unsigned int ScreenLink::getNbFiles() const
 {
-    m_countEasy = m_countNormal = m_countHard = _nb;
+    return m_nbFile;
 }
 
 inline GameMode ScreenLink::getMode() const{return m_modeChoose;};

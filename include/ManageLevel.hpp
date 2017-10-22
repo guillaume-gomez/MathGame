@@ -24,10 +24,11 @@
 
 #include "../constants.hpp"
 #include "../files.hpp"
+#include "json.hpp"
 #include "LevelView.hpp"
 #include "LevelModel.hpp"
 #ifdef DEBUG
-	 #include <iostream>
+    #include <iostream>
 #endif //DEBUG
 #include <fstream>
 #include <sstream>
@@ -38,6 +39,8 @@
 #include "CharacterModel.hpp"
 #include "SFML/Graphics/RenderTarget.hpp"
 #include "ScreenLink.hpp"
+
+using json = nlohmann::json;
 
 class ManageLevel
 {
@@ -92,6 +95,7 @@ class ManageLevel
         static sf::Texture toolTipTex;
         static bool toolTipTexLoaded;
         static bool loadToolTipTex(const char* filenametoolTipTex = FilenameToolTipTex);
+        json m_levels;
 };
 
 /*********************************************************/

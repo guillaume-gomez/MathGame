@@ -351,7 +351,6 @@ void Game::move()
 int Game::selectLevel(ScreenLink& stat)
 {
     int changing = 0;
-    reset();
     try
     {
         changing = m_level.changeLevel(&stat);
@@ -374,6 +373,7 @@ int Game::selectLevel(ScreenLink& stat)
 //        #endif // DEBUG
         throw;
     }
+    reset();
     return changing;
 }
 
