@@ -237,7 +237,7 @@ bool Editor::handleInput()
                 {
                     if(m_creatingType == TypeObject::Enemy)
                     {
-                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
+                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)), true);
                        m_isLeftEnemy = true;
                     }
                 }
@@ -245,7 +245,7 @@ bool Editor::handleInput()
                 {
                     if(m_creatingType == TypeObject::Enemy)
                     {
-                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonRightEnemy)));
+                       m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonRightEnemy)), true);
                        m_isLeftEnemy = false;
                     }
                 }
@@ -259,28 +259,28 @@ bool Editor::handleInput()
 
         if(m_buttonGoalButton.isClicked())
         {
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)));
+            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
     		m_buttonCursor.setColor(sf::Color(255, 0, 0, Blur));
         }
     	if(m_buttonNormalButton.isClicked())
         {
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)));
+            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
     		m_buttonCursor.setColor(sf::Color(0, 0, 0, Blur));
         }
         if(m_buttonCircle.isClicked())
         {
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)));
+            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
             m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
         }
         if(m_buttonLeftEnemy.isClicked())
         {
             m_buttonCursor.setColor(sf::Color(255, 255, 255, Blur));
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)));
+            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)), true);
             m_isLeftEnemy = true;
         }
         if(m_buttonInfo.isClicked())
         {
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenamePanelInfoTex)));
+            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenamePanelInfoTex)), true);
             m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
         }
     }
