@@ -348,7 +348,7 @@ void Editor::move()
         m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
         m_buttonCursor.setScale(1, 1);
         m_buttonCursor.setColor(sf::Color(255, 0, 0, Blur));
-        
+
         m_creatingType = TypeObject::GoalPoint;
         m_isNormalPoint = false;
     }
@@ -358,7 +358,7 @@ void Editor::move()
         m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
         m_buttonCursor.setScale(1, 1);
         m_buttonCursor.setColor(sf::Color(0, 0, 0, Blur));
-        
+
         m_creatingType = TypeObject::Point;
         m_isNormalPoint = true;
     }
@@ -367,7 +367,7 @@ void Editor::move()
         m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
         m_buttonCursor.setScale(1, 1);
         m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
-        
+
         m_creatingType = TypeObject::Circle;
     }
 
@@ -386,11 +386,11 @@ void Editor::move()
         m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenamePanelInfoTex)), true);
         m_buttonCursor.setScale(1, 0.34);
         m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
-        
+
         m_creatingType = TypeObject::Info;
     }
 
-    if(m_buttonAddFunction.isClicked()) 
+    if(m_buttonAddFunction.isClicked())
     {
         m_creatingType = TypeObject::Function;
     }
@@ -445,6 +445,7 @@ int Editor::save(ScreenLink * link)
             nbGoalPoint++;
         }
     }
+    
     if(nbGoalPoint != 1)
     {
         m_textVerifSave.setString(sf::String("Level not Saved : there is not or too much goal point "));
@@ -455,55 +456,55 @@ int Editor::save(ScreenLink * link)
     //sort m_spriteList
     std::sort (m_spriteList.begin(), m_spriteList.end(), EditorObject::compare);
 
-        std::vector<std::string> fileList;
-        fileList.push_back("Easy");
-        fileList.push_back("Normal");
-        fileList.push_back("Hard");
+    std::vector<std::string> fileList;
+    fileList.push_back("Easy");
+    fileList.push_back("Normal");
+    fileList.push_back("Hard");
 
 
-        unsigned int numberattempt = 0;
-        for( auto it : m_spriteList)
+    unsigned int numberattempt = 0;
+    for( auto it : m_spriteList)
+    {
+        if(it->getType() == TypeObject::Point || it->getType() == TypeObject::GoalPoint)
         {
-            if(it->getType() == TypeObject::Point || it->getType() == TypeObject::GoalPoint)
-            {
-                numberattempt++;
-            }
+            numberattempt++;
         }
+    }
 
-        if(numberattempt < 1)
+    if(numberattempt < 1)
+    {
+        //to avoid negative number
+        numberattempt+= 2;
+    }
+
+    m_textVerifSave.setString(sf::String("Level Saved"));
+    m_textVerifSave.setColor(sf::Color(34,177,76));
+    for(unsigned int i = 0 ; i < TotalDifficulty ;i++)
+    {
+        std::ostringstream oss;
+        oss << FilenameLevelDirectory << link->getNbFiles() + 1 << "_" << fileList[i] <<".lvl" ;
+        std::ofstream file(oss.str().c_str());
+        if( file.is_open())
         {
-            //to avoid negative number
-            numberattempt+= 2;
-        }
+           file << m_spriteList.size() << std::endl;
+           file << numberattempt << std::endl;
 
-        m_textVerifSave.setString(sf::String("Level Saved"));
-        m_textVerifSave.setColor(sf::Color(34,177,76));
-        for(unsigned int i = 0 ; i < TotalDifficulty ;i++)
+           for( unsigned int j = 0 ; j < m_spriteList.size();j++)
+           {
+                file <<  m_spriteList[j]->save(GraphScale);
+           }
+
+          file.close();
+        }
+        else
         {
-            std::ostringstream oss;
-            oss << FilenameLevelDirectory << link->getNbFiles() + 1 << "_" << fileList[i] <<".lvl" ;
-            std::ofstream file(oss.str().c_str());
-            if( file.is_open())
-            {
-               file << m_spriteList.size() << std::endl;
-               file << numberattempt << std::endl;
-
-               for( unsigned int j = 0 ; j < m_spriteList.size();j++)
-               {
-                    file <<  m_spriteList[j]->save(GraphScale);
-               }
-
-              file.close();
-            }
-            else
-            {
-                 m_textVerifSave.setString(sf::String("Level not Saved"));
-                 m_textVerifSave.setColor(sf::Color(237,28,36));
-                 return -1;
-            }
-            numberattempt-- ;
+             m_textVerifSave.setString(sf::String("Level not Saved"));
+             m_textVerifSave.setColor(sf::Color(237,28,36));
+             return -1;
         }
-        link->setnbFiles(link->getNbFiles()+1);
+        numberattempt-- ;
+    }
+    link->setnbFiles(link->getNbFiles()+1);
    }
    sf::FloatRect coord = m_textVerifSave.getText().getLocalBounds ();
    m_textVerifSave.setPosition(sf::Vector2f(-coord.width/2 , 0));
@@ -513,7 +514,14 @@ int Editor::save(ScreenLink * link)
 
 void Editor::addObject(int x , int y)
 {
-    if(m_panel.isVisible() && !m_buttonAddFunction.isFocused())
+    if(m_buttonAddFunction.isFocused())
+    {
+        Curves *newCurve = dynamic_cast<Curves*>(ObjectFactoryAbstract::create(TypeObject::Function));
+        newCurve->setFunction(m_textAreaFunction.getString());
+        newCurve->build();
+        m_spriteList.push_back(newCurve);
+    }
+    else if(m_panel.isVisible())
     {
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
 
