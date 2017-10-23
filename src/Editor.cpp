@@ -40,6 +40,7 @@ m_buttonNormalButton(FilenameNormalPointTex),
 m_buttonLeftEnemy(FilenameButtonEnemy),
 m_creatingType(TypeObject::Point),
 m_buttonInfo(FilenamePanelInfoTexMin),
+m_buttonAddFunction(FilenameButtonSave),
 m_isBack(false),
 m_isNormalPoint(true),
 m_isZoom(false),
@@ -50,7 +51,9 @@ m_radiusBuilder(0.0f, 0.0f)
     //
     m_nbAttemptView.setColor(sf::Color(23,0,34,225));
     m_nbAttemptView.setString(sf::String("EnemyLife : 1"));
-    m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 210, m_app.getSize().y - 25));
+    m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 210, m_app.getSize().y - 40));
+
+    m_buttonAddFunction.setPosition(sf::Vector2f(270, m_app.getSize().y - 60));
 
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
 	text->setRepeated(true);
@@ -329,6 +332,9 @@ void Editor::draw()
     m_nbAttemptView.draw(m_app);
 
     m_buttonCursor.draw(m_app);
+
+    m_buttonAddFunction.draw(m_app);
+
     m_app.draw(m_textAreaFunction);
 }
 
@@ -520,7 +526,7 @@ int Editor::save(ScreenLink * link)
 
 void Editor::addObject(int x , int y)
 {
-    if(m_panel.isVisible())
+    if(m_panel.isVisible() && !m_buttonAddFunction.isFocused())
     {
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
 
