@@ -110,12 +110,19 @@ void Editor::resize(float scaleX, float scaleY)
     m_buttonCircle.scale(scaleX, scaleY);
     m_textAreaFunction.scale(scaleX, scaleY);
     m_buttonInfo.scale(scaleX, scaleY);
+    m_buttonAddFunction.scale(scaleX, scaleY);
 }
 
 bool Editor::handleInput()
 {
     float oldWidth = m_app.getSize().x;
     float oldHeight = m_app.getSize().y;
+
+    m_textAreaFunction.handleInput(m_event, m_app);
+    m_panel.handle_input(m_event, m_app);
+    m_buttonAddFunction.handle_input(m_event, m_app);
+
+
     while(m_app.pollEvent(m_event))
     {
         switch(m_event.type)
@@ -131,13 +138,12 @@ bool Editor::handleInput()
 
              case sf::Event::MouseMoved:
                  {
-                     float widthWithScale = m_buttonCursor.getLocalBounds().width * m_buttonCursor.getScale().x;
-                     float heightWithScale = m_buttonCursor.getLocalBounds().height * m_buttonCursor.getScale().y;
-                     int x = m_event.mouseMove.x - widthWithScale / 2;
-                     int y = m_event.mouseMove.y - heightWithScale / 2;
-                     sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x, y)));
-                     m_buttonCursor.setPosition(coord);
-
+                    float widthWithScale = m_buttonCursor.getLocalBounds().width * m_buttonCursor.getScale().x;
+                    float heightWithScale = m_buttonCursor.getLocalBounds().height * m_buttonCursor.getScale().y;
+                    int x = m_event.mouseMove.x - widthWithScale / 2;
+                    int y = m_event.mouseMove.y - heightWithScale / 2;
+                    sf::Vector2f coord = m_app.mapPixelToCoords((sf::Vector2i(x, y)));
+                    m_buttonCursor.setPosition(coord);
                  }
             break;
 
@@ -260,43 +266,8 @@ bool Editor::handleInput()
             default:
             break;
         }
-
-        m_textAreaFunction.handleInput(m_event, m_app);
-        m_panel.handle_input(m_event, m_app);
-
-        if(m_buttonGoalButton.isClicked())
-        {
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
-    		m_buttonCursor.setScale(1, 1);
-            m_buttonCursor.setColor(sf::Color(255, 0, 0, Blur));
-        }
-    	if(m_buttonNormalButton.isClicked())
-        {
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
-    		m_buttonCursor.setScale(1, 1);
-            m_buttonCursor.setColor(sf::Color(0, 0, 0, Blur));
-        }
-        if(m_buttonCircle.isClicked())
-        {
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
-            m_buttonCursor.setScale(1, 1);
-            m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
-        }
-        if(m_buttonLeftEnemy.isClicked())
-        {
-            m_buttonCursor.setColor(sf::Color(255, 255, 255, Blur));
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)), true);
-            m_buttonCursor.setScale(1, 1);
-            m_isLeftEnemy = true;
-        }
-        if(m_buttonInfo.isClicked())
-        {
-            m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenamePanelInfoTex)), true);
-            m_buttonCursor.setScale(1, 0.34);
-            m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
-        }
     }
-    return true ;
+    return true;
 }
 
 
@@ -363,49 +334,67 @@ void Editor::move()
     if(m_buttonReset.isClicked())
     {
         reset();
-        m_buttonReset.unclick();
     }
 
     if(m_buttonBack.isClicked())
     {
         m_isBack = true;
-        m_buttonBack.unclick();
     }
     if(m_buttonSave.isClicked())
     {
         m_saving = true;
-        m_buttonSave.unclick();
     }
 
     if(m_buttonGoalButton.isClicked())
     {
+        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
+        m_buttonCursor.setScale(1, 1);
+        m_buttonCursor.setColor(sf::Color(255, 0, 0, Blur));
+        
         m_creatingType = TypeObject::GoalPoint;
         m_isNormalPoint = false;
-        m_buttonGoalButton.unclick();
     }
 
     if(m_buttonNormalButton.isClicked())
     {
+        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
+        m_buttonCursor.setScale(1, 1);
+        m_buttonCursor.setColor(sf::Color(0, 0, 0, Blur));
+        
         m_creatingType = TypeObject::Point;
         m_isNormalPoint = true;
-        m_buttonNormalButton.unclick();
     }
     if(m_buttonCircle.isClicked())
     {
+        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonCursor)), true);
+        m_buttonCursor.setScale(1, 1);
+        m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
+        
         m_creatingType = TypeObject::Circle;
-        m_buttonCircle.unclick();
     }
 
     if(m_buttonLeftEnemy.isClicked())
     {
+        m_buttonCursor.setColor(sf::Color(255, 255, 255, Blur));
+        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenameButtonLeftEnemy)), true);
+        m_buttonCursor.setScale(1, 1);
+        m_isLeftEnemy = true;
+
         m_creatingType = TypeObject::Enemy;
-        m_buttonLeftEnemy.unclick();
     }
 
     if(m_buttonInfo.isClicked())
     {
+        m_buttonCursor.setTexture(*TextureManager::getTextureManager()->getResource(std::string(FilenamePanelInfoTex)), true);
+        m_buttonCursor.setScale(1, 0.34);
+        m_buttonCursor.setColor(sf::Color(0, 0, 150, Blur));
+        
         m_creatingType = TypeObject::Info;
-        m_buttonInfo.unclick();
+    }
+
+    if(m_buttonAddFunction.isClicked()) 
+    {
+        m_creatingType = TypeObject::Function;
     }
 
     if(m_graphModel.getChanged())
