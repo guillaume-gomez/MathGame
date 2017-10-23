@@ -118,11 +118,6 @@ bool Editor::handleInput()
     float oldWidth = m_app.getSize().x;
     float oldHeight = m_app.getSize().y;
 
-    m_textAreaFunction.handleInput(m_event, m_app);
-    m_panel.handle_input(m_event, m_app);
-    m_buttonAddFunction.handle_input(m_event, m_app);
-
-
     while(m_app.pollEvent(m_event))
     {
         switch(m_event.type)
@@ -266,6 +261,9 @@ bool Editor::handleInput()
             default:
             break;
         }
+        m_textAreaFunction.handleInput(m_event, m_app);
+        m_panel.handle_input(m_event, m_app);
+        m_buttonAddFunction.handle_input(m_event, m_app);
     }
     return true;
 }
