@@ -536,10 +536,10 @@ void Editor::addObject(int x , int y)
             {
                 static sf::Vector2f goalCoords;
                 std::vector<EditorObject*>::iterator it = m_spriteList.begin();
-                bool goalSpriteFound=false;
-                while(it!=m_spriteList.end() && !goalSpriteFound)
+                bool goalSpriteFound = false;
+                while(it != m_spriteList.end() && !goalSpriteFound)
                 {
-                    if((*it)->get_Position() == goalCoords)
+                    if((*it)->getType() == TypeObject::GoalPoint && (*it)->get_Position() == goalCoords)
                     {
                         m_spriteList.erase(it);
                         goalSpriteFound = true;
