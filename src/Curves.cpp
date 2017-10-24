@@ -56,7 +56,6 @@ EditorObject* Curves::clone() const
 
 std::string Curves::save(float scale) const
 {
-    std::cout << "save" << std::endl;
 	std::stringstream flux;
     flux << this->getTypeStr() << std::endl;
     flux << m_model.getFunction() << std::endl;
@@ -75,7 +74,7 @@ void Curves::drawInterval(sf::RenderTarget& app)
 
 void Curves::represent(float step)
 {
-        m_view.represent(step);
+    m_view.represent(step);
 }
 
 void Curves::build(int _begin , int _end, float step)
