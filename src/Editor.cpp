@@ -400,7 +400,6 @@ void Editor::move()
         m_graphView.represent(Step);
         m_graphModel.setChanged(false);
     }
-
 }
 
 void Editor::reset()
@@ -445,7 +444,7 @@ int Editor::save(ScreenLink * link)
             nbGoalPoint++;
         }
     }
-    
+
     if(nbGoalPoint != 1)
     {
         m_textVerifSave.setString(sf::String("Level not Saved : there is not or too much goal point "));
@@ -519,6 +518,7 @@ void Editor::addObject(int x , int y)
         Curves *newCurve = dynamic_cast<Curves*>(ObjectFactoryAbstract::create(TypeObject::Function));
         newCurve->setFunction(m_textAreaFunction.getString());
         newCurve->build();
+        newCurve->receiveView(m_viewPerso);
         m_spriteList.push_back(newCurve);
     }
     else if(m_panel.isVisible())
