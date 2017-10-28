@@ -40,9 +40,9 @@ void ButtonPerso::handle_input(sf::Event& event,sf::RenderTarget& target)
 {
     if(event.type == sf::Event::MouseButtonPressed)
     {
-            int x = event.mouseButton.x;
-            int y = event.mouseButton.y;
-            sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)));
+        int x = event.mouseButton.x;
+        int y = event.mouseButton.y;
+        sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)));
 
         if(getGlobalBounds().contains(coord.x, coord.y))
         {

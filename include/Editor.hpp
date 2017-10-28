@@ -65,7 +65,6 @@ class Editor
         void addObject( int x , int y);
         void addCircle(int x, int y);
         void popPoint();
-        void deleteGravityCircle(int x, int y);
         void deletePoint(int x , int y);
         void cameraMoved();
         ~Editor();
