@@ -43,7 +43,6 @@ int Screen_Game::Run(sf::RenderWindow& App)
         bool Running = true;
         m_game->setGameMode(m_stat->getMode());
         m_game->loadConfigFile();
-        std::cout << " coucouc hibour " << std::endl;
         m_game->selectLevel(*m_stat, true);
         int gameFinish = 0;
         m_game->setBack(false);
