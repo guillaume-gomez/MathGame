@@ -27,7 +27,7 @@
 #include "ObjectFactoryAbstract.hpp"
 
 Editor::Editor(sf::RenderWindow& App)
-:m_app(App),m_axis( GraphScale ),
+:m_app(App),m_axis( GraphScale),
 m_textAreaFunction(6),
 m_graphView(m_graphModel,Thickness, GraphScale),
 m_buttonReset(FilenameButtonReset),
@@ -39,7 +39,6 @@ m_buttonCircle(FilenameButtonCircleTex),
 m_buttonNormalButton(FilenameNormalPointTex),
 m_buttonLeftEnemy(FilenameButtonEnemy),
 m_buttonPanel(FilenameButtonPanel),
-m_buttonInfo(FilenamePanelInfoTex),
 m_creatingType(TypeObject::Point),
 m_buttonInfo(FilenamePanelInfoTexMin),
 m_buttonAddFunction(FilenameAddFunctionTex),
