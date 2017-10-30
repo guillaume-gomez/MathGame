@@ -61,7 +61,6 @@
 		<Unit filename="include/Axis.hpp" />
 		<Unit filename="include/Button.hpp" />
 		<Unit filename="include/ButtonAnim.hpp" />
-		<Unit filename="include/ButtonPerso.hpp" />
 		<Unit filename="include/CharacterModel.hpp" />
 		<Unit filename="include/CharacterView.hpp" />
 		<Unit filename="include/ConstrueFunction.hpp" />
@@ -106,6 +105,7 @@
 		<Unit filename="include/Screen_Game.hpp" />
 		<Unit filename="include/Screen_MainMenu.hpp" />
 		<Unit filename="include/Screens.hpp" />
+		<Unit filename="include/StaticButton.hpp" />
 		<Unit filename="include/VisitorObjectCollidable.h" />
 		<Unit filename="libs/AbstractCursor.hpp" />
 		<Unit filename="libs/AbstractPanel.hpp" />
@@ -129,7 +129,6 @@
 		<Unit filename="src/Axis.cpp" />
 		<Unit filename="src/Button.cpp" />
 		<Unit filename="src/ButtonAnim.cpp" />
-		<Unit filename="src/ButtonPerso.cpp" />
 		<Unit filename="src/CharacterModel.cpp" />
 		<Unit filename="src/CharacterView.cpp" />
 		<Unit filename="src/ConstrueFunction.cpp" />
@@ -172,6 +171,7 @@
 		<Unit filename="src/Screen_Editor.cpp" />
 		<Unit filename="src/Screen_Game.cpp" />
 		<Unit filename="src/Screen_MainMenu.cpp" />
+		<Unit filename="src/StaticButton.cpp" />
 		<Unit filename="src/VisitorObjectCollidable.cpp" />
 		<Extensions>
 			<code_completion>

@@ -33,11 +33,11 @@
 #include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
-class ButtonPerso : public sf::Sprite
+class StaticButton : public sf::Sprite
 {
     public:
-        ButtonPerso(const char* _filename = "");
-        virtual ~ButtonPerso();
+        StaticButton(const char* _filename = "");
+        virtual ~StaticButton();
         void handle_input(sf::Event& event, sf::RenderTarget& target);
         void setAlpha (int _alpha);
         bool isFocused() const;
@@ -56,16 +56,16 @@ class ButtonPerso : public sf::Sprite
 *
 **/
 
-inline bool ButtonPerso::isClicked() const {return m_clicked;};
+inline bool StaticButton::isClicked() const {return m_clicked;};
 
-inline void ButtonPerso::setAlpha (int _alpha)
+inline void StaticButton::setAlpha (int _alpha)
 {
     this->setColor(sf::Color(255, 255, 255, _alpha));
 }
 
-inline bool ButtonPerso::isFocused() const { return m_isFocused;}
+inline bool StaticButton::isFocused() const { return m_isFocused;}
 
-inline void ButtonPerso::unclick()
+inline void StaticButton::unclick()
 {
     m_clicked = false;
 }

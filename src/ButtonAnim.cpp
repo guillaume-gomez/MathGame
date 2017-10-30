@@ -22,7 +22,7 @@
 #include "ButtonAnim.hpp"
 
 ButtonAnim::ButtonAnim(const char* _filename, int _widthFrame,int _heightFrame)
-:ButtonPerso(_filename), m_changing(true)
+:StaticButton(_filename), m_changing(true)
 {
    if (m_texture.loadFromFile(_filename))
    {

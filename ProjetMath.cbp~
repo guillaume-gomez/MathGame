@@ -58,7 +58,7 @@
 		<Unit filename="include/Axis.hpp" />
 		<Unit filename="include/Button.hpp" />
 		<Unit filename="include/ButtonAnim.hpp" />
-		<Unit filename="include/ButtonPerso.hpp" />
+		<Unit filename="include/StaticButton.hpp" />
 		<Unit filename="include/CharacterModel.hpp" />
 		<Unit filename="include/CharacterView.hpp" />
 		<Unit filename="include/ConstrueFunction.hpp" />
@@ -127,7 +127,7 @@
 		<Unit filename="src/Axis.cpp" />
 		<Unit filename="src/Button.cpp" />
 		<Unit filename="src/ButtonAnim.cpp" />
-		<Unit filename="src/ButtonPerso.cpp" />
+		<Unit filename="src/StaticButton.cpp" />
 		<Unit filename="src/CharacterModel.cpp" />
 		<Unit filename="src/CharacterView.cpp" />
 		<Unit filename="src/ConstrueFunction.cpp" />

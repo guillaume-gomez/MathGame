@@ -26,7 +26,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "ButtonPerso.hpp"
+#include "StaticButton.hpp"
 #include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "../files.hpp"
@@ -37,10 +37,10 @@ class PanelEditor : public sf::Sprite
     public:
         PanelEditor();
         virtual ~PanelEditor();
-        void addButton(ButtonPerso* button);
-        ButtonPerso* popButton();
-        ButtonPerso* deleteButton(unsigned int i = 0);
-        ButtonPerso* deleteButton(ButtonPerso* button);
+        void addButton(StaticButton* button);
+        StaticButton* popButton();
+        StaticButton* deleteButton(unsigned int i = 0);
+        StaticButton* deleteButton(StaticButton* button);
         void handle_input(sf::Event& event, sf::RenderTarget& target);
         void draw(sf::RenderTarget& app);
         void movePanel(sf::RenderTarget& target);
@@ -51,7 +51,7 @@ class PanelEditor : public sf::Sprite
     private:
     	bool m_isAnimLeft;
     	bool m_isAnimRight;
-    	std::vector<ButtonPerso*> m_vectButton;
+    	std::vector<StaticButton*> m_vectButton;
     	bool m_visible;
     	sf::Clock m_timerPanel;
 };
