@@ -19,8 +19,8 @@
  *                      or https://github.com/AdrienJarretier
  */
 
-#ifndef BUTTONPERSO_H
-#define BUTTONPERSO_H
+#ifndef STATICBUTTON_H
+#define STATICBUTTON_H
 
 #ifdef DEBUG
 	 #include <iostream>
@@ -33,7 +33,7 @@
 #include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
-class ButtonPerso :  public sf::Sprite
+class ButtonPerso : public sf::Sprite
 {
     public:
         ButtonPerso(const char* _filename = "");
@@ -70,4 +70,4 @@ inline void ButtonPerso::unclick()
     m_clicked = false;
 }
 
-#endif // BUTTON_H
+#endif // STATICBUTTON_H
