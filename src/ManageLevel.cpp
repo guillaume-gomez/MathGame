@@ -81,8 +81,7 @@ void ManageLevel::loadFile(int numLevel, GameMode mode)
         delete m_levelModel;
 
     std::string directory = FilenameLevelDirectory;
-
-    setLevel( numLevel);
+    setLevel(numLevel);
     std::ostringstream oss;
     oss << numLevel << "_" << convertEnum(m_difficulty) << ".lvl";
     std::cout << "fileLoad " << oss.str() << std::endl;
