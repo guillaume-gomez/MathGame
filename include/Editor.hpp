@@ -37,6 +37,7 @@
 #include "ManageText.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
 #include "PanelEditor.hpp"
+#include "Curves.hpp"
 #include "Point.hpp"
 #include "ScreenLink.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
@@ -83,6 +84,7 @@ class Editor
         ButtonPerso m_buttonLeftEnemy;
         ButtonPerso m_buttonPanel;
         ButtonPerso m_buttonInfo;
+        ButtonPerso m_buttonAddFunction;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
         TypeObject m_creatingType;
