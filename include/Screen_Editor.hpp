@@ -40,7 +40,6 @@ class Screen_Editor : public Screen
     private:
         Editor m_editor;
         ScreenLink* m_link;
-        sfg::Window::Ptr m_window;
         sfg::SFGUI m_sfgui;
 };
 #endif // SCREEN_EDITOR_H
