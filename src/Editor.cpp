@@ -27,7 +27,9 @@
 #include "ObjectFactoryAbstract.hpp"
 
 Editor::Editor(sf::RenderWindow& App)
-:m_app(App),m_axis( GraphScale),
+:
+m_app(App),
+m_axis(GraphScale),
 m_textAreaFunction(6),
 m_graphView(m_graphModel,Thickness, GraphScale),
 m_buttonReset(FilenameButtonReset),
@@ -42,19 +44,21 @@ m_buttonPanel(FilenameButtonPanel),
 m_creatingType(TypeObject::Point),
 m_buttonInfo(FilenamePanelInfoTexMin),
 m_buttonAddFunction(FilenameAddFunctionTex),
+m_buttonAddIntegral(FilenameAddFunctionTex),
 m_isBack(false),
 m_isNormalPoint(true),
 m_isZoom(false),
 m_saving(false),
-m_isLeftEnemy(true), m_nbAttempt(1),
+m_isLeftEnemy(true),
+m_nbAttempt(1),
 m_radiusBuilder(0.0f, 0.0f)
 {
-    //
     m_nbAttemptView.setColor(sf::Color(23,0,34,225));
     m_nbAttemptView.setString(sf::String("EnemyLife : 1"));
     m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 210, m_app.getSize().y - 40));
 
     m_buttonAddFunction.setPosition(sf::Vector2f(270, m_app.getSize().y - 60));
+    m_buttonAddIntegral.setPosition(sf::Vector2f(270, m_app.getSize().y - 140));
 
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
 	text->setRepeated(true);
@@ -112,6 +116,7 @@ void Editor::resize(float scaleX, float scaleY)
     m_textAreaFunction.scale(scaleX, scaleY);
     m_buttonInfo.scale(scaleX, scaleY);
     m_buttonAddFunction.scale(scaleX, scaleY);
+    m_buttonAddIntegral.scale(scaleX, scaleY);
 }
 
 bool Editor::handleInput()
@@ -265,6 +270,7 @@ bool Editor::handleInput()
         m_textAreaFunction.handleInput(m_event, m_app);
         m_panel.handle_input(m_event, m_app);
         m_buttonAddFunction.handle_input(m_event, m_app);
+        m_buttonAddIntegral.handle_input(m_event, m_app);
     }
     return true;
 }
@@ -304,6 +310,8 @@ void Editor::draw()
     m_buttonCursor.draw(m_app);
 
     m_buttonAddFunction.draw(m_app);
+    m_buttonAddIntegral.update();
+    m_buttonAddIntegral.draw(m_app);
 
     m_app.draw(m_textAreaFunction);
 }
@@ -394,6 +402,11 @@ void Editor::move()
     if(m_buttonAddFunction.isClicked())
     {
         m_creatingType = TypeObject::Function;
+    }
+
+    if(m_buttonAddIntegral.isClicked())
+    {
+        m_creatingType = TypeObject::Integral;
     }
 
     if(m_graphModel.getChanged())

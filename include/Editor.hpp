@@ -50,7 +50,7 @@ class Editor
     public:
         sf::RenderWindow &m_app;
         Editor(sf::RenderWindow& App);
-        bool handleInput(sfg::Window::Ptr sfg_window);
+        bool handleInput();
         void draw();
         void zoom();
         void show();
