@@ -33,7 +33,7 @@
 #include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
-class ButtonPerso :  public sf::Sprite
+class ButtonPerso : public sf::Sprite
 {
     public:
         ButtonPerso(const char* _filename = "");

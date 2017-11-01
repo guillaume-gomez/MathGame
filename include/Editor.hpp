@@ -24,11 +24,13 @@
 
 #include <fstream>
 #include <sstream>
+#include <SFGUI/SFGUI.hpp>
 
 #include "SFML/Graphics.hpp"
 
 #include "Axis.hpp"
 #include "ButtonPerso.hpp"
+#include "AddIntegralButton.hpp"
 #include "ConstrueFunction.hpp"
 #include "Enemy.hpp"
 #include "GraphView.hpp"
@@ -48,7 +50,7 @@ class Editor
     public:
         sf::RenderWindow &m_app;
         Editor(sf::RenderWindow& App);
-        bool handleInput();
+        bool handleInput(sfg::Window::Ptr sfg_window);
         void draw();
         void zoom();
         void show();
@@ -59,17 +61,17 @@ class Editor
         inline void setBack( bool _b){ m_isBack = _b;};
         inline void setSaving(bool _b){m_saving = _b;};
         void setCenterCamera();
-        void managePanel(  int coordMouseX);
+        void managePanel(int coordMouseX);
         void movePanel ();
         void resize(float scaleX, float scaleY);
         int save(ScreenLink * link);
-        void addObject( int x , int y);
+        void addObject(int x, int y);
         void addCircle(int x, int y);
         void popPoint();
-        void deletePoint(int x , int y);
+        void deletePoint(int x, int y);
         void cameraMoved();
+        void addToWindow(sfg::Window::Ptr window);
         ~Editor();
-
     private:
         Axis m_axis;
         TextAreaSFML2_0 m_textAreaFunction;
@@ -85,6 +87,7 @@ class Editor
         ButtonPerso m_buttonPanel;
         ButtonPerso m_buttonInfo;
         ButtonPerso m_buttonAddFunction;
+        AddIntegralButton m_buttonAddIntegral;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
         TypeObject m_creatingType;
@@ -110,6 +113,5 @@ class Editor
         sf::Clock m_timerPanel;
 
         ManageText m_textVerifSave;
-
 };
 #endif // EDITOR_H

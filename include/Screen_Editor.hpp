@@ -22,6 +22,8 @@
 #ifndef SCREEN_EDITOR_H
 #define SCREEN_EDITOR_H
 
+#include <SFGUI/SFGUI.hpp>
+ 
 #include "Screen.hpp"
 #include "../constants.hpp"
 #include "Editor.hpp"
@@ -38,5 +40,7 @@ class Screen_Editor : public Screen
     private:
         Editor m_editor;
         ScreenLink* m_link;
+        sfg::Window::Ptr m_window;
+        sfg::SFGUI m_sfgui;
 };
 #endif // SCREEN_EDITOR_H
