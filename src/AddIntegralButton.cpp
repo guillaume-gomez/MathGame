@@ -40,7 +40,7 @@ void AddIntegralButton::hide()
 
 void AddIntegralButton::handle_input(sf::Event& event, sf::RenderTarget& target)
 {
-    //handle_input(event, target);
+    ButtonPerso::handle_input(event, target);
     m_window->HandleEvent(event);
 }
 
