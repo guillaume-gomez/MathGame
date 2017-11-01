@@ -200,7 +200,7 @@ int ScreenHowTo::Run( sf::RenderWindow &App)
 
 		App.clear();
         App.draw(m_background);
-		m_sfgui.Display( App );
+		m_sfgui.Display(App);
 		App.display();
 	}
 return (SCREEN_EXIT);
