@@ -36,6 +36,7 @@
 #include "GraphView.hpp"
 #include "GravityCircle.hpp"
 #include "InfoDisplayer.hpp"
+#include "Integral.hpp"
 #include "ManageText.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
 #include "PanelEditor.hpp"
@@ -67,6 +68,7 @@ class Editor
         int save(ScreenLink * link);
         void addObject(int x, int y);
         void addCircle(int x, int y);
+        void addIntegral(std::string xMin, std::string yMin);
         void popPoint();
         void deletePoint(int x, int y);
         void cameraMoved();

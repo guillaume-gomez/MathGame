@@ -59,6 +59,9 @@ m_radiusBuilder(0.0f, 0.0f)
 
     m_buttonAddFunction.setPosition(sf::Vector2f(270, m_app.getSize().y - 60));
     m_buttonAddIntegral.setPosition(sf::Vector2f(270, m_app.getSize().y - 140));
+    //callback function
+    auto fn = std::bind(&Editor::addIntegral, this, std::placeholders::_1, std::placeholders::_2);
+    m_buttonAddIntegral.setIntegralCallback(fn);
 
 	sf::Texture* text = TextureManager::getTextureManager()->getResource(std::string(FilenameBGGame));
 	text->setRepeated(true);
@@ -536,7 +539,7 @@ void Editor::addObject(int x , int y)
         m_spriteList.push_back(newCurve);
     }
     else if(m_buttonAddIntegral.isFocused())
-    {  
+    {
         //nothing to do
         return;
     }
@@ -613,6 +616,19 @@ void Editor::addCircle(int x, int y)
     {
         std::cerr << "In Editor::addCircle : you tried to create a gravityCircle with a negative radius" << std::endl;
     }
+
+}
+
+void Editor::addIntegral(std::string xMin, std::string yMin)
+{
+    std::string functionStr = m_textAreaFunction.getString();
+    if (functionStr.empty())
+    {
+        return;
+    }
+    Integral* newIntegral = new Integral(functionStr, std::stoi(xMin), std::stoi(yMin));
+    newIntegral->build();
+    m_spriteList.push_back(newIntegral);
 
 }
 
