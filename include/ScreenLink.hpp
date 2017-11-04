@@ -119,5 +119,5 @@ inline void ScreenLink::setnbFiles(unsigned int _nb)
     m_countEasy = m_countNormal = m_countHard = _nb;
 }
 
-inline GameMode ScreenLink::getMode() const{return m_modeChoose;};
+inline GameMode ScreenLink::getMode() const {return m_modeChoose;};
 #endif // ScreenLink_H
