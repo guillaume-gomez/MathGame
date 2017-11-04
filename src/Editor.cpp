@@ -535,6 +535,11 @@ void Editor::addObject(int x , int y)
         newCurve->receiveView(m_viewPerso);
         m_spriteList.push_back(newCurve);
     }
+    else if(m_buttonAddIntegral.isFocused())
+    {  
+        //nothing to do
+        return;
+    }
     else if(m_panel.isVisible())
     {
         sf::Vector2f coord = (sf::Vector2f)m_app.mapPixelToCoords((sf::Vector2i(x,y)),m_viewPerso);
