@@ -87,7 +87,6 @@ class Editor
         ButtonPerso m_buttonPanel;
         ButtonPerso m_buttonInfo;
         ButtonPerso m_buttonAddFunction;
-        AddIntegralButton m_buttonAddIntegral;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
         TypeObject m_creatingType;
