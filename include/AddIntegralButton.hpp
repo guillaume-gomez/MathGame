@@ -13,6 +13,7 @@ class AddIntegralButton : public ButtonPerso
         void hide();
         void update();
         void addIntegral();
+        void setIntegralCallback(std::function<void(std::string, std::string)> fn);
         virtual ~AddIntegralButton();
     private:
         sfg::Window::Ptr m_window;
@@ -21,6 +22,7 @@ class AddIntegralButton : public ButtonPerso
         sfg::ComboBox::Ptr m_min_combo_box;
         sfg::ComboBox::Ptr m_max_combo_box;
         sfg::Button::Ptr m_button;
+        std::function<void(std::string, std::string)> m_callback_fn;
 };
 
 #endif // ADDINTEGRALBUTTON_HPP

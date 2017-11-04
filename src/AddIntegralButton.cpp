@@ -50,8 +50,13 @@ void AddIntegralButton::handle_input(sf::Event& event, sf::RenderTarget& target)
 
 void AddIntegralButton::addIntegral()
 {
-    //std::cout << static_cast<std::string>(m_min_combo_box->GetSelectedText()) << " " << static_cast<std::string>(m_max_combo_box->GetSelectedText()) << std::endl;
     hide();
+    m_callback_fn(static_cast<std::string>(m_min_combo_box->GetSelectedText()), static_cast<std::string>(m_max_combo_box->GetSelectedText()));
+}
+
+void AddIntegralButton::setIntegralCallback(std::function<void(std::string, std::string)> fn)
+{
+    m_callback_fn = fn;
 }
 
 AddIntegralButton::~AddIntegralButton()
