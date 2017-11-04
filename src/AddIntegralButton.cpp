@@ -17,13 +17,14 @@ AddIntegralButton::AddIntegralButton(const char* _filename)
         m_max_combo_box->AppendItem(items[i]);
     }
     m_button = sfg::Button::Create("Add");
+    m_button->GetSignal(sfg::ToggleButton::OnLeftClick).Connect(std::bind(&AddIntegralButton::addIntegral, this));
     m_layout->Pack(m_min_combo_box);
     m_layout->Pack(m_max_combo_box);
 	m_layout->Pack(m_button);
     m_layout->SetSpacing(10.f);
 
     m_window->Add(m_layout);
-    m_window->SetPosition(sf::Vector2f(300.0f, 300.0f));
+    m_window->SetPosition(sf::Vector2f(200.0f, 420.0f));
     hide();
 }
 
@@ -41,7 +42,16 @@ void AddIntegralButton::hide()
 void AddIntegralButton::handle_input(sf::Event& event, sf::RenderTarget& target)
 {
     ButtonPerso::handle_input(event, target);
+    if(m_clicked) {
+        m_window->Show(true);
+    }
     m_window->HandleEvent(event);
+}
+
+void AddIntegralButton::addIntegral()
+{
+    //std::cout << static_cast<std::string>(m_min_combo_box->GetSelectedText()) << " " << static_cast<std::string>(m_max_combo_box->GetSelectedText()) << std::endl;
+    hide();
 }
 
 AddIntegralButton::~AddIntegralButton()

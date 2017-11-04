@@ -12,6 +12,7 @@ class AddIntegralButton : public ButtonPerso
         void handle_input(sf::Event& event, sf::RenderTarget& target);
         void hide();
         void update();
+        void addIntegral();
         virtual ~AddIntegralButton();
     private:
         sfg::Window::Ptr m_window;
