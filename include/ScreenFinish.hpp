@@ -24,6 +24,7 @@
 
 #include "Screen.hpp"
 #include "SFML/Graphics.hpp"
+#include "../constants.hpp"
 
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
@@ -38,6 +39,10 @@ class ScreenFinish : public Screen
     private:
     	sf::Sprite m_bg;
         sf::Clock m_clock;
+        std::vector<sf::String> m_stringList;
+    	std::vector<sf::Text> m_textList;
+    	sf::Font  m_font;
+    
 
 };
 

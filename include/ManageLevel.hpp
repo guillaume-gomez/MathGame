@@ -45,8 +45,8 @@ class ManageLevel
         float m_scale;
 
         ManageLevel(unsigned int _level = 1 , Difficulty _diff = Normal, float m_scale = 1.0f);
-        void loadFile (int numLevel, GameMode mode);
-        void loadLevel ();
+        void loadFile(int numLevel, GameMode mode);
+        void loadLevel();
         virtual ~ManageLevel();
         void setLevel(int _level);
         unsigned int getLevel() const;

@@ -65,12 +65,11 @@ void PanelEditor::addButton(ButtonPerso* button)
 
     if(nbButton == 0)
     {
-//         float Y = (this->getLocalBounds().height - (button->getLocalBounds().height / 2)) / 2;
-         int offsetY = int (this->getPosition().y) / 2;
-         float X = this->getLocalBounds().width / 2 - button->getLocalBounds().width/ 2 + this->getPosition().x;
+        int offsetY = int (this->getPosition().y) / 2;
+        float X = this->getLocalBounds().width / 2 - button->getLocalBounds().width/ 2 + this->getPosition().x;
 
-         button->setPosition(X, offsetY);
-         m_vectButton.push_back(button);
+        button->setPosition(X, offsetY);
+        m_vectButton.push_back(button);
     }
     else
     {
@@ -179,7 +178,7 @@ void PanelEditor::movePanel(sf::RenderTarget& target)
     }
 }
 
-void PanelEditor::setAlpha (int _alpha)
+void PanelEditor::setAlpha(int _alpha)
 {
     this->setColor(sf::Color(255, 255, 255, _alpha));
 }

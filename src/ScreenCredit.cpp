@@ -77,7 +77,7 @@ m_hangStart(false), picture(0), m_won(false)
 
 int ScreenCredit::Run ( sf::RenderWindow &App)
 {
-    bool Running = true;
+    bool running = true;
     m_clock.restart();
     m_clockAlpha.restart();
     int time = 2;
@@ -87,7 +87,7 @@ int ScreenCredit::Run ( sf::RenderWindow &App)
     picture = 0;
     m_word ="L ";
 
-    while(Running)
+    while(running)
     {
          sf::Event event;
         //Verifing events
@@ -95,7 +95,7 @@ int ScreenCredit::Run ( sf::RenderWindow &App)
         {
             if(event.type == sf::Event::Closed)
             {
-                Running = false;
+                running = false;
                 return SCREEN_EXIT;
                 App.close();
             }

@@ -22,7 +22,7 @@
 #include "ButtonPerso.hpp"
 
 ButtonPerso::ButtonPerso(const char* _filename)
-:m_filename(_filename), m_clicked(false)
+:m_filename(_filename), m_clicked(false), m_isFocused(false)
 {
     sf::Texture * texture = nullptr;
     texture = TextureManager::getTextureManager()->getResource(std::string(m_filename));
@@ -40,9 +40,9 @@ void ButtonPerso::handle_input(sf::Event& event,sf::RenderTarget& target)
 {
     if(event.type == sf::Event::MouseButtonPressed)
     {
-            int x = event.mouseButton.x;
-            int y = event.mouseButton.y;
-            sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)));
+        int x = event.mouseButton.x;
+        int y = event.mouseButton.y;
+        sf::Vector2f coord = target.mapPixelToCoords((sf::Vector2i(x, y)));
 
         if(getGlobalBounds().contains(coord.x, coord.y))
         {
@@ -64,10 +64,12 @@ void ButtonPerso::handle_input(sf::Event& event,sf::RenderTarget& target)
         if(getGlobalBounds().contains(coord.x, coord.y))
         {
             setAlpha(Clear);
+            m_isFocused = true;
         }
         else
         {
             setAlpha(Blur);
+            m_isFocused = false;
         }
     }
 }

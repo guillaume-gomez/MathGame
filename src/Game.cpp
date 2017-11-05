@@ -23,7 +23,7 @@
 #include <iostream>
 
 
-Game::Game( RenderWindow& _app , Difficulty _diff)
+Game::Game(RenderWindow& _app , Difficulty _diff)
 :m_typeOfCamera(TypeOfCamera::Moveable),
  m_app(_app),
  m_axis(GraphScale),
@@ -348,12 +348,22 @@ void Game::move()
 
 }
 
-int Game::selectLevel(ScreenLink& stat)
+int Game::selectLevel(ScreenLink& stat, bool forceLoading)
 {
     int changing = 0;
     try
     {
-        changing = m_level.changeLevel(&stat);
+        if(!forceLoading)
+        {
+            changing = m_level.changeLevel(&stat);
+        }
+        else
+        {
+            changing = true;
+            m_level.setLevel(stat.getCurrentLevel());
+            m_level.loadFile(m_level.getLevel(), stat.getMode());
+        }
+
         if(getGameMode() == GameMode::Dynamic)
         {
             m_gameStarted = true;

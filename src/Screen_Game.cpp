@@ -30,9 +30,6 @@ Screen_Game::Screen_Game(RenderWindow& _app, ScreenLink* _stat)
 
 int Screen_Game::Run(sf::RenderWindow& App)
 {
-//    #ifdef DEBUG
-//        std::cout << std::endl << "---------- Screen_Game::Run ----------" << std::endl << std::endl;
-//    #endif // DEBUG
     try
     {
         if(m_game == 0)
@@ -43,12 +40,10 @@ int Screen_Game::Run(sf::RenderWindow& App)
             m_game = new Game(App);
         }
 
-        bool Running = true;
-         //temp
+        bool running = true;
         m_game->setGameMode(m_stat->getMode());
-        //
         m_game->loadConfigFile();
-        m_game->selectLevel(*m_stat);
+        m_game->selectLevel(*m_stat, true);
         int gameFinish = 0;
         m_game->setBack(false);
         m_game->setCenterCamera();
@@ -58,13 +53,13 @@ int Screen_Game::Run(sf::RenderWindow& App)
 //        std::cout << App.getSize().x << "  "<< App.getSize().y << std::endl;
         m_game->resize(WindowWidth / App.getSize().x,  WindowHeight/ App.getSize().y);
 
-        while(Running && gameFinish == 0)
+        while(running && gameFinish == 0)
         {
             /*if ( alpha < m_alpha_max)
             {
                 alpha++;
             }*/
-           Running =  m_game->handleInput();
+           running =  m_game->handleInput();
 
             if(m_game->isBacked())
             {

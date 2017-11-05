@@ -24,7 +24,7 @@
 Screen_Editor::Screen_Editor(sf::RenderWindow& App, ScreenLink* link)
 :m_editor(App), m_link(link)
 {
-     recenterCamera();
+    recenterCamera();
 }
 
 Screen_Editor::~Screen_Editor()
@@ -34,20 +34,20 @@ Screen_Editor::~Screen_Editor()
 
 int Screen_Editor::Run(sf::RenderWindow& App)
 {
-    bool Running = true;
+    bool running = true;
     m_editor.setBack(false);
     m_editor.setCenterCamera();
     m_editor.setSaving(false);
 
 
-    while(Running)
+    while(running)
     {
-       Running =  m_editor.handleInput();
+       running =  m_editor.handleInput();
 
         if(m_editor.isBacked())
         {
             recenterCamera();
-            Running = false;
+            running = false;
             return MENU;
         }
         m_editor.move();
