@@ -351,7 +351,6 @@ void Game::move()
 int Game::selectLevel(ScreenLink& stat, bool forceLoading)
 {
     int changing = 0;
-    reset();
     try
     {
         if(!forceLoading)
@@ -384,6 +383,7 @@ int Game::selectLevel(ScreenLink& stat, bool forceLoading)
 //        #endif // DEBUG
         throw;
     }
+    reset();
     return changing;
 }
 
@@ -417,32 +417,24 @@ int Game::levelOperation(ScreenLink& stat)
 
 void Game::reset()
 {
-#ifdef DEBUG
-//  std::cout << "RESET RESET RESET" << std::endl << std::endl << std::endl;
-#endif
-         m_player->reset();
-         //reset the camera
-         resetWindow();
-     //    Physics::Engine::getEngine()->cleanEngine();
-     //    m_graphModel.setChanged(true);
-     //    m_graphModel.clearFunction();
+    resetWindow();
 
-        // start the level with the first function in the list
-        if(!m_functionManager.isEmpty())
-        {
-            m_functionManager.resetToZero();
-            Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
-            m_textAreaFunction.setString(m_functionManager.getFunction());
-        }
+    // start the level with the first function in the list
+    if(!m_functionManager.isEmpty())
+    {
+        m_functionManager.resetToZero();
+        Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
+        m_textAreaFunction.setString(m_functionManager.getFunction());
+    }
 
-
-        if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
-        {
-            m_curves.reset();
-            m_gameStarted = false;
-            m_textAreaFunction.setString("");
-        }
-        Physics::Engine::getEngine()->resetAllObjects();
+    if(getGameMode() == GameMode::Classic || getGameMode() == GameMode::NoChance)
+    {
+        m_curves.reset();
+        m_gameStarted = false;
+        m_textAreaFunction.setString("");
+    }
+    Physics::Engine::getEngine()->resetAllObjects();
+    m_player->reset(m_level.getInitialPosition());
 }
 
 Game::~Game()

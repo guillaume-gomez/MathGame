@@ -36,7 +36,7 @@ LevelModel::LevelModel()
 }
 
 LevelModel::LevelModel(std::string _filename , GameMode mode )
-:m_beginPoint(0), m_nbElements(0), m_win(false), m_lose(false), m_nbAttempt(0), m_mode(mode)
+:m_beginPoint(0), m_nbElements(0), m_win(false), m_lose(false), m_nbAttempt(0), m_mode(mode), m_initialPosition(sf::Vector2f(0.0f, 0.0f))
 {
     m_fileLevel.open(_filename.c_str());
     if(m_fileLevel.is_open())
@@ -169,6 +169,9 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
 
                  //because it is not a point
                 m_pointsCheck[i] = true;
+            }
+            else if(type == HeroInitialPosition) {
+                m_fileLevel >> m_initialPosition.x >> m_initialPosition.y;
             }
 
             m_coordElements.push_back(newElmt);

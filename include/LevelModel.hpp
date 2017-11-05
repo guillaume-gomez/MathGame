@@ -64,6 +64,7 @@ class LevelModel
         void decrementAttempt();
         void reset();
         int getSaveAttempt()const;
+        sf::Vector2f getInitialPosition() const;
         void setMode(GameMode _mode);
         GameMode getMode() const;
         std::vector<std::string> getVectorFunctions();
@@ -76,6 +77,7 @@ class LevelModel
         */
         unsigned int m_beginPoint;
         std::vector<Element> m_coordElements;
+        sf::Vector2f m_initialPosition;
         std::ifstream m_fileLevel;
         unsigned int m_nbElements;
         bool m_win;
@@ -208,6 +210,8 @@ inline int LevelModel::getSaveAttempt() const {return m_saveNbAttemp;};
 inline void LevelModel::setMode(GameMode _mode) {m_mode = _mode;};
 
 inline GameMode LevelModel::getMode() const {return  m_mode;};
+
+inline sf::Vector2f LevelModel::getInitialPosition() const { return m_initialPosition;};
 
 /******************************************************************************
 *                     Accessors

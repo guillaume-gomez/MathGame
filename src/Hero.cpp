@@ -55,9 +55,9 @@ void Hero::draw(sf::RenderTarget& app)
      m_view.draw(app);
 }
 
-void Hero::reset()
+void Hero::reset(sf::Vector2f initialPosition = sf::Vector2f(0.0f, 0.0f))
 {
-    m_model.setCoords(sf::Vector2f(0.0f, 0.0f));
+    m_model.setCoords(initialPosition);
     m_model.setAngle(0.0f);
 //    m_model.getPhysicsBox().jump(false);
 }
