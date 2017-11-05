@@ -82,7 +82,6 @@ Game::Game( RenderWindow& _app , Difficulty _diff)
     #ifdef DEBUG
        m_frameCountText.setColor(sf::Color::Black);
     #endif
-//    m_integral.build(-14.0, 14.0);
 
 }
 

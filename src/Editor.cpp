@@ -627,7 +627,6 @@ void Editor::addIntegral(std::string xMin, std::string yMin)
         return;
     }
     Integral* newIntegral = new Integral(functionStr, std::stoi(xMin), std::stoi(yMin));
-    newIntegral->build();
     m_spriteList.push_back(newIntegral);
 
 }
@@ -640,6 +639,11 @@ void Editor::popPoint()
         m_spriteList.pop_back();
     }
 
+}
+
+void Editor::cleanUp()
+{
+    m_buttonAddIntegral.hide();
 }
 
 

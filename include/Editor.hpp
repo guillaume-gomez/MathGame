@@ -73,6 +73,7 @@ class Editor
         void deletePoint(int x, int y);
         void cameraMoved();
         void addToWindow(sfg::Window::Ptr window);
+        void cleanUp();
         ~Editor();
     private:
         Axis m_axis;

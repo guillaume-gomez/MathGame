@@ -119,6 +119,7 @@ void LevelView::loadCoord()
                 if(integral != nullptr)
                 {
                     integral->setFunction(m_model.getFunction(i));
+                    std::cout << m_model.getBegin(i) << "  " << m_model.getEnd(i) << std::endl;
                     integral->build(m_model.getBegin(i), m_model.getEnd(i));
                     m_listSprite.push_back(integral);
                 }

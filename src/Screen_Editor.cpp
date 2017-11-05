@@ -46,6 +46,7 @@ int Screen_Editor::Run(sf::RenderWindow& App)
         {
             recenterCamera();
             Running = false;
+            m_editor.cleanUp();
             return MENU;
         }
         m_editor.move();
@@ -56,6 +57,7 @@ int Screen_Editor::Run(sf::RenderWindow& App)
 
         App.display();
     }
+    m_editor.cleanUp();
     return (SCREEN_EXIT);
 }
 
