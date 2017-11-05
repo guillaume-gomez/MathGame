@@ -434,7 +434,6 @@ void Game::reset()
         m_textAreaFunction.setString("");
     }
     Physics::Engine::getEngine()->resetAllObjects();
-    std::cout << "je me reset " << m_level.getInitialPosition().x << " " << m_level.getInitialPosition().y << std::endl;
     m_player->reset(m_level.getInitialPosition());
 }
 
