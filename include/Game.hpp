@@ -76,9 +76,9 @@ class Game
         TextAreaSFML2_0 m_textAreaFunction;
         ManageLevel m_level;
         GameMode m_gameMode;
-        ButtonPerso m_buttonReset;
+        StaticButton m_buttonReset;
         ButtonAnim m_buttonSound;
-        ButtonPerso m_buttonBack;
+        StaticButton m_buttonBack;
         Curves m_curves;
     #ifdef DEBUG
         int m_frameCount;
