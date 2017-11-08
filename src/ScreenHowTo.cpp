@@ -150,13 +150,13 @@ void ScreenHowTo::loadInstruction()
 
 int ScreenHowTo::Run( sf::RenderWindow &App)
 {
-    bool Running = true;
+    bool running = true;
     App.resetGLStates();
 
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
     m_window->Show(true);
 
-	while(Running)
+	while(running)
 	{
 		sf::Event event;
 		//Verifing events
@@ -166,7 +166,7 @@ int ScreenHowTo::Run( sf::RenderWindow &App)
 
             if(event.type == sf::Event::Closed)
             {
-                Running = false;
+                running = false;
                 App.close();
             }
 

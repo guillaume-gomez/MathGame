@@ -54,9 +54,9 @@ ScreenFinish::~ScreenFinish()
 
  int ScreenFinish::Run(sf::RenderWindow & App)
  {
-    bool Running = true;
+    bool running = true;
     m_clock.restart();
-    while(Running)
+    while(running)
     {
          sf::Event event;
         //Verifing events
@@ -64,7 +64,7 @@ ScreenFinish::~ScreenFinish()
         {
             if(event.type == sf::Event::Closed)
             {
-                Running = false;
+                running = false;
                 App.close();
             }
 

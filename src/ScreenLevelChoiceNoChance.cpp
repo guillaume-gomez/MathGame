@@ -38,7 +38,7 @@ ScreenLevelChoiceNoChance::~ScreenLevelChoiceNoChance()
 
 int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
 {
- bool Running = true;
+ bool running = true;
     App.resetGLStates();
 
     // Create the ScrolledWindow.
@@ -54,7 +54,7 @@ int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
     loadLevelUnlocked();
     m_window->Show(true);
 	//m_scrolled_window_box->Pack( scrolledwindow, false, true );
-    while(Running)
+    while(running)
     {
          sf::Event event;
           m_changingMenu = -1;
@@ -65,7 +65,7 @@ int ScreenLevelChoiceNoChance::Run(sf::RenderWindow & App)
 			m_window->HandleEvent( event );
             if(event.type == sf::Event::Closed)
             {
-                Running = false;
+                running = false;
                 App.close();
             }
 

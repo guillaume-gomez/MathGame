@@ -19,9 +19,9 @@
  *                      or https://github.com/AdrienJarretier
  */
 
-#include "ButtonPerso.hpp"
+#include "StaticButton.hpp"
 
-ButtonPerso::ButtonPerso(const char* _filename)
+StaticButton::StaticButton(const char* _filename)
 :m_filename(_filename), m_clicked(false), m_isFocused(false)
 {
     sf::Texture * texture = nullptr;
@@ -32,11 +32,11 @@ ButtonPerso::ButtonPerso(const char* _filename)
     }
     /*else
     {
-        // std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << m_filename << std::endl;
+        // std::cout << "Warning : in StaticButton, Constructor didn't find a file texture " << m_filename << std::endl;
     }*/
 }
 
-void ButtonPerso::handle_input(sf::Event& event,sf::RenderTarget& target)
+void StaticButton::handle_input(sf::Event& event,sf::RenderTarget& target)
 {
     if(event.type == sf::Event::MouseButtonPressed)
     {
@@ -75,12 +75,12 @@ void ButtonPerso::handle_input(sf::Event& event,sf::RenderTarget& target)
 }
 
 
-void ButtonPerso::draw(sf::RenderTarget& app)
+void StaticButton::draw(sf::RenderTarget& app)
 {
     app.draw(*this);
 }
 
-ButtonPerso::~ButtonPerso()
+StaticButton::~StaticButton()
 {
     //dtor
 }

@@ -34,19 +34,19 @@ Screen_Editor::~Screen_Editor()
 
 int Screen_Editor::Run(sf::RenderWindow& App)
 {
-    bool Running = true;
+    bool running = true;
     m_editor.setBack(false);
     m_editor.setCenterCamera();
     m_editor.setSaving(false);
 
-    while(Running)
+    while(running)
     {
-        Running =  m_editor.handleInput();
+       running =  m_editor.handleInput();
         if(m_editor.isBacked())
         {
             recenterCamera();
-            Running = false;
             m_editor.cleanUp();
+            running = false;
             return MENU;
         }
         m_editor.move();

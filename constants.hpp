@@ -45,6 +45,7 @@ const char AbstractStr[]  = "Abstract";
 const char CircleStr[]  = "Circle";
 const char PointStr[]  = "Point";
 const char GoalPointStr[]  = "GoalPoint";
+const char HeroInitialPosition[] = "HeroPosition";
 const char EnemyStr[]  = "Enemy";
 const char HeroStr[] = "Hero";
 const char IntegralStr[] = "Integral";

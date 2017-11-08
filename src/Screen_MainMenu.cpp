@@ -88,7 +88,7 @@ void Screen_MainMenu::resize(float x, float y, sf::RenderWindow& App)
 
 int Screen_MainMenu::Run(sf::RenderWindow& App)
 {
-    bool Running = true;
+    bool running = true;
     int alpha = 0 ;
 
     if(m_playing)
@@ -119,7 +119,7 @@ int Screen_MainMenu::Run(sf::RenderWindow& App)
     m_window->SetPosition(sf::Vector2f(App.getSize().x / 2.0f - m_window->GetAllocation().width /2.0f, App.getSize().y / 2.0f - m_window->GetAllocation().height /2.0f));
     m_desktop.Add(m_window);
 
-	while(Running)
+	while(running)
 	{
 		// Process events
 		sf::Event event;

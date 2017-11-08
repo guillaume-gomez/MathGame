@@ -313,9 +313,10 @@ void Editor::draw()
     m_buttonCursor.draw(m_app);
 
     m_buttonAddFunction.draw(m_app);
-    m_buttonAddIntegral.update();
+    
     m_buttonAddIntegral.draw(m_app);
-
+    m_buttonAddIntegral.update();
+    
     m_app.draw(m_textAreaFunction);
 }
 
@@ -405,11 +406,6 @@ void Editor::move()
     if(m_buttonAddFunction.isClicked())
     {
         m_creatingType = TypeObject::Function;
-    }
-
-    if(m_buttonAddIntegral.isClicked())
-    {
-        m_creatingType = TypeObject::Integral;
     }
 
     if(m_graphModel.getChanged())

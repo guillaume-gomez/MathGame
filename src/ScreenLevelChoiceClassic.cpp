@@ -40,7 +40,7 @@ ScreenLevelChoiceClassic::~ScreenLevelChoiceClassic()
 
 int ScreenLevelChoiceClassic::Run(sf::RenderWindow & App)
 {
-    bool Running = true;
+    bool running = true;
     App.resetGLStates();
 
     // Create the ScrolledWindow.
@@ -60,7 +60,7 @@ int ScreenLevelChoiceClassic::Run(sf::RenderWindow & App)
 //    m_desktop.LoadThemeFromFile(FilenameTheme);
     m_desktop.Add(m_window);
 
-    while(Running)
+    while(running)
     {
          sf::Event event;
           m_changingMenu = -1;
@@ -71,7 +71,7 @@ int ScreenLevelChoiceClassic::Run(sf::RenderWindow & App)
 			m_window->HandleEvent( event );
             if(event.type == sf::Event::Closed)
             {
-                Running = false;
+                running = false;
                 App.close();
             }
 

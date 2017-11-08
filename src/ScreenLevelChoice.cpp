@@ -90,7 +90,6 @@ void ScreenLevelChoice::loadLevelUnlocked()
 
 void SelectLevel::selectingLevel()
 {
-    // // std::cout << m_difficulty << " " <<  m_level << "  " << m_modeSelectLevel << std::endl;
     m_stat->setParamLevel(m_difficulty,m_level,m_modeSelectLevel);
     m_isClicked = true;
 }
@@ -179,7 +178,7 @@ ScreenLevelChoice::ScreenLevelChoice( ScreenLink* _stat)
     m_scrolled_window_box->Pack(m_frameNormal);
     m_scrolled_window_box->Pack(m_frameHard);
     m_window->Add(m_scrolled_window_box);
-     m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
+    m_window->SetRequisition(sf::Vector2f(300.0f,60.0f));
 }
 
 
