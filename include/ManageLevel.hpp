@@ -45,8 +45,8 @@ class ManageLevel
         float m_scale;
 
         ManageLevel(unsigned int _level = 1 , Difficulty _diff = Normal, float m_scale = 1.0f);
-        void loadFile (int numLevel, GameMode mode);
-        void loadLevel ();
+        void loadFile(int numLevel, GameMode mode);
+        void loadLevel();
         virtual ~ManageLevel();
         void setLevel(int _level);
         unsigned int getLevel() const;
@@ -75,6 +75,7 @@ class ManageLevel
         const std::vector<EditorObject*> getSpriteList () const;
         void scaleNbAttempt(float scaleX, float scaleY);
         void receiveView(const sf::View& view);
+        sf::Vector2f getInitialPosition() const;
 
     private:
         Difficulty m_difficulty;
@@ -153,6 +154,11 @@ const inline std::vector<EditorObject*> ManageLevel::getSpriteList () const
 inline void ManageLevel::receiveView(const sf::View& view)
 {
     m_levelView->setView(view);
+}
+
+inline sf::Vector2f ManageLevel::getInitialPosition() const
+{
+    return m_levelModel->getInitialPosition();
 }
 
 /*********************************************************/

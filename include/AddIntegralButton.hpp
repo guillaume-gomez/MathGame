@@ -2,9 +2,9 @@
 #define ADDINTEGRALBUTTON_HPP
 
 #include <SFGUI/SFGUI.hpp>
-#include "ButtonPerso.hpp"
+#include "StaticButton.hpp"
 
-class AddIntegralButton : public ButtonPerso
+class AddIntegralButton : public StaticButton
 {
     public:
         AddIntegralButton(const char* _filename);

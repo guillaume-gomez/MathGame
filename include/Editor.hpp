@@ -29,8 +29,8 @@
 #include "SFML/Graphics.hpp"
 
 #include "Axis.hpp"
-#include "ButtonPerso.hpp"
 #include "AddIntegralButton.hpp"
+#include "StaticButton.hpp"
 #include "ConstrueFunction.hpp"
 #include "Enemy.hpp"
 #include "GraphView.hpp"
@@ -76,17 +76,17 @@ class Editor
         Axis m_axis;
         TextAreaSFML2_0 m_textAreaFunction;
         GraphView m_graphView;
-        ButtonPerso m_buttonReset;
-        ButtonPerso m_buttonSave;
-        ButtonPerso m_buttonBack;
-        ButtonPerso m_buttonCursor;
-        ButtonPerso m_buttonGoalButton;
-        ButtonPerso m_buttonCircle;
-        ButtonPerso m_buttonNormalButton;
-        ButtonPerso m_buttonLeftEnemy;
-        ButtonPerso m_buttonPanel;
-        ButtonPerso m_buttonInfo;
-        ButtonPerso m_buttonAddFunction;
+        StaticButton m_buttonReset;
+        StaticButton m_buttonSave;
+        StaticButton m_buttonBack;
+        StaticButton m_buttonCursor;
+        StaticButton m_buttonGoalButton;
+        StaticButton m_buttonCircle;
+        StaticButton m_buttonNormalButton;
+        StaticButton m_buttonLeftEnemy;
+        StaticButton m_buttonPanel;
+        StaticButton m_buttonInfo;
+        StaticButton m_buttonAddFunction;
         sf::Texture m_Buttonpoint;
         sf::Texture m_Buttongoal;
         TypeObject m_creatingType;

@@ -27,10 +27,10 @@
 #endif // DEBUG
 
 #include "AniSprite.hpp"
-#include "ButtonPerso.hpp"
+#include "StaticButton.hpp"
 
 
-class ButtonAnim : public ButtonPerso
+class ButtonAnim : public StaticButton
 {
     public:
         ButtonAnim(const char* _filename = "", int _widthFrame=0, int _heigtFrame=0);

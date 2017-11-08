@@ -33,7 +33,7 @@ PanelEditor::PanelEditor()
     }
   /*  else
     {
-        // std::cout << "Warning : in ButtonPerso, Constructor didn't find a file texture " << FilenameButtonPanel << std::endl;
+        // std::cout << "Warning : in StaticButton, Constructor didn't find a file texture " << FilenameButtonPanel << std::endl;
     }*/
 
 }
@@ -43,7 +43,7 @@ PanelEditor::~PanelEditor()
     for (unsigned int i = 0; i < m_vectButton.size(); i++)
     {
         // TODO µµµµµµµ
-    	//ButtonPerso * temp = m_vectButton.pop_back();
+    	//StaticButton * temp = m_vectButton.pop_back();
     	//delete temp;
     }
 }
@@ -59,7 +59,7 @@ void PanelEditor::draw(sf::RenderTarget& app)
 }
 
 
-void PanelEditor::addButton(ButtonPerso* button)
+void PanelEditor::addButton(StaticButton* button)
 {
     unsigned int nbButton = m_vectButton.size();
 
@@ -87,7 +87,7 @@ void PanelEditor::addButton(ButtonPerso* button)
     }
 }
 
-ButtonPerso* PanelEditor::popButton()
+StaticButton* PanelEditor::popButton()
 {
 	//return m_vectButton.pop_back();
 	//TODO
@@ -95,13 +95,13 @@ ButtonPerso* PanelEditor::popButton()
 }
 
 
-ButtonPerso* PanelEditor::deleteButton(unsigned int i)
+StaticButton* PanelEditor::deleteButton(unsigned int i)
 {
 	// TODO
 	return 0;
 }
 
-ButtonPerso* PanelEditor::deleteButton(ButtonPerso* button)
+StaticButton* PanelEditor::deleteButton(StaticButton* button)
 {
 	// TODO
 	return 0;

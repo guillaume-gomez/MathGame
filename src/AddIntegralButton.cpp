@@ -1,7 +1,7 @@
 #include "AddIntegralButton.hpp"
 
 AddIntegralButton::AddIntegralButton(const char* _filename)
-: ButtonPerso(_filename)
+: StaticButton(_filename)
 {
     m_window = sfg::Window::Create();
     m_window->SetTitle("Test");
@@ -41,7 +41,7 @@ void AddIntegralButton::hide()
 
 void AddIntegralButton::handle_input(sf::Event& event, sf::RenderTarget& target)
 {
-    ButtonPerso::handle_input(event, target);
+    StaticButton::handle_input(event, target);
     if(m_clicked) {
         m_window->Show(true);
     }

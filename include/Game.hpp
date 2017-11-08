@@ -56,7 +56,7 @@ class Game
         void zoom();
         void resetWindow();
         int levelOperation(ScreenLink& stat);
-        int selectLevel(ScreenLink& stat);
+        int selectLevel(ScreenLink& stat, bool forceLoading = false);
         void show();
         void reset();
         void resize(float scaleX, float scaleY);
@@ -76,9 +76,9 @@ class Game
         TextAreaSFML2_0 m_textAreaFunction;
         ManageLevel m_level;
         GameMode m_gameMode;
-        ButtonPerso m_buttonReset;
+        StaticButton m_buttonReset;
         ButtonAnim m_buttonSound;
-        ButtonPerso m_buttonBack;
+        StaticButton m_buttonBack;
         Curves m_curves;
     #ifdef DEBUG
         int m_frameCount;
