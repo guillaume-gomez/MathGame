@@ -27,7 +27,9 @@
 #include "ObjectFactoryAbstract.hpp"
 
 Editor::Editor(sf::RenderWindow& App)
-:m_app(App),m_axis( GraphScale),
+:
+m_app(App),
+m_axis(GraphScale),
 m_textAreaFunction(6),
 m_graphView(m_graphModel,Thickness, GraphScale),
 m_buttonReset(FilenameButtonReset),
@@ -46,10 +48,10 @@ m_isBack(false),
 m_isNormalPoint(true),
 m_isZoom(false),
 m_saving(false),
-m_isLeftEnemy(true), m_nbAttempt(1),
+m_isLeftEnemy(true),
+m_nbAttempt(1),
 m_radiusBuilder(0.0f, 0.0f)
 {
-    //
     m_nbAttemptView.setColor(sf::Color(23,0,34,225));
     m_nbAttemptView.setString(sf::String("EnemyLife : 1"));
     m_nbAttemptView.setPosition(sf::Vector2f(m_app.getSize().x - 210, m_app.getSize().y - 40));

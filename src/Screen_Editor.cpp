@@ -39,11 +39,9 @@ int Screen_Editor::Run(sf::RenderWindow& App)
     m_editor.setCenterCamera();
     m_editor.setSaving(false);
 
-
     while(running)
     {
        running =  m_editor.handleInput();
-
         if(m_editor.isBacked())
         {
             recenterCamera();
@@ -54,6 +52,8 @@ int Screen_Editor::Run(sf::RenderWindow& App)
         m_editor.save(m_link);
         m_editor.show();
         m_editor.draw();
+        m_sfgui.Display(App);
+
         App.display();
     }
     return (SCREEN_EXIT);
