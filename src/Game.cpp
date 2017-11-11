@@ -37,8 +37,12 @@ Game::Game(RenderWindow& _app , Difficulty _diff)
  m_frameCount(0),
  m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf")),
 #endif
- m_gameStarted(false), m_isZoom(false), m_isSound(true), m_isBack(false),
- m_player(new Hero), m_playerDead(false)
+ m_gameStarted(false), 
+ m_isZoom(false),
+ m_isSound(true),
+ m_isBack(false),
+ m_player(new Hero),
+ m_playerDead(false)
 {
     #ifdef DEBUG
 //        std::cout << "game constructor" << std::endl;
@@ -369,6 +373,7 @@ int Game::selectLevel(ScreenLink& stat, bool forceLoading)
             m_gameStarted = true;
             m_level.fillLevelFunctions(m_functionManager);
             m_level.decrementAttempt();
+            m_functionManager.resetToZero();
             m_functionManager.colorize();
             Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
             m_functionManager.represent(Step);
