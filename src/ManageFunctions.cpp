@@ -76,7 +76,7 @@ void ManageFunctions::represent(float step)
     if(m_changed)
     {
        m_vectorCurves.at(m_currentIndex).represent(step);
-	   m_changed = false;
+       m_changed = false;
     }
 }
 
@@ -87,9 +87,9 @@ const ConstrueFunction* ManageFunctions::getModelIndex()
 
 void ManageFunctions::colorize()
 {
-     showBefore();
-     m_vectorCurves.at(m_currentIndex).setColor(CurveColor);
-     showAfter();
+    showBefore();
+    m_vectorCurves.at(m_currentIndex).setColor(CurveColor);
+    showAfter();
 }
 
 bool ManageFunctions::showBefore()
