@@ -75,8 +75,7 @@ void ManageFunctions::represent(float step)
 {
     if(m_changed)
     {
-       //// std::cout << "Represent " << m_currentIndex << std::endl;
-	   m_vectorCurves.at(m_currentIndex).represent(step);
+       m_vectorCurves.at(m_currentIndex).represent(step);
 	   m_changed = false;
     }
 }
@@ -101,7 +100,6 @@ bool ManageFunctions::showBefore()
     }
     else
     {
-        //m_vectorCurves.at(m_currentIndex - 1).receiveView(m_view);
         m_vectorCurves.at(m_currentIndex - 1).setColor(PreviousCurveColor);
     }
     return true;
@@ -115,7 +113,6 @@ bool ManageFunctions::drawBefore(sf::RenderTarget& app)
     }
     else
     {
-        //m_vectorCurves.at(m_currentIndex - 1).receiveView(m_view);
         m_vectorCurves.at(m_currentIndex - 1).drawInterval(app);
     }
     return true;
@@ -129,7 +126,6 @@ bool ManageFunctions::showAfter()
     }
     else
     {
-        //m_vectorCurves.at(m_currentIndex + 1).receiveView(m_view);
         m_vectorCurves.at(m_currentIndex + 1).setColor(NextCurveColor);
     }
     return true;
@@ -143,7 +139,6 @@ bool ManageFunctions::drawAfter(sf::RenderTarget& app)
     }
     else
     {
-        //m_vectorCurves.at(m_currentIndex + 1).receiveView(m_view);
         m_vectorCurves.at(m_currentIndex + 1).drawInterval(app);
     }
     return true;
@@ -154,7 +149,7 @@ void ManageFunctions::draw(sf::RenderTarget& app)
 {
     drawBefore(app);
     m_vectorCurves.at(m_currentIndex).receiveView(m_view);
-	m_vectorCurves.at(m_currentIndex).draw(app);
+	m_vectorCurves.at(m_currentIndex).drawInterval(app);
     drawAfter(app);
 }
 
@@ -167,6 +162,7 @@ void ManageFunctions::setViews(const sf::View view)
 void ManageFunctions::addFunction(std::string function)
 {
     Curves newFunction(function);
+    newFunction.build(-MaxSizeGraph, MaxSizeGraph, Step);
     m_vectorCurves.push_back(newFunction);
 
 }
@@ -174,10 +170,8 @@ void ManageFunctions::addFunction(std::string function)
 
 void ManageFunctions::reset()
 {
-//std::cout << "clearManageFunctions" << std::endl;
     m_changed = true;
     m_vectorCurves.clear();
-//    m_graphModel.clearFunction();
 }
 
 void ManageFunctions::resetToZero()
