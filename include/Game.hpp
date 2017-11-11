@@ -58,7 +58,7 @@ class Game
         int levelOperation(ScreenLink& stat);
         int selectLevel(ScreenLink& stat, bool forceLoading = false);
         void show();
-        void reset();
+        void init();
         void resize(float scaleX, float scaleY);
         void manageSound();
         inline bool isBacked()const { return m_isBack;};

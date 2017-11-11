@@ -388,7 +388,7 @@ int Game::selectLevel(ScreenLink& stat, bool forceLoading)
 //        #endif // DEBUG
         throw;
     }
-    reset();
+    init();
     return changing;
 }
 
@@ -420,7 +420,7 @@ int Game::levelOperation(ScreenLink& stat)
       return changing;
 }
 
-void Game::reset()
+void Game::init()
 {
     resetWindow();
 
@@ -440,6 +440,7 @@ void Game::reset()
     }
     Physics::Engine::getEngine()->resetAllObjects();
     m_player->reset(m_level.getInitialPosition());
+    m_level.initEnemies();
 }
 
 Game::~Game()
