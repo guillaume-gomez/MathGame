@@ -41,7 +41,6 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
     m_fileLevel.open(_filename.c_str());
     if(m_fileLevel.is_open())
     {
-//        // std::cout << " file :'" << _filename.c_str() <<"'"<< std::endl;
         m_fileLevel >> m_nbElements;
         m_pointsCheck.clear();
         m_pointsCheck.resize(m_nbElements);
@@ -141,9 +140,6 @@ LevelModel::LevelModel(std::string _filename , GameMode mode )
                 std::string function;
                 m_fileLevel >> function;
 
-//                #ifdef DEBUG
-//                    std::cout << "LevelModel::LevelModel if(type == FunctionStr) function : " << function << std::endl;
-//                #endif // DEBUG
                 newElmt.setType(TypeObject::Function);
                 newElmt.setFunction(function);
                  //because it is not a point
@@ -203,7 +199,7 @@ std::ostream& operator<<( std::ostream &flux, const LevelModel& level )
 /**
 **
 **/
-void LevelModel::IsFinishing ( const CharacterModel& charactermodel ,float _scale , bool& playableSound)
+void LevelModel::IsFinishing (const CharacterModel& charactermodel ,float _scale, bool& playableSound)
 {
     playableSound = false;
     sf::FloatRect position_and_Size = charactermodel.getRect();

@@ -101,7 +101,7 @@ void ManageLevel::loadFile(int numLevel, GameMode mode)
         //std::cout << "ManageLevel::loadFile - m_filenameCurrent : " << m_filenameCurrent << std::endl;
     #endif // DEBUG
 
-    m_levelModel = new LevelModel(directory, mode );
+    m_levelModel = new LevelModel(directory, mode);
     m_levelView = new LevelView(*m_levelModel, m_scale);
 }
 
@@ -155,7 +155,7 @@ int ManageLevel::changeLevel(ScreenLink * link)
 void ManageLevel::reset()
 {
     m_levelModel->reset();
-    resetEnemies();
+    initEnemies();
     m_changeLevel = false;
 }
 
@@ -176,7 +176,7 @@ void ManageLevel::showEnemies()
     }
 }
 
-void ManageLevel::resetEnemies()
+void ManageLevel::initEnemies()
 {
     std::vector<EditorObject*> listEnemies = m_levelView->getSpriteList();
     unsigned int index = 0;

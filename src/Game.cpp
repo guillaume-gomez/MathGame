@@ -372,7 +372,6 @@ int Game::selectLevel(ScreenLink& stat, bool forceLoading)
         {
             m_gameStarted = true;
             m_level.fillLevelFunctions(m_functionManager);
-            m_level.decrementAttempt();
             m_functionManager.resetToZero();
             m_functionManager.colorize();
             Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
@@ -388,7 +387,7 @@ int Game::selectLevel(ScreenLink& stat, bool forceLoading)
 //        #endif // DEBUG
         throw;
     }
-    reset();
+    init();
     return changing;
 }
 
@@ -420,7 +419,7 @@ int Game::levelOperation(ScreenLink& stat)
       return changing;
 }
 
-void Game::reset()
+void Game::init()
 {
     resetWindow();
 
@@ -440,6 +439,11 @@ void Game::reset()
     }
     Physics::Engine::getEngine()->resetAllObjects();
     m_player->reset(m_level.getInitialPosition());
+    m_level.initEnemies();
+    if(getGameMode() == GameMode::Dynamic)
+    {
+        m_level.decrementAttempt();
+    }
 }
 
 Game::~Game()
