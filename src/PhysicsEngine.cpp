@@ -115,10 +115,6 @@ void Engine::cleanEngine()
 
 void Engine::update(float elapsedSeconds)
 {
-//    #ifdef DEBUG
-//        std::cout << "------------------------ Update ------------------------ m_PhysicsObjects.size() : " << m_PhysicsObjects.size() << std::endl;
-//    #endif // DEBUG
-//    static float yCurve, derivative;
     Physics::Object* object;
 
     for(std::list<Object*>::iterator itPhysicsObjects=m_PhysicsObjects.begin(); itPhysicsObjects!=m_PhysicsObjects.end(); itPhysicsObjects++)
@@ -129,9 +125,6 @@ void Engine::update(float elapsedSeconds)
 
         if(object->collidable())
         {
-//            #ifdef DEBUG
-//            std::cout << "***************************************************" << std::endl;
-//            #endif // DEBUG
             for(std::list<Circle*>::iterator itGravityCircle=Circle::m_gravityCircles.begin(); itGravityCircle!=Circle::m_gravityCircles.end(); itGravityCircle++)
             {
                 if(object->testCollision(*(*itGravityCircle)))
@@ -141,9 +134,6 @@ void Engine::update(float elapsedSeconds)
                         object->m_Position.y+=0.001;
                 }
             }
-//            #ifdef DEBUG
-//            std::cout << "***************************************************" << std::endl;
-//            #endif // DEBUG
         }
 
         // permet le deplacement (au ralenti) d'un objet si il est en l'air
@@ -154,17 +144,11 @@ void Engine::update(float elapsedSeconds)
 
         object->m_angle = 0.0f;
 
-//        std::list<const ConstrueFunction*> availableFunctions;
-
         bool curveBelow=false, isIntegral=false;
         float maxValue=0;
         float derivative=0;
         const ConstrueFunction* functionPtr = 0;
 
-//        #ifdef DEBUG
-////            std::cout << "***********************************" << std::endl;
-//            std::cout << "availableFunctions.size() : " << availableFunctions.size() << std::endl;
-//        #endif // DEBUG
         if(m_Function->isRepresented(object->m_Position.x))
         {
             float y=m_Function->getFunctionValue(object->m_Position.x);
@@ -191,22 +175,12 @@ void Engine::update(float elapsedSeconds)
                         isIntegral = true;
                         if(y>=0)
                         {
-//                            if(y!=maxValue)
-//                                availableFunctions.clear();
-//
-//                            availableFunctions.push_back(functionPtr);
-
                             maxValue = y;
                             derivative = (*itFunctionPtr)->getDerivative(object->m_Position.x);
 
                         }
                         else
                         {
-//                            if(y!=0)
-//                                availableFunctions.clear();
-//
-//                            availableFunctions.push_back(functionPtr);
-
                             maxValue = 0;
                             derivative = 0;
                         }
@@ -214,10 +188,6 @@ void Engine::update(float elapsedSeconds)
                 }
             }
         }
-
-//        #ifdef DEBUG
-//            std::cout << "availableFunctions.size() : " << availableFunctions.size() << std::endl;
-//        #endif // DEBUG
 
         if(curveBelow)
         {
