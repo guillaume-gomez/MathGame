@@ -149,7 +149,7 @@ void ManageFunctions::draw(sf::RenderTarget& app)
 {
     drawBefore(app);
     m_vectorCurves.at(m_currentIndex).receiveView(m_view);
-	m_vectorCurves.at(m_currentIndex).drawInterval(app);
+	m_vectorCurves.at(m_currentIndex).draw(app);
     drawAfter(app);
 }
 
