@@ -69,7 +69,7 @@ class ManageLevel
         void setnbAttempTextScale(sf::Vector2f _pos);
         void setDiff(Difficulty _diff);
         void showEnemies();
-        void resetEnemies();
+        void initEnemies();
         void handle_inputEnnemies(const sf::Event& event, const TextAreaSFML2_0& textAreaFunction);
         void fillLevelFunctions(ManageFunctions& func);
         const std::vector<EditorObject*> getSpriteList () const;
