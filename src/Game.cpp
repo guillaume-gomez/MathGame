@@ -373,6 +373,7 @@ int Game::selectLevel(ScreenLink& stat, bool forceLoading)
             m_gameStarted = true;
             m_level.fillLevelFunctions(m_functionManager);
             m_level.decrementAttempt();
+            m_functionManager.resetToZero();
             m_functionManager.colorize();
             Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
             m_functionManager.represent(Step);
