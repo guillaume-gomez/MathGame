@@ -106,7 +106,7 @@ This will tell your system to create the necessary links and cache to the most r
 ### Using a makefile
 ```
 make all
-./bin/Release/IHateMaths
+./bin/Release/ProjetMath
 ```
 
 ### Through code::blocks
