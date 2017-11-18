@@ -37,7 +37,7 @@ Game::Game(RenderWindow& _app , Difficulty _diff)
  m_frameCount(0),
  m_frameCountText("hello", *FontManager::getFontManager()->getResource("resources/fonts/garde.ttf")),
 #endif
- m_gameStarted(false), 
+ m_gameStarted(false),
  m_isZoom(false),
  m_isSound(true),
  m_isBack(false),
@@ -345,8 +345,8 @@ void Game::move()
             m_functionManager.represent(Step);
             m_textAreaFunction.setString(m_functionManager.getFunction());
             m_level.decrementAttempt();
-            m_timer.restart();
         }
+        m_timer.restart();
     }
 
 }
