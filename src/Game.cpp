@@ -232,7 +232,6 @@ void Game::draw()
 
     m_textAreaFunction.setPosition(0, m_app.getSize().y - m_textAreaFunction.getGlobalBounds().height - 10);
     m_app.draw(m_textAreaFunction);
-    //m_textFunction.draw(m_app);
 
     #ifdef DEBUG
         m_frameCount++;
@@ -377,7 +376,6 @@ int Game::selectLevel(ScreenLink& stat, bool forceLoading)
             Physics::Engine::getEngine()->setFunction(m_functionManager.getModelIndex());
             m_functionManager.represent(Step);
             m_textAreaFunction.setString(m_functionManager.getFunction());
-            m_timer.restart();
         }
     }
     catch(std::ios_base::failure& failure)
@@ -444,6 +442,7 @@ void Game::init()
     {
         m_level.decrementAttempt();
     }
+    m_timer.restart();
 }
 
 Game::~Game()
