@@ -119,7 +119,10 @@ Sur windows, il faudra ajouter la référence ici
 <img src="resReadme/include_cb.png" alt="Include codeblocks option" width="80%" />
 
 ### Via un makefile
-`make all`
+```
+make all
+./bin/Release/ProjetMath
+```
 
 Licence
 ------------
