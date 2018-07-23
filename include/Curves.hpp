@@ -52,14 +52,12 @@ class Curves : public EditorObject
         virtual void setColor (const sf::Color& graphColor);
         void drawInterval(sf::RenderTarget& app);
 
-        private:
+    private:
     	virtual void setPosition(sf::Vector2f& position);
         virtual void setPosition(float x, float y);
         virtual sf::FloatRect get_GlobalBounds() const ;
         virtual sf::Vector2f get_Position() const;
         virtual EditorObject* loadView(const Element& elmt, float scale);
-
-
         ConstrueFunction m_model;
         GraphView m_view;
 };

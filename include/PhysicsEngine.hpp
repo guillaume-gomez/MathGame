@@ -34,6 +34,7 @@
 #include <cmath>
 #include <list>
 
+
 class IntegralModel;
 
 namespace Physics
@@ -67,9 +68,8 @@ namespace Physics
             sf::Vector2f m_GravityAcceleration;
             const ConstrueFunction* m_Function;
 
-//            std::list<const ConstrueFunction**> m_functionsList;
-
-            //ensuite transformé ce visiteur par une map de visiteur avec pour clé le type de l'objet
+//          std::list<const ConstrueFunction**> m_functionsList;
+            // TODO change this visitor by a map where key is the kind of item
     };
 
     inline void Engine::setGravity(sf::Vector2f GravityAcceleration)

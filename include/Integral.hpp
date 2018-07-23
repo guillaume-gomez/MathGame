@@ -31,7 +31,7 @@
 #include "IntegralView.hpp"
 
 
-/// for the moment, only the shape representation is possible
+// only the shape representation is possible for the moment
 class Integral : public EditorObject
 {
     public:
@@ -58,10 +58,10 @@ class Integral : public EditorObject
 
 inline EditorObject* Integral::loadView(const Element& elmt, float scale)
 {
-#ifdef DEBUG
-std::cerr << "nothing to do for the moment";
-#endif
-return nullptr;
+    #ifdef DEBUG
+        std::cerr << "nothing to do for the moment";
+    #endif
+    return nullptr;
 }
 
 inline void Integral::setPosition(sf::Vector2f& position)

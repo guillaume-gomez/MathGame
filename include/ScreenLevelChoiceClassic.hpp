@@ -24,6 +24,7 @@
 
 #include "ScreenLevelChoice.hpp"
 
+
 class ScreenLevelChoiceClassic : public ScreenLevelChoice
 {
     public:

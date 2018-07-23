@@ -25,6 +25,7 @@
 #include "EditorObject.hpp"
 #include "../libs/TextAreaSFML2_0.hpp"
 
+
 class InfoDisplayer : public EditorObject
 {
     public:
@@ -48,7 +49,6 @@ class InfoDisplayer : public EditorObject
         TextAreaSFML2_0 m_area;
 
 };
-
 
 inline void InfoDisplayer::setMessage(std::string message)
 {

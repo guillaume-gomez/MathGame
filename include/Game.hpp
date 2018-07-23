@@ -39,7 +39,6 @@
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
 
-
 using namespace sf;
 
 class Game

@@ -23,7 +23,7 @@
 #define LEVELMODEL_H
 
 #ifdef DEBUG
-	 #include <iostream>
+#include <iostream>
 #endif //DEBUG
 #include <fstream>
 #include <ostream>
@@ -37,7 +37,7 @@
 #include "EditorCircle.hpp"
 #include "Element.hpp"
 
-//note : la last points read in a file is the goal to reach
+// note : la last points read in a file is the goal to reach
 class LevelModel
 {
     public:

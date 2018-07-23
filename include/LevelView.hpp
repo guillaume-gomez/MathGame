@@ -23,7 +23,7 @@
 #define LEVELVIEW_H
 
 #ifdef DEBUG
-	 #include <iostream>
+#include <iostream>
 #endif //DEBUG
 #include <string>
 #include <vector>

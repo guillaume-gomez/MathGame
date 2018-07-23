@@ -30,10 +30,11 @@
 #include "../files.hpp"
 #include "../constants.hpp"
 
-/* temporaire */
+/* temporary values */
 const int valEasy = 3 ;
 const int valNormal = 3;
 const int valHard = 1;
+
 
 class ScreenLink
 {

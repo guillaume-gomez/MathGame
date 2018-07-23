@@ -102,8 +102,7 @@ class Editor
         ManageText m_nbAttemptView;
 
         unsigned int m_nbAttempt;
-
-        // HAVE TO IMPROVE IT
+        // TODO : IMPROVE IT
         sf::Vector2f m_radiusBuilder;
         sf:: View m_viewPerso;
 

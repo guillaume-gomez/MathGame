@@ -53,9 +53,9 @@ class ManageText
         inline int getToResize() const {return m_toResize;}
         inline sf::Text getText() const{return m_text;}
         void handle_input(const sf::Event &event, GraphView& view);
-        //void displayingMode( TextArea& textarea);
+        // void displayingMode( TextArea& textarea);
         void draw(sf::RenderTarget& App);
-       // void jump( TextArea& textarea);
+        // void jump( TextArea& textarea);
 
 	bool m_changed;
         friend std::ostream& operator<<( std::ostream &flux, const ManageText&  texte );

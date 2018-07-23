@@ -28,6 +28,7 @@
 
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 
+
 class ScreenFinish : public Screen
 {
     public:

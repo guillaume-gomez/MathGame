@@ -33,9 +33,10 @@
     #include <iostream>
 #endif
 
+
 namespace Physics
 {
-    //it is implemented lower in this file
+    //implemented below in this file
     class Box;
     class Circle;
     class VisitorObjectCollidable;
@@ -49,34 +50,23 @@ namespace Physics
             Object(Type type);
             virtual ~Object() = 0;
             Object(const Object& original);
-
             virtual float getWidth() const = 0;
             virtual float getHeight() const = 0;
-
             sf::Vector2f getPosition() const;
             void setPosition(sf::Vector2f Position);
-
             sf::Vector2f getVelocity() const;
             void setVelocity(sf::Vector2f Velocity);
-
             sf::Vector2f getThrust() const;
             void setThrust(sf::Vector2f Thrust);
-
             float getAngle() const;
             void setAngle(float angle);
-
             bool isOnCurve() const;
             void isOnCurve(bool isIt);
-
             void jump(bool isJumping=true);
             bool isJumping() const;
-
-
             void setAllToNull();
-
             bool collidable() const;
             void collidable(bool isCollidable);
-
             //
             virtual bool testCollision(const Object& obj) const = 0;
             virtual bool testCollision(const Box& obj) const = 0;
@@ -87,24 +77,20 @@ namespace Physics
             Type m_type;
             sf::Vector2f m_Position;
             sf::Vector2f m_Velocity;
-
             sf::Vector2f m_Thrust;
             float m_angle;
-
             bool m_inEngine;
             bool m_onCurve;
             bool m_jumping;
-
             bool m_isCollidable;
-
             static std::list<Object*> m_CollidableObjects;
     };
 
     inline sf::Vector2f Object::getPosition() const
     {
-//        #ifdef DEBUG
-//            // std::cout << m_Thrust.x << std::endl;
-//        #endif
+        #ifdef DEBUG
+            std::cout << m_Thrust.x << std::endl;
+        #endif
         return m_Position;
     }
 
@@ -138,7 +124,7 @@ namespace Physics
             float getHeight() const;
             void setSize(float width, float height);
 
-//            void setAllToNull();
+//          void setAllToNull();
 
             static VisitBox visitor;
 
@@ -147,7 +133,7 @@ namespace Physics
             virtual bool testCollision(const Circle& obj) const;
 
         private:
-//            Box();
+//          Box();
             float m_width, m_height;
     };
 
@@ -169,9 +155,9 @@ namespace Physics
             float getRadius() const;
             void setRadius(float radius);
 
-//            void setAllToNull();
+//          void setAllToNull();
 
-//            static VisitCircle visitor;
+//          static VisitCircle visitor;
 
             void setAsGravityCircle();
 
@@ -180,7 +166,7 @@ namespace Physics
             virtual bool testCollision(const Circle& obj) const;
 
         private:
-//            Box();
+//          Box();
             float m_radius;
             static std::list<Circle*> m_gravityCircles;
             bool m_isGravityCircle;
