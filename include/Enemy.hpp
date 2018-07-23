@@ -76,7 +76,7 @@ inline void Enemy::setNbAttempt(unsigned int value)
     m_model.setNbAttempt(value);
 }
 //
-// had to be used only for the editor, during the game, the model define it position
+// only used for the editor, during the game, the model define it position by itself
 //
 inline void Enemy::setPosition(sf::Vector2f& pos) {m_model.setCoords(pos);};
 inline void Enemy::setPosition(float x, float y) {m_model.setCoords(x,y);};

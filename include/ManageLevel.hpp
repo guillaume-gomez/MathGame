@@ -27,17 +27,17 @@
 #include "LevelView.hpp"
 #include "LevelModel.hpp"
 #ifdef DEBUG
-	 #include <iostream>
+#include <iostream>
 #endif //DEBUG
 #include <fstream>
 #include <sstream>
 #include <string>
 
-
 #include "ConstrueFunction.hpp"
 #include "CharacterModel.hpp"
 #include "SFML/Graphics/RenderTarget.hpp"
 #include "ScreenLink.hpp"
+
 
 class ManageLevel
 {

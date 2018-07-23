@@ -22,6 +22,7 @@
 #ifndef VISITOROBJECTCOLLIDABLE_H
 #define VISITOROBJECTCOLLIDABLE_H
 
+
 namespace Physics
 {
     class Object;

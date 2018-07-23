@@ -46,8 +46,8 @@ class EditorObject
         static bool compare(const EditorObject* r1, const EditorObject* r2);
         static TypeObject getTypeByStr(const std::string str);
         virtual EditorObject* clone() const = 0;
-//        virtual void setPosition(sf::Vector2f& position) = 0;
-//        virtual void setPosition(float x, float y) = 0;
+//      virtual void setPosition(sf::Vector2f& position) = 0;
+//      virtual void setPosition(float x, float y) = 0;
     	virtual void setPosition(float x, float y) = 0;
     	virtual void setPosition(sf::Vector2f& pos) = 0;
         virtual sf::FloatRect get_GlobalBounds() const = 0;

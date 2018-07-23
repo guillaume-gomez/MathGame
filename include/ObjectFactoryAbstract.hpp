@@ -27,8 +27,8 @@
 
 #include "EditorObject.hpp"
 
-//template <class Object, class key = std:string> class
 
+//template <class Object, class key = std:string> class
 class ObjectFactoryAbstract
 {
     public:

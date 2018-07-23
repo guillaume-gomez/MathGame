@@ -34,7 +34,6 @@ struct Element
         std::string message;
         float begin;
         float end;
-
     public:
         Element();
         inline Element& setCoord(sf::Vector2f v) {coord = v;return (*this);}

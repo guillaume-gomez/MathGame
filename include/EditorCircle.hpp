@@ -48,7 +48,7 @@ class EditorCircle : public sf::CircleShape , public EditorObject
         virtual void draw(sf::RenderTarget& app);
         virtual EditorObject* clone() const = 0;
 //    	virtual void setPosition(float x, float y);
-//        virtual void setPosition(sf::Vector2f& pos);
+//      virtual void setPosition(sf::Vector2f& pos);
     	virtual void setPosition(float x, float y);
     	virtual void setPosition(sf::Vector2f& pos);
     	virtual sf::Vector2f get_Position() const ;
@@ -87,18 +87,18 @@ inline void EditorCircle::setPosition(sf::Vector2f& pos)
 
 inline sf::Vector2f EditorCircle::get_Position() const
 {
-//    #ifdef DEBUG
-//        std::cout << "get_Position x : " << getPosition().x << " , y : " << getPosition().y << std::endl;
-//    #endif
+    #ifdef DEBUG
+        std::cout << "get_Position x : " << getPosition().x << " , y : " << getPosition().y << std::endl;
+    #endif
     return this->getPosition();
 }
 
 inline  sf::FloatRect EditorCircle::get_GlobalBounds() const
 {
-//    #ifdef DEBUG
-//        std::cout << "getGlobalBounds x : " << getGlobalBounds().left << " , y : " << getGlobalBounds().top << std::endl;
-//    #endif
-//    return m_physicsCircle.getPosition();
+    #ifdef DEBUG
+       std::cout << "getGlobalBounds x : " << getGlobalBounds().left << " , y : " << getGlobalBounds().top << std::endl;
+    #endif
+//  return m_physicsCircle.getPosition();
     return this->getGlobalBounds();
 }
 
@@ -106,6 +106,5 @@ inline const Physics::Circle& EditorCircle::getPhysicsCircle() const
 {
     return m_physicsCircle;
 }
-
 
 #endif // EditorCircle_H

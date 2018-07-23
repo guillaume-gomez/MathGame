@@ -50,7 +50,6 @@ class ConstrueFunction
 
     public:
         std::list<sf::Vector2f> m_coords;
-
         ConstrueFunction( std::string function = std::string() );
         ConstrueFunction(const ConstrueFunction& copy);
         std::string getFunction()const ;

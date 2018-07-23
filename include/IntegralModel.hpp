@@ -44,9 +44,9 @@ namespace Physics
 
 class IntegralModel : public ConstrueFunction
 {
-//    friend class Integral;
-        friend class Physics::Engine;
-//    friend void Physics::Engine::delIntegral(IntegralModel* integral);
+//  friend class Integral;
+    friend class Physics::Engine;
+//  friend void Physics::Engine::delIntegral(IntegralModel* integral);
     public:
         IntegralModel(std::string _function ="");
         IntegralModel(const IntegralModel& copy);
@@ -70,7 +70,7 @@ class IntegralModel : public ConstrueFunction
             else
                 return 0U;
         }
-//        void showPoints();
+//      void showPoints();
         sf::Vector2f getBegin() const;
         sf::Vector2f getEnd() const;
         bool inPhysicsEngine() const;

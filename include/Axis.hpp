@@ -32,7 +32,6 @@ class Axis
         float getScale();
         void setGraduation( float _graduation);
         float getGraducation();
-
         void draw(sf::RenderWindow& App);
         void receiveView(const sf::View view);
 
@@ -46,12 +45,8 @@ class Axis
         std::vector<sf::RectangleShape> m_listYGrad;
         sf::RectangleShape m_shapexAxis;
         sf::RectangleShape m_shapeyAxis;
-
         sf::View m_view;
-
-
 };
-
 
 inline void Axis::receiveView(const sf::View view)
 {

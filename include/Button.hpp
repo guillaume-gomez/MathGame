@@ -43,16 +43,11 @@ class Button :  public sf::Sprite
         bool isClicked() const;
 
     protected:
-
         std::string m_filename;
         bool m_clicked;
         sf::Texture m_texture;
 
 };
-
-/**
-*
-**/
 
 inline bool Button::isClicked() const{return m_clicked;};
 
@@ -60,6 +55,5 @@ inline void Button::setAlpha (int _alpha)
 {
     this->setColor(sf::Color(255, 255, 255, _alpha));
 }
-
 
 #endif // BUTTON_H

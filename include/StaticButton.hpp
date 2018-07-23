@@ -23,7 +23,7 @@
 #define STATICBUTTON_H
 
 #ifdef DEBUG
-	 #include <iostream>
+#include <iostream>
 #endif //DEBUG
 #include <string>
 
