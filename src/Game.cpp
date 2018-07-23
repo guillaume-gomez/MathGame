@@ -472,33 +472,33 @@ void Game::setCenterCamera()
 
 void Game::loadConfigFile()
 {
-  std::ifstream configFile(FilenameConfigFile);
-	std::string tmpString;
-	unsigned int width, height;
-	float frictionCoef;
-	std::string filenameTexture;
-	std::string moveTypeString;
-	configFile >> tmpString >> tmpString >> filenameTexture;
-	configFile >> tmpString >> tmpString;
-	configFile >> width;
-	configFile >> tmpString >> tmpString;
-	configFile >> height;
-	configFile >> tmpString >> tmpString;
-	configFile >> moveTypeString;
-	configFile >> tmpString >> tmpString;
-	configFile >> frictionCoef;
+    std::ifstream configFile(FilenameConfigFile);
+    std::string tmpString;
+    unsigned int width, height;
+    float frictionCoef;
+    std::string filenameTexture;
+    std::string moveTypeString;
+    configFile >> tmpString >> tmpString >> filenameTexture;
+    configFile >> tmpString >> tmpString;
+    configFile >> width;
+    configFile >> tmpString >> tmpString;
+    configFile >> height;
+    configFile >> tmpString >> tmpString;
+    configFile >> moveTypeString;
+    configFile >> tmpString >> tmpString;
+    configFile >> frictionCoef;
 
-	CharacterModel::MoveType moveType=CharacterModel::NoSliding;
+    CharacterModel::MoveType moveType=CharacterModel::NoSliding;
 
-	if(moveTypeString=="WithSliding")
-		moveType = CharacterModel::WithSliding;
+    if(moveTypeString=="WithSliding")
+        moveType = CharacterModel::WithSliding;
 
-	m_player->setMoveType(moveType);
-	m_player->setFrictionCoefficient(frictionCoef);
-	m_player->setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
-	#ifdef DEBUG
+    m_player->setMoveType(moveType);
+    m_player->setFrictionCoefficient(frictionCoef);
+    m_player->setTexture(TextureManager::getTextureManager()->getResource(filenameTexture), width, height);
+    #ifdef DEBUG
         // // std::cout << "GAME CPP width : " << width << "height : " << height << std::endl;
-	#endif
+    #endif
 
 }
 

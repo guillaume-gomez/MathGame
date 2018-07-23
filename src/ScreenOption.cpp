@@ -113,7 +113,7 @@ void ScreenOption::quit()
 void ScreenOption::save()
 {
     std::string filename ;
-	unsigned int width = 0;
+    unsigned int width = 0;
     unsigned int height = 0;
     float friction;
     std::ofstream configFile(FilenameConfigFile);

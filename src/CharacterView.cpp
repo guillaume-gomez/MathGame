@@ -29,11 +29,11 @@
 //
 //bool CharacterView::loadCharacterTex()
 //{
-//	std::ifstream configFile(FilenameConfigFile);
-//	std::string tmpString;
-//	configFile >> tmpString >> tmpString;
-//	tmpString.clear();
-//	configFile >> tmpString;
+//  std::ifstream configFile(FilenameConfigFile);
+//  std::string tmpString;
+//  configFile >> tmpString >> tmpString;
+//  tmpString.clear();
+//  configFile >> tmpString;
 //
 //    return characterTex.loadFromFile(tmpString);
 //}
@@ -53,24 +53,24 @@ CharacterView::CharacterView(const CharacterModel& model, float scale)
 
     // std::cout << "Main constructor of CharacterView" << std::endl;
 
-	std::ifstream configFile(FilenameConfigFile);
-	std::string tmpString;
-	std::string fileName;
-	float _h,_w;
-	configFile >> tmpString >> tmpString;
-	tmpString.clear();
-	configFile >> fileName;
-	configFile >> tmpString >> tmpString;
-	configFile >> _w;
-	configFile >> tmpString >> tmpString;
-	configFile >> _h;
+    std::ifstream configFile(FilenameConfigFile);
+    std::string tmpString;
+    std::string fileName;
+    float _h,_w;
+    configFile >> tmpString >> tmpString;
+    tmpString.clear();
+    configFile >> fileName;
+    configFile >> tmpString >> tmpString;
+    configFile >> _w;
+    configFile >> tmpString >> tmpString;
+    configFile >> _h;
     configFile.close();
-//	m_animation(CharacterView::characterTex,_w,_h);
+//  m_animation(CharacterView::characterTex,_w,_h);
     setTexture(TextureManager::getTextureManager()->getResource(fileName), _w, _h);
-	m_animation.SetLoopTime(1);
-	m_animation.Play();
+    m_animation.SetLoopTime(1);
+    m_animation.Play();
 
-	m_sound.setVolume(DefaultSoundVolume);
+    m_sound.setVolume(DefaultSoundVolume);
 }
 
 CharacterView::~CharacterView()
@@ -108,7 +108,7 @@ m_left(copy.m_left), m_scale(copy.m_scale)
     m_animation.SetLoopTime(1);
     m_animation.Play();
 
-	m_sound.setVolume(copy.m_sound.getVolume());
+    m_sound.setVolume(copy.m_sound.getVolume());
 }
 
 
@@ -116,11 +116,11 @@ void CharacterView::draw( sf::RenderTarget& target)
 {
     m_animation.setOrigin(m_animation.getLocalBounds().width / 2, m_animation.getLocalBounds().height);
 //    m_animation.setPosition(m_model.getCoords().x*m_scale-m_animation.getLocalBounds().width/2
-//							, -m_model.getCoords().y*m_scale-m_animation.getLocalBounds().height);
+//                          , -m_model.getCoords().y*m_scale-m_animation.getLocalBounds().height);
     m_animation.setPosition(m_model.getCoords().x * m_scale
                             , -m_model.getCoords().y * m_scale);
     m_animation.setRotation(-(m_model.getAngle() * 180) / /*M_PI*/3.14 );
-	target.draw(m_animation);
+    target.draw(m_animation);
 }
 
 
@@ -130,8 +130,8 @@ void CharacterView::show()
     sf::Vector2f thrust = m_model.getPhysicsBox().getThrust();
 
     #ifdef DEBUG
-         //   // std::cout << "CharacterView &m_model : " << &m_model << " thrust : " << m_model.getPhysicsBox("show").getThrust().x << std::endl;
-     // // std::cout << "m_model.getPhysicsBox().getThrust() : " << m_model.getPhysicsBox("xthrust").getThrust().x << std::endl;
+        //std::cout << "CharacterView &m_model : " << &m_model << " thrust : " << m_model.getPhysicsBox("show").getThrust().x << std::endl;
+        //std::cout << "m_model.getPhysicsBox().getThrust() : " << m_model.getPhysicsBox("xthrust").getThrust().x << std::endl;
     #endif
 
     if(thrust.x < 0)
