@@ -45,11 +45,12 @@
 		</Compiler>
 		<Linker>
 			<Add library="/usr/local/lib/libsfml-audio.so" />
+			<Add library="/usr/local/lib/libsfgui.so" />
+			<Add library="/usr/local/lib/libsfml-audio.so" />
 			<Add library="/usr/local/lib/libsfml-graphics.so" />
 			<Add library="/usr/local/lib/libsfml-network.so" />
 			<Add library="/usr/local/lib/libsfml-system.so" />
 			<Add library="/usr/local/lib/libsfml-window.so" />
-			<Add library="/usr/local/lib/libsfgui.so" />
 			<Add library="/usr/local/lib/libthor.so" />
 			<Add directory="libs" />
 			<Add directory="/usr/include/SFML" />
