@@ -81,6 +81,9 @@ inline void Hero::setFrictionCoefficient(float frictionCoefficient)
 inline void Hero::setTexture(const sf::Texture* texture, int frameWidth, int frameHeight)
 {
     m_view.setTexture(texture, frameWidth, frameHeight);
+    //update the model
+    m_model.setSize(m_view.getRectLocal().width, m_view.getRectLocal().height);
+    m_model.addToEngine();
 }
 
 inline void Hero::playSound()

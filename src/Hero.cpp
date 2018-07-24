@@ -71,7 +71,7 @@ Hero::Hero(const Hero& copy)
 
 EditorObject* Hero::clone() const
 {
-	return new Hero(*this);
+    return new Hero(*this);
 }
 
 std::string Hero::save(float scale) const
