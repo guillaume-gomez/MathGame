@@ -47,28 +47,30 @@ bool CharacterView::loadSoundBuffer(const char* filename )
     return soundBuff.loadFromFile(filename);
 }
 
-CharacterView::CharacterView(const CharacterModel& model, float scale)
+// standalone params can be useful if Game::LoadConfigFromFile is not called. By default LoadGConfigFromFile set characterView params (for the Hero instance)
+CharacterView::CharacterView(const CharacterModel& model, float scale, bool standalone)
 :m_sound(CharacterView::soundBuff), m_model(model), m_left(false), m_scale(scale)
 {
 
-    // std::cout << "Main constructor of CharacterView" << std::endl;
-
-    std::ifstream configFile(FilenameConfigFile);
-    std::string tmpString;
-    std::string fileName;
-    float _h,_w;
-    configFile >> tmpString >> tmpString;
-    tmpString.clear();
-    configFile >> fileName;
-    configFile >> tmpString >> tmpString;
-    configFile >> _w;
-    configFile >> tmpString >> tmpString;
-    configFile >> _h;
-    configFile.close();
-//  m_animation(CharacterView::characterTex,_w,_h);
-    setTexture(TextureManager::getTextureManager()->getResource(fileName), _w, _h);
-    m_animation.SetLoopTime(1);
-    m_animation.Play();
+//    std::cout << "Main constructor of CharacterView" << std::endl;
+    if(standalone) {
+        std::ifstream configFile(FilenameConfigFile);
+        std::string tmpString;
+        std::string fileName;
+        float _h,_w;
+        configFile >> tmpString >> tmpString;
+        tmpString.clear();
+        configFile >> fileName;
+        configFile >> tmpString >> tmpString;
+        configFile >> _w;
+        configFile >> tmpString >> tmpString;
+        configFile >> _h;
+        configFile.close();
+    //  m_animation(CharacterView::characterTex,_w,_h);
+        setTexture(TextureManager::getTextureManager()->getResource(fileName), _w, _h);
+        m_animation.SetLoopTime(1);
+        m_animation.Play();
+    }
 
     m_sound.setVolume(DefaultSoundVolume);
 }
@@ -104,7 +106,7 @@ m_left(copy.m_left), m_scale(copy.m_scale)
     configFile >> _h;
     configFile.close();
 //  m_animation(CharacterView::characterTex,_w,_h);
-    setTexture(TextureManager::getTextureManager()->getResource(fileName), _w, _h);
+    //setTexture(TextureManager::getTextureManager()->getResource(fileName), _w, _h);
     m_animation.SetLoopTime(1);
     m_animation.Play();
 
