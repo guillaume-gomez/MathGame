@@ -22,8 +22,8 @@
 #include "EnemyView.hpp"
 #include <sstream>
 
-EnemyView::EnemyView(const EnemyModel& model, float scale)
-:CharacterView(model,scale)
+EnemyView::EnemyView(const EnemyModel& model, float scale, bool standalone)
+:CharacterView(model, scale, standalone)
 {
     // override Character view constructor
     setTexture(TextureManager::getTextureManager()->getResource(FilenameDefaultChar), 24, 34);

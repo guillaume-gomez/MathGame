@@ -30,7 +30,7 @@
 class EnemyView : public CharacterView
 {
     public:
-    EnemyView(const EnemyModel& model, float scale = 1.0f);
+    EnemyView(const EnemyModel& model, float scale = 1.0f, bool standalone = false);
     virtual ~EnemyView();
     virtual void draw( sf::RenderTarget& target);
     void show();
@@ -38,7 +38,7 @@ class EnemyView : public CharacterView
     protected:
          ManageText m_nbAttempt;
     private:
-    	EnemyView(const EnemyView& copy);
+        EnemyView(const EnemyView& copy);
 };
 
 #endif // ENEMYVIEW_H
