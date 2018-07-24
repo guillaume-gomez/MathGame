@@ -470,6 +470,7 @@ void Game::setCenterCamera()
     m_curves.receiveView(m_viewPerso);
 }
 
+
 void Game::loadConfigFile()
 {
     std::ifstream configFile(FilenameConfigFile);
