@@ -34,9 +34,9 @@ int Screen_Game::Run(sf::RenderWindow& App)
     {
         if(m_game == 0)
         {
-//            #ifdef DEBUG
-//                std::cout << "m_game == 0" << std::endl;
-//            #endif // DEBUG
+//          #ifdef DEBUG
+//              std::cout << "m_game == 0" << std::endl;
+//          endif // DEBUG
             m_game = new Game(App);
         }
 
@@ -85,7 +85,7 @@ int Screen_Game::Run(sf::RenderWindow& App)
     catch(std::ios_base::failure& failure)
     {
         #ifdef DEBUG
-//            std::cout << "Screen_Game Run" << std::endl;
+//          std::cout << "Screen_Game Run" << std::endl;
             std::cerr << failure.what() << std::endl;
         #endif // DEBUG
         delete m_game;
@@ -101,12 +101,9 @@ int Screen_Game::Run(sf::RenderWindow& App)
 
 void Screen_Game::recenterCamera()
 {
- #ifdef DEBUG
-  //// std::cout << "caca" << std::endl;
- #endif
     sf::View   viewPerso = m_game->m_app.getView();
    viewPerso.reset(sf::FloatRect(0,0,WindowWidth, WindowHeight));
-	m_game->m_app.setView(viewPerso);
+    m_game->m_app.setView(viewPerso);
 }
 
 
