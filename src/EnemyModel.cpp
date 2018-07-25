@@ -26,7 +26,7 @@ EnemyModel::EnemyModel(bool life, sf::Vector2f coord, float speed, MoveType move
 {
     if(m_nbAttempt == 0)
     {
-    	m_isActive = true;
+        m_isActive = true;
     }
 
 }
