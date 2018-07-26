@@ -32,7 +32,7 @@
 #include <cmath>
 
 #ifdef DEBUG
-	#include <iostream>
+#include <iostream>
 #endif // DEBUG
 
 class CharacterModel
