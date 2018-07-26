@@ -23,7 +23,7 @@
 #define BUTTONANIM_H
 
 #ifdef DEBUG
-	#include <iostream>
+#include <iostream>
 #endif // DEBUG
 
 #include "AniSprite.hpp"
