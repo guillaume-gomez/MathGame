@@ -89,7 +89,7 @@ namespace Physics
     inline sf::Vector2f Object::getPosition() const
     {
         #ifdef DEBUG
-            std::cout << m_Thrust.x << std::endl;
+            // std::cout << m_Thrust.x << std::endl;
         #endif
         return m_Position;
     }

@@ -88,7 +88,7 @@ inline void EditorCircle::setPosition(sf::Vector2f& pos)
 inline sf::Vector2f EditorCircle::get_Position() const
 {
     #ifdef DEBUG
-        std::cout << "get_Position x : " << getPosition().x << " , y : " << getPosition().y << std::endl;
+        // std::cout << "get_Position x : " << getPosition().x << " , y : " << getPosition().y << std::endl;
     #endif
     return this->getPosition();
 }
@@ -96,7 +96,7 @@ inline sf::Vector2f EditorCircle::get_Position() const
 inline  sf::FloatRect EditorCircle::get_GlobalBounds() const
 {
     #ifdef DEBUG
-       std::cout << "getGlobalBounds x : " << getGlobalBounds().left << " , y : " << getGlobalBounds().top << std::endl;
+       // std::cout << "getGlobalBounds x : " << getGlobalBounds().left << " , y : " << getGlobalBounds().top << std::endl;
     #endif
 //  return m_physicsCircle.getPosition();
     return this->getGlobalBounds();
