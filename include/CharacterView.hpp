@@ -39,12 +39,12 @@
 
 class CharacterView
 {
-	public:
-    	CharacterView(const CharacterModel& model, float scale = 1.0f);
-    	/** Default destructor */
-    	virtual ~CharacterView();
-    	virtual void show();
-    	virtual void draw(sf::RenderTarget& target);
+    public:
+        CharacterView(const CharacterModel& model, float scale = 1.0f);
+        /** Default destructor */
+        virtual ~CharacterView();
+        virtual void show();
+        virtual void draw(sf::RenderTarget& target);
         sf::Vector2f getPosition()const;
         sf::FloatRect getRectLocal()const;
         sf::Sound m_sound;
@@ -54,7 +54,7 @@ class CharacterView
         bool getDirection() const;
         void setDirection(bool direction);
 
-	protected:
+    protected:
         AniSprite m_animation;
         const CharacterModel& m_model;
         bool m_left;
@@ -78,8 +78,8 @@ inline sf::FloatRect CharacterView::getGlobalBounds() const{ return m_animation.
 
 inline void CharacterView::setSize(int width, int height)
 {
-	m_animation.SetFrameSize(width, height);
-	m_animation.SetLoopTime(1);
+    m_animation.SetFrameSize(width, height);
+    m_animation.SetLoopTime(1);
 }
 
 inline bool CharacterView::getDirection() const {return m_left;}
@@ -109,7 +109,7 @@ inline void CharacterView::setTexture(const sf::Texture* texture, int frameWidth
         m_animation.setTexture(*m_ArtTexture);
     }
 
-	setSize(frameWidth, frameHeight);
+    setSize(frameWidth, frameHeight);
 }
 
 #endif // CHARACTERVIEW_HPP
