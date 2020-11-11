@@ -184,34 +184,34 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
 
 //Path to a library.
-SFML_AUDIO_LIBRARY_DEBUG:FILEPATH=D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-audio-d.lib
+SFML_AUDIO_LIBRARY_DEBUG:FILEPATH=D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-audio-d.lib
 
 //Path to a library.
-SFML_AUDIO_LIBRARY_RELEASE:FILEPATH=D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-audio.lib
+SFML_AUDIO_LIBRARY_RELEASE:FILEPATH=D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-audio.lib
 
 //Path to a library.
-SFML_GRAPHICS_LIBRARY_DEBUG:FILEPATH=D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-graphics-d.lib
+SFML_GRAPHICS_LIBRARY_DEBUG:FILEPATH=D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-graphics-d.lib
 
 //Path to a library.
-SFML_GRAPHICS_LIBRARY_RELEASE:FILEPATH=D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-graphics.lib
+SFML_GRAPHICS_LIBRARY_RELEASE:FILEPATH=D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-graphics.lib
 
 //Path to a file.
-SFML_INCLUDE_DIR:PATH=D:/programmation/C++/SFML/SFML-2.5.1/include
+SFML_INCLUDE_DIR:PATH=D:/programmation/C++/SFML/SFML-2.4.2/include
 
 //SFML top-level directory
-SFML_ROOT:PATH=D:/programmation/C++/SFML/SFML-2.5.1
+SFML_ROOT:PATH=D:/programmation/C++/SFML/SFML-2.4.2
 
 //Path to a library.
-SFML_SYSTEM_LIBRARY_DEBUG:FILEPATH=D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-system-d.lib
+SFML_SYSTEM_LIBRARY_DEBUG:FILEPATH=D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-system-d.lib
 
 //Path to a library.
-SFML_SYSTEM_LIBRARY_RELEASE:FILEPATH=D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-system.lib
+SFML_SYSTEM_LIBRARY_RELEASE:FILEPATH=D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-system.lib
 
 //Path to a library.
-SFML_WINDOW_LIBRARY_DEBUG:FILEPATH=D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-window-d.lib
+SFML_WINDOW_LIBRARY_DEBUG:FILEPATH=D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-window-d.lib
 
 //Path to a library.
-SFML_WINDOW_LIBRARY_RELEASE:FILEPATH=D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-window.lib
+SFML_WINDOW_LIBRARY_RELEASE:FILEPATH=D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-window.lib
 
 //Create HTML documentation (requires Doxygen)
 THOR_BUILD_DOC:BOOL=OFF
@@ -230,7 +230,7 @@ THOR_STATIC_STD_LIBS:BOOL=OFF
 thor_BINARY_DIR:STATIC=D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/build
 
 //Dependencies for the target
-thor_LIB_DEPENDS:STATIC=debug;D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-audio-d.lib;optimized;D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-audio.lib;debug;D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-graphics-d.lib;optimized;D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-graphics.lib;debug;D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-window-d.lib;optimized;D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-window.lib;debug;D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-system-d.lib;optimized;D:/programmation/C++/SFML/SFML-2.5.1/lib/sfml-system.lib;
+thor_LIB_DEPENDS:STATIC=debug;D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-audio-d.lib;optimized;D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-audio.lib;debug;D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-graphics-d.lib;optimized;D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-graphics.lib;debug;D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-window-d.lib;optimized;D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-window.lib;debug;D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-system-d.lib;optimized;D:/programmation/C++/SFML/SFML-2.4.2/lib/sfml-system.lib;
 
 //Value Computed by CMake
 thor_SOURCE_DIR:STATIC=D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor

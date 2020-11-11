@@ -46,7 +46,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -69,7 +69,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>

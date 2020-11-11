@@ -56,7 +56,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -73,10 +73,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;THOR_EXPORTS;CMAKE_INTDIR=\"Debug\";thor_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -84,7 +84,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-audio-d.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-graphics-d.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-window-d.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>D:\programmation\C++\SFML\SFML-2.4.2\lib\sfml-audio-d.lib;D:\programmation\C++\SFML\SFML-2.4.2\lib\sfml-graphics-d.lib;D:\programmation\C++\SFML\SFML-2.4.2\lib\sfml-window-d.lib;D:\programmation\C++\SFML\SFML-2.4.2\lib\sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -99,7 +99,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -116,10 +116,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;THOR_EXPORTS;CMAKE_INTDIR=\"Release\";thor_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -127,7 +127,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-audio.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-graphics.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-window.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>D:\programmation\C++\SFML\SFML-2.4.2\lib\sfml-audio.lib;D:\programmation\C++\SFML\SFML-2.4.2\lib\sfml-graphics.lib;D:\programmation\C++\SFML\SFML-2.4.2\lib\sfml-window.lib;D:\programmation\C++\SFML\SFML-2.4.2\lib\sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
