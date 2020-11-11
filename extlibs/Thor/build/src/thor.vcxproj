@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DE7BD8B7-C19E-36C9-85A1-8D9A3E9180A7}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>thor</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\build\src\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">thor.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">thor-d</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\build\src\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">thor.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">thor</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;THOR_EXPORTS;CMAKE_INTDIR="Debug";thor_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;THOR_EXPORTS;CMAKE_INTDIR=\"Debug\";thor_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-audio-d.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-graphics-d.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-window-d.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/build/src/Debug/thor-d.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/build/src/Debug/thor-d.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;THOR_EXPORTS;CMAKE_INTDIR="Release";thor_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;THOR_EXPORTS;CMAKE_INTDIR=\"Release\";thor_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\include;D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\extlibs\aurora\include;D:\programmation\C++\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-audio.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-graphics.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-window.lib;D:\programmation\C++\SFML\SFML-2.5.1\lib\sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/build/src/Release/thor.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/build/src/Release/thor.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor -BD:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/build --check-stamp-file D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/build/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\build\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor -BD:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/build --check-stamp-file D:/programmation/C++/SFML/Mes_projets_SFML/MathGame/extlibs/Thor/build/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\build\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Action.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\ActionOperations.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Affectors.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Arrow.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\BigSprite.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\BigTexture.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\CallbackTimer.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\ColorAnimation.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\ColorGradient.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\ConcaveShape.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Connection.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Distributions.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Emitters.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\FadeAnimation.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\FrameAnimation.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\InputNames.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Joystick.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Particle.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\ParticleSystem.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Random.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Shapes.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\StopWatch.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Timer.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\ToString.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Triangulation.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\Trigonometry.cpp" />
+    <ClCompile Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\src\UniformAccess.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\programmation\C++\SFML\Mes_projets_SFML\MathGame\extlibs\Thor\build\ZERO_CHECK.vcxproj">
+      <Project>{79E8ED6A-4763-3A42-8A36-D361CF050F66}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
