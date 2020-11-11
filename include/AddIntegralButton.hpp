@@ -1,7 +1,7 @@
 #ifndef ADDINTEGRALBUTTON_HPP
 #define ADDINTEGRALBUTTON_HPP
 
-#include <SFGUI/SFGUI.hpp>
+#include <SFGUI/Widgets.hpp>
 #include "StaticButton.hpp"
 
 class AddIntegralButton : public StaticButton

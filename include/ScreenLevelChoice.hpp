@@ -22,16 +22,19 @@
 #ifndef SCREENLEVELCHOICE_H
 #define SCREENLEVELCHOICE_H
 
-#include <sstream>
-#include <vector>
-
-#include <SFGUI/SFGUI.hpp>
-
 #include "../files.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "Screen.hpp"
 #include "ScreenLink.hpp"
 
+
+#include <SFGUI/SFGUI.hpp>
+
+#include <SFML/Graphics.hpp>
+
+
+#include <sstream>
+#include <vector>
 
 class SelectLevel
 {
