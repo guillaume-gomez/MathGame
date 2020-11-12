@@ -41,10 +41,10 @@ Curves::Curves(const Curves& copy)
 : m_model(copy.m_model), m_view(m_model, Thickness, GraphScale)
 {
     this->m_type = TypeObject::Function;
-    if(copy.m_model.m_coords.front().x != 0.0f && copy.m_model.m_coords.back().x != 0.1f)
-    {
-        build();
-    }
+    //if(copy.m_model.m_coords.front().x != 0.0f && copy.m_model.m_coords.back().x != 0.1f)
+    //{
+    //    build();
+    //}
 }
 
 
