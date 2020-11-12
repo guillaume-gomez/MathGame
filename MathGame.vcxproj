@@ -122,7 +122,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>extlibs\sfgui-0.3.2-vs2017-64\lib;extlibs\Thor\build\src\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfgui.lib;thor;.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfgui.lib;thor.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
