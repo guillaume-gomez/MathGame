@@ -113,6 +113,15 @@
       <AdditionalLibraryDirectories>extlibs\sfgui-0.3.2-vs2017-64\lib;extlibs\Thor\build\src\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfgui-d.lib;thor-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y "$(ProjectDir)extlibs\sfgui-0.3.2-vs2017-64\bin\sfgui-d.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-graphics-d-2.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-window-d-2.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-system-d-2.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-audio-d-2.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\openal32.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(ProjectDir)extlibs\Thor\build\src\Debug\thor-d.dll" "$(ProjectDir)x64\Debug"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -124,6 +133,15 @@
       <AdditionalLibraryDirectories>extlibs\sfgui-0.3.2-vs2017-64\lib;extlibs\Thor\build\src\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfgui.lib;thor.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y "$(ProjectDir)extlibs\sfgui-0.3.2-vs2017-64\bin\sfgui.dll" "$(ProjectDir)x64\Release"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-graphics-2.dll" "$(ProjectDir)x64\Release"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-window-2.dll" "$(ProjectDir)x64\Release"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-system-2.dll" "$(ProjectDir)x64\Release"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-audio-2.dll" "$(ProjectDir)x64\Release"
+xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\openal32.dll" "$(ProjectDir)x64\Release"
+xcopy /Y "$(ProjectDir)extlibs\Thor\build\src\Release\thor.dll" "$(ProjectDir)x64\Release"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="libs\LineSFML2_1.cpp" />
