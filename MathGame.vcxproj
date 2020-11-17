@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{652A9E78-7F42-4FCB-9DB9-23D8945AE1F6}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="sfml.props" />
+    <Import Project="sfml-debug.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="sfml.props" />
+    <Import Project="sfml-release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>include;extlibs\sfgui-0.3.2-vs2017-64\include;extlibs\Thor\include;extlibs\Thor\extlibs\aurora\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>extlibs\sfgui-0.3.2-vs2017-64\lib;extlibs\Thor\build\src\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfgui-d.lib;thor-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>%(Command)
+xcopy /Y "$(ProjectDir)extlibs\sfgui-0.3.2-vs2017-64\bin\sfgui-d.dll" "$(TargetDir)"
+xcopy /Y "$(ProjectDir)extlibs\Thor\build\src\Debug\thor-d.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>include;extlibs\sfgui-0.3.2-vs2017-64\include;extlibs\Thor\include;extlibs\Thor\extlibs\aurora\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>extlibs\sfgui-0.3.2-vs2017-64\lib;extlibs\Thor\build\src\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfgui.lib;thor.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>%(Command)
+xcopy /Y "$(ProjectDir)extlibs\sfgui-0.3.2-vs2017-64\bin\sfgui.dll" "$(TargetDir)"
+xcopy /Y "$(ProjectDir)extlibs\Thor\build\src\Release\thor.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="libs\LineSFML2_1.cpp" />
+    <ClCompile Include="libs\ResourcesManagerSFML2_1.cpp" />
+    <ClCompile Include="libs\TextAreaSFML2_0.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\AddIntegralButton.cpp" />
+    <ClCompile Include="src\AniSprite.cpp" />
+    <ClCompile Include="src\Axis.cpp" />
+    <ClCompile Include="src\Button.cpp" />
+    <ClCompile Include="src\ButtonAnim.cpp" />
+    <ClCompile Include="src\CharacterModel.cpp" />
+    <ClCompile Include="src\CharacterView.cpp" />
+    <ClCompile Include="src\ConstrueFunction.cpp" />
+    <ClCompile Include="src\Curves.cpp" />
+    <ClCompile Include="src\Editor.cpp" />
+    <ClCompile Include="src\EditorCircle.cpp" />
+    <ClCompile Include="src\EditorObject.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
+    <ClCompile Include="src\EnemyModel.cpp" />
+    <ClCompile Include="src\EnemyView.cpp" />
+    <ClCompile Include="src\FactoryObjectCircle.cpp" />
+    <ClCompile Include="src\FactoryObjectPoint.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GraphView.cpp" />
+    <ClCompile Include="src\GravityCircle.cpp" />
+    <ClCompile Include="src\Hero.cpp" />
+    <ClCompile Include="src\InfoDisplayer.cpp" />
+    <ClCompile Include="src\Integral.cpp" />
+    <ClCompile Include="src\IntegralModel.cpp" />
+    <ClCompile Include="src\IntegralView.cpp" />
+    <ClCompile Include="src\LevelModel.cpp" />
+    <ClCompile Include="src\LevelView.cpp" />
+    <ClCompile Include="src\ManageFunctions.cpp" />
+    <ClCompile Include="src\ManageLevel.cpp" />
+    <ClCompile Include="src\ManageText.cpp" />
+    <ClCompile Include="src\ObjectFactoryAbstract.cpp" />
+    <ClCompile Include="src\PanelEditor.cpp" />
+    <ClCompile Include="src\PhysicsEngine.cpp" />
+    <ClCompile Include="src\PhysicsObject.cpp" />
+    <ClCompile Include="src\Point.cpp" />
+    <ClCompile Include="src\Screen.cpp" />
+    <ClCompile Include="src\ScreenCredit.cpp" />
+    <ClCompile Include="src\ScreenFinish.cpp" />
+    <ClCompile Include="src\ScreenHowTo.cpp" />
+    <ClCompile Include="src\ScreenLevelChoice.cpp" />
+    <ClCompile Include="src\ScreenLevelChoiceClassic.cpp" />
+    <ClCompile Include="src\ScreenLevelChoiceNoChance.cpp" />
+    <ClCompile Include="src\ScreenLink.cpp" />
+    <ClCompile Include="src\ScreenOption.cpp" />
+    <ClCompile Include="src\Screen_Editor.cpp" />
+    <ClCompile Include="src\Screen_Game.cpp" />
+    <ClCompile Include="src\Screen_MainMenu.cpp" />
+    <ClCompile Include="src\StaticButton.cpp" />
+    <ClCompile Include="src\VisitorObjectCollidable.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="constants.hpp" />
+    <ClInclude Include="files.hpp" />
+    <ClInclude Include="include\AddIntegralButton.hpp" />
+    <ClInclude Include="include\AniSprite.hpp" />
+    <ClInclude Include="include\Axis.hpp" />
+    <ClInclude Include="include\Button.hpp" />
+    <ClInclude Include="include\ButtonAnim.hpp" />
+    <ClInclude Include="include\CharacterModel.hpp" />
+    <ClInclude Include="include\CharacterView.hpp" />
+    <ClInclude Include="include\ConstrueFunction.hpp" />
+    <ClInclude Include="include\Curves.hpp" />
+    <ClInclude Include="include\Editor.hpp" />
+    <ClInclude Include="include\EditorCircle.hpp" />
+    <ClInclude Include="include\EditorObject.hpp" />
+    <ClInclude Include="include\Element.hpp" />
+    <ClInclude Include="include\Enemy.hpp" />
+    <ClInclude Include="include\EnemyModel.hpp" />
+    <ClInclude Include="include\EnemyView.hpp" />
+    <ClInclude Include="include\FactoryObjectCircle.hpp" />
+    <ClInclude Include="include\FactoryObjectPoint.hpp" />
+    <ClInclude Include="include\Game.hpp" />
+    <ClInclude Include="include\GraphView.hpp" />
+    <ClInclude Include="include\GravityCircle.hpp" />
+    <ClInclude Include="include\Hero.hpp" />
+    <ClInclude Include="include\InfoDisplayer.hpp" />
+    <ClInclude Include="include\Integral.hpp" />
+    <ClInclude Include="include\IntegralModel.hpp" />
+    <ClInclude Include="include\IntegralView.hpp" />
+    <ClInclude Include="include\LevelModel.hpp" />
+    <ClInclude Include="include\LevelView.hpp" />
+    <ClInclude Include="include\ManageFunctions.hpp" />
+    <ClInclude Include="include\ManageLevel.hpp" />
+    <ClInclude Include="include\ManageText.hpp" />
+    <ClInclude Include="include\ObjectFactoryAbstract.hpp" />
+    <ClInclude Include="include\PanelEditor.hpp" />
+    <ClInclude Include="include\PhysicsEngine.hpp" />
+    <ClInclude Include="include\PhysicsObject.hpp" />
+    <ClInclude Include="include\Point.hpp" />
+    <ClInclude Include="include\Screen.hpp" />
+    <ClInclude Include="include\ScreenCredit.hpp" />
+    <ClInclude Include="include\ScreenFinish.hpp" />
+    <ClInclude Include="include\ScreenHowTo.hpp" />
+    <ClInclude Include="include\ScreenLevelChoice.hpp" />
+    <ClInclude Include="include\ScreenLevelChoiceClassic.hpp" />
+    <ClInclude Include="include\ScreenLevelChoiceNoChance.hpp" />
+    <ClInclude Include="include\ScreenLink.hpp" />
+    <ClInclude Include="include\ScreenOption.hpp" />
+    <ClInclude Include="include\Screens.hpp" />
+    <ClInclude Include="include\Screen_Editor.hpp" />
+    <ClInclude Include="include\Screen_Game.hpp" />
+    <ClInclude Include="include\Screen_MainMenu.hpp" />
+    <ClInclude Include="include\StaticButton.hpp" />
+    <ClInclude Include="include\VisitorObjectCollidable.h" />
+    <ClInclude Include="libs\AbstractCursor.hpp" />
+    <ClInclude Include="libs\AbstractPanel.hpp" />
+    <ClInclude Include="libs\AbstractWidget.hpp" />
+    <ClInclude Include="libs\AbstractWidgetEvent.hpp" />
+    <ClInclude Include="libs\Cursor.hpp" />
+    <ClInclude Include="libs\exprtk.hpp" />
+    <ClInclude Include="libs\LineSFML2_1.hpp" />
+    <ClInclude Include="libs\Menu.hpp" />
+    <ClInclude Include="libs\PtrList.hpp" />
+    <ClInclude Include="libs\PtrVector.hpp" />
+    <ClInclude Include="libs\ResourcesManagerSFML2_1.hpp" />
+    <ClInclude Include="libs\ScopedPtr.hpp" />
+    <ClInclude Include="libs\TextAreaSFML2_0.hpp" />
+    <ClInclude Include="libs\WidgetEvent.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

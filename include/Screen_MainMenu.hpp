@@ -22,12 +22,15 @@
 #ifndef SCREEN_MAINMENU_H
 #define SCREEN_MAINMENU_H
 
-#include <SFGUI/SFGUI.hpp>
-
 #include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
 #include "ScreenLink.hpp"
 #include "Screen.hpp"
+
+#include <SFGUI/SFGUI.hpp>
+
+#include <SFML/Graphics.hpp>
+
 
 
 class Screen_MainMenu : public Screen

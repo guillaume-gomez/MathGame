@@ -22,12 +22,18 @@
 #ifndef SCREENHOWTO_H
 #define SCREENHOWTO_H
 
-#include <fstream>
-#include <ostream>
-
 #include "Screen.hpp"
 #include "../constants.hpp"
 #include "../libs/ResourcesManagerSFML2_1.hpp"
+
+#include <SFGUI/Widgets.hpp>
+#include <SFGUI/SFGUI.hpp>
+
+#include <SFML/Graphics.hpp>
+
+#include <fstream>
+#include <ostream>
+
 
 
 class ScreenHowTo : public Screen

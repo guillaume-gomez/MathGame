@@ -55,6 +55,8 @@ int main()
 
     RenderWindow App(VideoMode(WindowWidth, WindowHeight),"I Hate Maths",sf::Style::Default, contextPerso);
 
+    App.setFramerateLimit(60);
+
     std::vector<Screen*> screens;
     int screen = 0 ;
 

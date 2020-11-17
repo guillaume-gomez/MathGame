@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\LineSFML2_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\ResourcesManagerSFML2_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\TextAreaSFML2_0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AddIntegralButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AniSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Axis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ButtonAnim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CharacterModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CharacterView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConstrueFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Curves.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EditorCircle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EditorObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EnemyModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EnemyView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FactoryObjectCircle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FactoryObjectPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GraphView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GravityCircle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hero.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InfoDisplayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Integral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IntegralModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IntegralView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObjectFactoryAbstract.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PanelEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenCredit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenFinish.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenHowTo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenLevelChoice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenLevelChoiceClassic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenLevelChoiceNoChance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenLink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenOption.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screen_Editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screen_Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Screen_MainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StaticButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VisitorObjectCollidable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="constants.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="files.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VisitorObjectCollidable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AddIntegralButton.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AniSprite.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Axis.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Button.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ButtonAnim.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CharacterModel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CharacterView.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConstrueFunction.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Curves.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Editor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EditorCircle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EditorObject.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Element.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Enemy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EnemyModel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EnemyView.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FactoryObjectCircle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\FactoryObjectPoint.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GraphView.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GravityCircle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hero.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InfoDisplayer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Integral.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IntegralModel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IntegralView.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LevelModel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LevelView.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ManageFunctions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ManageLevel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ManageText.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ObjectFactoryAbstract.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PanelEditor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicsEngine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhysicsObject.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Point.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Screen.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenCredit.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenFinish.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenHowTo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenLevelChoice.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenLevelChoiceClassic.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenLevelChoiceNoChance.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenLink.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenOption.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Screens.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Screen_Editor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Screen_Game.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Screen_MainMenu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StaticButton.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\AbstractCursor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\AbstractPanel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\AbstractWidget.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\AbstractWidgetEvent.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\Cursor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\exprtk.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\LineSFML2_1.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\Menu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\PtrList.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\PtrVector.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\ResourcesManagerSFML2_1.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\ScopedPtr.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\TextAreaSFML2_0.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\WidgetEvent.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
