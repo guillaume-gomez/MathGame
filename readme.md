@@ -32,6 +32,24 @@ There is 2 game modes :
 
 Installation
 -------------
+
+
+## Compile Math Game
+
+### Through Visual Studio 2019
+
+1. Configure your SFML_ROOT location in [sfml.props](sfml.props) so the compiler knows where to find the headers and libs
+2. Open the solution with Visual Studio and you should be good to go.
+
+### Using a makefile
+```
+make all
+./bin/Release/ProjetMath
+```
+
+
+
+
 **The installation has been tested on Ubuntu 14.04 LTS.**
 
 *MathGame uses external libraries that you'll have to compile yourself*
@@ -100,35 +118,6 @@ sudo make install
 
 **After these installations => `sudo ldconfig`**
 This will tell your system to create the necessary links and cache to the most recent shared libraries found
-
-## Compile Math Game
-
-### Using a makefile
-```
-make all
-./bin/Release/ProjetMath
-```
-
-### Through code::blocks
-You just have to run the project (i.e. open "ProjetMath.cbp" )
-
-<img src="resReadme/linker_cb.png" alt="Linker codeblocks option" width="80%" />
-
-
-- go to _build options_ ( right clic on project -> Build options... ), and add external libraries if there aren't already there
-- libsfml-audio.so,
-- libsfml-graphics.so,
-- libsfml-system.so,
-- libsfml-window.so,
-- libsfgui.so,
-- libthor.so
-
-- Under windows extensions are `.a` instead of `.so`
-- Under Linux no need to include headers
-
-
-<img src="resReadme/include_cb.png" alt="Include codeblocks option" width="80%" />
-
 
 License
 ------------
