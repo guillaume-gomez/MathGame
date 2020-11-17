@@ -7,6 +7,13 @@
     <Link>
       <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y "$(SFML_ROOT)\bin\sfml-graphics-d-2.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(SFML_ROOT)\bin\sfml-window-d-2.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(SFML_ROOT)\bin\sfml-system-d-2.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(SFML_ROOT)\bin\sfml-audio-d-2.dll" "$(ProjectDir)x64\Debug"
+xcopy /Y "$(SFML_ROOT)\bin\openal32.dll" "$(ProjectDir)x64\Debug"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

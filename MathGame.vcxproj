@@ -114,13 +114,9 @@
       <AdditionalDependencies>sfgui-d.lib;thor-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "$(ProjectDir)extlibs\sfgui-0.3.2-vs2017-64\bin\sfgui-d.dll" "$(ProjectDir)x64\Debug"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-graphics-d-2.dll" "$(ProjectDir)x64\Debug"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-window-d-2.dll" "$(ProjectDir)x64\Debug"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-system-d-2.dll" "$(ProjectDir)x64\Debug"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-audio-d-2.dll" "$(ProjectDir)x64\Debug"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\openal32.dll" "$(ProjectDir)x64\Debug"
-xcopy /Y "$(ProjectDir)extlibs\Thor\build\src\Debug\thor-d.dll" "$(ProjectDir)x64\Debug"</Command>
+      <Command>%(Command)
+xcopy /Y "$(ProjectDir)extlibs\sfgui-0.3.2-vs2017-64\bin\sfgui-d.dll" "$(TargetDir)"
+xcopy /Y "$(ProjectDir)extlibs\Thor\build\src\Debug\thor-d.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,13 +130,9 @@ xcopy /Y "$(ProjectDir)extlibs\Thor\build\src\Debug\thor-d.dll" "$(ProjectDir)x6
       <AdditionalDependencies>sfgui.lib;thor.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y "$(ProjectDir)extlibs\sfgui-0.3.2-vs2017-64\bin\sfgui.dll" "$(ProjectDir)x64\Release"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-graphics-2.dll" "$(ProjectDir)x64\Release"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-window-2.dll" "$(ProjectDir)x64\Release"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-system-2.dll" "$(ProjectDir)x64\Release"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\sfml-audio-2.dll" "$(ProjectDir)x64\Release"
-xcopy /Y "$(ProjectDir)..\..\SFML-2.4.2\bin\openal32.dll" "$(ProjectDir)x64\Release"
-xcopy /Y "$(ProjectDir)extlibs\Thor\build\src\Release\thor.dll" "$(ProjectDir)x64\Release"</Command>
+      <Command>%(Command)
+xcopy /Y "$(ProjectDir)extlibs\sfgui-0.3.2-vs2017-64\bin\sfgui.dll" "$(TargetDir)"
+xcopy /Y "$(ProjectDir)extlibs\Thor\build\src\Release\thor.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
